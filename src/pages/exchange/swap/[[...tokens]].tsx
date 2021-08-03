@@ -64,6 +64,7 @@ import { useRouter } from 'next/router'
 import { useSwapCallback } from '../../../hooks/useSwapCallback'
 import { useUSDCValue } from '../../../hooks/useUSDCPrice'
 import { warningSeverity } from '../../../functions/prices'
+import Alert from '../../../components/Alert'
 
 export default function Swap() {
   const { i18n } = useLingui()
@@ -560,7 +561,19 @@ export default function Swap() {
           </div>
 
           {recipient !== null && !showWrap && (
-            <AddressInputPanel id="recipient" value={recipient} onChange={onChangeRecipient} />
+            <>
+              <AddressInputPanel id="recipient" value={recipient} onChange={onChangeRecipient} />
+              {recipient !== account && (
+                <Alert
+                  type="warning"
+                  dismissable={false}
+                  showIcon
+                  message={i18n._(
+                    t`Please note that the recipient address is different from the connected wallet address.`
+                  )}
+                />
+              )}
+            </>
           )}
 
           {showWrap ? null : (
