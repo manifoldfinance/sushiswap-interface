@@ -135,6 +135,7 @@ module.exports = withBundleAnalyzer(
         },
       ]
     },
+  poweredByHeader: false,
     i18n: {
       locales,
       defaultLocale: sourceLocale,

@@ -1,16 +1,14 @@
 msgid ""
 msgstr ""
-"MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
-"X-Generator: lokalise.com\n"
-"Project-Id-Version: SushiSwap Interface\n"
-"PO-Revision-Date: 2021-05-05 14:23\n"
-"Last-Translator: lokalise.com\n"
-"Language-Team: lokalise.com\n\n"
-"Language: en\n"
+"Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: \n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language: \n"
+"Language-Team: \n"
+"Content-Type: \n"
+"Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
 
 msgid ""
@@ -86,6 +84,12 @@ msgstr "Analytics"
 msgid "Approve"
 msgstr "Approve"
 
+msgid "Approve Inari Master Contract"
+msgstr "Approve Inari Master Contract"
+
+msgid "Approve Inari to spend {0}"
+msgstr "Approve Inari to spend {0}"
+
 msgid "Approve Kashi"
 msgstr "Approve Kashi"
 
@@ -100,6 +104,12 @@ msgstr "Approved"
 
 msgid "Approving"
 msgstr "Approving"
+
+msgid "Approving Inari Master Contract"
+msgstr "Approving Inari Master Contract"
+
+msgid "Approving Inari to spend {0}"
+msgstr "Approving Inari to spend {0}"
 
 msgid "Approving Limit Order"
 msgstr "Approving Limit Order"
@@ -348,6 +358,9 @@ msgstr "Enter a valid slippage percentage"
 msgid "Enter an amount"
 msgstr "Enter an amount"
 
+msgid "Enter an mount"
+msgstr "Enter an mount"
+
 msgid "Error"
 msgstr "Error"
 
@@ -404,6 +417,9 @@ msgstr ""
 msgid "French"
 msgstr "French"
 
+msgid "From"
+msgstr "From"
+
 msgid "Gain exposure to tokens without reducing your assets. Leverage will enable you to take short positions against assets and earn from downside movements."
 msgstr "Gain exposure to tokens without reducing your assets. Leverage will enable you to take short positions against assets and earn from downside movements."
 
@@ -428,6 +444,9 @@ msgstr "Harmony Bridge"
 
 msgid "Harvest {0} SUSHI {1}"
 msgstr "Harvest {0} SUSHI {1}"
+
+msgid "Harvest {0}/{1}"
+msgstr "Harvest {0}/{1}"
 
 msgid "Have assets you want to earn additional interest on? Lend them in isolated markets and earn interest from borrowers."
 msgstr "Have assets you want to earn additional interest on? Lend them in isolated markets and earn interest from borrowers."
@@ -683,6 +702,9 @@ msgstr "Not approved"
 msgid "ONLY USE THIS MODE IF YOU KNOW WHAT YOU ARE DOING."
 msgstr "ONLY USE THIS MODE IF YOU KNOW WHAT YOU ARE DOING."
 
+msgid "One-Click Strategies"
+msgstr "One-Click Strategies"
+
 msgid "Oops! An unknown error occurred. Please refresh the page, or visit from another browser or device"
 msgstr "Oops! An unknown error occurred. Please refresh the page, or visit from another browser or device"
 
@@ -719,6 +741,9 @@ msgstr "Output is estimated. You will receive at least"
 
 msgid "Output will be sent to"
 msgstr "Output will be sent to"
+
+msgid "Palm Bridge"
+msgstr "Palm Bridge"
 
 msgid "Pay"
 msgstr "Pay"
@@ -891,6 +916,22 @@ msgstr "Stake SUSHI"
 msgid "Stake SUSHI for xSUSHI"
 msgstr "Stake SUSHI for xSUSHI"
 
+msgid "Stake SUSHI for xSUSHI and deposit into Aave in one click. xSUSHI in Aave (aXSUSHI) can be lent or used as collateral for borrowing."
+msgstr "Stake SUSHI for xSUSHI and deposit into Aave in one click. xSUSHI in Aave (aXSUSHI) can be lent or used as collateral for borrowing."
+
+msgid ""
+"Stake SUSHI for xSUSHI and deposit into BentoBox in one click. xSUSHI in BentoBox is automatically\n"
+"invested into a passive yield strategy, and can be lent or used as collateral for borrowing in Kashi."
+msgstr ""
+"Stake SUSHI for xSUSHI and deposit into BentoBox in one click. xSUSHI in BentoBox is automatically\n"
+"invested into a passive yield strategy, and can be lent or used as collateral for borrowing in Kashi."
+
+msgid "Stake SUSHI for xSUSHI and deposit into Cream in one click. xSUSHI in Cream (crXSUSHI) can be lent or used as collateral for borrowing."
+msgstr "Stake SUSHI for xSUSHI and deposit into Cream in one click. xSUSHI in Cream (crXSUSHI) can be lent or used as collateral for borrowing."
+
+msgid "Stake SUSHI for xSUSHI into Cream and deposit crXSUSHI into BentoBox in one click."
+msgstr "Stake SUSHI for xSUSHI into Cream and deposit crXSUSHI into BentoBox in one click."
+
 msgid ""
 "Stake into xSUSHI add collateral as axSUSHI on Aave all in\n"
 "one click"
@@ -931,6 +972,13 @@ msgstr "Swap To:"
 msgid "TVL"
 msgstr "TVL"
 
+msgid ""
+"Take your SUSHI and invest in various strategies with one click! Earn extra yields with BentoBox, use as\n"
+"collateral on other platforms, and more!"
+msgstr ""
+"Take your SUSHI and invest in various strategies with one click! Earn extra yields with BentoBox, use as\n"
+"collateral on other platforms, and more!"
+
 msgid "The Uniswap invariant x*y=k was not satisfied by the swap. This usually means one of the tokens you are swapping incorporates custom behavior on transfer."
 msgstr "The Uniswap invariant x*y=k was not satisfied by the swap. This usually means one of the tokens you are swapping incorporates custom behavior on transfer."
 
@@ -969,6 +1017,9 @@ msgstr "Tip to encourage miners to select this transaction."
 
 msgid "Tip:"
 msgstr "Tip:"
+
+msgid "To"
+msgstr "To"
 
 msgid "Toggle Expert Mode"
 msgstr "Toggle Expert Mode"
@@ -1197,7 +1248,6 @@ msgstr "xSUSHI Fee"
 msgid "Token"
 msgid_plural "Tokens"
 msgstr[0] "Token"
-msgstr[1] "Tokens"
 
 msgid "{0} Deposited"
 msgstr "{0} Deposited"
