@@ -1,5 +1,5 @@
 import { ChainId, JSBI, Percent } from '@sushiswap/sdk'
-import { binance, fortmatic, injected, keystone, portis, torus, walletconnect, walletlink } from '../connectors'
+import { binance, fortmatic, injected, portis, torus, walletconnect, walletlink } from '../connectors'
 
 import { AbstractConnector } from '@web3-react/abstract-connector'
 import { BigNumber } from 'ethers'
@@ -45,10 +45,17 @@ export const ARCHER_GAS_URI: { [chainId in ChainId]?: string } = {
   [ChainId.MAINNET]: 'https://api.archerdao.io/v1/gas',
 }
 
+/**
+ * @api OpenMEV
+ * @param MANIFOLD_FINANCE_SUPPORTED_NETWORKS
+ * @param MANIFOLD_FINANCE_URI
+ */
+
 export const MANIFOLD_FINANCE_SUPPORTED_NETWORKS = [ChainId.MAINNET]
 
+// FIXME / @note replace this hardcoded URL 
 export const MANIFOLD_FINANCE_URI: { [chainId in ChainId]?: string } = {
-  [ChainId.MAINNET]: 'https://api.sushirelay.com/v1',
+  [ChainId.MAINNET]: 'https://api.staging.sushirelay.com/v1',
 }
 
 // export const COMMON_CONTRACT_NAMES: { [address: string]: string } = {
@@ -125,7 +132,13 @@ export const SUPPORTED_WALLETS: { [key: string]: WalletInfo } = {
     mobile: true,
   },
   KEYSTONE: {
-    connector: keystone,
+    connector: async () => {
+      const KeystoneConnector = (await import('@keystonehq/keystone-connector')).KeystoneConnector
+      return new KeystoneConnector({
+        chainId: 1,
+        url: RPC[ChainId.MAINNET],
+      })
+    },
     name: 'Keystone',
     iconName: 'keystone.png',
     description: 'Connect to Keystone hardware wallet.',
@@ -253,12 +266,18 @@ export const BETTER_TRADE_LESS_HOPS_THRESHOLD = new Percent(JSBI.BigInt(50), JSB
 export const ZERO_PERCENT = new Percent('0')
 export const ONE_HUNDRED_PERCENT = new Percent('1')
 
-// SDN OFAC addresses
+// SDN OFAC addresses - 08/04/2021 
 export const BLOCKED_ADDRESSES: string[] = [
-  '0x7F367cC41522cE07553e823bf3be79A889DEbe1B',
-  '0xd882cFc20F52f2599D84b8e8D58C7FB62cfE344b',
-  '0x901bb9583b24D97e995513C6778dc6888AB6870e',
-  '0xA7e5d5A720f06526557c513402f2e6B5fA20b008',
+  "0x7F367cC41522cE07553e823bf3be79A889DEbe1B",
+  "0xd882cfc20f52f2599d84b8e8d58c7fb62cfe344b",
+  "0x901bb9583b24d97e995513c6778dc6888ab6870e",
+  "0xa7e5d5a720f06526557c513402f2e6b5fa20b00",
+  "0x8576acc5c05d6ce88f4e49bf65bdf0c62f91353c",
+  "0x1da5821544e25c636c1417ba96ade4cf6d2f9b5a",
+  "0x7Db418b5D567A4e0E8c59Ad71BE1FcE48f3E6107",
+  "0x72a5843cc08275C8171E582972Aa4fDa8C397B2A",
+  "0x7F19720A857F834887FC9A7bC0a0fBe7Fc7f8102",
+  "0x9f4cda013e354b8fc285bf4b9a60460cee7f7ea9"
 ]
 
 // BentoBox Swappers
@@ -280,7 +299,9 @@ export const ANALYTICS_URL: { [chainId in ChainId]?: string } = {
   [ChainId.ARBITRUM]: undefined,
 }
 
+// https://ethereum.org/en/history/#london
 export const EIP_1559_ACTIVATION_BLOCK: { [chainId in ChainId]?: number } = {
+  [ChainId.MAINNET]: 12965000,
   [ChainId.ROPSTEN]: 10499401,
   [ChainId.GÖRLI]: 5062605,
   [ChainId.RINKEBY]: 8897988,

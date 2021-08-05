@@ -2,7 +2,6 @@ import { BscConnector } from '@binance-chain/bsc-connector'
 import { ChainId } from '@sushiswap/sdk'
 import { FortmaticConnector } from './Fortmatic'
 import { InjectedConnector } from '@web3-react/injected-connector'
-import { KeystoneConnetor } from '@keystonehq/keystone-connector'
 import { NetworkConnector } from './NetworkConnector'
 import { PortisConnector } from '@web3-react/portis-connector'
 import { TorusConnector } from '@web3-react/torus-connector'
@@ -11,7 +10,7 @@ import { WalletLinkConnector } from '@web3-react/walletlink-connector'
 import { Web3Provider } from '@ethersproject/providers'
 
 const RPC = {
-  [ChainId.MAINNET]: 'https://eth-mainnet.alchemyapi.io/v2/q1gSNoSMEzJms47Qn93f9-9Xg5clkmEC',
+  [ChainId.MAINNET]: 'https://eth-mainnet.alchemyapi.io/v2/v9tfrBipLsfRgNvoeX0iqyLfCa1jA5AW',
   [ChainId.ROPSTEN]: 'https://eth-ropsten.alchemyapi.io/v2/cidKix2Xr-snU3f6f6Zjq_rYdalKKHmW',
   [ChainId.RINKEBY]: 'https://eth-rinkeby.alchemyapi.io/v2/XVLwDlhGP6ApBXFz_lfv0aZ6VmurWhYD',
   [ChainId.GÖRLI]: 'https://eth-goerli.alchemyapi.io/v2/Dkk5d02QjttYEoGmhZnJG37rKt8Yl3Im',
@@ -108,11 +107,6 @@ export const walletlink = new WalletLinkConnector({
 // mainnet only
 export const torus = new TorusConnector({
   chainId: 1,
-})
-
-export const keystone = new KeystoneConnetor({
-  chainId: 1,
-  url: RPC[ChainId.MAINNET],
 })
 
 // binance only

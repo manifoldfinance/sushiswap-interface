@@ -1,0 +1,10 @@
+# browserlistrc 
+>0.3%
+not dead 
+not op_mini all
+not IE > 0
+chrome >= 89
+edge 91
+firefox >= 88
+opera 76
+safari >= 14
