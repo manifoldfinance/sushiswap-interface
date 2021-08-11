@@ -10,7 +10,10 @@
       "not op_mini all",
       "not IE > 0",
       "not samsung 4",
-      "not and_uc 12.12"
+      "not and_uc 12.12",
+"chrome >= 89",
+"edge 91",
+"firefox >= 88"
     ],
     "development": [
       "last 1 chrome version",
