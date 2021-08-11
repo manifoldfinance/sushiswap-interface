@@ -43,7 +43,7 @@ export const ARCHER_RELAY_URI: { [chainId in ChainId]?: string } = {
 
 // TODO - this no longer resolves! 
 export const ARCHER_GAS_URI: { [chainId in ChainId]?: string } = {
-  [ChainId.MAINNET]: 'https://api.archerdao.io/v1/gas',
+  [ChainId.MAINNET]: 'https://api.edennetwork.io/v1/gas',
 }
 
 /**
