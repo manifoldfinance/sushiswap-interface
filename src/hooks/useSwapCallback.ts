@@ -493,7 +493,7 @@ export function useSwapCallback(
               if (!chain) throw new Error(`Unknown chain ID ${chainId} when building transaction`)
               const common = new Common({
                 chain,
-                hardfork: 'berlin',
+                hardfork: 'london', // HARDFORK update 
               })
               const txParams = {
                 nonce:

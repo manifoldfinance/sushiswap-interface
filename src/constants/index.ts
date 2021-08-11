@@ -41,12 +41,14 @@ export const ARCHER_RELAY_URI: { [chainId in ChainId]?: string } = {
   [ChainId.MAINNET]: 'https://api.archerdao.io/v1/transaction',
 }
 
+// TODO - this no longer resolves! 
 export const ARCHER_GAS_URI: { [chainId in ChainId]?: string } = {
   [ChainId.MAINNET]: 'https://api.archerdao.io/v1/gas',
 }
 
 /**
  * @api OpenMEV
+ * @todo update `MANIFOLD_` to `OPENMEV_`
  * @param MANIFOLD_FINANCE_SUPPORTED_NETWORKS
  * @param MANIFOLD_FINANCE_URI
  */

@@ -127,14 +127,15 @@ export default function SettingsTab({ placeholderSlippage }: { placeholderSlippa
                   }}
                 />
               </div>
-            )}
+            )} */}
+            {/* TODO - rename to OpenMEV */}
             {MANIFOLD_FINANCE_SUPPORTED_NETWORKS.includes(chainId) && (
               <div className="flex justify-between items-center">
                 <div className="flex items-center">
                   <Typography variant="sm" className="text-primary">
-                    {i18n._(t`MEV Gas Refunder`)}
+                    {i18n._(t`OpenMEV Gas Refunder`)}
                   </Typography>
-                  <QuestionHelper text={i18n._(t`MEV Service that pays up to 95% of transaction fee for trading`)} />
+                  <QuestionHelper text={i18n._(t`MEV Service refunds up to 95% of your transaction fee`)} />
                 </div>
                 <Toggle
                   id="toggle-use-manifold"
@@ -145,7 +146,7 @@ export default function SettingsTab({ placeholderSlippage }: { placeholderSlippa
                   }}
                 />
               </div>
-            )} */}
+            )}
           </div>
         </div>
       )}

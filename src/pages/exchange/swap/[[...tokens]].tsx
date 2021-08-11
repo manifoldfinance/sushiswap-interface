@@ -116,15 +116,14 @@ export default function Swap() {
 
   const [useManifoldFinance] = useUserManifoldFinanceRelay()
 
+    // manifold finance
+    const manifoldRelay = chainId ? MANIFOLD_FINANCE_URI?.[chainId] : undefined
+    const doManifold = manifoldRelay !== undefined && useManifoldFinance
+    
   // archer
   const archerRelay = chainId ? ARCHER_RELAY_URI?.[chainId] : undefined
   // const doArcher = archerRelay !== undefined && useArcher
   const doArcher = undefined
-
-  // manifold finance
-  const manifoldRelay = chainId ? MANIFOLD_FINANCE_URI?.[chainId] : undefined
-  const doManifold = !doArcher && manifoldRelay !== undefined && useManifoldFinance
-
   // swap state
   const { independentField, typedValue, recipient } = useSwapState()
   const {
@@ -134,7 +133,7 @@ export default function Swap() {
     currencies,
     inputError: swapInputError,
     allowedSlippage,
-  } = useDerivedSwapInfo(doArcher, doManifold)
+  } = useDerivedSwapInfo(doManifold)
 
   const {
     wrapType,
@@ -577,15 +576,15 @@ export default function Swap() {
             </>
           )}
 
-          {/* {showWrap ? null : (
+        {showWrap ? null : (
             <div
               style={{
                 padding: showWrap ? '.25rem 1rem 0 1rem' : '0px',
               }}
             >
-              <div className="px-5 mt-1">{doArcher && userHasSpecifiedInputOutput && <MinerTip />}</div>
+              <div className="px-5 mt-1">{doManifold && userHasSpecifiedInputOutput && <MinerTip />}</div>
             </div>
-          )} */}
+          )} 
           {/*
           {trade && (
             <div className="p-5 rounded bg-dark-800">
