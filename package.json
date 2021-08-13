@@ -11,9 +11,9 @@
       "not IE > 0",
       "not samsung 4",
       "not and_uc 12.12",
-"chrome >= 89",
-"edge 91",
-"firefox >= 88"
+      "chrome >= 89",
+      "edge 91",
+      "firefox >= 88"
     ],
     "development": [
       "last 1 chrome version",
@@ -80,7 +80,7 @@
     "@sushiswap/default-token-list": "13.0.0",
     "@sushiswap/limit-order-pair-list": "0.2.2",
     "@sushiswap/sdk": "5.0.0-canary.39",
-    "@sushiswap/sushi-data": "^1.0.24",
+    "@sushiswap/sushi-data": "git+https://github.com/manifoldfinance/sushi-data.git",
     "@tailwindcss/jit": "^0.1.18",
     "@transak/transak-sdk": "^1.0.28",
     "@types/node": "^16.4.7",

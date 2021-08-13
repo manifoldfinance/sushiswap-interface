@@ -2391,16 +2391,15 @@
     tiny-warning "^1.0.3"
     toformat "^2.0.0"
 
-"@sushiswap/sushi-data@^1.0.24":
-  version "1.0.26"
-  resolved "https://registry.yarnpkg.com/@sushiswap/sushi-data/-/sushi-data-1.0.26.tgz#6f9d68f0193d7bb3839262fe47dcd095478ee3e1"
-  integrity sha512-zGAL3un1K8J+mc4GyMhjOdJHYsnuwh7WiP4zlgvGyz1FJbFvnkv6NaKqh1bLAVCJDTZRFBZCzty7qp+6kX+nJw==
+"@sushiswap/sushi-data@git+https://github.com/manifoldfinance/sushi-data.git":
+  version "1.0.27"
+  resolved "git+https://github.com/manifoldfinance/sushi-data.git#d08669890921fb422a3f00f2a5c137a893d1f304"
   dependencies:
     bluebird "^3.7.2"
     commander "6.1.0"
     csv-stringify "5.3.3"
     date-fns "^2.17.0"
-    graph-results-pager "https://github.com/LufyCZ/graph-results-pager"
+    graph-results-pager "github:LufyCZ/graph-results-pager"
     graphql "14.5.8"
     graphql-request "^3.4.0"
     isomorphic-ws "^4.0.1"
@@ -8385,9 +8384,9 @@ graceful-fs@^4.1.11, graceful-fs@^4.1.2, graceful-fs@^4.1.6, graceful-fs@^4.2.0,
   resolved "https://registry.yarnpkg.com/graceful-fs/-/graceful-fs-4.2.8.tgz#e412b8d33f5e006593cbd3cee6df9f2cebbe802a"
   integrity sha512-qkIilPUYcNhJpd33n0GBXTB1MMPp14TxEsEs0pTrsSVucApsYzW5V+Q8Qxhik6KU3evy+qkAAowTByymK0avdg==
 
-"graph-results-pager@git+https://github.com/LufyCZ/graph-results-pager.git":
+"graph-results-pager@github:LufyCZ/graph-results-pager":
   version "1.0.3"
-  resolved "git+https://github.com/LufyCZ/graph-results-pager.git#9b230f05b8d79aeedc9e167ac5a1fea33e04d51f"
+  resolved "https://codeload.github.com/LufyCZ/graph-results-pager/tar.gz/9b230f05b8d79aeedc9e167ac5a1fea33e04d51f"
   dependencies:
     node-fetch "2.6.1"
 

@@ -19,4 +19,4 @@ fi
 
 
 echo "Executing NextJS server..."
-npm run-script start
+npx next-boost
