@@ -5,6 +5,7 @@ import 'react-virtualized/styles.css'
 import 'react-tabs/style/react-tabs.css'
 
 import * as plurals from 'make-plural/plurals'
+require('@rapidsec/node')
 
 import { Fragment, FunctionComponent } from 'react'
 import { NextComponentType, NextPageContext } from 'next'

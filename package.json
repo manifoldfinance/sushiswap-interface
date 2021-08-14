@@ -170,5 +170,8 @@
     "entrypoints": [
       "src/pages"
     ]
+  },
+  "dependencies": {
+    "@rapidsec/node": "^2.0.1"
   }
 }
