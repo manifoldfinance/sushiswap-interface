@@ -10,7 +10,6 @@ const withBundleAnalyzer = require('@next/bundle-analyzer')({
 })
 
 module.exports = withBundleAnalyzer(
-
   withPWA({
     pwa: {
       dest: 'public',
@@ -135,6 +134,9 @@ module.exports = withBundleAnalyzer(
           destination: '/user/balances',
         },
       ]
+    },
+    config.node = {
+      fs: 'empty'
     },
   poweredByHeader: false,
     i18n: {

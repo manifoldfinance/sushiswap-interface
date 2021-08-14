@@ -576,14 +576,8 @@ msgid ""
 "used to vote in special MEOW governor contracts."
 msgstr ""
 
-msgid "MEV Gas Refunder"
+msgid "MEV Service refunds up to 95% of your transaction fee"
 msgstr ""
-
-msgid "MEV Service that pays up to 95% of transaction fee for trading"
-msgstr ""
-
-msgid "MEV Shield by Archer DAO"
-msgstr "Archer DAOによるMEV Shield"
 
 msgid "Manage"
 msgstr "管理"
@@ -698,6 +692,9 @@ msgstr "オープンソース"
 
 msgid "Open main menu"
 msgstr "メインメニューを開く"
+
+msgid "OpenMEV Gas Refunder"
+msgstr ""
 
 msgid "Oracle"
 msgstr "オラクル"
@@ -862,9 +859,6 @@ msgstr "注文の有効期限を選択"
 
 msgid "Send to:"
 msgstr "送信先："
-
-msgid "Send transaction privately to avoid front-running and sandwich attacks. Requires a miner tip to incentivize miners"
-msgstr "フロントランニングやサンドイッチ攻撃を回避するために、取引を非公開で送信します。マイナーにインセンティブを与えるには、マイナーに関するヒントが必要です"
 
 msgid "Share of Pool"
 msgstr "プールのシェア"

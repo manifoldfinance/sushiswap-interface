@@ -597,14 +597,8 @@ msgstr ""
 "MEOW tokens wrap xSUSHI into BentoBox for double yields and can be\n"
 "used to vote in special MEOW governor contracts."
 
-msgid "MEV Gas Refunder"
-msgstr "MEV Gas Refunder"
-
-msgid "MEV Service that pays up to 95% of transaction fee for trading"
-msgstr "MEV Service that pays up to 95% of transaction fee for trading"
-
-msgid "MEV Shield by Archer DAO"
-msgstr "MEV Shield by Archer DAO"
+msgid "MEV Service refunds up to 95% of your transaction fee"
+msgstr "MEV Service refunds up to 95% of your transaction fee"
 
 msgid "Manage"
 msgstr "Manage"
@@ -719,6 +713,9 @@ msgstr "Open Source"
 
 msgid "Open main menu"
 msgstr "Open main menu"
+
+msgid "OpenMEV Gas Refunder"
+msgstr "OpenMEV Gas Refunder"
 
 msgid "Oracle"
 msgstr "Oracle"
@@ -885,9 +882,6 @@ msgstr "Select an order expiration"
 
 msgid "Send to:"
 msgstr "Send to:"
-
-msgid "Send transaction privately to avoid front-running and sandwich attacks. Requires a miner tip to incentivize miners"
-msgstr "Send transaction privately to avoid front-running and sandwich attacks. Requires a miner tip to incentivize miners"
 
 msgid "Share of Pool"
 msgstr "Share of Pool"
@@ -1251,6 +1245,7 @@ msgstr "xSUSHI Fee"
 msgid "Token"
 msgid_plural "Tokens"
 msgstr[0] "Token"
+msgstr[1] "Tokens"
 
 msgid "{0} Deposited"
 msgstr "{0} Deposited"
