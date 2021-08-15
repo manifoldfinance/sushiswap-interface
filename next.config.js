@@ -9,10 +9,7 @@ const withBundleAnalyzer = require('@next/bundle-analyzer')({
   enabled: process.env.ANALYZE === 'true',
 })
 
-module.exports = 
-config.node = {
-  fs: 'empty'
-},
+module.exports =
 withBundleAnalyzer(
   withPWA({
     pwa: {
@@ -139,6 +136,15 @@ withBundleAnalyzer(
         },
       ]
     },
+    webpack: (config, { isServer }) => {
+      if (!isServer) {
+          // don't resolve 'fs' module on the client to prevent this error on build --> Error: Can't resolve 'fs'
+          config.resolve.fallback = {
+              fs: false
+          }
+      }
+      return config;
+  },
   poweredByHeader: false,
     i18n: {
       locales,

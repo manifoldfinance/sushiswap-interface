@@ -13,8 +13,10 @@ import { useActiveWeb3React } from './useActiveWeb3React'
 import { useCombinedActiveList } from '../state/lists/hooks'
 import { useMemo } from 'react'
 import { useUserAddedTokens } from '../state/user/hooks'
+
+
 import { useUserManifoldFinanceRelay } from '../state/user/hooks'
-import MANIFOLD_TOKENS_ALLOW_LIST from '../constants/tokens/sushiswap-manifoldfinance.allowlist.json'
+// import MANIFOLD_TOKENS_ALLOW_LIST from '../constants/tokens/sushiswap-manifoldfinance.allowlist.json'
 
 // reduce token map into standard address <-> Token mapping, optionally include user added tokens
 function useTokensFromMap(tokenMap: TokenAddressMap, includeUserAdded: boolean): { [address: string]: Token } {
@@ -51,10 +53,21 @@ function useTokensFromMap(tokenMap: TokenAddressMap, includeUserAdded: boolean):
     return mapWithoutUrls
   }, [chainId, userAddedTokens, tokenMap, includeUserAdded])
 }
-
+  /**
 export function useAllTokens(): { [address: string]: Token } {
   const allTokens = useCombinedActiveList()
-  const tokensFromMap = useTokensFromMap(allTokens, true)
+  return useTokensFromMap(allTokens, true)
+  
+}
+    
+       * @note disabling useAlltokens removes the restrictions for which markets 
+       * can be submitted to OpenMEV: this in effect unlocks all pools.
+      */
+      export function useAllTokens(): { [address: string]: Token } {
+        const allTokens = useCombinedActiveList()
+        const tokensFromMap = useTokensFromMap(allTokens, true)
+
+
 
   const { chainId } = useActiveWeb3React()
   const [useManifoldFinance] = useUserManifoldFinanceRelay()
