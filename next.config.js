@@ -158,6 +158,7 @@ module.exports = withBundleAnalyzer(
         },
       ]
     },
+    poweredByHeader: false,
     i18n: {
       localeDetection: true,
       locales,

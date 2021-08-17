@@ -1,12 +1,10 @@
-.dockerignore
 build
-env
+.env*
 docs
 Dockerfile
 node_modules
 nix
-.git
+.git*
 .husky
 .next/
 test/
-.github/

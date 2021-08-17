@@ -3,9 +3,8 @@ import {
   CurrencyAmount,
   JSBI,
   MASTERCHEF_ADDRESS,
-  MASTERCHEF_V2_ADDRESS,
-  MINICHEF_ADDRESS,
 } from '@sushiswap/sdk'
+import { MASTERCHEF_V2_ADDRESS, MINICHEF_ADDRESS}  from '../../constants/addresses'
 import { Chef, PairType } from './enum'
 import { NEVER_RELOAD, useSingleCallResult, useSingleContractMultipleData } from '../../state/multicall/hooks'
 import { useCallback, useMemo } from 'react'

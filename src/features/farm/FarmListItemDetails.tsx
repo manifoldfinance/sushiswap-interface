@@ -1,10 +1,10 @@
 import { ApprovalState, useApproveCallback } from '../../hooks/useApproveCallback'
-import { ChainId, MASTERCHEF_ADDRESS, MASTERCHEF_V2_ADDRESS, MINICHEF_ADDRESS, Token, ZERO } from '@sushiswap/sdk'
+import { ChainId, MASTERCHEF_ADDRESS, Token, ZERO } from '@sushiswap/sdk'
 import { Chef, PairType } from './enum'
 import { Disclosure, Transition } from '@headlessui/react'
 import React, { useState } from 'react'
 import { usePendingSushi, useUserInfo } from './hooks'
-
+import { MASTERCHEF_V2_ADDRESS, MINICHEF_ADDRESS}  from '../../constants/addresses'
 import Button from '../../components/Button'
 import Dots from '../../components/Dots'
 import { Input as NumericalInput } from '../../components/NumericalInput'
