@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import { ARCHER_RELAY_URI, INITIAL_ALLOWED_SLIPPAGE } from '../../../constants'
 import {
   ARCHER_ROUTER_ADDRESS,
@@ -9,6 +10,14 @@ import {
   TradeType,
   Trade as V2Trade,
 } from '@sushiswap/sdk'
+=======
+import {
+  ARCHER_RELAY_URI,
+  ARCHER_ROUTER_ADDRESS,
+  INITIAL_ALLOWED_SLIPPAGE,
+  MANIFOLD_FINANCE_URI,
+} from '../../../constants'
+>>>>>>> 6f42a80f (feat: added initial support to manifold)
 import { ApprovalState, useApproveCallbackFromTrade } from '../../../hooks/useApproveCallback'
 import { ArrowWrapper, BottomGrouping, SwapCallbackError } from '../../../features/swap/styleds'
 import { ButtonConfirmed, ButtonError } from '../../../components/Button'
@@ -27,6 +36,7 @@ import {
   useUserArcherETHTip,
   useUserArcherGasPrice,
   useUserArcherUseRelay,
+  useUserManifoldFinanceRelay,
   useUserSingleHopOnly,
   useUserSlippageTolerance,
   useUserTransactionTTL,
@@ -117,14 +127,21 @@ export default function Swap() {
 
   // get custom setting values for user
   const [ttl] = useUserTransactionTTL()
+
   const [useArcher] = useUserArcherUseRelay()
   const [archerETHTip] = useUserArcherETHTip()
   const [archerGasPrice] = useUserArcherGasPrice()
+
+  const [useManifoldFinance] = useUserManifoldFinanceRelay()
 
   // archer
   const archerRelay = chainId ? ARCHER_RELAY_URI?.[chainId] : undefined
   // const doArcher = archerRelay !== undefined && useArcher
   const doArcher = undefined
+
+  // manifold finance
+  const manifoldRelay = chainId ? MANIFOLD_FINANCE_URI?.[chainId] : undefined
+  const doManifold = !doArcher && manifoldRelay !== undefined && useManifoldFinance
 
   // swap state
   const { independentField, typedValue, recipient } = useSwapState()
@@ -135,7 +152,7 @@ export default function Swap() {
     currencies,
     inputError: swapInputError,
     allowedSlippage,
-  } = useDerivedSwapInfo(doArcher)
+  } = useDerivedSwapInfo(doArcher, doManifold)
 
   const {
     wrapType,
@@ -266,7 +283,9 @@ export default function Swap() {
     allowedSlippage,
     recipient,
     signatureData,
-    doArcher ? ttl : undefined
+    doArcher,
+    doManifold,
+    ttl // can be undefined
   )
 
   const [singleHopOnly] = useUserSingleHopOnly()
