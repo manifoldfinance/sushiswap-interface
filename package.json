@@ -6,7 +6,7 @@
     "analyze": "ANALYZE=true yarn build && serve .next -n",
     "dev": "next dev",
     "inspect": "NODE_OPTIONS='--inspect' next dev",
-    "build": "yarn lingui && next build",
+    "build": "sh entrypoint.sh",
     "start": "next start",
     "lingui": "npx lingui extract --clean --overwrite && npx lingui compile",
     "lokalise": "lokalise2 --config lokalise.yaml file download --format po --unzip-to . --original-filenames=false",
