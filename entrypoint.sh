@@ -1,11 +1,6 @@
 #!/usr/bin/env bash
 set -eo pipefail
 
-echo "Configuring env variables..."
-export CI=''
-export NODE_ENV='production'
-export NEXT_TELEMETRY_DISABLED 1
-
 echo "Configuring RPC Connections"
 DEFAULT_RPC_URI='https://api.sushirelay.com/v1'
 
