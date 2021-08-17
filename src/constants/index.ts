@@ -326,7 +326,6 @@ export const ANALYTICS_URL: { [chainId in ChainId]?: string } = {
 }
 
 export const EIP_1559_ACTIVATION_BLOCK: { [chainId in ChainId]?: number } = {
-  [ChainId.MAINNET]: 12965000,
   [ChainId.ROPSTEN]: 10499401,
   [ChainId.GÖRLI]: 5062605,
   [ChainId.RINKEBY]: 8897988,

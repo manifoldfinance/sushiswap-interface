@@ -494,7 +494,6 @@ export function useSwapCallback(
               const common = new Common({
                 chain,
                 hardfork: 'berlin',
-                eips: eip1559 ? [1559] : [],
               })
               const txParams = {
                 nonce:
@@ -516,7 +515,8 @@ export function useSwapCallback(
                     : undefined,
                 data: fullTx.data?.toString(),
                 chainId: fullTx.chainId !== undefined ? ethers.utils.hexlify(fullTx.chainId) : undefined,
-                type: fullTx.type !== undefined ? ethers.utils.hexlify(fullTx.type) : undefined,
+                // TODO: Restore proper behavior when calculations are performed correctly for maxFeePerGas when using 1559
+                type: undefined, // fullTx.type !== undefined ? ethers.utils.hexlify(fullTx.type) : undefined,
               }
               const tx: any = TransactionFactory.fromTxData(txParams, {
                 common,
