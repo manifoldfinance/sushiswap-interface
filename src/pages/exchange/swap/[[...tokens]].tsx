@@ -1,13 +1,6 @@
 import {
-  ARCHER_ROUTER_ADDRESS,
-  ChainId,
-  Currency,
-  CurrencyAmount,
-  JSBI,
-  Token,
-  TradeType,
-  Trade as V2Trade,
-} from '@sushiswap/sdk'
+  MANIFOLD_FINANCE_URI,
+} from '../../../constants'
 import { ApprovalState, useApproveCallbackFromTrade } from '../../../hooks/useApproveCallback'
 import { ArrowWrapper, BottomGrouping, SwapCallbackError } from '../../../features/exchange-v1/swap/styleds'
 import { ButtonConfirmed, ButtonError } from '../../../components/Button'
@@ -26,6 +19,7 @@ import {
   useUserArcherETHTip,
   useUserArcherGasPrice,
   useUserArcherUseRelay,
+  useUserManifoldFinanceRelay,
   useUserSingleHopOnly,
   useUserSlippageTolerance,
   useUserTransactionTTL,
@@ -118,14 +112,21 @@ export default function Swap() {
 
   // get custom setting values for user
   const [ttl] = useUserTransactionTTL()
+
   const [useArcher] = useUserArcherUseRelay()
   const [archerETHTip] = useUserArcherETHTip()
   const [archerGasPrice] = useUserArcherGasPrice()
+
+  const [useManifoldFinance] = useUserManifoldFinanceRelay()
 
   // archer
   const archerRelay = chainId ? ARCHER_RELAY_URI?.[chainId] : undefined
   // const doArcher = archerRelay !== undefined && useArcher
   const doArcher = undefined
+
+  // manifold finance
+  const manifoldRelay = chainId ? MANIFOLD_FINANCE_URI?.[chainId] : undefined
+  const doManifold = !doArcher && manifoldRelay !== undefined && useManifoldFinance
 
   // swap state
   const { independentField, typedValue, recipient } = useSwapState()
@@ -136,7 +137,7 @@ export default function Swap() {
     currencies,
     inputError: swapInputError,
     allowedSlippage,
-  } = useDerivedSwapInfo(doArcher)
+  } = useDerivedSwapInfo(doArcher, doManifold)
 
   const {
     wrapType,
@@ -267,7 +268,9 @@ export default function Swap() {
     allowedSlippage,
     recipient,
     signatureData,
-    doArcher ? ttl : undefined
+    doArcher,
+    doManifold,
+    ttl // can be undefined
   )
 
   const [singleHopOnly] = useUserSingleHopOnly()

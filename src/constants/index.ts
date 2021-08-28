@@ -5,6 +5,12 @@ export const POOL_DENY = ['14', '29', '45', '30']
 // Block time here is slightly higher (~1s) than average in order to avoid ongoing proposals past the displayed time
 export const AVERAGE_BLOCK_TIME_IN_SECS = 13
 
+export const MANIFOLD_FINANCE_SUPPORTED_NETWORKS = [ChainId.MAINNET]
+
+export const MANIFOLD_FINANCE_URI: { [chainId in ChainId]?: string } = {
+  [ChainId.MAINNET]: 'https://api.sushirelay.com/v1',
+}
+
 export const MERKLE_ROOT =
   'https://raw.githubusercontent.com/sushiswap/sushi-vesting/master/merkle/week-19/merkle-10959148-11824101.json'
 
@@ -62,6 +68,7 @@ export const ANALYTICS_URL: { [chainId in ChainId]?: string } = {
 }
 
 export const EIP_1559_ACTIVATION_BLOCK: { [chainId in ChainId]?: number } = {
+  [ChainId.MAINNET]: 12965000,
   [ChainId.ROPSTEN]: 10499401,
   [ChainId.GÖRLI]: 5062605,
   [ChainId.RINKEBY]: 8897988,
