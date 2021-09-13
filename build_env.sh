@@ -1,8 +1,12 @@
-#!/bin/bash
+#!/usr/bin/env bash
+set -eo pipefail
+
+set +a
 export CI=''
-export NODE_ENV='production'
 export NEXT_PUBLIC_GOOGLE_ANALYTICS='UA-194716744-3'
-yarn install
+set -a
+
+yarn install --silent
 npx next build
 
 echo "Configuring RPC Connections"
