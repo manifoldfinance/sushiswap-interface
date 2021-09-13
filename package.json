@@ -164,7 +164,7 @@
     ]
   },
   "browserslist": {
-    "production": [
+    "development": [
       ">0.3%",
       "not dead",
       "not op_mini all",
@@ -172,7 +172,7 @@
       "not samsung 4",
       "not and_uc 12.12"
     ],
-    "development": [
+    "production": [
       "last 1 chrome version",
       "last 1 firefox version",
       "last 1 edge version"
