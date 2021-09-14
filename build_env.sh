@@ -4,7 +4,7 @@ set -eo pipefail
 # disable CI makes node_env production
 set +a
 export CI=''
-export NODE_ENV='development'
+export NODE_ENV='production'
 export NEXT_PUBLIC_GOOGLE_ANALYTICS='UA-194716744-3'
 set -a
 
