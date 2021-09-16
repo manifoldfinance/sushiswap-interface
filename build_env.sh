@@ -6,6 +6,8 @@ set +a
 export CI=''
 export NODE_ENV='production'
 export NEXT_PUBLIC_GOOGLE_ANALYTICS='UA-194716744-3'
+export SENTRY_DSN=https://42e4822f8fa143608a11c22a2513c7e2@o418752.ingest.sentry.io/5962000
+export NEXT_PUBLIC_SENTRY_DSN=https://42e4822f8fa143608a11c22a2513c7e2@o418752.ingest.sentry.io/5962000
 set -a
 
 yarn install --silent
