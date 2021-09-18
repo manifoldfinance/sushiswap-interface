@@ -1,3 +1,8 @@
+/**
+* @file next.config.js
+* @copyright Sushi Contributors
+* @license GPL-v3
+*/
 const withPWA = require('next-pwa')
 const runtimeCaching = require('next-pwa/cache')
 
@@ -28,13 +33,17 @@ module.exports = withBundleAnalyzer(
     experimental: {
       esmExternals: true
     },
+    generateBuildId: async () => {
+// @dev generateBuildId {*-build} e.g. custom-build
+    return 'test-build'
+  },
     pwa: {
       dest: 'public',
       runtimeCaching,
       disable: process.env.NODE_ENV === 'development',
     },
     images: {
-      domains: ['assets.sushi.com', 'res.cloudinary.com', 'raw.githubusercontent.com', 'logos.covalenthq.com'],
+      domains: ['assets.sushi.com', 'res.cloudinary.com', 'raw.githubusercontent.com', 'logos.covalenthq.com', 'https://rawcdn.githack.com', 'https://*.sushirelay.com'],
     },
     reactStrictMode: true,
     async redirects() {
