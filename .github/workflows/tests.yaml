@@ -1,52 +1,77 @@
 name: Tests
+
 on:
+  workflow_dispatch:
   push:
     branches:
       - master
   pull_request:
     branches:
-      - master
+      - canary
 
 jobs:
+
   integration-tests:
-    name: Integration tests
-    runs-on: ubuntu-16.04
+    name: Node Integration tests for ${{ matrix.node }} on ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
+
+    strategy:
+      fail-fast: false
+      matrix:
+        node: ['14']
+        os: ['ubuntu-latest']
+        
     steps:
       - name: Checkout
-        uses: actions/checkout@v1
-      - uses: actions/setup-node@v1
+        uses: actions/checkout@v2.3.4
+      - uses: actions/setup-node@v2.4.0
         with:
-          node-version: '12'
+          cache: yarn
+          node-version: '14.x'
           always-auth: true
           registry-url: https://registry.npmjs.org
-
+          
       - name: Get yarn cache directory path
         id: yarn-cache-dir-path
         run: echo "::set-output name=dir::$(yarn cache dir)"
-      - uses: actions/cache@v1
+
+      - uses: actions/cache@v2
         id: yarn-cache # use this to check for `cache-hit` (`steps.yarn-cache.outputs.cache-hit != 'true'`)
         with:
           path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
           key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
           restore-keys: |
             ${{ runner.os }}-yarn-
+      
       - run: yarn install --frozen-lockfile
+        id: install_Lockfile
       - run: yarn cypress install
+        id: install_Cypress
       - run: yarn build
+        id: build
         env:
-          CI: false
+          CI: ''
           REACT_APP_NETWORK_URL: "https://mainnet.infura.io/v3/4bf032f2d38a4ed6bb975b80d6340847"
       - run: yarn integration-test
+        id: test_integration
 
   unit-tests:
-    name: Unit tests
-    runs-on: ubuntu-latest
+    name: Unit tests for ${{ matrix.node }} on ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
+
+    strategy:
+      fail-fast: false
+      matrix:
+        node: ['14']
+        os: ['ubuntu-latest']
+        
     steps:
       - name: Checkout
-        uses: actions/checkout@v1
-      - uses: actions/setup-node@v1
+        uses: actions/checkout@v2.3.4
+      - uses: actions/setup-node@v2.4.0
         with:
-          node-version: '12'
+          cache: yarn
+          node-version: '14.x'
           always-auth: true
           registry-url: https://registry.npmjs.org
 
@@ -61,5 +86,7 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-yarn-
       - run: yarn install --frozen-lockfile
+        id: unit_install
       - run: yarn test
+        id: unit_test
 
