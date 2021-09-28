@@ -43,7 +43,7 @@ export const BETTER_TRADE_LESS_HOPS_THRESHOLD = new Percent(JSBI.BigInt(50), JSB
 export const ZERO_PERCENT = new Percent('0')
 export const ONE_HUNDRED_PERCENT = new Percent('1')
 
-// SDN OFAC addresses; updated 09/06/2021
+// SDN OFAC addresses; updated Wed Sep 22 00:14:11 UTC 2021
 export const BLOCKED_ADDRESSES: string[] = [
   '0x7F367cC41522cE07553e823bf3be79A889DEbe1B',
   '0xd882cFc20F52f2599D84b8e8D58C7FB62cfE344b',
@@ -58,6 +58,10 @@ export const BLOCKED_ADDRESSES: string[] = [
   '0x72a5843cc08275C8171E582972Aa4fDa8C397B2A',
   '0x7F19720A857F834887FC9A7bC0a0fBe7Fc7f8102',
   '0x9f4cda013e354b8fc285bf4b9a60460cee7f7ea9',
+  '0x2f389ce8bd8ff92de3402ffce4691d17fc4f6535',
+  '0x19aa5fe80d33a56d56c78e82ea5e50e5d80b4dff',
+  '0xe7aa314c77f4233c18c6cc84384a9247c0cf367b',
+  '0x308ed4b7b49797e1a98d3818bff6fe5385410370'
 ]
 
 export const ANALYTICS_URL: { [chainId in ChainId]?: string } = {
