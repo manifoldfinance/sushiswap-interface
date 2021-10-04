@@ -1,4 +1,4 @@
-import { ARCHER_RELAY_URI, INITIAL_ALLOWED_SLIPPAGE } from '../../../constants'
+import { INITIAL_ALLOWED_SLIPPAGE } from '../../../constants'
 import {
   ARCHER_ROUTER_ADDRESS,
   ChainId,
@@ -9,6 +9,10 @@ import {
   TradeType,
   Trade as V2Trade,
 } from '@sushiswap/sdk'
+
+import { ARCHER_RELAY_URI } from '../../../config/archer'
+import { OPENMEV_RELAY_URI } from '../../../config/openmev'
+
 import { ApprovalState, useApproveCallbackFromTrade } from '../../../hooks/useApproveCallback'
 import { ArrowWrapper, BottomGrouping, SwapCallbackError } from '../../../features/swap/styleds'
 import { AutoRow, RowBetween, RowFixed } from '../../../components/Row'
@@ -26,6 +30,7 @@ import {
 import {
   useExpertModeManager,
   useUserArcherETHTip,
+  useUserOpenMevRelay,
   useUserArcherGasPrice,
   useUserArcherUseRelay,
   useUserSingleHopOnly,
@@ -76,6 +81,7 @@ import { warningSeverity } from '../../../functions/prices'
 
 import Image from 'next/image'
 
+
 export default function Swap() {
   const { i18n } = useLingui()
 
@@ -123,11 +129,20 @@ export default function Swap() {
   const [archerETHTip] = useUserArcherETHTip()
   const [archerGasPrice] = useUserArcherGasPrice()
 
+  /** @openmev start */
+  const [useOpenMev] = useUserOpenMevRelay()
+  //const [openmevETHTip] = useUserOpenMevETHTip()
+  // const [openmevGasPrice] = useUserOpenMevGasPrice()
+
   // archer
   const archerRelay = chainId ? ARCHER_RELAY_URI?.[chainId] : undefined
   // const doArcher = archerRelay !== undefined && useArcher
   const doArcher = undefined
 
+  const openmevRelay = chainId ? OPENMEV_RELAY_URI?.[chainId] : undefined
+
+  const doOpenMev = !doArcher && openmevRelay !== undefined && useOpenMev
+  /** @openmev end */
   // swap state
   const { independentField, typedValue, recipient } = useSwapState()
   const {
@@ -137,7 +152,7 @@ export default function Swap() {
     currencies,
     inputError: swapInputError,
     allowedSlippage,
-  } = useDerivedSwapInfo(doArcher)
+  } = useDerivedSwapInfo(doArcher, doOpenMev)
 
   const {
     wrapType,
@@ -268,7 +283,9 @@ export default function Swap() {
     allowedSlippage,
     recipient,
     signatureData,
-    doArcher ? ttl : undefined
+    doOpenMev,
+    doArcher,
+    ttl // can be undefined
   )
 
   const [singleHopOnly] = useUserSingleHopOnly()

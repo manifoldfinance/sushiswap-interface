@@ -36,7 +36,7 @@ export const RPC = {
 export const POOL_DENY = ['14', '29', '45', '30']
 
 // Block time here is slightly higher (~1s) than average in order to avoid ongoing proposals past the displayed time
-export const AVERAGE_BLOCK_TIME_IN_SECS = 13
+export const AVERAGE_BLOCK_TIME_IN_SECS = 14
 
 export const ARCHER_RELAY_URI: { [chainId in ChainId]?: string } = {
   [ChainId.MAINNET]: 'https://api.archerdao.io/v1/transaction',
@@ -44,6 +44,19 @@ export const ARCHER_RELAY_URI: { [chainId in ChainId]?: string } = {
 
 export const ARCHER_GAS_URI: { [chainId in ChainId]?: string } = {
   [ChainId.MAINNET]: 'https://api.archerdao.io/v1/gas',
+}
+
+/**
+ * @const OPENMEV_SUPPORTED_NETWORKS
+ * @returns {ChainId.?}
+ */
+export const OPENMEV_SUPPORTED_NETWORKS = [ChainId.MAINNET]
+/**
+ * @const OPENMEV_URI
+ * @param process.env.NEXT_PUBLIC_OPENMEV_URI
+ */
+export const OPENMEV_URI: { [chainId in ChainId]?: string } = {
+  [ChainId.MAINNET]: process.env.NEXT_PUBLIC_OPENMEV_URI ?? 'https://api.staging.sushirelay.com/v1',
 }
 
 // export const COMMON_CONTRACT_NAMES: { [address: string]: string } = {
