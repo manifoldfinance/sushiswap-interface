@@ -26,6 +26,7 @@ import {
   useUserArcherETHTip,
   useUserArcherGasPrice,
   useUserArcherUseRelay,
+  useUserOpenMevUseRelay,
   useUserSingleHopOnly,
   useUserSlippageTolerance,
   useUserTransactionTTL,
@@ -74,6 +75,7 @@ import { useRouter } from 'next/router'
 import { useSwapCallback } from '../../../hooks/useSwapCallback'
 import { useUSDCValue } from '../../../hooks/useUSDCPrice'
 import { warningSeverity } from '../../../functions/prices'
+import { OPENMEV_URI } from '../../../config/openmev'
 
 export default function Swap() {
   const { i18n } = useLingui()
@@ -122,10 +124,15 @@ export default function Swap() {
   const [archerETHTip] = useUserArcherETHTip()
   const [archerGasPrice] = useUserArcherGasPrice()
 
+  const [useOpenMev] = useUserOpenMevUseRelay()
+
   // archer
   const archerRelay = chainId ? ARCHER_RELAY_URI?.[chainId] : undefined
   // const doArcher = archerRelay !== undefined && useArcher
   const doArcher = undefined
+
+  const openMevRelay = chainId ? OPENMEV_URI?.[chainId] : undefined
+  const doOpenMev = !doArcher && openMevRelay !== undefined && useOpenMev
 
   // swap state
   const { independentField, typedValue, recipient } = useSwapState()
@@ -267,7 +274,9 @@ export default function Swap() {
     allowedSlippage,
     recipient,
     signatureData,
-    doArcher ? ttl : undefined
+    doArcher,
+    doOpenMev,
+    ttl // can be undefined
   )
 
   const [singleHopOnly] = useUserSingleHopOnly()

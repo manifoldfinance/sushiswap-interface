@@ -1,7 +1,7 @@
 import { AbstractConnector } from '@web3-react/abstract-connector'
 import { ChainId } from '@sushiswap/sdk'
-import { InjectedConnector } from '@web3-react/injected-connector'
 import { NetworkConnector } from '../entities/NetworkConnector'
+import { InjectedConnector } from '../connectors/injected-connector'
 import RPC from './rpc'
 
 export const network = new NetworkConnector({

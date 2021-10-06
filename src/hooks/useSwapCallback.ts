@@ -15,6 +15,7 @@ import { isAddress, isZero } from '../functions/validate'
 import { useFactoryContract, useRouterContract } from './useContract'
 
 import { ARCHER_RELAY_URI } from '../config/archer'
+import { OPENMEV_URI } from '../config/openmev'
 import { ArcherRouter } from '../functions/archerRouter'
 import { BigNumber } from '@ethersproject/bignumber'
 import Common from '@ethereumjs/common'
@@ -75,7 +76,8 @@ export function useSwapCallArguments(
   allowedSlippage: Percent, // in bips
   recipientAddressOrName: string | null, // the ENS name or address of the recipient of the trade, or null if swap should be returned to sender
   signatureData: SignatureData | null | undefined,
-  useArcher: boolean = false
+  useArcher: boolean = false,
+  useOpenMev: boolean = false
 ): SwapCall[] {
   const { account, chainId, library } = useActiveWeb3React()
 
@@ -165,6 +167,7 @@ export function useSwapCallArguments(
     routerContract,
     trade,
     useArcher,
+    useOpenMev,
   ])
 }
 
@@ -217,7 +220,9 @@ export function useSwapCallback(
   allowedSlippage: Percent, // in bips
   recipientAddressOrName: string | null, // the ENS name or address of the recipient of the trade, or null if swap should be returned to sender
   signatureData: SignatureData | undefined | null,
-  archerRelayDeadline?: number // deadline to use for archer relay -- set to undefined for no relay
+  useArcher: boolean = false,
+  useOpenMev: boolean = false,
+  archerRelayDeadline?: number // deadline to use for archer relay
 ): {
   state: SwapCallbackState
   callback: null | (() => Promise<string>)
@@ -229,8 +234,6 @@ export function useSwapCallback(
 
   const eip1559 =
     EIP_1559_ACTIVATION_BLOCK[chainId] == undefined ? false : blockNumber >= EIP_1559_ACTIVATION_BLOCK[chainId]
-
-  const useArcher = archerRelayDeadline !== undefined
 
   const swapCalls = useSwapCallArguments(trade, allowedSlippage, recipientAddressOrName, signatureData, useArcher)
 
@@ -343,8 +346,10 @@ export function useSwapCallback(
 
         // console.log({ bestCallOption })
 
-        if (!useArcher) {
-          console.log('SWAP WITHOUT ARCHER')
+        console.log(`useOpenMev: ${useOpenMev}`)
+
+        if (!useArcher && !useOpenMev) {
+          console.log('SWAP WITHOUT ARCHER / OPENMEV')
           console.log(
             'gasEstimate' in bestCallOption ? { gasLimit: calculateGasMargin(bestCallOption.gasEstimate) } : {}
           )
@@ -393,7 +398,7 @@ export function useSwapCallback(
               }
             })
         } else {
-          const postToRelay = (rawTransaction: string, deadline: number) => {
+          const postToArcherRelay = (rawTransaction: string, deadline: number) => {
             // as a wise man on the critically acclaimed hit TV series "MTV's Cribs" once said:
             // "this is where the magic happens"
             const relayURI = chainId ? ARCHER_RELAY_URI[chainId] : undefined
@@ -415,6 +420,40 @@ export function useSwapCallback(
             })
           }
 
+          const postToOpenMevRelay = async (signedTx: string, isMetamask: boolean) => {
+            const relayURI = chainId ? OPENMEV_URI[chainId] : undefined
+            if (!relayURI) throw new Error('Could not determine relay URI for this network')
+
+            const body = JSON.stringify({
+              jsonrpc: '2.0',
+              id: new Date().getTime(),
+              method: 'eth_sendRawTransaction',
+              params: [signedTx],
+            })
+
+            console.group(`postToOpenMevRelay`)
+            console.log(`Sending to URI: ${relayURI}`)
+            console.log(`Body:`, body)
+            console.groupEnd()
+
+            return fetch(relayURI, {
+              method: 'POST',
+              body,
+              headers: {
+                'Content-Type': 'application/json',
+              },
+            }).then(async (res) => {
+              // Handle specific error cases
+              if (res.status === 200) {
+                const json = await res.json()
+                if (json.error) throw Error(`${json.error.message}`)
+              }
+
+              // Generic error
+              if (res.status !== 200) throw Error(res.statusText)
+            })
+          }
+
           const isMetamask = library.provider.isMetaMask
 
           if (isMetamask) {
@@ -432,7 +471,7 @@ export function useSwapCallback(
               // let the wallet try if we can't estimate the gas
               ...('gasEstimate' in bestCallOption ? { gasLimit: calculateGasMargin(bestCallOption.gasEstimate) } : {}),
               ...(value && !isZero(value) ? { value } : {}),
-              ...(archerRelayDeadline && !eip1559 ? { gasPrice: 0 } : {}),
+              ...(!useOpenMev && !archerRelayDeadline && !eip1559 ? { gasPrice: 0 } : {}),
             })
           })
 
@@ -450,6 +489,7 @@ export function useSwapCallback(
               const common = new Common({
                 chain,
                 hardfork: 'berlin',
+                eips: eip1559 ? [1559] : [],
               })
               const txParams = {
                 nonce:
@@ -507,7 +547,7 @@ export function useSwapCallback(
           }
 
           return signedTxPromise
-            .then(({ signedTx, fullTx }) => {
+            .then(async ({ signedTx, fullTx }) => {
               const hash = keccak256(signedTx)
               const inputSymbol = trade.inputAmount.currency.symbol
               const outputSymbol = trade.outputAmount.currency.symbol
@@ -531,7 +571,14 @@ export function useSwapCallback(
                       ethTip: archerETHTip,
                     }
                   : undefined
-              // console.log('archer', archer)
+              const openmev = useOpenMev ? { signedTx } : undefined
+
+              if (archer) {
+                await postToArcherRelay(archer.rawTransaction, archer.deadline)
+              } else if (openmev) {
+                await postToOpenMevRelay(openmev.signedTx, isMetamask)
+              }
+
               addTransaction(
                 { hash },
                 {
@@ -539,7 +586,8 @@ export function useSwapCallback(
                   archer,
                 }
               )
-              return archer ? postToRelay(archer.rawTransaction, archer.deadline).then(() => hash) : hash
+
+              return hash
             })
             .catch((error: any) => {
               // if the user rejected the tx, pass this along

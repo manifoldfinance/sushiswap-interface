@@ -5,6 +5,7 @@ import {
   useUserArcherUseRelay,
   useUserSingleHopOnly,
   useUserTransactionTTL,
+  useUserOpenMevUseRelay,
 } from '../../state/user/hooks'
 import { useModalOpen, useToggleSettingsMenu } from '../../state/application/hooks'
 
@@ -22,9 +23,11 @@ import { useActiveWeb3React } from '../../hooks'
 import { useLingui } from '@lingui/react'
 import { useOnClickOutside } from '../../hooks/useOnClickOutside'
 
+import { OPENMEV_RELAY_ENABLED, OPENMEV_SUPPORTED_NETWORKS } from '../../config/openmev'
+
 export default function SettingsTab({ placeholderSlippage }: { placeholderSlippage?: Percent }) {
   const { i18n } = useLingui()
-  const { chainId } = useActiveWeb3React()
+  const { chainId, library } = useActiveWeb3React()
 
   const node = useRef<HTMLDivElement>(null)
   const open = useModalOpen(ApplicationModal.SETTINGS)
@@ -42,6 +45,8 @@ export default function SettingsTab({ placeholderSlippage }: { placeholderSlippa
   const [ttl, setTtl] = useUserTransactionTTL()
 
   const [userUseArcher, setUserUseArcher] = useUserArcherUseRelay()
+
+  const [userUseOpenMev, setUserUseOpenMev] = useUserOpenMevUseRelay()
 
   return (
     <div className="relative flex" ref={node}>
@@ -118,10 +123,31 @@ export default function SettingsTab({ placeholderSlippage }: { placeholderSlippa
                 <Toggle
                   id="toggle-use-archer"
                   isActive={userUseArcher}
-                  toggle={() => setUserUseArcher(!userUseArcher)}
+                  toggle={() => {
+                    if (userUseOpenMev) setUserUseOpenMev(false)
+                    setUserUseArcher(!userUseArcher)
+                  }}
                 />
               </div>
             )} */}
+            {OPENMEV_RELAY_ENABLED && OPENMEV_SUPPORTED_NETWORKS.includes(chainId) && (
+              <div className="flex items-center justify-between">
+                <div className="flex items-center">
+                  <Typography variant="sm" className="text-primary">
+                    {i18n._(t`OpenMEV Gas Refunder`)}
+                  </Typography>
+                  <QuestionHelper text={i18n._(t`OpenMEV refunds up to 95% of transaction costs in 35 blocks`)} />
+                </div>
+                <Toggle
+                  id="toggle-use-openmev"
+                  isActive={library?.provider.isMetaMask && userUseOpenMev}
+                  toggle={() => {
+                    if (userUseArcher) setUserUseArcher(false)
+                    setUserUseOpenMev(!userUseOpenMev)
+                  }}
+                />
+              </div>
+            )}
           </div>
         </div>
       )}
