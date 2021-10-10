@@ -1,0 +1,82 @@
+# sushiswap/interface CircleCI e2e harness
+# 2021.10.10
+version: 2.1
+
+executors:
+  node-browsers:
+    docker:
+      - image: circleci/node:14-browsers
+  node-browsers-medium-plus:
+    docker:
+      - image: circleci/node:14-browsers
+    resource_class: medium+
+    environment:
+      NODE_OPTIONS: --max_old_space_size=2048
+
+
+workflows:
+  pipeline:
+    jobs:
+      - prep-deps
+      - prep-build:
+          requires:
+            - prep-deps
+      - testim:
+          requires:
+            - prep-deps
+
+jobs:
+  prep-deps:
+    executor: node-browsers
+    steps:
+      - checkout
+      - restore_cache:
+          key: dependency-cache-v1-{{ checksum "yarn.lock" }}
+      - run:
+          name: Install deps
+          command: |
+            yarn install --frozen-lockfile
+      - save_cache:
+          key: dependency-cache-v1-{{ checksum "yarn.lock" }}
+          paths:
+            - node_modules/
+            - build-artifacts/yarn/
+      - run:
+          name: Postinstall
+          command: |
+            yarn run build
+      - persist_to_workspace:
+          root: .
+          paths:
+          - node_modules
+          - build-artifacts
+
+  prep-build:
+    executor: node-browsers-medium-plus
+    steps:
+      - checkout
+      - attach_workspace:
+          at: .
+      - run:
+          name: build:dapp
+          command: yarn run build
+      - run:
+          name: build:debug
+          command: yarn add cypress && yarn run e2e:headless
+      - persist_to_workspace:
+          root: .
+          paths:
+            - dist
+            - builds
+  testim:
+    environment:
+      CIRCLE_TEST_REPORTS: /tmp/circleci-test-results
+    docker:
+    - image: testim/docker-cli
+    steps:
+      - run: mkdir -p $CIRCLE_TEST_REPORTS/testim/
+      - run: testim --token "tYeKz9hIxUS2XpfirIhQ5FlU1N4f2nagTPiH5HIvPOoDZEEYsP" --project "ynov8igU3pQrTLK8gL9Y" --grid "Testim-Grid" --report-file $CIRCLE_TEST_REPORTS/testim/results.xml
+      - store_artifacts:
+          path: /tmp/circleci-test-results
+      - store_test_results:
+          path: /tmp/circleci-test-results
