@@ -6713,11 +6713,6 @@ dependency-tree@^8.0.0, dependency-tree@^8.1.1:
     precinct "^8.0.0"
     typescript "^3.9.7"
 
-dequal@2.0.2:
-  version "2.0.2"
-  resolved "https://registry.yarnpkg.com/dequal/-/dequal-2.0.2.tgz#85ca22025e3a87e65ef75a7a437b35284a7e319d"
-  integrity sha512-q9K8BlJVxK7hQYqa6XISGmBZbtQQWVXSrRrWreHC94rMt1QL/Impruc+7p2CYSYuVIUr+YCt6hjrs1kkdJRTug==
-
 des.js@^1.0.0:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/des.js/-/des.js-1.0.1.tgz#5382142e1bdc53f85d86d53e5f4aa7deb91e0843"
@@ -15316,12 +15311,10 @@ swarm-js@^0.1.40:
     tar "^4.0.2"
     xhr-request "^1.0.1"
 
-swr@^1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/swr/-/swr-1.0.0.tgz#d047933714d8bd16ae35af67d81149f4ae700a4d"
-  integrity sha512-v55Dr+vxIFiUyGxC5W4uN5falxHxYdbpb/R3bO+bSG+svbC9bUWmupy4NM/2pER7X8OvgwJWu0AiSoGy0ND9ew==
-  dependencies:
-    dequal "2.0.2"
+swr@1.1.0-beta.5:
+  version "1.1.0-beta.5"
+  resolved "https://registry.yarnpkg.com/swr/-/swr-1.1.0-beta.5.tgz#e6668e54fe756ee94495cbb51898fb457bfb93c4"
+  integrity sha512-7SwmekUUFb7q4n3ibwJF5nmuE5Gp/244ZFEVBAzfkXvUJ5EwknqlcfKDuEyvJm9piNIufGXovhcEuQIOJOLx4Q==
 
 symbol-observable@^1.0.4:
   version "1.2.0"
