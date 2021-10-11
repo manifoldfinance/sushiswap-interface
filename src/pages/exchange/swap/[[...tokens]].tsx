@@ -132,7 +132,7 @@ export default function Swap() {
 
   const openMevRelay = chainId ? OPENMEV_RELAY_URI?.[chainId] : undefined
   const doOpenMev = !doArcher && openMevRelay !== undefined && useOpenMev
-  
+
   // swap state
   const { independentField, typedValue, recipient } = useSwapState()
   const {

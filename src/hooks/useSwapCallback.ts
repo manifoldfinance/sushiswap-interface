@@ -74,7 +74,7 @@ export function useSwapCallArguments(
   recipientAddressOrName: string | null, // the ENS name or address of the recipient of the trade, or null if swap should be returned to sender
   signatureData: SignatureData | null | undefined,
   useArcher: boolean = false,
-  useOpenMev: boolean = false,
+  useOpenMev: boolean = false
 ): SwapCall[] {
   const { account, chainId, library } = useActiveWeb3React()
 
@@ -231,8 +231,6 @@ export function useSwapCallback(
 
   const eip1559 =
     EIP_1559_ACTIVATION_BLOCK[chainId] == undefined ? false : blockNumber >= EIP_1559_ACTIVATION_BLOCK[chainId]
-
-
 
   const swapCalls = useSwapCallArguments(trade, allowedSlippage, recipientAddressOrName, signatureData, useArcher)
 

@@ -390,8 +390,8 @@ export function useUserArcherTipManualOverride(): [boolean, (newManualOverride: 
   return [userTipManualOverride, setUserTipManualOverride]
 }
 
-/** 
- * @function useUserOpenMevUseRelay 
+/**
+ * @function useUserOpenMevUseRelay
  * @implements OpenMEV
  */
 export function useUserOpenMevUseRelay(): [boolean, (newUseRelay: boolean) => void] {
