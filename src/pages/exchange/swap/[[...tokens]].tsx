@@ -34,7 +34,7 @@ import {
 } from '../../../state/user/hooks'
 import { useNetworkModalToggle, useToggleSettingsMenu, useWalletModalToggle } from '../../../state/application/hooks'
 import useWrapCallback, { WrapType } from '../../../hooks/useWrapCallback'
-
+import { OPENMEV_RELAY_URI } from '../../../config/openmev'
 import AddressInputPanel from '../../../components/AddressInputPanel'
 import { AdvancedSwapDetails } from '../../../features/swap/AdvancedSwapDetails'
 import AdvancedSwapDetailsDropdown from '../../../features/swap/AdvancedSwapDetailsDropdown'
@@ -123,11 +123,16 @@ export default function Swap() {
   const [archerETHTip] = useUserArcherETHTip()
   const [archerGasPrice] = useUserArcherGasPrice()
 
+  // @openmev
+  const [useOpenMev] = useUserOpenMevUseRelay()
   // archer
   const archerRelay = chainId ? ARCHER_RELAY_URI?.[chainId] : undefined
   // const doArcher = archerRelay !== undefined && useArcher
   const doArcher = undefined
 
+  const openMevRelay = chainId ? OPENMEV_RELAY_URI?.[chainId] : undefined
+  const doOpenMev = !doArcher && openMevRelay !== undefined && useOpenMev
+  
   // swap state
   const { independentField, typedValue, recipient } = useSwapState()
   const {
@@ -268,7 +273,9 @@ export default function Swap() {
     allowedSlippage,
     recipient,
     signatureData,
-    doArcher ? ttl : undefined
+    doArcher,
+    doOpenMev,
+    ttl // can be undefined
   )
 
   const [singleHopOnly] = useUserSingleHopOnly()
@@ -550,7 +557,7 @@ export default function Swap() {
                 id="swap-currency-output"
               />
               {Boolean(trade) && (
-                <div className="p-1 -mt-2 cursor-pointer rounded-b-md bg-dark-800">
+                <div className="p-1 -mt-2 rounded-b-md cursor-pointer bg-dark-800">
                   <TradePrice
                     price={trade?.executionPrice}
                     showInverted={showInverted}
@@ -714,7 +721,7 @@ export default function Swap() {
         {/*{chainId && chainId === ChainId.MAINNET && (*/}
         {/*  <a*/}
         {/*    href="https://miso.sushi.com"*/}
-        {/*    className="hidden w-full py-6 mt-2 rounded cursor-pointer sm:block"*/}
+        {/*    className="hidden py-6 mt-2 w-full rounded cursor-pointer sm:block"*/}
         {/*    style={{*/}
         {/*      backgroundImage: `url('/images/miso/banner-jaypegs2.jpg')`,*/}
         {/*      backgroundPosition: 'center',*/}
@@ -722,7 +729,7 @@ export default function Swap() {
         {/*      backgroundRepeat: 'no-repeat',*/}
         {/*    }}*/}
         {/*  >*/}
-        {/*    <div className="flex items-center justify-between gap-6 pl-5 pr-8">*/}
+        {/*    <div className="flex gap-6 justify-between items-center pr-8 pl-5">*/}
         {/*      <span className="font-normal text-high-emphesis" style={{ lineHeight: 1.3, maxWidth: 250 }}>*/}
         {/*        You need a &apos;Dona! Learn More*/}
         {/*        <br />*/}

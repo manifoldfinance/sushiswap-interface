@@ -18,6 +18,7 @@ import {
   updateUserExpertMode,
   updateUserSingleHopOnly,
   updateUserSlippageTolerance,
+  updateUserOpenMevUseRelay,
 } from './actions'
 import { shallowEqual, useDispatch, useSelector } from 'react-redux'
 import { useAppDispatch, useAppSelector } from '../hooks'
@@ -389,6 +390,26 @@ export function useUserArcherTipManualOverride(): [boolean, (newManualOverride: 
   return [userTipManualOverride, setUserTipManualOverride]
 }
 
+/** 
+ * @function useUserOpenMevUseRelay 
+ * @implements OpenMEV
+ */
+export function useUserOpenMevUseRelay(): [boolean, (newUseRelay: boolean) => void] {
+  const dispatch = useAppDispatch()
+
+  const useRelay = useSelector<AppState, AppState['user']['userOpenMevUseRelay']>(
+    (state) => state.user.userOpenMevUseRelay
+  )
+
+  const setUseRelay = useCallback(
+    (newUseRelay: boolean) => {
+      dispatch(updateUserOpenMevUseRelay({ userOpenMevUseRelay: newUseRelay }))
+    },
+    [dispatch]
+  )
+
+  return [useRelay, setUseRelay]
+}
 /**
  * Same as above but replaces the auto with a default value
  * @param defaultSlippageTolerance the default value to replace auto with
