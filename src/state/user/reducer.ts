@@ -24,6 +24,7 @@ import {
   updateUserExpertMode,
   updateUserSingleHopOnly,
   updateUserSlippageTolerance,
+  updateUserOpenMevUseRelay,
 } from './actions'
 
 import { createReducer } from '@reduxjs/toolkit'
@@ -69,6 +70,7 @@ export interface UserState {
   userArcherETHTip: string // ETH tip for relay, as full BigInt string
   userArcherGasEstimate: string // Gas estimate for trade
   userArcherTipManualOverride: boolean // is user manually entering tip
+  userOpenMevUseRelay: boolean // use relay or go directly to router
 }
 
 function pairKey(token0Address: string, token1Address: string) {
@@ -91,6 +93,7 @@ export const initialState: UserState = {
   userArcherETHTip: DEFAULT_ARCHER_ETH_TIP.toString(),
   userArcherGasEstimate: DEFAULT_ARCHER_GAS_ESTIMATE.toString(),
   userArcherTipManualOverride: false,
+  userOpenMevUseRelay: false,
 }
 
 export default createReducer(initialState, (builder) =>
@@ -179,5 +182,8 @@ export default createReducer(initialState, (builder) =>
     })
     .addCase(updateUserArcherTipManualOverride, (state, action) => {
       state.userArcherTipManualOverride = action.payload.userArcherTipManualOverride
+    })
+    .addCase(updateUserOpenMevUseRelay, (state, action) => {
+      state.userOpenMevUseRelay = action.payload.userOpenMevUseRelay
     })
 )

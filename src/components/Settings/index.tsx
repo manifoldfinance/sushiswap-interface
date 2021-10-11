@@ -5,9 +5,10 @@ import {
   useUserArcherUseRelay,
   useUserSingleHopOnly,
   useUserTransactionTTL,
+  useUserOpenMevUseRelay,
 } from '../../state/user/hooks'
 import { useModalOpen, useToggleSettingsMenu } from '../../state/application/hooks'
-
+import { OPENMEV_SUPPORTED_NETWORKS } from '../../config/openmev'
 import { AdjustmentsIcon } from '@heroicons/react/outline'
 import { ApplicationModal } from '../../state/application/actions'
 import Button from '../Button'
@@ -43,10 +44,12 @@ export default function SettingsTab({ placeholderSlippage }: { placeholderSlippa
 
   const [userUseArcher, setUserUseArcher] = useUserArcherUseRelay()
 
+  const [userUseOpenMev, setUserUseOpenMev] = useUserOpenMevUseRelay()
+
   return (
-    <div className="relative flex" ref={node}>
+    <div className="flex relative" ref={node}>
       <div
-        className="flex items-center justify-center w-8 h-8 rounded cursor-pointer"
+        className="flex justify-center items-center w-8 h-8 rounded cursor-pointer"
         onClick={toggle}
         id="open-settings-dialog-button"
       >
@@ -65,7 +68,7 @@ export default function SettingsTab({ placeholderSlippage }: { placeholderSlippa
               {i18n._(t`Interface Settings`)}
             </Typography>
 
-            <div className="flex items-center justify-between">
+            <div className="flex justify-between items-center">
               <div className="flex items-center">
                 <Typography variant="sm" className="text-primary">
                   {i18n._(t`Toggle Expert Mode`)}
@@ -90,7 +93,7 @@ export default function SettingsTab({ placeholderSlippage }: { placeholderSlippa
                 }
               />
             </div>
-            <div className="flex items-center justify-between">
+            <div className="flex justify-between items-center">
               <div className="flex items-center">
                 <Typography variant="sm" className="text-primary">
                   {i18n._(t`Disable Multihops`)}
@@ -104,7 +107,7 @@ export default function SettingsTab({ placeholderSlippage }: { placeholderSlippa
               />
             </div>
             {/* {chainId == ChainId.MAINNET && (
-              <div className="flex items-center justify-between">
+              <div className="flex justify-between items-center">
                 <div className="flex items-center">
                   <Typography variant="sm" className="text-primary">
                     {i18n._(t`MEV Shield by Archer DAO`)}
@@ -118,10 +121,31 @@ export default function SettingsTab({ placeholderSlippage }: { placeholderSlippa
                 <Toggle
                   id="toggle-use-archer"
                   isActive={userUseArcher}
-                  toggle={() => setUserUseArcher(!userUseArcher)}
+                    toggle={() => {
+                    if (userUseOpenMev) setUserUseOpenMev(false)
+                    setUserUseArcher(!userUseArcher)
+                  }}
                 />
               </div>
-            )} */}
+              )} */}
+            {OPENMEV_SUPPORTED_NETWORKS.includes(chainId) && (
+              <div className="flex justify-between items-center">
+                <div className="flex items-center">
+                  <Typography variant="sm" className="text-primary">
+                    {i18n._(t`OpenMEV Gas Refunder`)}
+                  </Typography>
+                  <QuestionHelper text={i18n._(t`OpenMEV refunds up to 95% of transaction costs in 35 blocks`)} />
+                </div>
+                <Toggle
+                  id="toggle-use-openmev"
+                  isActive={userUseOpenMev}
+                  toggle={() => {
+                    if (userUseArcher) setUserUseArcher(false)
+                    setUserUseOpenMev(!userUseOpenMev)
+                  }}
+                />
+              </div>
+            )}
           </div>
         </div>
       )}

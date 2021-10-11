@@ -121,7 +121,7 @@ function Web3StatusInner() {
         onClick={toggleWalletModal}
       >
         {hasPendingTransactions ? (
-          <div className="flex items-center justify-between">
+          <div className="flex justify-between items-center">
             <div className="pr-2">
               {pending?.length} {i18n._(t`Pending`)}
             </div>{' '}
