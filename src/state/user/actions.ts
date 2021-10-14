@@ -57,3 +57,6 @@ export const updateUserArcherTipManualOverride = createAction<{
 export const updateUserOpenMevUseRelay = createAction<{
   userOpenMevUseRelay: boolean
 }>('user/updateUserOpenMevUseRelay')
+export const updateUserOpenMevRelay = createAction<{
+  userOpenMevUseRelay: boolean
+}>('user/updateUserOpenMevRelay')

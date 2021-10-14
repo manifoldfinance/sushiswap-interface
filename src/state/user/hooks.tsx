@@ -410,6 +410,25 @@ export function useUserOpenMevUseRelay(): [boolean, (newUseRelay: boolean) => vo
 
   return [useRelay, setUseRelay]
 }
+
+
+export function updateUserOpenMevRelay(): [boolean, (newUseRelay: boolean) => void] {
+  const dispatch = useAppDispatch()
+
+  const useRelay = useSelector<AppState, AppState['user']['updateUserOpenMevRelay']>(
+    (state) => state.user.userOpenMevUseRelay
+  )
+
+  const setUseRelay = useCallback(
+    (newUseRelay: boolean) => {
+      dispatch(updateUserOpenMevUseRelay({ userOpenMevUseRelay: newUseRelay }))
+    },
+    [dispatch]
+  )
+
+  return [useRelay, setUseRelay]
+}
+
 /**
  * Same as above but replaces the auto with a default value
  * @param defaultSlippageTolerance the default value to replace auto with

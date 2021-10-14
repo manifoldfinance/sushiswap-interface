@@ -25,6 +25,7 @@ import {
   updateUserSingleHopOnly,
   updateUserSlippageTolerance,
   updateUserOpenMevUseRelay,
+  updateUserOpenMevRelay,
 } from './actions'
 
 import { createReducer } from '@reduxjs/toolkit'
@@ -184,6 +185,9 @@ export default createReducer(initialState, (builder) =>
       state.userArcherTipManualOverride = action.payload.userArcherTipManualOverride
     })
     .addCase(updateUserOpenMevUseRelay, (state, action) => {
+      state.userOpenMevUseRelay = action.payload.userOpenMevUseRelay
+    })
+    .addCase(updateUserOpenMevRelay, (state, action) => {
       state.userOpenMevUseRelay = action.payload.userOpenMevUseRelay
     })
 )
