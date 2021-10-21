@@ -7,7 +7,7 @@ import { Fragment, FunctionComponent } from 'react'
 import { NextComponentType, NextPageContext } from 'next'
 import store, { persistor } from '../state'
 
-import type { AppProps } from 'next/app'
+import type { AppProps, NextWebVitalsMetric } from 'next/app'
 import ApplicationUpdater from '../state/application/updater'
 import DefaultLayout from '../layouts/Default'
 import Dots from '../components/Dots'
@@ -181,6 +181,9 @@ function MyApp({
       </I18nProvider>
     </Fragment>
   )
+  export function reportWebVitals(metric: NextWebVitalsMetric) {
+    console.log(metric)
+  }
 }
 
 export default MyApp

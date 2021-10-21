@@ -1,9 +1,14 @@
+
 const withPWA = require('next-pwa')
 const runtimeCaching = require('next-pwa/cache')
 
 const linguiConfig = require('./lingui.config.js')
 
 const { locales, sourceLocale } = linguiConfig
+
+// @TODO - configure CSP
+// const securityHeaders = []
+// Content-Security-Policy: default-src 'self'; img-src *; media-src'assets.sushi.com', 'res.cloudinary.com', 'raw.githubusercontent.com', 'logos.covalenthq.com'; script-src '*.sushi.com', '*.vercel.app', 'raw.githubusercontent.com'
 
 const withBundleAnalyzer = require('@next/bundle-analyzer')({
   enabled: process.env.ANALYZE === 'true',
@@ -15,7 +20,11 @@ const withBundleAnalyzer = require('@next/bundle-analyzer')({
 // https://docs.sentry.io/platforms/javascript/guides/nextjs/
 
 const { withSentryConfig } = require('@sentry/nextjs')
+// @ts-check
 
+/**
+ * @type {import('next').NextConfig}
+ **/
 const nextConfig = {
   webpack: (config) => {
     config.module.rules = [
@@ -37,6 +46,7 @@ const nextConfig = {
   images: {
     domains: ['assets.sushi.com', 'res.cloudinary.com', 'raw.githubusercontent.com', 'logos.covalenthq.com'],
   },
+
   reactStrictMode: true,
   async redirects() {
     return [
@@ -79,7 +89,7 @@ const nextConfig = {
       },
     ]
   },
-  async rewrites() {
+ rewrites() {
     return [
       {
         source: '/stake',
@@ -170,6 +180,33 @@ const nextConfig = {
     locales,
     defaultLocale: sourceLocale,
   },
+  headers: [
+  {
+    key: "X-DNS-Prefetch-Control",
+    value: 'on'
+  }, 
+  {
+    key: 'Referrer-Policy',
+    value: 'origin-when-cross-origin'
+  },
+  {
+    key: 'X-Content-Type-Options',
+    value: 'nosniff'
+  },
+  {
+    key: 'Strict-Transport-Security',
+    value: 'max-age=63072000; includeSubDomains; preload'
+  }
+],
+async headers() {
+  return [
+    {
+      // Apply these headers to all routes in your application.
+      source: '/(.*)',
+      headers: securityHeaders,
+    },
+  ]
+},
 }
 
 const SentryWebpackPluginOptions = {

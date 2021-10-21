@@ -1,13 +1,17 @@
 {
-  "name": "sushiswap-interface",
+  "name": "@sushiswap/interface",
   "version": "1.0.0",
+  "workspaces": [
+    "@suhiswap/interface"
+  ],
   "private": true,
   "scripts": {
     "analyze": "ANALYZE=true yarn build && serve .next -n",
     "dev": "next dev",
-    "inspect": "NODE_OPTIONS='--inspect' next dev",
+    "dev:debug": "NEXT_TELEMETRY_DEBUG=1 npx next dev",
+    "inspect": "NEXT_TELEMETRY_DEBUG=1 NODE_OPTIONS='--inspect' next dev",
     "build": "yarn lingui && next build",
-    "start": "next start",
+    "start": "NEXT_TELEMETRY_DISABLED=1 next start",
     "lingui": "lingui extract --clean --overwrite && lingui compile",
     "lokalise": "lokalise2 --config lokalise.yaml file download --format po --unzip-to . --original-filenames=false",
     "circular": "madge --circular src --extensions ts,tsx,js,jsx",
@@ -16,9 +20,9 @@
     "pre-commit": "lint-staged",
     "prettier": "prettier --write 'src/**/*.{ts,tsx}'",
     "lint": "next lint",
-    "test": "jest",
-    "test:watch": "jest --watch",
-    "test:ci": "jest --ci --collectCoverage"
+    "test": "npx jest -u",
+    "test:watch": "npx jest --watch",
+    "test:ci": "npx jest --ci --collectCoverage"
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": [
@@ -60,15 +64,17 @@
     "@lingui/remote-loader": "^3.10.4",
     "@metamask/jazzicon": "^2.0.0",
     "@next/bundle-analyzer": "^11.1.0",
+    "@npmcli/arborist": "^4.0.2",
     "@popperjs/core": "^2.9.2",
     "@ramp-network/ramp-instant-sdk": "^2.4.6",
     "@reduxjs/toolkit": "^1.6.0",
     "@sentry/nextjs": "^6.11.0",
     "@sushiswap/chainlink-whitelist": "0.2.5",
-    "@sushiswap/core": "2.0.0-canary.0",
-    "@sushiswap/default-token-list": "15.4.0",
+    "@sushiswap/core": "^2.0.0-canary.1",
+    "@sushiswap/core-sdk": "1.0.0-canary.1",
+    "@sushiswap/default-token-list": "16.18.0",
     "@sushiswap/limit-order-pair-list": "0.2.2",
-    "@sushiswap/sdk": "5.0.0-canary.89",
+    "@sushiswap/sdk": "5.0.0-canary.96",
     "@sushiswap/sushi-data": "^1.0.24",
     "@tailwindcss/jit": "^0.1.18",
     "@testing-library/jest-dom": "^5.14.1",
@@ -113,7 +119,7 @@
     "husky": "^7.0.0",
     "identity-obj-proxy": "^3.0.0",
     "ioredis": "^4.27.7",
-    "jest": "^27.2.0",
+    "jest": "^27.3.1",
     "lint-staged": "^11.0.0",
     "lodash": "^4.17.21",
     "lottie-react": "^2.1.0",
@@ -148,6 +154,7 @@
     "redux": "^4.1.0",
     "redux-devtools-extension": "^2.13.9",
     "redux-persist": "^6.0.0",
+    "semver": "^7.3.5",
     "serve": "^12.0.0",
     "sharp": "^0.29.0",
     "start-server-and-test": "1.13.1",
@@ -155,6 +162,7 @@
     "swr": "^1.0.0",
     "tailwindcss": "^2.2.9",
     "tailwindcss-border-gradient-radius": "^2.0.0",
+    "ts-jest": "^27.0.7",
     "typescript": "^4.3.5",
     "wcag-contrast": "^3.0.0"
   },
@@ -173,5 +181,6 @@
     "not ie 11",
     "not dead",
     "not op_mini all"
-  ]
+  ],
+  "dependencies": {}
 }
