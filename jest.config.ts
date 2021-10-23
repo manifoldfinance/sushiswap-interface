@@ -1,11 +1,11 @@
 import type { Config } from '@jest/types'
 import { loadEnvConfig } from '@next/env'
-
+/*
 export default async () => {
   const projectDir = process.cwd()
   loadEnvConfig(projectDir)
 }
-
+*/
 const config: Config.InitialOptions = {
   verbose: true,
   collectCoverageFrom: ['**/*.{ts,tsx}', '!**/*.d.ts', '!**/node_modules/**'],
@@ -30,6 +30,7 @@ const config: Config.InitialOptions = {
     '^.+\\.(js|jsx|ts|tsx)$': ['babel-jest', { presets: ['next/babel'] }],
   },
   transformIgnorePatterns: ['/node_modules/', '^.+\\.module\\.(css|sass|scss)$'],
+  
 }
 
 export default config
