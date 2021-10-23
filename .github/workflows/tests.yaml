@@ -3,6 +3,7 @@ on:
   push:
     branches:
       - master
+      - canary
   pull_request:
 
 jobs:
@@ -33,9 +34,8 @@ jobs:
            ${{ runner.os }}-yarn-
       - run: yarn install --frozen-lockfile
         id: install
-      - name: Comment with Test Coverage
+  
       - uses: dkershner6/jest-coverage-commenter-action@v1
         with:
           github_token: "${{ secrets.GITHUB_TOKEN }}"
-        id: test
           test_command: "yarn test:ci"
