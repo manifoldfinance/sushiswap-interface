@@ -1,4 +1,10 @@
 import type { Config } from '@jest/types'
+import { loadEnvConfig } from '@next/env'
+
+export default async () => {
+  const projectDir = process.cwd()
+  loadEnvConfig(projectDir)
+}
 
 const config: Config.InitialOptions = {
   verbose: true,
