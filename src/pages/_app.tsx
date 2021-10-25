@@ -104,16 +104,22 @@ function MyApp({
   // Allows for conditionally setting a guard to be hoisted per page
   const Guard = Component.Guard || Fragment
 
+/** 
+ @TODO - prefetch critical heavy components here
+        <link rel="preconnect" href="https://fonts.googleapis.com/" crossorigin />
+        <link rel="dns-prefetch" href="https://fonts.googleapis.com/"></link>
+*/
   return (
     <Fragment>
       <Head>
         <meta charSet="utf-8" />
-        <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width,initial-scale=1" />
 
         <meta
           name="viewport"
           content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"
         />
+
         <title key="title">SUSHI</title>
 
         <meta

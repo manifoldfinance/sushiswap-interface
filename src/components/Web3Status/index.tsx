@@ -47,37 +47,37 @@ function StatusIcon({ connector }: { connector: AbstractConnector }) {
   } else if (connector.constructor.name === 'WalletConnectConnector') {
     return (
       <IconWrapper size={16}>
-        <Image src="/images/wallets/wallet-connect.png" alt={'Wallet Connect'} width="16px" height="16px" />
+        <Image src="/images/wallets/wallet-connect.png" alt={'Wallet Connect'} placeholder="blur"  width="16px" height="16px" />
       </IconWrapper>
     )
   } else if (connector.constructor.name === 'LatticeConnector') {
     return (
       <IconWrapper size={16}>
-        <Image src="/images/wallets/lattice.png" alt={'Lattice'} width="16px" height="16px" />
+        <Image src="/images/wallets/lattice.png" alt={'Lattice'} placeholder="blur"  width="16px" height="16px" />
       </IconWrapper>
     )
   } else if (connector.constructor.name === 'WalletLinkConnector') {
     return (
       <IconWrapper size={16}>
-        <Image src="/images/wallets/coinbase.svg" alt={'Coinbase Wallet'} width="16px" height="16px" />
+        <Image src="/images/wallets/coinbase.svg" alt={'Coinbase Wallet'}  placeholder="blur" width="16px" height="16px" />
       </IconWrapper>
     )
   } else if (connector.constructor.name === 'FortmaticConnector') {
     return (
       <IconWrapper size={16}>
-        <Image src="/images/wallets/fortmatic.png" alt={'Fortmatic'} width="16px" height="16px" />
+        <Image src="/images/wallets/fortmatic.png" alt={'Fortmatic'}  placeholder="blur" width="16px" height="16px" />
       </IconWrapper>
     )
   } else if (connector.constructor.name === 'PortisConnector') {
     return (
       <IconWrapper size={16}>
-        <Image src="/images/wallets/portis.png" alt={'Portis'} width="16px" height="16px" />
+        <Image src="/images/wallets/portis.png" alt={'Portis'}  placeholder="blur" width="16px" height="16px" />
       </IconWrapper>
     )
   } else if (connector.constructor.name === 'KeystoneConnector') {
     return (
       <IconWrapper size={16}>
-        <Image src="/images/wallets/keystone.png" alt={'Keystone'} width="16px" height="16px" />
+        <Image src="/images/wallets/keystone.png" alt={'Keystone'} placeholder="blur" width="16px" height="16px" />
       </IconWrapper>
     )
   }

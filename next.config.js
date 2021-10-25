@@ -1,6 +1,6 @@
 const withPWA = require('next-pwa')
 const runtimeCaching = require('next-pwa/cache')
-
+const withOffline = require('next-offline')
 const linguiConfig = require('./lingui.config.js')
 
 const { locales, sourceLocale } = linguiConfig
@@ -32,6 +32,32 @@ const nextConfig = {
 
     return config
   },
+  workboxOpts: {
+      swDest: process.env.NEXT_EXPORT
+        ? 'service-worker.js'
+        : 'static/service-worker.js',
+      runtimeCaching: [
+        {
+          urlPattern: /^https?.*/,
+          handler: 'NetworkFirst',
+          options: {
+            cacheName: 'offlineCache',
+            expiration: {
+              maxEntries: 200,
+            },
+          },
+        },
+      ],
+    },
+    async rewrites() {
+      return [
+        {
+          source: '/service-worker.js',
+          destination: '/_next/static/service-worker.js',
+        },
+      ]
+  },
+  productionBrowserSourceMaps: false,
   experimental: { esmExternals: true },
   pwa: {
     dest: 'public',
@@ -173,6 +199,7 @@ const nextConfig = {
       },
     ]
   },
+poweredByHeader: false,
   i18n: {
     localeDetection: true,
     locales,

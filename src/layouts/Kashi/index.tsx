@@ -31,7 +31,7 @@ export default function Layout({
             <div className="flex justify-center col-span-12 xl:col-span-3 lg:justify-start">
               <Link href="/borrow">
                 <a className="flex justify-center xl:justify-start xl:mx-8">
-                  <Image src={kashiLogo} alt="Kashi" height={64} width={250} />
+                  <Image src={kashiLogo} alt="Kashi" placeholder="blur" height={64} width={250} />
                 </a>
               </Link>
             </div>

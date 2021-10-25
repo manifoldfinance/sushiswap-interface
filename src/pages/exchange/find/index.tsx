@@ -21,6 +21,7 @@ import { useActiveWeb3React } from '../../../hooks/useActiveWeb3React'
 import { useLingui } from '@lingui/react'
 import { usePairAdder } from '../../../state/user/hooks'
 import { useTokenBalance } from '../../../state/wallet/hooks'
+import router from 'next/router'
 
 enum Fields {
   TOKEN0 = 0,
@@ -133,8 +134,11 @@ export default function PoolFinder() {
             gap={'0 3px'}
           >
             {i18n._(t`Pool Found!`)}
-            <Link href={`/pool`}>
-              <a className="text-center">{i18n._(t`Manage this pool`)}</a>
+            <Link prefetch={false} href={`/pool`}>
+            <a
+                    onMouseEnter={() => {
+                     router.prefetch('/pool')
+                   }} className="text-center">{i18n._(t`Manage this pool`)}</a>
             </Link>
           </AutoRow>
         )}

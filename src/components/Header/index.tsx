@@ -18,6 +18,7 @@ import { t } from '@lingui/macro'
 import { useActiveWeb3React } from '../../hooks/useActiveWeb3React'
 import { useETHBalances } from '../../state/wallet/hooks'
 import { useLingui } from '@lingui/react'
+import router from 'next/router'
 
 // import { ExternalLink, NavLink } from "./Link";
 // import { ReactComponent as Burger } from "../assets/images/burger.svg";
@@ -284,8 +285,12 @@ function AppBar(): JSX.Element {
                   </a>
                 </Link>
 
-                <Link href={'/migrate'}>
+                <Link prefetch={false} href={'/migrate'}>
                   <a
+                    onMouseEnter={() => {
+                    router.prefetch('/migrate')
+                    console.log(' 🍣 migrate ')
+                  }}
                     id={`migrate-nav-link`}
                     className="p-2 text-baseline text-primary hover:text-high-emphesis focus:text-high-emphesis md:p-3 whitespace-nowrap"
                   >
@@ -294,8 +299,12 @@ function AppBar(): JSX.Element {
                 </Link>
 
                 {chainId && featureEnabled(Feature.LIQUIDITY_MINING, chainId) && (
-                  <Link href={'/farm'}>
+                  <Link prefetch={false} href={'/farm'}>
                     <a
+                     onMouseEnter={() => {
+                      router.prefetch('/farm')
+                      console.log(' 🍣 farm ')
+                    }}
                       id={`farm-nav-link`}
                       className="p-2 text-baseline text-primary hover:text-high-emphesis focus:text-high-emphesis md:p-3 whitespace-nowrap"
                     >
@@ -307,8 +316,12 @@ function AppBar(): JSX.Element {
 
                 {chainId && featureEnabled(Feature.KASHI, chainId) && (
                   <>
-                    <Link href={'/lend'}>
+                    <Link prefetch={false} href={'/lend'}>
                       <a
+                           onMouseEnter={() => {
+                            router.prefetch('/lend')
+                            console.log(' 🍣 lend ')
+                          }}
                         id={`lend-nav-link`}
                         className="p-2 text-baseline text-primary hover:text-high-emphesis focus:text-high-emphesis md:p-3 whitespace-nowrap"
                       >
@@ -328,8 +341,12 @@ function AppBar(): JSX.Element {
                 )}
 
                 {chainId && featureEnabled(Feature.STAKING, chainId) && (
-                  <Link href={'/stake'}>
+                  <Link prefetch={false} href={'/stake'}>
                     <a
+                    onMouseEnter={() => {
+                    router.prefetch('/stake')
+                    console.log('🍣  stake')
+                  }}
                       id={`stake-nav-link`}
                       className="p-2 text-baseline text-primary hover:text-high-emphesis focus:text-high-emphesis md:p-3 whitespace-nowrap"
                     >

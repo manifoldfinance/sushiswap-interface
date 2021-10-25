@@ -99,6 +99,7 @@ function Borrow() {
                           <div className="grid items-center grid-cols-4 gap-4 px-4 py-4 text-sm rounded md:grid-cols-6 lg:grid-cols-7 align-center bg-dark-800 hover:bg-dark-pink">
                             <div className="hidden space-x-2 md:flex">
                               <Image
+                               placeholder="blur"
                                 loader={cloudinaryLoader}
                                 height={48}
                                 width={48}
@@ -108,6 +109,7 @@ function Borrow() {
                               />
 
                               <Image
+                                placeholder="blur"
                                 loader={cloudinaryLoader}
                                 height={48}
                                 width={48}

@@ -8,7 +8,7 @@ export default function useAddTokenToMetaMask(currencyToAdd: Currency | undefine
   addToken: () => void
   success: boolean | undefined
 } {
-  const { chainId, library } = useActiveWeb3React()
+  const { library } = useActiveWeb3React()
 
   const token: Token | undefined = currencyToAdd?.wrapped
 
