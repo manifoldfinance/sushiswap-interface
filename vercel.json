@@ -1,16 +1,26 @@
 {
+  "collectMetrics": false,
+  "cleanUrls": true,
   "headers": [
     {
-      "source": "/service-worker.js",
+      "source": "/favicon.ico",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31556952, immutable"
+        }
+      ]
+    },
+    {
       "headers": [
         {
           "key": "Cache-Control",
           "value": "public, max-age=0, must-revalidate"
         }
-      ]
+      ],
+      "source": "/service-worker.js"
     },
     {
-      "source": "/(.*)",
       "headers": [
         {
           "key": "X-XSS-Protection",
@@ -20,7 +30,26 @@
           "key": "X-Content-Type-Options",
           "value": "nosniff"
         }
-      ]
+      ],
+      "source": "/(.*)"
+    }
+  ],
+  "routes": [
+    {
+      "dest": "/build/js/$1.br",
+      "headers": {
+        "Cache-Control": "public, max-age=31557600",
+        "Content-Encoding": "br",
+        "Content-Type": "text/javascript"
+      },
+      "src": "/static/js/(.*)"
+    },
+    {
+      "dest": "/build/$1",
+      "headers": {
+        "Cache-Control": "public, max-age=31557600"
+      },
+      "src": "/static/(.*)"
     }
   ]
 }
