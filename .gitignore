@@ -1,4 +1,15 @@
 # See https://help.github.com/ignore-files/ for more about ignoring files.
+
+# yarnV2 - Not using Zero Installs
+.yarn/*
+!.yarn/patches
+!.yarn/releases
+.yarn/plugins
+!.yarn/sdks
+!.yarn/versions
+.pnp.*
+
+
 _tmp/
 dev/
 deps/
