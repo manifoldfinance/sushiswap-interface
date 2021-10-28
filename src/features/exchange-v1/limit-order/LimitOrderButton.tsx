@@ -61,7 +61,7 @@ const LimitOrderButton: FC<LimitOrderButtonProps> = ({ currency, color, ...rest 
     tokenApprovalState === ApprovalState.PENDING
 
   const handler = useCallback(async () => {
-    let endTime
+    let endTime: number
     switch (orderExpiration.value) {
       case OrderExpiration.hour:
         endTime = Math.floor(new Date().getTime() / 1000) + 3600
@@ -188,7 +188,7 @@ const LimitOrderButton: FC<LimitOrderButtonProps> = ({ currency, color, ...rest 
           message={i18n._(
             t`Something went wrong during signing of the approval. This is expected for hardware wallets, such as Trezor and Ledger. Click again and the fallback method will be used`
           )}
-          className="flex flex-row w-full mb-4"
+          className="flex flex-row mb-4 w-full"
         />
       )}
       {button}

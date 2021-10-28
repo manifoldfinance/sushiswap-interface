@@ -1,6 +1,6 @@
 {
-  "name": "sushiswap-interface",
-  "version": "1.0.0",
+  "name": "@sushiswap/interface",
+  "version": "0.0.0",
   "private": true,
   "scripts": {
     "analyze": "ANALYZE=true yarn build && serve .next -n",
@@ -30,6 +30,8 @@
     "@walletconnect/web3-provider": "1.6.0"
   },
   "devDependencies": {
+    "dd-trace": "^1.5.0",
+    "pino": "^7.0.5",
     "@binance-chain/bsc-connector": "^1.0.0",
     "@commitlint/cli": "^13.0.0",
     "@commitlint/config-conventional": "^13.0.0",
@@ -120,8 +122,8 @@
     "lottie-react": "^2.1.0",
     "madge": "^5.0.1",
     "millify": "^4.0.0",
-    "next": "^11.1.0",
-    "next-pwa": "^5.2.22",
+    "next": "^12.0.1",
+    "next-pwa": "^5.4.0",
     "next-unused": "^0.0.6",
     "node-vibrant": "3.1.6",
     "numeral": "^2.0.6",
@@ -174,5 +176,7 @@
     "not ie 11",
     "not dead",
     "not op_mini all"
-  ]
+  ],
+  "dependencies": {
+  }
 }
