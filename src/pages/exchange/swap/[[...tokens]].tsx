@@ -452,7 +452,7 @@ export default function Swap() {
         onConfirm={handleConfirmTokenWarning}
       />
       {/* <DoubleGlowShadow> */}
-        <div className="p-4 space-y-4 bg-dark-900 z-1">
+        <div className="p-4 space-y-4 bg-ambire-panel-background-color z-1">
           <SwapHeader
             input={currencies[Field.INPUT]}
             output={currencies[Field.OUTPUT]}
@@ -501,7 +501,7 @@ export default function Swap() {
                     onSwitchTokens()
                   }}
                 >
-                  <div className="full bg-dark-900 p-3px">
+                  <div className="full bg-ambire-panel-background-color p-3px">
                     <div
                       className="p-3 full bg-dark-800 hover:bg-dark-700"
                       onMouseEnter={() => setAnimateSwapArrows(true)}

@@ -64,6 +64,8 @@ module.exports = {
         'high-emphesis': '#E3E3E3',
         'ambire-accent-primary': '#80ffdb',
         'ambire-accent-secondary': '#AA6AFF',
+        'ambire-background-color': '#282b33',
+        'ambire-panel-background-color': '#202229'
       },
       lineHeight: {
         '48px': '48px',

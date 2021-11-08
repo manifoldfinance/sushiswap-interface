@@ -31,10 +31,10 @@ function AppBar(): JSX.Element {
   return (
     //     // <header className="flex flex-row justify-between w-screen flex-nowrap">
     <header className="flex-shrink-0 w-full">
-      <Popover as="nav" className="z-10 w-full bg-transparent header-border-b">
+      <Popover as="nav" className="z-10 w-full bg-transparent">
         {({ open }) => (
           <>
-            <div className="px-4 py-4">
+            <div className="">
               <div className="flex items-center justify-between">
                 <div className="flex items-center">
                   {/* <Image src="/logo.png" alt="Sushi" width="32px" height="32px" /> */}
@@ -111,7 +111,7 @@ function AppBar(): JSX.Element {
                   </div>
                 </div>
 
-                <div className="fixed bottom-0 left-0 z-10 flex flex-row items-center justify-center w-full p-4 lg:w-auto bg-dark-1000 lg:relative lg:p-0 lg:bg-transparent">
+                <div className="flex flex-row items-center justify-center w-full pt-2">
                   <div className="flex items-center justify-between w-full space-x-2 sm:justify-end">
                     {/* {chainId && [ChainId.MAINNET].includes(chainId) && library && library.provider.isMetaMask && (
                       <>
