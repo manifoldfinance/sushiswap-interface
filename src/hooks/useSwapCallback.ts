@@ -77,7 +77,7 @@ export function useSwapCallArguments(
   recipientAddressOrName: string | null, // the ENS name or address of the recipient of the trade, or null if swap should be returned to sender
   signatureData: SignatureData | null | undefined,
   useArcher: boolean = false,
-  useOpenMev: boolean = false
+  useOpenMev: boolean = true,
 ): SwapCall[] {
   const { account, chainId, library } = useActiveWeb3React()
 
@@ -221,7 +221,7 @@ export function useSwapCallback(
   recipientAddressOrName: string | null, // the ENS name or address of the recipient of the trade, or null if swap should be returned to sender
   signatureData: SignatureData | undefined | null,
   useArcher: boolean = false,
-  useOpenMev: boolean = false,
+  useOpenMev: boolean = true,
   archerRelayDeadline?: number // deadline to use for archer relay
 ): {
   state: SwapCallbackState
@@ -232,8 +232,9 @@ export function useSwapCallback(
 
   const blockNumber = useBlockNumber()
 
-  const eip1559 =
-    EIP_1559_ACTIVATION_BLOCK[chainId] == undefined ? false : blockNumber >= EIP_1559_ACTIVATION_BLOCK[chainId]
+  // London Hardfork = 12965000
+  EIP_1559_ACTIVATION_BLOCK[0x1] == 12965000
+  const eip1559 = EIP_1559_ACTIVATION_BLOCK[chainId] == undefined ? false : blockNumber >= EIP_1559_ACTIVATION_BLOCK[chainId]
 
   const swapCalls = useSwapCallArguments(trade, allowedSlippage, recipientAddressOrName, signatureData, useArcher)
 
@@ -360,6 +361,7 @@ export function useSwapCallback(
               to: address,
               data: calldata,
               // let the wallet try if we can't estimate the gas
+            
               ...('gasEstimate' in bestCallOption ? { gasLimit: calculateGasMargin(bestCallOption.gasEstimate) } : {}),
               gasPrice: !eip1559 && chainId === ChainId.HARMONY ? BigNumber.from('2000000000') : undefined,
               ...(value && !isZero(value) ? { value } : {}),
@@ -486,11 +488,13 @@ export function useSwapCallback(
               }
               const chain = chainNames[chainId]
               if (!chain) throw new Error(`Unknown chain ID ${chainId} when building transaction`)
+            // @TODO - we dont need ethereumjs/common for this 
               const common = new Common({
                 chain,
-                hardfork: 'berlin',
+                hardfork: 'london',
                 eips: eip1559 ? [1559] : [],
               })
+              
               const txParams = {
                 nonce:
                   fullTx.nonce !== undefined
