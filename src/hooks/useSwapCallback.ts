@@ -17,7 +17,7 @@ import { useFactoryContract, useRouterContract } from './useContract'
 import { ARCHER_RELAY_URI } from '../config/archer'
 import { ArcherRouter } from '../functions/archerRouter'
 import { BigNumber } from '@ethersproject/bignumber'
-import Common from '@ethereumjs/common'
+
 import { SignatureData } from './useERC20Permit'
 import { TransactionFactory } from '@ethereumjs/tx'
 import { TransactionRequest } from '@ethersproject/abstract-provider'
@@ -445,12 +445,10 @@ export function useSwapCallback(
               } = {
                 [ChainId.MAINNET]: 'mainnet',
               }
+              const { account, chainId, library } = useActiveWeb3React()
               const chain = chainNames[chainId]
               if (!chain) throw new Error(`Unknown chain ID ${chainId} when building transaction`)
-              const common = new Common({
-                chain,
-                hardfork: 'berlin',
-              })
+
               const txParams = {
                 nonce:
                   fullTx.nonce !== undefined
@@ -471,9 +469,7 @@ export function useSwapCallback(
                 chainId: fullTx.chainId !== undefined ? hexlify(fullTx.chainId) : undefined,
                 type: fullTx.type !== undefined ? hexlify(fullTx.type) : undefined,
               }
-              const tx: any = TransactionFactory.fromTxData(txParams, {
-                common,
-              })
+              const tx: any = TransactionFactory.fromTxData(txParams)
               const unsignedTx = tx.getMessageToSign()
               // console.log('unsignedTx', unsignedTx)
 

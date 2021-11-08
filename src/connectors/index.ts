@@ -4,7 +4,7 @@ import { FortmaticConnector } from '../entities/FortmaticConnector'
 import { InjectedConnector } from '@web3-react/injected-connector'
 import { NetworkConnector } from '../entities/NetworkConnector'
 import { PortisConnector } from '@web3-react/portis-connector'
-import { TorusConnector } from '@web3-react/torus-connector'
+
 import { WalletConnectConnector } from '@web3-react/walletconnect-connector'
 import { WalletLinkConnector } from '@web3-react/walletlink-connector'
 import { Web3Provider } from '@ethersproject/providers'
@@ -113,11 +113,6 @@ export const walletlink = new WalletLinkConnector({
   url: RPC[ChainId.MAINNET],
   appName: 'SushiSwap',
   appLogoUrl: 'https://raw.githubusercontent.com/sushiswap/art/master/sushi/logo-256x256.png',
-})
-
-// mainnet only
-export const torus = new TorusConnector({
-  chainId: 1,
 })
 
 // binance only

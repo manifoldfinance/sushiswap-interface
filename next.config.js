@@ -1,8 +1,8 @@
+const path = require('path');
 const withPWA = require('next-pwa')
 const runtimeCaching = require('next-pwa/cache')
 
 const linguiConfig = require('./lingui.config.js')
-
 const { locales, sourceLocale } = linguiConfig
 
 const withBundleAnalyzer = require('@next/bundle-analyzer')({
@@ -16,8 +16,12 @@ const withBundleAnalyzer = require('@next/bundle-analyzer')({
 
 const { withSentryConfig } = require('@sentry/nextjs')
 
+// @ts-check
+/**
+ * @type {import('next').NextConfig}
+ */
 const nextConfig = {
-  webpack: (config) => {
+  webpack: (config, { buildId, dev, isServer, defaultLoaders, webpack }) => {
     config.module.rules = [
       ...config.module.rules,
       {
@@ -25,7 +29,6 @@ const nextConfig = {
         type: 'javascript/auto',
       },
     ]
-
     return config
   },
   experimental: { esmExternals: true },
@@ -37,7 +40,11 @@ const nextConfig = {
   images: {
     domains: ['assets.sushi.com', 'res.cloudinary.com', 'raw.githubusercontent.com', 'logos.covalenthq.com'],
   },
+  generateEtags: false,
+  productionBrowserSourceMaps: false,
+  poweredByHeader: false,
   reactStrictMode: true,
+  experimental: { esmExternals: true },
   async redirects() {
     return [
       // {

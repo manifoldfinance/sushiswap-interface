@@ -74,12 +74,6 @@ function StatusIcon({ connector }: { connector: AbstractConnector }) {
         <Image src="/images/wallets/portis.png" alt={'Portis'} width="16px" height="16px" />
       </IconWrapper>
     )
-  } else if (connector.constructor.name === 'KeystoneConnector') {
-    return (
-      <IconWrapper size={16}>
-        <Image src="/images/wallets/keystone.png" alt={'Keystone'} width="16px" height="16px" />
-      </IconWrapper>
-    )
   }
   return null
 }
@@ -121,7 +115,7 @@ function Web3StatusInner() {
         onClick={toggleWalletModal}
       >
         {hasPendingTransactions ? (
-          <div className="flex items-center justify-between">
+          <div className="flex justify-between items-center">
             <div className="pr-2">
               {pending?.length} {i18n._(t`Pending`)}
             </div>{' '}

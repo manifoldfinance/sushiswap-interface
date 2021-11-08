@@ -20,7 +20,7 @@ import { useLingui } from '@lingui/react'
 
 const WalletIcon: FC<{ size?: number; src: string; alt: string }> = ({ size, src, alt, children }) => {
   return (
-    <div className="flex flex-row items-end justify-center mr-2 flex-nowrap md:items-center">
+    <div className="flex flex-row flex-nowrap justify-center items-end mr-2 md:items-center">
       <Image src={src} alt={alt} width={size} height={size} />
       {children}
     </div>
@@ -29,7 +29,7 @@ const WalletIcon: FC<{ size?: number; src: string; alt: string }> = ({ size, src
 
 function renderTransactions(transactions: string[]) {
   return (
-    <div className="flex flex-col gap-2 flex-nowrap">
+    <div className="flex flex-col flex-nowrap gap-2">
       {transactions.map((hash, i) => {
         return <Transaction key={i} hash={hash} />
       })}
@@ -91,9 +91,7 @@ const AccountDetails: FC<AccountDetailsProps> = ({
           </Button>
         </WalletIcon>
       )
-    } else if (connector.constructor.name === 'TorusConnector') {
-      return <WalletIcon src="/torus.png" alt="Torus" size={16} />
-    }
+    } 
     return null
   }
 
@@ -106,13 +104,12 @@ const AccountDetails: FC<AccountDetailsProps> = ({
       <div className="space-y-3">
         <ModalHeader title="Account" onClose={toggleWalletModal} />
         <div className="space-y-3">
-          <div className="flex items-center justify-between">
+          <div className="flex justify-between items-center">
             {formatConnectorName()}
             <div className="flex space-x-3">
               {connector === injected &&
                 connector.constructor.name !== 'WalletLinkConnector' &&
-                connector.constructor.name !== 'BscConnector' &&
-                connector.constructor.name !== 'KeystoneConnector' && (
+                connector.constructor.name !== 'BscConnector' && (
                   <Button
                     variant="outlined"
                     color="gray"
@@ -148,7 +145,7 @@ const AccountDetails: FC<AccountDetailsProps> = ({
                 <Typography>{account && shortenAddress(account)}</Typography>
               </div>
             )}
-            <div className="flex items-center gap-2 space-x-3">
+            <div className="flex gap-2 items-center space-x-3">
               {chainId && account && (
                 <ExternalLink
                   color="blue"
@@ -168,7 +165,7 @@ const AccountDetails: FC<AccountDetailsProps> = ({
         </div>
       </div>
       <div className="space-y-2">
-        <div className="flex items-center justify-between">
+        <div className="flex justify-between items-center">
           <Typography weight={700}>{i18n._(t`Recent Transactions`)}</Typography>
           <div>
             <Button variant="outlined" color="gray" size="xs" onClick={clearAllTransactionsCallback}>

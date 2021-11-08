@@ -89,21 +89,6 @@ export const SUPPORTED_WALLETS: { [key: string]: WalletInfo } = {
     color: '#4196FC',
     mobile: true,
   },
-  KEYSTONE: {
-    connector: async () => {
-      const KeystoneConnector = (await import('@keystonehq/keystone-connector')).KeystoneConnector
-      return new KeystoneConnector({
-        chainId: 1,
-        url: RPC[ChainId.MAINNET],
-      })
-    },
-    name: 'Keystone',
-    iconName: 'keystone.png',
-    description: 'Connect to Keystone hardware wallet.',
-    href: null,
-    color: '#4196FC',
-    mobile: true,
-  },
   LATTICE: {
     connector: async () => {
       const LatticeConnector = (await import('@web3-react/lattice-connector')).LatticeConnector
@@ -172,20 +157,6 @@ export const SUPPORTED_WALLETS: { [key: string]: WalletInfo } = {
     description: 'Login using Portis hosted wallet',
     href: null,
     color: '#4A6C9B',
-    mobile: true,
-  },
-  Torus: {
-    connector: async () => {
-      const TorusConnector = (await import('@web3-react/torus-connector')).TorusConnector
-      return new TorusConnector({
-        chainId: 1,
-      })
-    },
-    name: 'Torus',
-    iconName: 'torus.png',
-    description: 'Login using Torus hosted wallet',
-    href: null,
-    color: '#315CF5',
     mobile: true,
   },
   Binance: {
