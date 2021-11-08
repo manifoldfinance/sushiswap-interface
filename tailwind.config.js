@@ -62,6 +62,8 @@ module.exports = {
         primary: '#BFBFBF',
         secondary: '#7F7F7F',
         'high-emphesis': '#E3E3E3',
+        'ambire-accent-primary': '#80ffdb',
+        'ambire-accent-secondary': '#AA6AFF',
       },
       lineHeight: {
         '48px': '48px',
