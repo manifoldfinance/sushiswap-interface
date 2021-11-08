@@ -37,19 +37,19 @@ function AppBar(): JSX.Element {
             <div className="px-4 py-4">
               <div className="flex items-center justify-between">
                 <div className="flex items-center">
-                  <Image src="/logo.png" alt="Sushi" width="32px" height="32px" />
+                  {/* <Image src="/logo.png" alt="Sushi" width="32px" height="32px" /> */}
                   <div className="hidden sm:block sm:ml-4">
                     <div className="flex space-x-2">
                       {/* <Buy /> */}
-                      <NavLink href="/swap">
+                      {/* <NavLink href="/swap">
                         <a
                           id={`swap-nav-link`}
                           className="p-2 text-baseline text-primary hover:text-high-emphesis focus:text-high-emphesis md:p-3 whitespace-nowrap"
                         >
                           {i18n._(t`Swap`)}
                         </a>
-                      </NavLink>
-                      <NavLink href="/pool">
+                      </NavLink> */}
+                      {/* <NavLink href="/pool">
                         <a
                           id={`pool-nav-link`}
                           className="p-2 text-baseline text-primary hover:text-high-emphesis focus:text-high-emphesis md:p-3 whitespace-nowrap"
@@ -106,14 +106,14 @@ function AppBar(): JSX.Element {
                             {i18n._(t`Stake`)}
                           </a>
                         </NavLink>
-                      )}
+                      )} */}
                     </div>
                   </div>
                 </div>
 
                 <div className="fixed bottom-0 left-0 z-10 flex flex-row items-center justify-center w-full p-4 lg:w-auto bg-dark-1000 lg:relative lg:p-0 lg:bg-transparent">
                   <div className="flex items-center justify-between w-full space-x-2 sm:justify-end">
-                    {chainId && [ChainId.MAINNET].includes(chainId) && library && library.provider.isMetaMask && (
+                    {/* {chainId && [ChainId.MAINNET].includes(chainId) && library && library.provider.isMetaMask && (
                       <>
                         <QuestionHelper text={i18n._(t`Add xSUSHI to your MetaMask wallet`)}>
                           <div
@@ -157,9 +157,9 @@ function AppBar(): JSX.Element {
                           </div>
                         </QuestionHelper>
                       </>
-                    )}
+                    )} */}
 
-                    {chainId && chainId in SUSHI_ADDRESS && library && library.provider.isMetaMask && (
+                    {/* {chainId && chainId in SUSHI_ADDRESS && library && library.provider.isMetaMask && (
                       <>
                         <QuestionHelper text={i18n._(t`Add SUSHI to your MetaMask wallet`)}>
                           <div
@@ -203,7 +203,7 @@ function AppBar(): JSX.Element {
                           </div>
                         </QuestionHelper>
                       </>
-                    )}
+                    )} */}
 
                     {library && library.provider.isMetaMask && (
                       <div className="hidden sm:inline-block">
@@ -221,14 +221,14 @@ function AppBar(): JSX.Element {
                       )}
                       <Web3Status />
                     </div>
-                    <div className="hidden md:block">
+                    {/* <div className="hidden md:block">
                       <LanguageSwitch />
                     </div>
-                    <More />
+                    <More /> */}
                   </div>
                 </div>
-                <div className="flex -mr-2 sm:hidden">
-                  {/* Mobile menu button */}
+                {/* <div className="flex -mr-2 sm:hidden">
+                  Mobile menu button
                   <Popover.Button className="inline-flex items-center justify-center p-2 rounded-md text-primary hover:text-high-emphesis focus:outline-none">
                     <span className="sr-only">{i18n._(t`Open main menu`)}</span>
                     {open ? (
@@ -261,11 +261,11 @@ function AppBar(): JSX.Element {
                       // <Burger title="Burger" className="block w-6 h-6" aria-hidden="true" />
                     )}
                   </Popover.Button>
-                </div>
+                </div> */}
               </div>
             </div>
 
-            <Popover.Panel className="sm:hidden">
+            {/* <Popover.Panel className="sm:hidden">
               <div className="flex flex-col px-4 pt-2 pb-3 space-y-1">
                 <Link href={'/swap'}>
                   <a
@@ -293,7 +293,7 @@ function AppBar(): JSX.Element {
                   </a>
                 </Link>
 
-                {chainId && featureEnabled(Feature.LIQUIDITY_MINING, chainId) && (
+                 {chainId && featureEnabled(Feature.LIQUIDITY_MINING, chainId) && (
                   <Link href={'/farm'}>
                     <a
                       id={`farm-nav-link`}
@@ -303,9 +303,9 @@ function AppBar(): JSX.Element {
                       {i18n._(t`Farm`)}
                     </a>
                   </Link>
-                )}
+                )} 
 
-                {chainId && featureEnabled(Feature.KASHI, chainId) && (
+                 {chainId && featureEnabled(Feature.KASHI, chainId) && (
                   <>
                     <Link href={'/lend'}>
                       <a
@@ -336,9 +336,9 @@ function AppBar(): JSX.Element {
                       {i18n._(t`Stake`)}
                     </a>
                   </Link>
-                )}
+                )} 
 
-                {chainId && featureEnabled(Feature.ANALYTICS, chainId) && (
+                 {chainId && featureEnabled(Feature.ANALYTICS, chainId) && (
                   <ExternalLink
                     id={`analytics-nav-link`}
                     href={ANALYTICS_URL[chainId] || 'https://analytics.sushi.com'}
@@ -346,9 +346,9 @@ function AppBar(): JSX.Element {
                   >
                     {i18n._(t`Analytics`)}
                   </ExternalLink>
-                )}
+                )} 
               </div>
-            </Popover.Panel>
+            </Popover.Panel>  */}
           </>
         )}
       </Popover>

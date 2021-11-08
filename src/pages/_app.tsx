@@ -106,7 +106,7 @@ function MyApp({
 
   return (
     <Fragment>
-      <Head>
+      {/* <Head>
         <meta charSet="utf-8" />
         <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
 
@@ -152,7 +152,7 @@ function MyApp({
           property="og:description"
           content="Be a DeFi Chef with Sushi. Swap, earn, stack yields, lend, borrow, leverage all on one decentralized, community driven platform. Welcome home to DeFi"
         />
-      </Head>
+      </Head> */}
       <I18nProvider i18n={i18n} forceRenderOnLocaleChange={false}>
         <Web3ReactProvider getLibrary={getLibrary}>
           <Web3ProviderNetwork getLibrary={getLibrary}>

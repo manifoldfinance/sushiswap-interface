@@ -11,7 +11,7 @@ const Layout = ({ children, banner = undefined }) => {
       <Header />
       <Main>{children}</Main>
       <Popups />
-      <Footer />
+      {/* <Footer /> */}
     </div>
   )
 }

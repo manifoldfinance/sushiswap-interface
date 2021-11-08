@@ -438,21 +438,21 @@ export default function Swap() {
 
   return (
     <Container id="swap-page" className="py-4 md:py-8 lg:py-12">
-      <Head>
+      {/* <Head>
         <title>{i18n._(t`SushiSwap`)} | Sushi</title>
         <meta
           key="description"
           name="description"
           content="SushiSwap allows for swapping of ERC20 compatible tokens across multiple networks"
         />
-      </Head>
+      </Head> */}
       <TokenWarningModal
         isOpen={importTokensNotInDefault.length > 0 && !dismissTokenWarning}
         tokens={importTokensNotInDefault}
         onConfirm={handleConfirmTokenWarning}
       />
-      <DoubleGlowShadow>
-        <div className="p-4 space-y-4 rounded bg-dark-900 z-1">
+      {/* <DoubleGlowShadow> */}
+        <div className="p-4 space-y-4 bg-dark-900 z-1">
           <SwapHeader
             input={currencies[Field.INPUT]}
             output={currencies[Field.OUTPUT]}
@@ -495,15 +495,15 @@ export default function Swap() {
                 className={classNames(isExpertMode ? 'justify-between' : 'flex-start', 'px-4 flex-wrap w-full flex')}
               >
                 <button
-                  className="z-10 -mt-6 -mb-6 rounded-full"
+                  className="z-10 -mt-6 -mb-6 full"
                   onClick={() => {
                     setApprovalSubmitted(false) // reset 2 step UI for approvals
                     onSwitchTokens()
                   }}
                 >
-                  <div className="rounded-full bg-dark-900 p-3px">
+                  <div className="full bg-dark-900 p-3px">
                     <div
-                      className="p-3 rounded-full bg-dark-800 hover:bg-dark-700"
+                      className="p-3 full bg-dark-800 hover:bg-dark-700"
                       onMouseEnter={() => setAnimateSwapArrows(true)}
                       onMouseLeave={() => setAnimateSwapArrows(false)}
                     >
@@ -551,7 +551,7 @@ export default function Swap() {
                 id="swap-currency-output"
               />
               {Boolean(trade) && (
-                <div className="p-1 -mt-2 cursor-pointer rounded-b-md bg-dark-800">
+                <div className="p-1 -mt-2 cursor-pointer bg-dark-800">
                   <TradePrice
                     price={trade?.executionPrice}
                     showInverted={showInverted}
@@ -714,7 +714,7 @@ export default function Swap() {
             <UnsupportedCurrencyFooter show={swapIsUnsupported} currencies={[currencies.INPUT, currencies.OUTPUT]} />
           )}
         </div>
-      </DoubleGlowShadow>
+      {/* </DoubleGlowShadow> */}
     </Container>
   )
 }
