@@ -452,7 +452,7 @@ export default function Swap() {
         onConfirm={handleConfirmTokenWarning}
       />
       {/* <DoubleGlowShadow> */}
-        <div className="p-4 space-y-4 bg-ambire-panel-background-color z-1">
+        <div className="p-4 space-y-4 bg-ambire-panel-background z-1">
           <SwapHeader
             input={currencies[Field.INPUT]}
             output={currencies[Field.OUTPUT]}
@@ -501,9 +501,9 @@ export default function Swap() {
                     onSwitchTokens()
                   }}
                 >
-                  <div className="full bg-ambire-panel-background-color p-3px">
+                  <div className="full bg-ambire-panel-background p-3px">
                     <div
-                      className="p-3 full bg-dark-800 hover:bg-dark-700"
+                      className="p-3 full bg-ambire-input-background hover:bg-dark-700"
                       onMouseEnter={() => setAnimateSwapArrows(true)}
                       onMouseLeave={() => setAnimateSwapArrows(false)}
                     >
@@ -551,7 +551,7 @@ export default function Swap() {
                 id="swap-currency-output"
               />
               {Boolean(trade) && (
-                <div className="p-1 -mt-2 cursor-pointer bg-dark-800">
+                <div className="p-1 -mt-2 cursor-pointer bg-ambire-input-background">
                   <TradePrice
                     price={trade?.executionPrice}
                     showInverted={showInverted}

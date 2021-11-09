@@ -46,7 +46,7 @@ export default function Modal({
                   maxWidth: `${maxWidth}px`,
                 }}
               >
-                <div className="w-full p-px bg-gradient-to-r from-ambire-accent-primary to-ambire-accent-secondary">
+                <div className="w-full p-px bg-gradient-to-r from-ambire-dark-blue to-ambire-purple">
                   <div  
                     style={{ minHeight: `${minHeight}vh`, maxHeight: `${maxHeight}vh` }}
                     className="flex flex-col w-full h-full p-5 overflow-y-auto bg-dark-900"

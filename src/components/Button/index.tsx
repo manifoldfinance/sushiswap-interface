@@ -10,7 +10,7 @@ const SIZE = {
 }
 
 const FILLED = {
-  default: 'bg-transparent w-full opacity-80 hover:opacity-100',
+  default: 'bg-transparent opacity-80 hover:opacity-100',
   red: 'bg-red bg-opacity-80 w-full text-high-emphesis hover:bg-opacity-100 disabled:bg-opacity-80',
   blue: 'bg-blue bg-opacity-80 w-full text-high-emphesis hover:bg-opacity-100 disabled:bg-opacity-80',
   pink: 'bg-gradient-to-r from-pink to-opaque-pink w-full text-high-emphesis opacity-80 hover:opacity-100 disabled:bg-opacity-80',
@@ -19,7 +19,7 @@ const FILLED = {
   // gradient:
   //   'w-full text-high-emphesis bg-gradient-to-r from-blue to-pink opacity-80 hover:opacity-100 disabled:bg-opacity-80',
     gradient:
-    'w-full text-high-emphesis bg-gradient-to-r from-ambire-accent-primary to-ambire-accent-secondary opacity-80 hover:opacity-100 disabled:bg-opacity-80',
+    'w-full text-high-emphesis bg-gradient-to-r from-ambire-dark-blue to-ambire-purple opacity-80 hover:opacity-100 disabled:bg-opacity-80',
 }
 
 const OUTLINED = {
