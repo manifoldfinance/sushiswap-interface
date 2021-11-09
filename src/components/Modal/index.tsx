@@ -18,7 +18,7 @@ export default function Modal({
   isOpen,
   onDismiss,
   minHeight = 50,
-  maxHeight = 90,
+  maxHeight = 95,
   initialFocusRef,
   children,
   padding = 5,
@@ -28,7 +28,7 @@ export default function Modal({
     <>
       <Transition appear show={isOpen} as={Fragment}>
         <Dialog as="div" onClose={onDismiss} className="fixed inset-0 z-10 backdrop-blur-md">
-          <Dialog.Overlay className="fixed inset-0 bg-black backdrop-blur-md opacity-30" />
+          <Dialog.Overlay className="fixed inset-0 opacity-50 bg-ambire-background-color backdrop-blur-md" />
           <div className="flex items-center justify-center h-screen px-2">
             <Transition.Child
               as={Fragment}
