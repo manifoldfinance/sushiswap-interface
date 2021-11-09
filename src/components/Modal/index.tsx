@@ -17,7 +17,7 @@ interface ModalProps {
 export default function Modal({
   isOpen,
   onDismiss,
-  minHeight = 0,
+  minHeight = 50,
   maxHeight = 90,
   initialFocusRef,
   children,
@@ -27,9 +27,9 @@ export default function Modal({
   return (
     <>
       <Transition appear show={isOpen} as={Fragment}>
-        <Dialog as="div" onClose={onDismiss} className="fixed inset-0 z-10 overflow-y-hidden backdrop-blur-md">
+        <Dialog as="div" onClose={onDismiss} className="fixed inset-0 z-10 backdrop-blur-md">
           <Dialog.Overlay className="fixed inset-0 bg-black backdrop-blur-md opacity-30" />
-          <div className="flex items-center justify-center h-screen px-4">
+          <div className="flex items-center justify-center h-screen px-2">
             <Transition.Child
               as={Fragment}
               enter="ease-out duration-300"
@@ -42,13 +42,16 @@ export default function Modal({
               <div
                 className="transition-all transform"
                 style={{
-                  width: isMobile ? `100%` : '65vw',
+                  width: isMobile ? `100%` : '100%',
                   maxWidth: `${maxWidth}px`,
                 }}
               >
                 <div className="w-full p-px bg-gradient-to-r from-ambire-accent-primary to-ambire-accent-secondary">
-                  <div className="flex flex-col w-full h-full p-6 overflow-y-hidden bg-dark-900">
-                    <div style={{ minHeight: `${minHeight}vh`, maxHeight: `${maxHeight}vh` }}>{children}</div>
+                  <div  
+                    style={{ minHeight: `${minHeight}vh`, maxHeight: `${maxHeight}vh` }}
+                    className="flex flex-col w-full h-full p-5 overflow-y-auto bg-dark-900"
+                  >
+                    <div>{children}</div>
                   </div>
                 </div>
               </div>
