@@ -1,0 +1,8 @@
+*.txt ident
+git-hash export-subst
+*.sh text eol=lf
+security.txt ident
+NEXT_PUBIC_COMMIT export-subst
+date*.txt filter=dater
+CODENOTIFY linguist-language=CODEOWNERS
+githash.txt ident

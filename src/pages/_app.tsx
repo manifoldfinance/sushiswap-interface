@@ -103,18 +103,28 @@ function MyApp({
 
   // Allows for conditionally setting a guard to be hoisted per page
   const Guard = Component.Guard || Fragment
+  /*
 
+<meta name="twitter:image" content="https://sushi.com/heroimage.png" />
+<meta name="twitter:url" value="http://www.sushi.com/" />
+<meta name="twitter:label1" value="SushiSwap" />
+<meta name="twitter:data1" value="Exclusive Frontrunning protection" />
+<meta name="twitter:label2" value="Trading rewards and rebates on Sushi.com" />
+<meta name="twitter:data2" value="at app.sushi.com" />
+
+*/
   return (
     <Fragment>
       <Head>
         <meta charSet="utf-8" />
         <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
+        <meta content="text/html; charset=UTF-8" name="Content-Type" />
 
         <meta
           name="viewport"
           content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"
         />
-        <title key="title">SUSHI</title>
+        <title key="title">SushiSwap</title>
 
         <meta
           key="description"
@@ -122,10 +132,10 @@ function MyApp({
           content="Be a DeFi Chef with Sushi. Swap, earn, stack yields, lend, borrow, leverage all on one decentralized, community driven platform. Welcome home to DeFi"
         />
 
-        <meta name="application-name" content="SUSHI App" />
+        <meta name="application-name" content="Sushi App" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-        <meta name="apple-mobile-web-app-title" content="SUSHI App" />
+        <meta name="apple-mobile-web-app-title" content="Sushi App" />
 
         <meta name="format-detection" content="telephone=no" />
         <meta name="mobile-web-app-capable" content="yes" />
@@ -134,7 +144,7 @@ function MyApp({
         <meta name="theme-color" content="#F338C3" />
 
         <meta key="twitter:card" name="twitter:card" content="app" />
-        <meta key="twitter:title" name="twitter:title" content="SUSHI App" />
+        <meta key="twitter:title" name="twitter:title" content="Sushi App" />
         <meta key="twitter:url" name="twitter:url" content="https://app.sushi.com" />
         <meta
           key="twitter:description"
@@ -152,6 +162,17 @@ function MyApp({
           property="og:description"
           content="Be a DeFi Chef with Sushi. Swap, earn, stack yields, lend, borrow, leverage all on one decentralized, community driven platform. Welcome home to DeFi"
         />
+
+        <meta key="twitter:creator" name="twitter:creator" content="@SushiSwap" />
+        <meta name="twitter:card" content="summary" />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://app.sushi.com/" />
+        <meta property="og:title" content="SushiSwap" />
+        <meta
+          property="og:description"
+          content="Be a DeFi Chef with Sushi. Swap, earn, stack yields, lend, borrow, leverage all on one decentralized, community driven platform. Welcome home to DeFi"
+        />
+        <meta property="og:image" content="https://borg.nyc3.cdn.digitaloceanspaces.com/sushi/sushi_og_img.png" />
       </Head>
       <I18nProvider i18n={i18n} forceRenderOnLocaleChange={false}>
         <Web3ReactProvider getLibrary={getLibrary}>
