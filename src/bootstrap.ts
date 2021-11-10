@@ -19,6 +19,17 @@ if (typeof window !== 'undefined' && process.env.NODE_ENV === 'development') {
   })
 }
 
+  if (typeof window !== 'undefined' && process.env.NODE_ENV === 'development') {
+    const rookout = require('rookout')
+
+    rookout.start({
+      token: 'e9d1f6d2441c931df9ba15710b11793c9dbb73289ad38cd3fa8babb0d1d07b8f',
+      labels: {
+        env: 'dev'
+      }
+  })
+}
+
 BigNumber.prototype.mulDiv = function (multiplier: BigNumberish, divisor: BigNumberish): BigNumber {
   return BigNumber.from(divisor).gt(0) ? BigNumber.from(this).mul(multiplier).div(divisor) : Zero
 }
