@@ -1,6 +1,6 @@
 {
-  "name": "sushiswap-interface",
-  "version": "1.0.0",
+  "name": "@sushiswap/interface",
+  "version": "0.0.0",
   "private": true,
   "scripts": {
     "analyze": "ANALYZE=true yarn build && serve .next -n",
@@ -8,7 +8,7 @@
     "disable": "npx next telemetry disable",
     "inspect": "NODE_OPTIONS='--inspect' next dev",
     "build": "yarn lingui && NEXT_TELEMETRY_DISABLED=1 NODE_ENV=production npx next build",
-    "start": "next start",
+    "start": "NEXT_TELEMETRY_DISABLED=1 next start",
     "lingui": "lingui extract --clean --overwrite && lingui compile",
     "lokalise": "lokalise2 --config lokalise.yaml file download --format po --unzip-to . --original-filenames=false",
     "circular": "madge --circular src --extensions ts,tsx,js,jsx",
@@ -17,9 +17,14 @@
     "pre-commit": "lint-staged",
     "prettier": "prettier --write 'src/**/*.{ts,tsx}'",
     "lint": "next lint",
-    "test": "jest",
+    "test": "npx jest -u",
     "test:watch": "jest --watch",
     "test:ci": "jest --ci --collectCoverage"
+    "ci-build": "NEXT_TELEMETRY_DISABLED=1 NODE_ENV=production npx next build",
+    "debug": "NEXT_TELEMETRY_DEBUG=1 npx next dev",
+    "telemetry": "npx next telemetry disable",
+    "analyze:server": "cross-env BUNDLE_ANALYZE=server next build",
+    "analyze:browser": "cross-env BUNDLE_ANALYZE=browser next build"
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": [
@@ -170,10 +175,20 @@
       "src/pages"
     ]
   },
-  "browserslist": [
-    ">0.3%",
-    "not ie 11",
-    "not dead",
-    "not op_mini all"
-  ]
+ "browserslist": {
+    "production": [
+      ">0.3%",
+      "not dead",
+      "not op_mini all",
+      "not IE > 0",
+      "not samsung 4",
+      "not and_uc 12.12"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 edge version",
+      "last 1 safari version"
+    ]
+  }
 }
