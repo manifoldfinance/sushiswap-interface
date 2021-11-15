@@ -33,6 +33,17 @@ import { persistStore } from 'redux-persist'
 import { remoteLoader } from '@lingui/remote-loader'
 import { useEffect } from 'react'
 import { useRouter } from 'next/router'
+import {
+  KBarProvider,
+  KBarPortal,
+  KBarPositioner,
+  KBarAnimator,
+  KBarSearch,
+  KBarResults,
+  useMatches,
+} from "kbar";
+import { useMemo } from "react";
+import { NO_GROUP } from 'kbar/lib/useMatches'
 
 const Web3ProviderNetwork = dynamic(() => import('../components/Web3ProviderNetwork'), { ssr: false })
 const sessionId = nanoid()
@@ -40,6 +51,38 @@ const sessionId = nanoid()
 if (typeof window !== 'undefined' && !!window.ethereum) {
   window.ethereum.autoRefreshOnNetworkChange = false
 }
+
+const RenderResults = () => {
+  const groups = useMatches();
+  const flattened = useMemo(
+    () =>
+      groups.reduce((acc, curr) => {
+        acc.push(curr.name);
+        acc.push(...curr.actions);
+        return acc;
+      }, []),
+    [groups]
+  );
+
+  return (
+    <KBarResults
+      items={flattened.filter((i) => i !== NO_GROUP)}
+      onRender={({ item, active }) =>
+        typeof item === "string" ? (
+          <div>{item}</div>
+        ) : (
+          <div
+            style={{
+              background: active ? "#eee" : "transparent",
+            }}
+          >
+            {item.name}
+          </div>
+        )
+      }
+    />
+  );
+};
 
 function MyApp({
   Component,
@@ -105,6 +148,30 @@ function MyApp({
   // Allows for conditionally setting a guard to be hoisted per page
   const Guard = Component.Guard || Fragment
 
+  const actions = [
+    {
+      id: "home",
+      name: "Home",
+      shortcut: ["h"],
+      keywords: "home page",
+      perform: () => (window.location.pathname = "/"),
+    },
+    {
+      id: "blog",
+      name: "Map",
+      shortcut: ["b"],
+      keywords: "map",
+      perform: () => (window.location.pathname = "map"),
+    },
+    {
+      id: "contact",
+      name: "List",
+      shortcut: ["c"],
+      keywords: "list of courts",
+      perform: () => (window.location.pathname = "courts"),
+    },
+  ];
+
   return (
     <Fragment>
       <Head>
@@ -169,9 +236,20 @@ function MyApp({
                   </>
                   <Provider>
                     <Layout>
-                      <Guard>
-                        <Component {...pageProps} />
-                      </Guard>
+    <KBarProvider actions={actions}>
+      <KBarPortal>
+        <KBarPositioner>
+          <KBarAnimator>
+            <KBarSearch />
+            <RenderResults />
+          </KBarAnimator>
+        </KBarPositioner>
+      </KBarPortal>
+
+      <Guard>
+        <Component {...pageProps} />
+      </Guard>
+    </KBarProvider>
                     </Layout>
                   </Provider>
                 </PersistGate>
