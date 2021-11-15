@@ -1,4 +1,13 @@
 {
-    "presets": ["next/babel"],
-    "plugins": ["macros", ["styled-components", { "ssr": true }]]
+    "presets": [
+        ["next/babel", {
+            "babel-plugin-optimize-clsx": {
+                "libraries": ["classnames"],
+                "collectCalls": true
+            }
+        }]
+    ],
+    "plugins": ["macros", ["styled-components", {
+        "ssr": true
+    }]]
 }
