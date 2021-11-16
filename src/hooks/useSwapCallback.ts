@@ -34,6 +34,7 @@ import { useMemo } from 'react'
 import { useTransactionAdder } from '../state/transactions/hooks'
 import useTransactionDeadline from './useTransactionDeadline'
 import { useUserArcherETHTip } from '../state/user/hooks'
+import { useApproveTxEncodedData } from './useApproveCallback'
 
 export enum SwapCallbackState {
   INVALID,
@@ -227,14 +228,21 @@ export function useSwapCallback(
 
   const blockNumber = useBlockNumber()
 
+  const amountToApprove = useMemo(
+    () => (trade && trade.inputAmount.currency.isToken ? trade.maximumAmountIn(allowedSlippage) : undefined),
+    [trade, allowedSlippage]
+  )
+
   const eip1559 =
     EIP_1559_ACTIVATION_BLOCK[chainId] == undefined ? false : blockNumber >= EIP_1559_ACTIVATION_BLOCK[chainId]
 
   const useArcher = archerRelayDeadline !== undefined
 
+  const approvalEncodedFunctionData = useApproveTxEncodedData(trade, allowedSlippage)
+
   const swapCalls = useSwapCallArguments(trade, allowedSlippage, recipientAddressOrName, signatureData, useArcher)
 
-  // console.log({ swapCalls, trade })
+  console.log({ swapCalls, trade })
 
   const addTransaction = useTransactionAdder()
 

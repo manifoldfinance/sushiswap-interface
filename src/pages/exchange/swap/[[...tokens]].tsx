@@ -358,13 +358,13 @@ export default function Swap() {
 
   // show approve flow when: no error on inputs, not approved or pending, or approved in current session
   // never show if price impact is above threshold in non expert mode
-  const showApproveFlow =
-    !isArgentWallet &&
-    !swapInputError &&
-    (approvalState === ApprovalState.NOT_APPROVED ||
-      approvalState === ApprovalState.PENDING ||
-      (approvalSubmitted && approvalState === ApprovalState.APPROVED)) &&
-    !(priceImpactSeverity > 3 && !isExpertMode)
+  const showApproveFlow = false
+  // !isArgentWallet &&
+  // !swapInputError &&
+  // (approvalState === ApprovalState.NOT_APPROVED ||
+  //   approvalState === ApprovalState.PENDING ||
+  //   (approvalSubmitted && approvalState === ApprovalState.APPROVED)) &&
+  // !(priceImpactSeverity > 3 && !isExpertMode)
 
   const handleConfirmDismiss = useCallback(() => {
     setSwapState({
