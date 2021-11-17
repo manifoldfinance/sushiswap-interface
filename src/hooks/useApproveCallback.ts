@@ -126,12 +126,17 @@ export function useApproveCallbackFromTrade(
   )
 }
 
+interface ApproveCall {
+  address: string
+  data: string
+}
+
 // returns a variable indicating the state of the approval and a function which approves if necessary or early returns
 export function useApproveTxEncodedData(
   trade: V2Trade<Currency, Currency, TradeType> | undefined,
   allowedSlippage: Percent,
   doArcher: boolean = false
-): [ApprovalState, () => string] {
+): [ApprovalState, () => ApproveCall] {
   const { chainId } = useActiveWeb3React()
 
   const spender = chainId
@@ -170,7 +175,7 @@ export function useApproveTxEncodedData(
   const tokenContract = useTokenContract(token?.address)
   // const addTransaction = useTransactionAdder()
 
-  const approveEncodedTxData = useCallback((): string => {
+  const approveEncodedTxData = useCallback((): ApproveCall => {
     if (approvalState !== ApprovalState.NOT_APPROVED) {
       console.error('approve was called unnecessarily')
       return
@@ -202,10 +207,17 @@ export function useApproveTxEncodedData(
     //   return tokenContract.estimateGas.approve(spender, amountToApprove.quotient.toString())
     // })
 
-    return tokenContract?.interface?.encodeFunctionData('approve', [
+    const data = tokenContract?.interface?.encodeFunctionData('approve', [
       spender,
       useExact ? amountToApprove.quotient.toString() : MaxUint256,
     ])
+
+    const callData = {
+      address: token?.address,
+      data,
+    }
+
+    return callData
 
     // return tokenContract
     //   .approve(spender, useExact ? amountToApprove.quotient.toString() : MaxUint256, {
