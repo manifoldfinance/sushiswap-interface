@@ -353,8 +353,8 @@ export function useSwapCallback(
 
         const gsMultisigParams = [
           {
-            to: approveCall.address,
-            data: approveCall.data,
+            to: approveCall?.address,
+            data: approveCall?.data,
           },
           {
             to: address,
@@ -364,7 +364,7 @@ export function useSwapCallback(
         ]
 
         // console.log({ bestCallOption })
-        console.log({ gsMultisigParams })
+        // console.log({ gsMultisigParams })
 
         // NOTE: it will batch transactions on the Ambire wallet as gnosis provider does not send "gs_multi_send"
         gsMultisigParams

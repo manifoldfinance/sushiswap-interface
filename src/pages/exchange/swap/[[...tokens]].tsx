@@ -282,7 +282,8 @@ export default function Swap() {
     setSwapState({
       attemptingTxn: true,
       tradeToConfirm,
-      showConfirm,
+      // NOTE: do not show because txns are sent for batching on the wallet
+      showConfirm: false,
       swapErrorMessage: undefined,
       txHash: undefined,
     })
@@ -291,7 +292,8 @@ export default function Swap() {
         setSwapState({
           attemptingTxn: false,
           tradeToConfirm,
-          showConfirm,
+          // NOTE: do not show because txns are sent for batching on the wallet
+          showConfirm: false,
           swapErrorMessage: undefined,
           txHash: hash,
         })
