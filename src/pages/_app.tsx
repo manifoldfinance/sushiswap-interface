@@ -33,25 +33,17 @@ import { persistStore } from 'redux-persist'
 import { remoteLoader } from '@lingui/remote-loader'
 import { useEffect } from 'react'
 import { useRouter } from 'next/router'
-import {
-  KBarProvider,
-  KBarPortal,
-  KBarPositioner,
-  KBarAnimator,
-  KBarSearch,
-  KBarResults,
-  useMatches,
-} from "kbar";
-import { useMemo } from "react";
+import { KBarProvider, KBarPortal, KBarPositioner, KBarAnimator, KBarSearch, KBarResults, useMatches } from 'kbar'
+import { useMemo } from 'react'
 import { NO_GROUP } from 'kbar/lib/useMatches'
-
+import CommandBar from '../../components/CommandBar'
 const Web3ProviderNetwork = dynamic(() => import('../components/Web3ProviderNetwork'), { ssr: false })
 const sessionId = nanoid()
 
 if (typeof window !== 'undefined' && !!window.ethereum) {
   window.ethereum.autoRefreshOnNetworkChange = false
 }
-
+/*
 const RenderResults = () => {
   const groups = useMatches();
   const flattened = useMemo(
@@ -83,6 +75,7 @@ const RenderResults = () => {
     />
   );
 };
+*/
 
 function MyApp({
   Component,
@@ -150,27 +143,27 @@ function MyApp({
 
   const actions = [
     {
-      id: "home",
-      name: "Home",
-      shortcut: ["h"],
-      keywords: "home page",
-      perform: () => (window.location.pathname = "/"),
+      id: 'home',
+      name: 'Home',
+      shortcut: ['h'],
+      keywords: 'home page',
+      perform: () => (window.location.pathname = '/'),
     },
     {
-      id: "blog",
-      name: "Map",
-      shortcut: ["b"],
-      keywords: "map",
-      perform: () => (window.location.pathname = "map"),
+      id: 'blog',
+      name: 'Map',
+      shortcut: ['b'],
+      keywords: 'map',
+      perform: () => (window.location.pathname = 'map'),
     },
     {
-      id: "contact",
-      name: "List",
-      shortcut: ["c"],
-      keywords: "list of courts",
-      perform: () => (window.location.pathname = "courts"),
+      id: 'contact',
+      name: 'List',
+      shortcut: ['c'],
+      keywords: 'list of courts',
+      perform: () => (window.location.pathname = 'courts'),
     },
-  ];
+  ]
 
   return (
     <Fragment>
@@ -236,20 +229,11 @@ function MyApp({
                   </>
                   <Provider>
                     <Layout>
-    <KBarProvider actions={actions}>
-      <KBarPortal>
-        <KBarPositioner>
-          <KBarAnimator>
-            <KBarSearch />
-            <RenderResults />
-          </KBarAnimator>
-        </KBarPositioner>
-      </KBarPortal>
-
-      <Guard>
-        <Component {...pageProps} />
-      </Guard>
-    </KBarProvider>
+                      <CommandBar>
+                        <Guard>
+                          <Component {...pageProps} />
+                        </Guard>
+                      </CommandBar>
                     </Layout>
                   </Provider>
                 </PersistGate>
