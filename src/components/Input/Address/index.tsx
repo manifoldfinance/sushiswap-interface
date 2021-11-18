@@ -33,7 +33,7 @@ export const AddressInput = React.memo(
       // }
     }
 
-    console.log({ rest })
+    // console.log({ rest })
 
     return (
       <>
