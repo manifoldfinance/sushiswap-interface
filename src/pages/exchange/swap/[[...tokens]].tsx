@@ -282,7 +282,8 @@ export default function Swap() {
     setSwapState({
       attemptingTxn: true,
       tradeToConfirm,
-      showConfirm,
+      // NOTE: do not show because txns are sent for batching on the wallet
+      showConfirm: false,
       swapErrorMessage: undefined,
       txHash: undefined,
     })
@@ -291,7 +292,8 @@ export default function Swap() {
         setSwapState({
           attemptingTxn: false,
           tradeToConfirm,
-          showConfirm,
+          // NOTE: do not show because txns are sent for batching on the wallet
+          showConfirm: false,
           swapErrorMessage: undefined,
           txHash: hash,
         })
@@ -358,13 +360,13 @@ export default function Swap() {
 
   // show approve flow when: no error on inputs, not approved or pending, or approved in current session
   // never show if price impact is above threshold in non expert mode
-  const showApproveFlow =
-    !isArgentWallet &&
-    !swapInputError &&
-    (approvalState === ApprovalState.NOT_APPROVED ||
-      approvalState === ApprovalState.PENDING ||
-      (approvalSubmitted && approvalState === ApprovalState.APPROVED)) &&
-    !(priceImpactSeverity > 3 && !isExpertMode)
+  const showApproveFlow = false
+  // !isArgentWallet &&
+  // !swapInputError &&
+  // (approvalState === ApprovalState.NOT_APPROVED ||
+  //   approvalState === ApprovalState.PENDING ||
+  //   (approvalSubmitted && approvalState === ApprovalState.APPROVED)) &&
+  // !(priceImpactSeverity > 3 && !isExpertMode)
 
   const handleConfirmDismiss = useCallback(() => {
     setSwapState({

@@ -34,6 +34,7 @@ import { useMemo } from 'react'
 import { useTransactionAdder } from '../state/transactions/hooks'
 import useTransactionDeadline from './useTransactionDeadline'
 import { useUserArcherETHTip } from '../state/user/hooks'
+import { useApproveTxEncodedData } from './useApproveCallback'
 
 export enum SwapCallbackState {
   INVALID,
@@ -227,14 +228,21 @@ export function useSwapCallback(
 
   const blockNumber = useBlockNumber()
 
+  const amountToApprove = useMemo(
+    () => (trade && trade.inputAmount.currency.isToken ? trade.maximumAmountIn(allowedSlippage) : undefined),
+    [trade, allowedSlippage]
+  )
+
   const eip1559 =
     EIP_1559_ACTIVATION_BLOCK[chainId] == undefined ? false : blockNumber >= EIP_1559_ACTIVATION_BLOCK[chainId]
 
   const useArcher = archerRelayDeadline !== undefined
 
+  const [_, approveCallData] = useApproveTxEncodedData(trade, allowedSlippage)
+
   const swapCalls = useSwapCallArguments(trade, allowedSlippage, recipientAddressOrName, signatureData, useArcher)
 
-  // console.log({ swapCalls, trade })
+  console.log({ swapCalls, trade })
 
   const addTransaction = useTransactionAdder()
 
@@ -341,8 +349,54 @@ export function useSwapCallback(
           call: { address, calldata, value },
         } = bestCallOption
 
-        // console.log({ bestCallOption })
+        const approveCall = approveCallData()
 
+        const gsMultisigParams = [
+          {
+            to: approveCall?.address,
+            data: approveCall?.data,
+          },
+          {
+            to: address,
+            data: calldata,
+            value,
+          },
+        ]
+
+        // console.log({ bestCallOption })
+        // console.log({ gsMultisigParams })
+
+        // NOTE: it will batch transactions on the Ambire wallet as gnosis provider does not send "gs_multi_send"
+        gsMultisigParams
+          .filter((tx) => !!tx.data)
+          .forEach((tx) =>
+            library.getSigner().sendTransaction({
+              from: account,
+              ...tx,
+            })
+          )
+
+        return 'Transaction sent!'
+
+        //  return  library
+        //     .send('gs_multi_send', gsMultisigParams)
+        //     .then(result =>{
+        //       console.log({result})
+        //       return result.hash
+        //     })
+        //     .catch((error) => {
+        //       // if the user rejected the tx, pass this along
+        //       if (error?.code === 4001) {
+        //         throw new Error('Transaction rejected.')
+        //       } else {
+        //         // otherwise, the error was unexpected and we need to convey that
+        //         console.error(`Swap failed`, error, address, calldata, value)
+
+        //         throw new Error(`Swap failed: ${swapErrorToUserReadableMessage(error)}`)
+        //       }
+        //     })
+        {
+          /*
         if (!useArcher) {
           console.log('SWAP WITHOUT ARCHER')
           console.log(
@@ -554,6 +608,8 @@ export function useSwapCallback(
             .finally(() => {
               if (isMetamask) library.provider.isMetaMask = true
             })
+        }
+      */
         }
       },
       error: null,
