@@ -18,3 +18,6 @@ lokalise.yaml
 .env.local
 .env.staging
 .env.testing
+
+# Sentry
+.sentryclirc
