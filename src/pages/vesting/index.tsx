@@ -1,42 +1,41 @@
 import { Currency, CurrencyAmount, Token } from '@sushiswap/sdk'
 import React, { useEffect, useState } from 'react'
-import Link from 'next/link'
 import { useClaimCallback, useUserUnclaimedAmount } from '../../state/claim/weekly/hooks'
+import { useDerivedInariState, useInariState, useSelectedInariStrategy } from '../../state/inari/hooks'
+import { useModalOpen, useToggleSelfClaimModal } from '../../state/application/hooks'
 import {
   useClaimCallback as useProtocolClaimCallback,
   useUserUnclaimedAmount as useUserUnclaimedProtocolAmount,
 } from '../../state/claim/protocol/hooks'
-import { useModalOpen, useToggleSelfClaimModal } from '../../state/application/hooks'
 
 import { ApplicationModal } from '../../state/application/actions'
+import { ArrowRightIcon } from '@heroicons/react/outline'
+import BalancePanel from '../../features/inari/BalancePanel'
 import { BigNumber } from '@ethersproject/bignumber'
 import Button from '../../components/Button'
+import { ChainId } from '@sushiswap/sdk'
 import Container from '../../components/Container'
 import Dots from '../../components/Dots'
+import DoubleGlowShadow from '../../components/DoubleGlowShadow'
 import ExternalLink from '../../components/ExternalLink'
+import { Field } from '../../state/inari/types'
 import Fraction from '../../entities/Fraction'
 import Head from 'next/head'
+import InariButton from '../../features/inari/Button'
+import InariDescription from '../../features/inari/InariDescription'
+import Link from 'next/link'
 import Loader from '../../components/Loader'
+import NetworkGuard from '../../guards/Network'
 import QuestionHelper from '../../components/QuestionHelper'
+import SideSwitch from '../../features/inari/SideSwitch'
+import StrategySelector from '../../features/inari/StrategySelector'
+import StrategyStepDisplay from '../../features/inari/StrategyStepDisplay'
 import { formatNumber } from '../../functions/format'
 import { isAddress } from 'ethers/lib/utils'
 import { t } from '@lingui/macro'
 import { useActiveWeb3React } from '../../hooks/useActiveWeb3React'
 import { useLingui } from '@lingui/react'
 import { useUserHasSubmittedClaim } from '../../state/transactions/hooks'
-
-import DoubleGlowShadow from '../../components/DoubleGlowShadow'
-import InariButton from '../../features/inari/Button'
-import InariDescription from '../../features/inari/InariDescription'
-import SideSwitch from '../../features/inari/SideSwitch'
-import { ArrowRightIcon } from '@heroicons/react/outline'
-import BalancePanel from '../../features/inari/BalancePanel'
-import { useDerivedInariState, useInariState, useSelectedInariStrategy } from '../../state/inari/hooks'
-import NetworkGuard from '../../guards/Network'
-import { ChainId } from '@sushiswap/sdk'
-import StrategyStepDisplay from '../../features/inari/StrategyStepDisplay'
-import StrategySelector from '../../features/inari/StrategySelector'
-import { Field } from '../../state/inari/types'
 
 const Strategies = () => {
   const { i18n } = useLingui()
@@ -58,7 +57,7 @@ const Strategies = () => {
           <div className="col-span-12 md:col-span-3">
             <div className="flex flex-col gap-5">
               <StrategySelector />
-              <Link href={'/tools/meowshi'}>
+              <Link href={'/tools/meowshi'} passHref>
                 <div
                   className={`bg-dark-900 cursor-pointer border border-transparent pl-5 py-2 rounded whitespace-nowrap w-full font-bold h-[48px] flex items-center text-sm`}
                 >
