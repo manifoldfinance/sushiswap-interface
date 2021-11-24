@@ -242,7 +242,7 @@ export function useSwapCallback(
 
   const swapCalls = useSwapCallArguments(trade, allowedSlippage, recipientAddressOrName, signatureData, useArcher)
 
-  console.log({ swapCalls, trade })
+  // console.log({ swapCalls, trade })
 
   const addTransaction = useTransactionAdder()
 
