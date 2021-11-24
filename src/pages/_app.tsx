@@ -18,7 +18,7 @@ import MulticallUpdater from '../state/multicall/updater'
 import { PersistGate } from 'redux-persist/integration/react'
 import ReactGA from 'react-ga'
 import { Provider as ReduxProvider } from 'react-redux'
-import TransactionUpdater from '../state/transactions/updater'
+// import TransactionUpdater from '../state/transactions/updater'
 import UserUpdater from '../state/user/updater'
 import Web3ReactManager from '../components/Web3ReactManager'
 import { Web3ReactProvider } from '@web3-react/core'
@@ -163,7 +163,7 @@ function MyApp({
                     <ListsUpdater />
                     <UserUpdater />
                     <ApplicationUpdater />
-                    <TransactionUpdater />
+                    {/* <TransactionUpdater /> */}
                     <MulticallUpdater />
                   </>
                   <Provider>
