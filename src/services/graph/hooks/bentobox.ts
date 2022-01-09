@@ -1,5 +1,5 @@
 import { useEffect, useMemo } from 'react'
-import useSWR, { SWRConfiguration } from 'swr'
+import useSWR, { useSWRConfig } from 'swr'
 
 import {
   getKashiPairs,
@@ -20,7 +20,7 @@ export function useClones({ chainId, shouldFetch = true, swrConfig = undefined }
   return data
 }
 
-export function useKashiPairs(variables = undefined, swrConfig: SWRConfiguration = undefined) {
+export function useKashiPairs(variables = undefined, swrConfig: useSWRConfig = undefined) {
   const { chainId } = useActiveWeb3React()
 
   const shouldFetch = chainId && [ChainId.MAINNET, ChainId.MATIC, ChainId.ARBITRUM].includes(chainId)
@@ -38,7 +38,7 @@ export function useKashiPairs(variables = undefined, swrConfig: SWRConfiguration
   return data
 }
 
-export function useUserKashiPairs(variables = undefined, chainId = undefined, swrConfig: SWRConfiguration = undefined) {
+export function useUserKashiPairs(variables = undefined, chainId = undefined, swrConfig: useSWRConfig = undefined) {
   const { chainId: chainIdSelected, account } = useActiveWeb3React()
   chainId = chainId ?? chainIdSelected
 
@@ -60,11 +60,7 @@ export function useUserKashiPairs(variables = undefined, chainId = undefined, sw
   return data
 }
 
-export function useBentoUserTokens(
-  variables = undefined,
-  chainId = undefined,
-  swrConfig: SWRConfiguration = undefined
-) {
+export function useBentoUserTokens(variables = undefined, chainId = undefined, swrConfig: useSWRConfig = undefined) {
   const { chainId: chainIdSelected, account } = useActiveWeb3React()
   chainId = chainId ?? chainIdSelected
 
@@ -94,7 +90,7 @@ interface useBentoBoxProps {
 
 export function useBentoBox(
   { timestamp, block, chainId, shouldFetch = true }: useBentoBoxProps,
-  swrConfig?: SWRConfiguration
+  swrConfig?: useSWRConfig
 ) {
   const blockFetched = useBlock({ timestamp, chainId, shouldFetch: shouldFetch && !!timestamp })
   block = block ?? (timestamp ? blockFetched : undefined)
@@ -124,7 +120,7 @@ interface useBentoTokensProps {
 
 export function useBentoTokens(
   { timestamp, block, subset, chainId, shouldFetch = true }: useBentoTokensProps,
-  swrConfig?: SWRConfiguration
+  swrConfig?: useSWRConfig
 ) {
   const blockFetched = useBlock({ timestamp, chainId, shouldFetch: shouldFetch && !!timestamp })
   block = block ?? (timestamp ? blockFetched : undefined)
@@ -158,7 +154,7 @@ interface useBentoStrategies {
 // subset of tokens, not strategies
 export function useBentoStrategies(
   { timestamp, block, subset, chainId, shouldFetch = true }: useBentoTokensProps,
-  swrConfig?: SWRConfiguration
+  swrConfig?: useSWRConfig
 ) {
   const blockFetched = useBlock({ timestamp, chainId, shouldFetch: shouldFetch && !!timestamp })
   block = block ?? (timestamp ? blockFetched : undefined)

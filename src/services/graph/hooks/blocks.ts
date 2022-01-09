@@ -1,5 +1,5 @@
 import { getAverageBlockTime, getBlock, getMassBlocks } from '../fetchers'
-import useSWR, { SWRConfiguration } from 'swr'
+import useSWR, { useSWRConfig } from 'swr'
 
 import { useActiveWeb3React } from '../../../hooks'
 import { useMemo } from 'react'
@@ -14,7 +14,7 @@ interface useBlockProps {
 
 export function useBlock(
   { timestamp, daysAgo, chainId = ChainId.MAINNET, shouldFetch = true }: useBlockProps = {},
-  swrConfig: SWRConfiguration = undefined
+  swrConfig: useSWRConfig = undefined
 ) {
   shouldFetch = shouldFetch && !!chainId
   timestamp = timestamp

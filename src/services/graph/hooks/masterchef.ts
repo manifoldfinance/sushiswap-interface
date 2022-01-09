@@ -10,7 +10,7 @@ import {
   getMiniChefPairAddreses,
 } from '../fetchers'
 import { useMemo } from 'react'
-import useSWR, { SWRConfiguration } from 'swr'
+import useSWR, { useSWRConfig } from 'swr'
 
 import { ChainId } from '@sushiswap/sdk'
 import { Chef } from '../../../features/farm/enum'
@@ -49,7 +49,7 @@ export function useMasterChefV1Farms(swrConfig = undefined) {
   }, [data])
 }
 
-export function useMasterChefV2Farms(swrConfig: SWRConfiguration = undefined) {
+export function useMasterChefV2Farms(swrConfig: useSWRConfig = undefined) {
   const { chainId } = useActiveWeb3React()
   const shouldFetch = chainId && chainId === ChainId.MAINNET
   const { data } = useSWR(shouldFetch ? 'masterChefV2Farms' : null, () => getMasterChefV2Farms(), swrConfig)
@@ -59,7 +59,7 @@ export function useMasterChefV2Farms(swrConfig: SWRConfiguration = undefined) {
   }, [data])
 }
 
-export function useOldMiniChefFarms(swrConfig: SWRConfiguration = undefined) {
+export function useOldMiniChefFarms(swrConfig: useSWRConfig = undefined) {
   const { chainId } = useActiveWeb3React()
   const shouldFetch = chainId && chainId === ChainId.CELO
   const { data } = useSWR(
@@ -74,7 +74,7 @@ export function useOldMiniChefFarms(swrConfig: SWRConfiguration = undefined) {
   }, [data])
 }
 
-export function useMiniChefFarms(swrConfig: SWRConfiguration = undefined) {
+export function useMiniChefFarms(swrConfig: useSWRConfig = undefined) {
   const { chainId } = useActiveWeb3React()
   const shouldFetch =
     chainId &&
@@ -98,7 +98,7 @@ export function useMiniChefFarms(swrConfig: SWRConfiguration = undefined) {
   }, [data])
 }
 
-export function useFarms(swrConfig: SWRConfiguration = undefined) {
+export function useFarms(swrConfig: useSWRConfig = undefined) {
   const masterChefV1Farms = useMasterChefV1Farms()
   const masterChefV2Farms = useMasterChefV2Farms()
   const miniChefFarms = useMiniChefFarms()
