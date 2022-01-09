@@ -1,0 +1,19 @@
+version: 2
+updates:
+  - package-ecosystem: 'npm'
+    directory: '/'
+    schedule:
+      interval: 'daily'
+    commit-message:
+      # Prefix all commit messages with "npm"
+      prefix: 'token list'
+      include: 'scope'
+    labels:
+      - 'tokenlist'
+      # Add default Kodiak `merge.automerge_label`
+      #- 'automerge'
+    allow:
+      - dependency-name: '@sushiswap/default-token-list'
+      - dependency-name: '@sushiswap/limit-order-pair-list'
+#    assignees:
+#      - "octocat"
