@@ -1,4 +1,4 @@
-import type { CallResult, CallState, ListenerOptions } from './types';
+import type { CallResult, CallState, ListenerOptions } from './types'
 
 export const DEFAULT_CALL_GAS_REQUIRED = 1_000_000
 export const DEFAULT_CHUNK_GAS_REQUIRED = 200_000

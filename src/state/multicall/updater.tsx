@@ -5,9 +5,9 @@ import { useAppDispatch, useAppSelector } from '../hooks'
 import { useEffect, useMemo, useRef } from 'react'
 
 import { AppState } from '../index'
-import { CHUNK_GAS_LIMIT } from '../../functions/calls/constants';
+import { CHUNK_GAS_LIMIT } from '../../functions/calls/constants'
 import { Contract } from 'ethers'
-import chunkCalls from '../../functions/calls';
+import chunkCalls from '../../functions/calls'
 import { updateBlockNumber } from '../application/actions'
 import { useActiveWeb3React } from '../../hooks/useActiveWeb3React'
 import { useBlockNumber } from '../application/hooks'

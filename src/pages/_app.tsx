@@ -179,7 +179,7 @@ function MyApp({
                     <Layout>
                       <Guard>
                         <KBar>
-                        <Component {...pageProps} />
+                          <Component {...pageProps} />
                         </KBar>
                       </Guard>
                     </Layout>

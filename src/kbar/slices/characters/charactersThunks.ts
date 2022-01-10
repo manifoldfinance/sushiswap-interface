@@ -5,7 +5,6 @@ export async function fetcher(...args) {
   return res.json()
 }
 
-
 export function useProjects() {
   return useSWR('/api/data', fetch)
 }

@@ -11,8 +11,8 @@ import { usePreferences } from './slices/preferences/preferencesSelectors'
 
 export const KBar: React.FC = ({ children }) => {
   const dispatch = useAppDispatch()
- // const { demoCompleted } = usePreferences()
-  let  demoCompleted = usePreferences()
+  // const { demoCompleted } = usePreferences()
+  let demoCompleted = usePreferences()
   const [confettiPieces, setConfettiPieces] = useState(0)
 
   useEffect(() => {
@@ -53,8 +53,8 @@ export const KBar: React.FC = ({ children }) => {
       keywords: 'Reset demo',
       perform: () => {
         dispatch({ type: 'demo/RESET' })
-    //    dispatch(fetchWallets())
-    //    dispatch(fetchAllCharacters())
+        //    dispatch(fetchWallets())
+        //    dispatch(fetchAllCharacters())
       },
     },
     {

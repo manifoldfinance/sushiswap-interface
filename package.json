@@ -90,6 +90,7 @@
     "fuse.js": "^6.4.6",
     "graphql-tag": "^2.12.5",
     "husky": "^7.0.0",
+    "insights-js": "^1.2.10",
     "kbar": "^0.1.0-beta.24",
     "limitorderv2-sdk": "^0.1.62",
     "lint-staged": "^11.0.0",
