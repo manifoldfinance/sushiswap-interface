@@ -16,6 +16,7 @@ import DefaultLayout from '../layouts/Default'
 import Dots from '../components/Dots'
 import Head from 'next/head'
 import { I18nProvider } from '@lingui/react'
+import { KBar } from '../kbar/KBar'
 import ListsUpdater from '../state/lists/updater'
 import MulticallUpdater from '../state/multicall/updater'
 import { PersistGate } from 'redux-persist/integration/react'
@@ -26,6 +27,7 @@ import UserUpdater from '../state/user/updater'
 import Web3ReactManager from '../components/Web3ReactManager'
 import { Web3ReactProvider } from '@web3-react/core'
 import dynamic from 'next/dynamic'
+import { featureEnabled } from '../functions/feature'
 import getLibrary from '../functions/getLibrary'
 import { i18n } from '@lingui/core'
 import { nanoid } from '@reduxjs/toolkit'
@@ -33,7 +35,6 @@ import { persistStore } from 'redux-persist'
 import { remoteLoader } from '@lingui/remote-loader'
 import { useEffect } from 'react'
 import { useRouter } from 'next/router'
-import { featureEnabled } from '../functions/feature'
 
 const Web3ProviderNetwork = dynamic(() => import('../components/Web3ProviderNetwork'), { ssr: false })
 const sessionId = nanoid()
@@ -177,7 +178,9 @@ function MyApp({
                   <Provider>
                     <Layout>
                       <Guard>
-                        <Component {...pageProps} />
+                        <KBar>
+                          <Component {...pageProps} />
+                        </KBar>
                       </Guard>
                     </Layout>
                   </Provider>
