@@ -8,10 +8,13 @@ declare global {
     toBigNumber(decimals: number): BigNumber
   }
   interface Window {
+    walletLinkExtension?: any
     ethereum?: {
+      isCoinbaseWallet?: true
       isMetaMask?: true
       on?: (...args: any[]) => void
       removeListener?: (...args: any[]) => void
+      removeAllListeners?: (...args: any[]) => void
       autoRefreshOnNetworkChange?: boolean
     }
     web3?: Record<string, unknown>
@@ -37,7 +40,7 @@ declare module 'jazzicon' {
   export default function (diameter: number, seed: number): HTMLElement
 }
 
-declare module 'formatic'
+declare module 'react-tradingview-widget'
 
 declare module '@ethersproject/bignumber' {
   interface BigNumber {
