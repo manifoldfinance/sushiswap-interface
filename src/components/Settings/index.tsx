@@ -10,9 +10,13 @@ import QuestionHelper from 'app/components/QuestionHelper'
 import Toggle from 'app/components/Toggle'
 import TransactionSettings from 'app/components/TransactionSettings'
 import Typography from 'app/components/Typography'
+import { useOnClickOutside } from 'app/hooks/useOnClickOutside'
+import { useActiveWeb3React } from 'app/services/web3'
 import { useToggleSettingsMenu } from 'app/state/application/hooks'
-import { useExpertModeManager, useUserSingleHopOnly } from 'app/state/user/hooks'
-import React, { FC, useState } from 'react'
+import { useExpertModeManager, useUserOpenMev, useUserSingleHopOnly } from 'app/state/user/hooks'
+import React, { FC, useRef, useState } from 'react'
+
+import { OPENMEV_ENABLED, OPENMEV_SUPPORTED_NETWORKS } from '../../config/openmev'
 
 interface SettingsTabProps {
   placeholderSlippage?: Percent
@@ -22,17 +26,25 @@ interface SettingsTabProps {
 const SettingsTab: FC<SettingsTabProps> = ({ placeholderSlippage, trident = false }) => {
   const { i18n } = useLingui()
 
+  const { chainId } = useActiveWeb3React()
+
+  const node = useRef<HTMLDivElement>(null)
+
   const toggle = useToggleSettingsMenu()
   const [expertMode, toggleExpertMode] = useExpertModeManager()
   const [singleHopOnly, setSingleHopOnly] = useUserSingleHopOnly()
   const [showConfirmation, setShowConfirmation] = useState(false)
+
+  const [userUseOpenMev, setUserUseOpenMev] = useUserOpenMev()
+
+  useOnClickOutside(node, open ? toggle : undefined)
 
   return (
     <>
       <Popover
         placement="bottom-end"
         content={
-          <div className="bg-dark-900 border border-dark-700 rounded w-80 shadow-lg">
+          <div className="w-80 rounded border shadow-lg bg-dark-900 border-dark-700">
             <div className="p-4 space-y-4">
               <Typography weight={700} className="text-high-emphesis">
                 {i18n._(t`Transaction Settings`)}
@@ -44,7 +56,7 @@ const SettingsTab: FC<SettingsTabProps> = ({ placeholderSlippage, trident = fals
                 {i18n._(t`Interface Settings`)}
               </Typography>
 
-              <div className="flex items-center justify-between">
+              <div className="flex justify-between items-center">
                 <div className="flex items-center">
                   <Typography variant="sm" className="text-primary">
                     {i18n._(t`Toggle Expert Mode`)}
@@ -72,7 +84,7 @@ const SettingsTab: FC<SettingsTabProps> = ({ placeholderSlippage, trident = fals
                 />
               </div>
               {!trident && (
-                <div className="flex items-center justify-between">
+                <div className="flex justify-between items-center">
                   <div className="flex items-center">
                     <Typography variant="sm" className="text-primary">
                       {i18n._(t`Disable Multihops`)}
@@ -87,15 +99,30 @@ const SettingsTab: FC<SettingsTabProps> = ({ placeholderSlippage, trident = fals
                 </div>
               )}
             </div>
+            {OPENMEV_ENABLED && OPENMEV_SUPPORTED_NETWORKS.includes(chainId) && (
+              <div className="flex justify-between items-center">
+                <div className="flex items-center">
+                  <Typography variant="sm" className="text-primary">
+                    {i18n._(t`OpenMEV Gas Refunder`)}
+                  </Typography>
+                  <QuestionHelper text={i18n._(t`OpenMEV refunds up to 95% of transaction costs in 35 blocks.`)} />
+                </div>
+                <Toggle
+                  id="toggle-use-openmev"
+                  isActive={userUseOpenMev}
+                  toggle={() => (userUseOpenMev ? setUserUseOpenMev(false) : setUserUseOpenMev(true))}
+                />
+              </div>
+            )}
           </div>
         }
       >
-        <div className={'flex items-center justify-center w-10 h-10 rounded cursor-pointer'}>
+        <div className={'flex justify-center items-center w-10 h-10 rounded cursor-pointer'}>
           <AdjustmentsIcon className="w-[26px] h-[26px] transform rotate-90 hover:text-white" />
         </div>
       </Popover>
       <HeadlessUiModal.Controlled isOpen={showConfirmation} onDismiss={() => setShowConfirmation(false)}>
-        <div className="space-y-4 p-6">
+        <div className="p-6 space-y-4">
           <ModalHeader title={i18n._(t`Are you sure?`)} onClose={() => setShowConfirmation(false)} />
           <Typography variant="lg">
             {i18n._(t`Expert mode turns off the confirm transaction prompt and allows high slippage trades
