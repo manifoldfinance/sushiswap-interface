@@ -1,5 +1,6 @@
 import React, { Dispatch, useEffect, useMemo, useRef } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+
 import type { DappInterfaceMulticall } from './abi/DappInterfaceMulticall'
 import { CHUNK_GAS_LIMIT, DEFAULT_CALL_GAS_REQUIRED } from './constants'
 import type { MulticallContext } from './context'

@@ -1,4 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
+
 import { MulticallFetchingPayload, MulticallListenerPayload, MulticallResultsPayload, MulticallState } from './types'
 import { toCallKey } from './utils/callKeys'
 

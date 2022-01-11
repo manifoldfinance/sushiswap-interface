@@ -1,4 +1,5 @@
 import type { utils } from 'ethers'
+
 import { INVALID_CALL_STATE, LOADING_CALL_STATE } from '../constants'
 import type { CallResult, CallState, CallStateResult } from '../types'
 

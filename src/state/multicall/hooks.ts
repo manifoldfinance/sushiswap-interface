@@ -1,14 +1,15 @@
-import { Contract, utils } from 'ethers'
+import { useActiveWeb3React } from 'app/services/web3'
+import { useBlockNumber } from 'app/state/application/hooks'
+import { utils } from 'ethers'
 import { useEffect, useMemo } from 'react'
 import { batch, useDispatch, useSelector } from 'react-redux'
+
 import { INVALID_CALL_STATE, INVALID_RESULT } from './constants'
 import type { MulticallContext } from './context'
 import type { Call, CallResult, CallState, ListenerOptionsWithGas, WithMulticallState } from './types'
 import { callKeysToCalls, callsToCallKeys, toCallKey } from './utils/callKeys'
 import { toCallState } from './utils/callState'
 import { isValidMethodArgs, MethodArg } from './validation'
-import { useActiveWeb3React } from 'app/services/web3'
-import { useBlockNumber } from 'app/state/application/hooks'
 export type { CallStateResult } from '.'
 import { createMulticall } from '.'
 
@@ -21,7 +22,6 @@ const {
   useSingleContractMultipleData: _useSingleContractMultipleData,
   useSingleContractWithCallData: _useSingleContractWithCallData,
 } = multicall.hooks
-
 
 type OptionalMethodInputs = Array<MethodArg | MethodArg[] | undefined> | undefined
 
@@ -175,7 +175,6 @@ function useCallContext() {
   const latestBlock = useBlockNumber()
   return { chainId, latestBlock }
 }
-
 
 // Similar to useMultipleContractSingleData but instead of multiple contracts on one chain,
 // this is for querying compatible contracts on multiple chains

@@ -1,4 +1,5 @@
 import { createStore, Store } from '@reduxjs/toolkit'
+
 import { createMulticallSlice, MulticallActions } from './slice'
 import { MulticallState } from './types'
 
