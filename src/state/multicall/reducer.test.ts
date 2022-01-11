@@ -1,20 +1,16 @@
 import { createStore, Store } from '@reduxjs/toolkit'
-
-import {
-  addMulticallListeners,
-  errorFetchingMulticallResults,
-  fetchingMulticallResults,
-  removeMulticallListeners,
-  updateMulticallResults,
-} from './actions'
-import reducer, { MulticallState } from './reducer'
+import { createMulticallSlice, MulticallActions } from './slice'
+import { MulticallState } from './types'
 
 const DAI_ADDRESS = '0x6b175474e89094c44da98b954eedeac495271d0f'
 
 describe('multicall reducer', () => {
   let store: Store<MulticallState>
+  let actions: MulticallActions
   beforeEach(() => {
-    store = createStore(reducer)
+    const slice = createMulticallSlice('multicall')
+    actions = slice.actions
+    store = createStore(slice.reducer)
   })
 
   it('has correct initial state', () => {
@@ -25,7 +21,7 @@ describe('multicall reducer', () => {
   describe('addMulticallListeners', () => {
     it('adds listeners', () => {
       store.dispatch(
-        addMulticallListeners({
+        actions.addMulticallListeners({
           chainId: 1,
           calls: [
             {
@@ -38,9 +34,9 @@ describe('multicall reducer', () => {
       )
       expect(store.getState()).toEqual({
         callListeners: {
-          1: {
+          [1]: {
             [`${DAI_ADDRESS}-0x`]: {
-              1: 1,
+              [1]: 1,
             },
           },
         },
@@ -52,7 +48,7 @@ describe('multicall reducer', () => {
   describe('removeMulticallListeners', () => {
     it('noop', () => {
       store.dispatch(
-        removeMulticallListeners({
+        actions.removeMulticallListeners({
           calls: [
             {
               address: DAI_ADDRESS,
@@ -67,7 +63,7 @@ describe('multicall reducer', () => {
     })
     it('removes listeners', () => {
       store.dispatch(
-        addMulticallListeners({
+        actions.addMulticallListeners({
           chainId: 1,
           calls: [
             {
@@ -79,7 +75,7 @@ describe('multicall reducer', () => {
         })
       )
       store.dispatch(
-        removeMulticallListeners({
+        actions.removeMulticallListeners({
           calls: [
             {
               address: DAI_ADDRESS,
@@ -92,7 +88,7 @@ describe('multicall reducer', () => {
       )
       expect(store.getState()).toEqual({
         callResults: {},
-        callListeners: { 1: { [`${DAI_ADDRESS}-0x`]: {} } },
+        callListeners: { [1]: { [`${DAI_ADDRESS}-0x`]: {} } },
       })
     })
   })
@@ -100,7 +96,7 @@ describe('multicall reducer', () => {
   describe('updateMulticallResults', () => {
     it('updates data if not present', () => {
       store.dispatch(
-        updateMulticallResults({
+        actions.updateMulticallResults({
           chainId: 1,
           blockNumber: 1,
           results: {
@@ -110,7 +106,7 @@ describe('multicall reducer', () => {
       )
       expect(store.getState()).toEqual({
         callResults: {
-          1: {
+          [1]: {
             abc: {
               blockNumber: 1,
               data: '0x',
@@ -121,7 +117,7 @@ describe('multicall reducer', () => {
     })
     it('updates old data', () => {
       store.dispatch(
-        updateMulticallResults({
+        actions.updateMulticallResults({
           chainId: 1,
           blockNumber: 1,
           results: {
@@ -130,7 +126,7 @@ describe('multicall reducer', () => {
         })
       )
       store.dispatch(
-        updateMulticallResults({
+        actions.updateMulticallResults({
           chainId: 1,
           blockNumber: 2,
           results: {
@@ -140,7 +136,7 @@ describe('multicall reducer', () => {
       )
       expect(store.getState()).toEqual({
         callResults: {
-          1: {
+          [1]: {
             abc: {
               blockNumber: 2,
               data: '0x2',
@@ -151,7 +147,7 @@ describe('multicall reducer', () => {
     })
     it('ignores late updates', () => {
       store.dispatch(
-        updateMulticallResults({
+        actions.updateMulticallResults({
           chainId: 1,
           blockNumber: 2,
           results: {
@@ -160,7 +156,7 @@ describe('multicall reducer', () => {
         })
       )
       store.dispatch(
-        updateMulticallResults({
+        actions.updateMulticallResults({
           chainId: 1,
           blockNumber: 1,
           results: {
@@ -170,7 +166,7 @@ describe('multicall reducer', () => {
       )
       expect(store.getState()).toEqual({
         callResults: {
-          1: {
+          [1]: {
             abc: {
               blockNumber: 2,
               data: '0x2',
@@ -183,7 +179,7 @@ describe('multicall reducer', () => {
   describe('fetchingMulticallResults', () => {
     it('updates state to fetching', () => {
       store.dispatch(
-        fetchingMulticallResults({
+        actions.fetchingMulticallResults({
           chainId: 1,
           fetchingBlockNumber: 2,
           calls: [{ address: DAI_ADDRESS, callData: '0x0' }],
@@ -191,7 +187,7 @@ describe('multicall reducer', () => {
       )
       expect(store.getState()).toEqual({
         callResults: {
-          1: {
+          [1]: {
             [`${DAI_ADDRESS}-0x0`]: { fetchingBlockNumber: 2 },
           },
         },
@@ -200,14 +196,14 @@ describe('multicall reducer', () => {
 
     it('updates state to fetching even if already fetching older block', () => {
       store.dispatch(
-        fetchingMulticallResults({
+        actions.fetchingMulticallResults({
           chainId: 1,
           fetchingBlockNumber: 2,
           calls: [{ address: DAI_ADDRESS, callData: '0x0' }],
         })
       )
       store.dispatch(
-        fetchingMulticallResults({
+        actions.fetchingMulticallResults({
           chainId: 1,
           fetchingBlockNumber: 3,
           calls: [{ address: DAI_ADDRESS, callData: '0x0' }],
@@ -215,7 +211,7 @@ describe('multicall reducer', () => {
       )
       expect(store.getState()).toEqual({
         callResults: {
-          1: {
+          [1]: {
             [`${DAI_ADDRESS}-0x0`]: { fetchingBlockNumber: 3 },
           },
         },
@@ -224,14 +220,14 @@ describe('multicall reducer', () => {
 
     it('does not do update if fetching newer block', () => {
       store.dispatch(
-        fetchingMulticallResults({
+        actions.fetchingMulticallResults({
           chainId: 1,
           fetchingBlockNumber: 2,
           calls: [{ address: DAI_ADDRESS, callData: '0x0' }],
         })
       )
       store.dispatch(
-        fetchingMulticallResults({
+        actions.fetchingMulticallResults({
           chainId: 1,
           fetchingBlockNumber: 1,
           calls: [{ address: DAI_ADDRESS, callData: '0x0' }],
@@ -239,7 +235,7 @@ describe('multicall reducer', () => {
       )
       expect(store.getState()).toEqual({
         callResults: {
-          1: {
+          [1]: {
             [`${DAI_ADDRESS}-0x0`]: { fetchingBlockNumber: 2 },
           },
         },
@@ -250,7 +246,7 @@ describe('multicall reducer', () => {
   describe('errorFetchingMulticallResults', () => {
     it('does nothing if not fetching', () => {
       store.dispatch(
-        errorFetchingMulticallResults({
+        actions.errorFetchingMulticallResults({
           chainId: 1,
           fetchingBlockNumber: 1,
           calls: [{ address: DAI_ADDRESS, callData: '0x0' }],
@@ -258,20 +254,20 @@ describe('multicall reducer', () => {
       )
       expect(store.getState()).toEqual({
         callResults: {
-          1: {},
+          [1]: {},
         },
       })
     })
     it('updates block number if we were fetching', () => {
       store.dispatch(
-        fetchingMulticallResults({
+        actions.fetchingMulticallResults({
           chainId: 1,
           fetchingBlockNumber: 2,
           calls: [{ address: DAI_ADDRESS, callData: '0x0' }],
         })
       )
       store.dispatch(
-        errorFetchingMulticallResults({
+        actions.errorFetchingMulticallResults({
           chainId: 1,
           fetchingBlockNumber: 2,
           calls: [{ address: DAI_ADDRESS, callData: '0x0' }],
@@ -279,7 +275,7 @@ describe('multicall reducer', () => {
       )
       expect(store.getState()).toEqual({
         callResults: {
-          1: {
+          [1]: {
             [`${DAI_ADDRESS}-0x0`]: {
               blockNumber: 2,
               // null data indicates error
@@ -291,14 +287,14 @@ describe('multicall reducer', () => {
     })
     it('does nothing if not errored on latest block', () => {
       store.dispatch(
-        fetchingMulticallResults({
+        actions.fetchingMulticallResults({
           chainId: 1,
           fetchingBlockNumber: 3,
           calls: [{ address: DAI_ADDRESS, callData: '0x0' }],
         })
       )
       store.dispatch(
-        errorFetchingMulticallResults({
+        actions.errorFetchingMulticallResults({
           chainId: 1,
           fetchingBlockNumber: 2,
           calls: [{ address: DAI_ADDRESS, callData: '0x0' }],
@@ -306,7 +302,7 @@ describe('multicall reducer', () => {
       )
       expect(store.getState()).toEqual({
         callResults: {
-          1: {
+          [1]: {
             [`${DAI_ADDRESS}-0x0`]: { fetchingBlockNumber: 3 },
           },
         },
