@@ -1,18 +1,18 @@
-import { ApprovalState, useActiveWeb3React } from '../../hooks'
+import { ApprovalState, useActiveWeb3React } from '../../_app/bootstrap/Fraction/functions/contract/validate/hooks/state/reducer/state-inari-reducer/actions/types/useBentoBoxTrait/hooks/useStakeSushiToBentoStrategy/hooks-index'
 import { Field, MeowshiState } from '../../pages/tools/meowshi'
 import React, { FC, useMemo, useState } from 'react'
-import { SUSHI, XSUSHI } from '../../constants'
-import TransactionConfirmationModal, { ConfirmationModalContent } from '../../modals/TransactionConfirmationModal'
+import { SUSHI, XSUSHI } from '../../_app/bootstrap/Fraction/functions/contract/validate/hooks/state/reducer/state-user-reducer/constants'
+import TransactionConfirmationModal, { ConfirmationModalContent } from '../../farm/FarmList/FarmListItem/FarmListItemDetails/ManageSwapPair/PoolAddLiquidity/TransactionConfirmationModal'
 
-import Button from '../../components/Button'
+import Button from '../../_app/Default/Header/Web3Status/WalletModal/AccountDetails/Button'
 import { ChainId } from '@sushiswap/sdk'
-import Dots from '../../components/Dots'
+import Dots from '../../_app/Default/Header/Web3Status/WalletModal/PendingView/Dots'
 import { ethers } from 'ethers'
 import { t } from '@lingui/macro'
-import { tryParseAmount } from '../../functions'
+import { tryParseAmount } from '../../_app/bootstrap/Fraction/functions'
 import { useLingui } from '@lingui/react'
 import useMeowshi from '../../hooks/useMeowshi'
-import { useTokenBalance } from '../../state/wallet/hooks'
+import { useTokenBalance } from '../../_app/bootstrap/Fraction/functions/contract/validate/hooks/state/reducer/state-inari-reducer/actions/types/useBentoBoxTrait/hooks/useStakeSushiToBentoStrategy/state-wallet-hooks'
 
 interface MeowshiButtonProps {
   meowshiState: MeowshiState

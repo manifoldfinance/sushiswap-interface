@@ -86,6 +86,7 @@
     "babel-plugin-styled-components": "^1.13.1",
     "cookie-cutter": "^0.2.0",
     "copy-to-clipboard": "^3.3.1",
+    "dependency-cruiser": "^11.3.1",
     "eslint": "^7.30.0",
     "eslint-config-next": "^11.0.1",
     "eth-permit": "^0.1.10",

@@ -1,17 +1,17 @@
 import { Field, MeowshiState } from '../../pages/tools/meowshi'
 import React, { FC } from 'react'
-import { SUSHI, XSUSHI } from '../../constants'
+import { SUSHI, XSUSHI } from '../../_app/bootstrap/Fraction/functions/contract/validate/hooks/state/reducer/state-user-reducer/constants'
 
 import { ChainId } from '@sushiswap/sdk'
 import Image from 'next/image'
-import { Input as NumericalInput } from '../../components/NumericalInput'
-import Typography from '../../components/Typography'
+import { Input as NumericalInput } from '../../bar/NumericalInput'
+import Typography from '../../_app/Default/Header/Web3Network/NetworkModal/ModalHeader/Typography'
 import { t } from '@lingui/macro'
-import { tryParseAmount } from '../../functions'
-import { useActiveWeb3React } from '../../hooks'
+import { tryParseAmount } from '../../_app/bootstrap/Fraction/functions'
+import { useActiveWeb3React } from '../../_app/bootstrap/Fraction/functions/contract/validate/hooks/state/reducer/state-inari-reducer/actions/types/useBentoBoxTrait/hooks/useStakeSushiToBentoStrategy/hooks-index'
 import { useLingui } from '@lingui/react'
-import { useTokenBalance } from '../../state/wallet/hooks'
-import { useUSDCValue } from '../../hooks/useUSDCPrice'
+import { useTokenBalance } from '../../_app/bootstrap/Fraction/functions/contract/validate/hooks/state/reducer/state-inari-reducer/actions/types/useBentoBoxTrait/hooks/useStakeSushiToBentoStrategy/state-wallet-hooks'
+import { useUSDCValue } from '../../_app/bootstrap/Fraction/functions/contract/validate/hooks/state/reducer/state-inari-reducer/actions/types/useBentoBoxTrait/hooks/useStakeSushiToBentoStrategy/hooks-index/useUSDCPrice'
 
 interface CurrencyInputPanelProps {
   field: Field

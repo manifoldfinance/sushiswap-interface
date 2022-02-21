@@ -1,12 +1,12 @@
 import { useCallback, useEffect, useMemo, useState } from 'react'
-import { useMeowshiContract, useSushiBarContract, useSushiContract } from './useContract'
+import { useMeowshiContract, useSushiBarContract, useSushiContract } from '../_app/bootstrap/Fraction/functions/contract/validate/hooks/state/reducer/state-inari-reducer/actions/types/useBentoBoxTrait/hooks/useStakeSushiToBentoStrategy/hooks/useContract'
 
-import { BalanceProps } from './useTokenBalance'
-import Fraction from '../entities/Fraction'
+import { BalanceProps } from '../useSaave/useTokenBalance'
+import Fraction from '../_app/bootstrap/Fraction'
 import { ethers } from 'ethers'
-import { useActiveWeb3React } from './useActiveWeb3React'
-import { useTransactionAdder } from '../state/transactions/hooks'
-import { ApprovalState } from './useApproveCallback'
+import { useActiveWeb3React } from '../_app/bootstrap/Fraction/functions/contract/validate/hooks/state/reducer/state-inari-reducer/actions/types/useBentoBoxTrait/hooks/useStakeSushiToBentoStrategy/hooks/useContract/useActiveWeb3React'
+import { useTransactionAdder } from '../_app/bootstrap/Fraction/functions/contract/validate/hooks/state/reducer/state-inari-reducer/actions/types/useBentoBoxTrait/hooks/useStakeSushiToBentoStrategy/hooks/useTransactionStatus/hooks'
+import { ApprovalState } from '../_app/bootstrap/Fraction/functions/contract/validate/hooks/state/reducer/state-inari-reducer/actions/types/useBentoBoxTrait/hooks/useStakeSushiToBentoStrategy/hooks-index/useApproveCallback'
 
 const { BigNumber } = ethers
 

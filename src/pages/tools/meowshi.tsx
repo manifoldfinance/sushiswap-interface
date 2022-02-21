@@ -1,21 +1,21 @@
 import { ArrowDownIcon, InformationCircleIcon } from '@heroicons/react/solid'
 import { ChainId, Currency, Token } from '@sushiswap/sdk'
-import { MEOW, SUSHI, XSUSHI } from '../../constants'
+import { MEOW, SUSHI, XSUSHI } from '../../_app/bootstrap/Fraction/functions/contract/validate/hooks/state/reducer/state-user-reducer/constants'
 import React, { useCallback, useEffect, useMemo, useState } from 'react'
 
-import Container from '../../components/Container'
+import Container from '../Container'
 import CurrencyInputPanel from '../../features/meowshi/CurrencyInputPanel'
 import Head from 'next/head'
 import HeaderToggle from '../../features/meowshi/HeaderToggle'
 import Image from 'next/image'
 import MeowshiButton from '../../features/meowshi/MeowshiButton'
-import NetworkGuard from '../../guards/Network'
-import Typography from '../../components/Typography'
-import { e10 } from '../../functions'
+import NetworkGuard from '../../inari/Network'
+import Typography from '../../_app/Default/Header/Web3Network/NetworkModal/ModalHeader/Typography'
+import { e10 } from '../../_app/bootstrap/Fraction/functions'
 import { t } from '@lingui/macro'
 import { useLingui } from '@lingui/react'
 import useMeowshiPerXSushi from '../../hooks/useMeowshiPerXSushi'
-import useSushiPerXSushi from '../../hooks/useXSushiPerSushi'
+import useSushiPerXSushi from '../../_app/bootstrap/Fraction/functions/contract/validate/hooks/state/reducer/state-inari-reducer/actions/types/useBentoBoxTrait/hooks/useStakeSushiToBentoStrategy/useBaseStrategy/useXSushiPerSushi'
 
 export enum Field {
   INPUT = 'INPUT',

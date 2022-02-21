@@ -1,6 +1,6 @@
-import { useBentoBoxContract } from './useContract'
+import { useBentoBoxContract } from '../_app/bootstrap/Fraction/functions/contract/validate/hooks/state/reducer/state-inari-reducer/actions/types/useBentoBoxTrait/hooks/useStakeSushiToBentoStrategy/hooks/useContract'
 import { useEffect, useState } from 'react'
-import { XSUSHI } from '../constants'
+import { XSUSHI } from '../_app/bootstrap/Fraction/functions/contract/validate/hooks/state/reducer/state-user-reducer/constants'
 import { BigNumber } from 'ethers'
 
 export default function useMeowshiPerXSushi() {
