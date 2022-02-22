@@ -1,3 +1,5 @@
+import { withSentry } from '@sentry/nextjs'
+
 export const USER_REJECTED_TX = 4001
 
 /*
@@ -6,7 +8,7 @@ export const USER_REJECTED_TX = 4001
  *       console.error(error)
  *    }
  */
-export class WalletError extends Error {
+const handler = WalletError extends Error {
   constructor(readonly code: number, readonly message: string, readonly data?: unknown, readonly stack?: string) {
     super()
   }
@@ -15,3 +17,5 @@ export class WalletError extends Error {
 export const isWalletError = (error: unknown): error is WalletError => {
   return typeof error === 'object' && error !== null && 'code' in error && 'message' in error
 }
+
+export default withSentry(handler)
