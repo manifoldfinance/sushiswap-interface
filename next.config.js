@@ -154,7 +154,11 @@ const SentryWebpackPluginOptions = {
 
 // Make sure adding Sentry options is the last code to run before exporting, to
 // ensure that your source maps include changes from all other Webpack plugins
-module.exports = withSentryConfig(withPWA(withBundleAnalyzer(nextConfig)), SentryWebpackPluginOptions)
+module.exports = withSentryConfig(withPWA(withBundleAnalyzer(nextConfig)), SentryWebpackPluginOptions,, {
+  org: 'manifoldx',
+  project: 'sushi-1',
+  url: 'https://sentry.io/',
+})
 
 // Don't delete this console log, useful to see the config in Vercel deployments
 console.log('next.config.js', JSON.stringify(module.exports, null, 2))
