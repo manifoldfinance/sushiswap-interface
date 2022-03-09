@@ -20,6 +20,7 @@ import { SwapCallbackState, useSwapCallback } from 'app/hooks/useSwapCallback'
 import useSwapSlippageTolerance from 'app/hooks/useSwapSlippageTollerence'
 import useTransactionStatus from 'app/hooks/useTransactionStatus'
 import { useAppDispatch, useAppSelector } from 'app/state/hooks'
+import { useUserOpenMev } from 'app/state/user/hooks'
 import { FC, useCallback, useMemo, useState } from 'react'
 
 import SwapRate from './SwapRate'
@@ -35,14 +36,22 @@ const SwapReviewModal: FC = () => {
   const [cbError, setCbError] = useState<string>()
   const [txHash, setTxHash] = useState<string>()
   const { trade, parsedAmounts, priceImpact } = useDerivedTridentSwapContext()
+  const [useOpenMev] = useUserOpenMev()
 
   const allowedSlippage = useSwapSlippageTolerance(trade)
 
-  const { state, callback, error } = useSwapCallback(trade, allowedSlippage, address, null, {
-    receiveToWallet,
-    fromWallet: spendFromWallet,
-    parsedAmounts,
-  })
+  const { state, callback, error } = useSwapCallback(
+    trade,
+    allowedSlippage,
+    address,
+    null,
+    {
+      receiveToWallet,
+      fromWallet: spendFromWallet,
+      parsedAmounts,
+    },
+    useOpenMev
+  )
 
   const execute = useCallback(async () => {
     if (!callback) return
@@ -186,9 +195,7 @@ const SwapReviewModal: FC = () => {
               onClick={execute}
               className="mt-4 mb-2"
             >
-              <Typography variant="sm" weight={700} className="text-high-emphesis">
-                {error && !txHash ? error : recipient ? i18n._(t`Swap and send to recipient`) : i18n._(t`Swap`)}
-              </Typography>
+              {error && !txHash ? error : recipient ? i18n._(t`Swap and send to recipient`) : i18n._(t`Swap`)}
             </Button>
             {!txHash && (error || cbError) && (
               <Typography variant="xs" weight={700} className="text-center text-red">

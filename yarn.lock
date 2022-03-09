@@ -3096,6 +3096,31 @@
   dependencies:
     body-scroll-lock "^2.6.4"
 
+"@react-hook/event@^1.2.1":
+  version "1.2.6"
+  resolved "https://registry.yarnpkg.com/@react-hook/event/-/event-1.2.6.tgz#52f91578add934acc1203328ca09ab14fc7ee58e"
+  integrity sha512-JUL5IluaOdn5w5Afpe/puPa1rj8X6udMlQ9dt4hvMuKmTrBS1Ya6sb4sVgvfe2eU4yDuOfAhik8xhbcCekbg9Q==
+
+"@react-hook/latest@^1.0.2":
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/@react-hook/latest/-/latest-1.0.3.tgz#c2d1d0b0af8b69ec6e2b3a2412ba0768ac82db80"
+  integrity sha512-dy6duzl+JnAZcDbNTfmaP3xHiKtbXYOaz3G51MGVljh548Y8MWzTr+PHLOfvpypEVW9zwvl+VyKjbWKEVbV1Rg==
+
+"@react-hook/throttle@^2.2.0":
+  version "2.2.0"
+  resolved "https://registry.yarnpkg.com/@react-hook/throttle/-/throttle-2.2.0.tgz#d0402714a06e1ba0bc1da1fdf5c3c5cd0e08d45a"
+  integrity sha512-LJ5eg+yMV8lXtqK3lR+OtOZ2WH/EfWvuiEEu0M3bhR7dZRfTyEJKxH1oK9uyBxiXPtWXiQggWbZirMCXam51tg==
+  dependencies:
+    "@react-hook/latest" "^1.0.2"
+
+"@react-hook/window-scroll@^1.3.0":
+  version "1.3.0"
+  resolved "https://registry.yarnpkg.com/@react-hook/window-scroll/-/window-scroll-1.3.0.tgz#07914239a452075c7eb28d15ed0e2fd45aa2d65b"
+  integrity sha512-LdYnCL22pFI+LTs85Fi2OQHSKWkzIuHFgv8lA+wwuaPxLOEhWR5bzJ21iygUH9X4meeLVRZKEbfpYi3OWWD4GQ==
+  dependencies:
+    "@react-hook/event" "^1.2.1"
+    "@react-hook/throttle" "^2.2.0"
+
 "@reduxjs/toolkit@^1.6.0":
   version "1.7.1"
   resolved "https://registry.yarnpkg.com/@reduxjs/toolkit/-/toolkit-1.7.1.tgz#994962aeb7df3c77be343dd2ad1aa48221dbaa0c"
@@ -4204,6 +4229,22 @@
     tiny-warning "^1.0.0"
     toformat "^2.0.0"
 
+"@sushiswap/core-sdk@1.0.0-canary.31":
+  version "1.0.0-canary.31"
+  resolved "https://registry.yarnpkg.com/@sushiswap/core-sdk/-/core-sdk-1.0.0-canary.31.tgz#bec23873ec0e1b6e4e1cb043fc16168ea5ca7a09"
+  integrity sha512-0C5lXGdJSEIVZ32qVEg0EB1xmw9Y3QxizwPoJx0JxUAf+B1VzB4IROH1VbE8h2hUyJkiIkjWm/ZHQE6lYp4GGw==
+  dependencies:
+    "@ethersproject/address" "^5.4.0"
+    "@ethersproject/bignumber" "^5.4.0"
+    "@ethersproject/providers" "^5.4.0"
+    "@ethersproject/solidity" "^5.4.0"
+    big.js "^6.1.1"
+    decimal.js-light "^2.5.0"
+    jsbi "^4.1.0"
+    tiny-invariant "^1.1.0"
+    tiny-warning "^1.0.0"
+    toformat "^2.0.0"
+
 "@sushiswap/core-sdk@1.0.0-canary.34", "@sushiswap/core-sdk@^1.0.0-canary.33":
   version "1.0.0-canary.34"
   resolved "https://registry.yarnpkg.com/@sushiswap/core-sdk/-/core-sdk-1.0.0-canary.34.tgz#492dd13861c33c9ce1d076e9c6c5d24047474522"
@@ -4230,10 +4271,10 @@
   resolved "https://registry.yarnpkg.com/@sushiswap/default-token-list/-/default-token-list-11.5.0.tgz#07f31e6771c31fff44ca1a6a37697f266dd486a7"
   integrity sha512-XuouWhMJdhz/QaWOLuPb/PkPzqfnipBi3VBzUuMisWdCAiUy7mhh2ep209/qoQcOAXj0Dgzz/cuHYTy20Uab5w==
 
-"@sushiswap/default-token-list@^20.31.0":
-  version "20.31.0"
-  resolved "https://registry.yarnpkg.com/@sushiswap/default-token-list/-/default-token-list-20.31.0.tgz#2448f4c560dd5e221d796bd5aee923c2ce607b41"
-  integrity sha512-1Xe+U079wVn+RyoC1vAxAJ0wn7yrwdcEq4HG2Id17zi6E12WStIg3SP30LRaJwYty1w+bJWHaHWPKfh/QEg93A==
+"@sushiswap/default-token-list@^22.3.0":
+  version "22.3.0"
+  resolved "https://registry.yarnpkg.com/@sushiswap/default-token-list/-/default-token-list-22.3.0.tgz#6745be8ed4fb7428523e0972af26a7e82c6c42c4"
+  integrity sha512-4sTgP/PlLTpXHyhQbawBphHAAP2pjm0EexJ5/wTXxt2Awh69CcMERU8aNu7piDYa6WP4qLnn0ohoo2hnhJwwqw==
 
 "@sushiswap/kashi-sdk@^1.0.0-canary.9":
   version "1.0.0-canary.10"
@@ -4266,10 +4307,10 @@
     eip-712 "^0.4.0"
     isomorphic-unfetch "^3.0.0"
 
-"@sushiswap/miso@^1.0.0-canary.5":
-  version "1.0.0-canary.5"
-  resolved "https://registry.yarnpkg.com/@sushiswap/miso/-/miso-1.0.0-canary.5.tgz#c2b36828948738de39c97fef55a0355b8801eaa6"
-  integrity sha512-eGpeSbkWYu83F5BoYD5VcHI7TM9E9I1ji/6oc1ka2oCX/P8LMUMMCB+7Rkf6M8SR49qM9Zjimo9Y8F9QPJVSzg==
+"@sushiswap/miso@^1.0.0-canary.35":
+  version "1.0.0-canary.35"
+  resolved "https://registry.yarnpkg.com/@sushiswap/miso/-/miso-1.0.0-canary.35.tgz#085c62b2294e4c4cce211ed7b9cf7ab4f604dcd3"
+  integrity sha512-QwljgxdpyuAAUNmYM39TgZl1sFBmG0+T85XZVEf/8z299Maag+VJyYjzcgWyM53ZQYkQnI+MQATRzCkJQK/GZA==
 
 "@sushiswap/sdk@^5.0.0-canary.109":
   version "5.0.0-canary.116"
@@ -4298,7 +4339,7 @@
     tiny-warning "^1.0.3"
     toformat "^2.0.0"
 
-"@sushiswap/tines@1.0.0-canary.16", "@sushiswap/tines@^1.0.0-canary.15":
+"@sushiswap/tines@1.0.0-canary.16":
   version "1.0.0-canary.16"
   resolved "https://registry.yarnpkg.com/@sushiswap/tines/-/tines-1.0.0-canary.16.tgz#93e560f3e0b8036ac3f975376dba1d9b5483740c"
   integrity sha512-IJ9GwQ//C3XjvFfAfzk1EHTfU4HDSz+LXckPo53jC84WC6o6T9k44we9UxQJBZsZJhMAmw3V4T+Pr1UxxN/M3w==
@@ -4306,6 +4347,14 @@
     "@ethersproject/bignumber" "^5.4.0"
     "@sushiswap/core-sdk" "1.0.0-canary.34"
     "@sushiswap/tines" "1.0.0-canary.16"
+
+"@sushiswap/tines@^1.0.0-canary.17":
+  version "1.0.0-canary.17"
+  resolved "https://registry.yarnpkg.com/@sushiswap/tines/-/tines-1.0.0-canary.17.tgz#e9e37a53b0eae3d71e4b9f3d0d7f7b7abb1986f9"
+  integrity sha512-uO2ttRlNkTmquXk7LpaXKlUTKPXS3RETpW1ZV1w1lkfBw5aCCyB2iAiNFyUtItnO/nDmncguoeGOlK2HaC9nlQ==
+  dependencies:
+    "@ethersproject/bignumber" "^5.4.0"
+    "@sushiswap/core-sdk" "1.0.0-canary.31"
 
 "@sushiswap/trident-sdk@^1.0.0-canary.43":
   version "1.0.0-canary.44"
