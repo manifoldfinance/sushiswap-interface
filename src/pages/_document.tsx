@@ -1,7 +1,7 @@
 /* eslint-disable @next/next/no-document-import-in-page */
 
 import { Head, Html, Main, NextScript } from 'next/document'
-import Document, { DocumentContext } from 'next/document'
+import Document from 'next/document'
 
 const APP_NAME = 'SushiSwap'
 const APP_DESCRIPTION = 'Swap, yield, lend, borrow, leverage, limit, launch all on one community driven ecosystem'
