@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 // @note there is no actual error here, the rule thinks _document.page.tsx is different from _document.tsx
-import Document, { Head, Html, Main, NextScript } from 'next/document'
-import React, { ReactElement } from 'react'
+import NextDocument, { Html, Head, Main, NextScript } from 'next/document';
+import React from 'react';
 
 // const defaultTheme = require('tailwindcss/defaultTheme')
 // const { screens } = defaultTheme
@@ -9,9 +9,8 @@ import React, { ReactElement } from 'react'
 const APP_NAME = 'SushiSwap'
 const APP_DESCRIPTION = 'Swap, yield, lend, borrow, leverage, limit, launch all on one community driven ecosystem'
 
-
-class MyDocument extends Document {
-  render(): ReactElement {
+export default class Document extends NextDocument {
+  render() {
     return (
       <Html>
         <Head>
@@ -44,6 +43,3 @@ class MyDocument extends Document {
     )
   }
 }
-
-
-export default MyDocument
