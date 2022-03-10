@@ -12,8 +12,6 @@ env:
   RUN_ID: ${{ github.run_id }}
   FORCE_COLOR: 2
   NEXT_TELEMETRY_DISABLED: 1
-  NODE_ENV: production
-
 
 jobs:
   pipeline:
@@ -40,5 +38,5 @@ jobs:
         id: install
 
       - name: Run build
-        run: yarn run build
+        run: npx next build
         id: build
