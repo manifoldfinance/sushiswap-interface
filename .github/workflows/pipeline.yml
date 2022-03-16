@@ -35,9 +35,11 @@ jobs:
             ${{ runner.os }}-yarn-
       - name: webpage install, build, and test
         uses: actions/setup-node@v2
+        
       - run: yarn install
         id: install
-      - run: npx next build
+        
+      - run: yarn run prod
         id: production
       
       - uses: actions/checkout@v2
