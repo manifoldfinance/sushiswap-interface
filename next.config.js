@@ -42,6 +42,9 @@ const nextConfig = {
   // },
   swcMinify: false,
   reactStrictMode: true,
+  poweredByHeader: false,
+  optimizeImages: true,
+  optimizeCss: true,
   pwa: {
     dest: 'public',
     runtimeCaching,
