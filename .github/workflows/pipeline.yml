@@ -37,7 +37,7 @@ jobs:
         uses: actions/setup-node@v2
       - run: yarn install
         id: install
-      - run: yarn run prod
+      - run: npx next build
         id: production
       
       - uses: actions/checkout@v2
