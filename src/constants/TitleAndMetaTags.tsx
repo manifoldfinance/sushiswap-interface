@@ -7,8 +7,8 @@
 * @note destination is defined as the URL rewrite page, see `next.config.js`
 */
 import Head from 'next/head';
-import React from 'react';
 import { useRouter } from 'next/router';
+import React from 'react';
 
 type TitleAndMetaTagsProps = {
   url?: string;

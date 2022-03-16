@@ -6,8 +6,8 @@
 */
 
 import Container from "app/components/Container";
-import Head from "next/head";
 import { TitleAndMetaTags } from "app/constants/TitleAndMetaTags";
+import Head from "next/head";
 
 
 const Dashboard = () => {
