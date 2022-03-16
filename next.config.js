@@ -40,10 +40,13 @@ const nextConfig = {
   //   concurrentFeatures: true,
   //   serverComponents: true,
   // },
+  experimental: {
+  esmExternals: false,
+},
+  productionBrowserSourceMaps: false,
   swcMinify: false,
   reactStrictMode: true,
   poweredByHeader: false,
-  optimizeImages: true,
   optimizeCss: true,
   pwa: {
     dest: 'public',
