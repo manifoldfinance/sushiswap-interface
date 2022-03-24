@@ -1,10 +1,19 @@
 /// <reference types="gtag.js" />
 
 declare module 'gtag.js'
-
 import { BigNumber, BigNumberish } from '@ethersproject/bignumber'
 
 import Fraction from './src/entities/bignumber/Fraction'
+
+declare module '@ethersproject/bignumber' {
+  interface BigNumber {
+    mulDiv(multiplier: BigNumberish, divisor: BigNumberish): BigNumber
+    toFixed(decimals: BigNumberish): string
+    toFraction(decimals: BigNumberish, base: BigNumberish): Fraction
+    min(...values: BigNumberish[]): BigNumber
+    max(...values: BigNumberish[]): BigNumber
+  }
+}
 
 declare global {
   interface String {
@@ -83,16 +92,4 @@ declare module 'multihashes' {
 
 declare module 'jazzicon' {
   export default function (diameter: number, seed: number): HTMLElement
-}
-
-declare module 'formatic'
-
-declare module '@ethersproject/bignumber' {
-  interface BigNumber {
-    mulDiv(multiplier: BigNumberish, divisor: BigNumberish): BigNumber
-    toFixed(decimals: BigNumberish): string
-    toFraction(decimals: BigNumberish, base: BigNumberish): Fraction
-    min(...values: BigNumberish[]): BigNumber
-    max(...values: BigNumberish[]): BigNumber
-  }
 }
