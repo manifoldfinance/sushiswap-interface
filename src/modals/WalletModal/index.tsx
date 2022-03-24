@@ -9,7 +9,6 @@ import ExternalLink from 'app/components/ExternalLink'
 import HeadlessUiModal from 'app/components/Modal/HeadlessUIModal'
 import Typography from 'app/components/Typography'
 import { injected, SUPPORTED_WALLETS } from 'app/config/wallets'
-import { OVERLAY_READY } from 'app/entities/connectors/FortmaticConnector'
 import usePrevious from 'app/hooks/usePrevious'
 import { ApplicationModal } from 'app/state/application/actions'
 import { useModalOpen, useWalletModalToggle } from 'app/state/application/hooks'
@@ -63,14 +62,6 @@ const WalletModal: FC<WalletModal> = ({ pendingTransactions, confirmedTransactio
     }
   }, [setWalletView, active, error, connector, walletModalOpen, activePrevious, connectorPrevious])
 
-  // close wallet modal if Fortmatic modal is active
-  useEffect(() => {
-    if (connector?.constructor?.name === 'FormaticConnector') {
-      connector.on(OVERLAY_READY, () => {
-        toggleWalletModal()
-      })
-    }
-  }, [toggleWalletModal, connector])
 
   const handleBack = useCallback(() => {
     setPendingError(undefined)

@@ -1,2 +1,4 @@
-export { FortmaticConnector } from './FortmaticConnector'
+/** 
+ * @export NetworkConnector
+ */
 export { NetworkConnector } from './NetworkConnector'
