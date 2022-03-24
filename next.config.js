@@ -1,6 +1,5 @@
 const withPWA = require('next-pwa')
 const runtimeCaching = require('next-pwa/cache')
-
 const linguiConfig = require('./lingui.config.js')
 const defaultTheme = require('tailwindcss/defaultTheme')
 
@@ -45,8 +44,7 @@ const nextConfig = {
   reactStrictMode: true,
   pwa: {
     dest: 'public',
-    // runtimeCaching,
-    dynamicStartUrlRedirect: '/swap',
+    runtimeCaching,
     disable: process.env.NODE_ENV === 'development',
   },
   images: {
@@ -117,30 +115,12 @@ const nextConfig = {
         source: '/me',
         destination: '/user',
       },
-      {
-        source: '/balances',
-        destination: '/trident/balances',
-      },
     ]
   },
   i18n: {
     localeDetection: true,
     locales,
     defaultLocale: sourceLocale,
-  },
-  network: {
-    chainIds: [ChainId.ETHEREUM, ChainId.ARBITRUM],
-    defaultChainId: ChainId.ETHEREUM,
-    domains: [
-      {
-        domain: 'sushi.com',
-        defaultChainId: ChainId.ETHEREUM,
-      },
-      {
-        domain: 'arbitrum.sushi.com',
-        defaultChainId: ChainId.ARBITRUM,
-      },
-    ],
   },
   publicRuntimeConfig: {
     breakpoints: screens,
@@ -163,4 +143,4 @@ const SentryWebpackPluginOptions = {
 module.exports = withSentryConfig(withPWA(withBundleAnalyzer(nextConfig)), SentryWebpackPluginOptions)
 
 // Don't delete this console log, useful to see the config in Vercel deployments
-console.log('next.config.js', JSON.stringify(module.exports, null, 2))
+// console.log('next.config.js', JSON.stringify(module.exports, null, 2))

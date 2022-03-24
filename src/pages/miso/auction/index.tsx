@@ -9,8 +9,8 @@ import AuctionCreationWizard from 'app/features/miso/AuctionCreationWizard'
 import NetworkGuard from 'app/guards/Network'
 import MisoLayout, { MisoBody, MisoHeader } from 'app/layouts/Miso'
 import Link from 'next/link'
+import { NextSeo } from 'next-seo'
 import React, { Fragment } from 'react'
-
 const Auction = () => {
   const { i18n } = useLingui()
 
@@ -22,12 +22,12 @@ const Auction = () => {
 
   return (
     <>
-      <MisoHeader className="bg-miso-bowl bg-cover">
+      <NextSeo title="MISO Launchpad" />
+      <MisoHeader className="bg-cover bg-miso-bowl">
         <div className="flex flex-col gap-4">
           <div>
             <Button
               color="blue"
-              variant="outlined"
               size="sm"
               className="rounded-full !pl-2 !py-1.5"
               startIcon={<ChevronLeftIcon width={24} height={24} />}
@@ -57,6 +57,6 @@ const Auction = () => {
 }
 
 Auction.Layout = MisoLayout
-Auction.Guard = NetworkGuard(Feature.MISO)
+Auction.Guard = NetworkGuard(Feature.MISO, false)
 
 export default Auction

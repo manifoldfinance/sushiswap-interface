@@ -8,16 +8,16 @@ import { Feature } from 'app/enums/Feature'
 import { useKashiPairAddresses, useKashiPairs } from 'app/features/kashi/hooks'
 import ListHeaderWithSort from 'app/features/kashi/ListHeaderWithSort'
 import MarketHeader from 'app/features/kashi/MarketHeader'
+import { useKashiBorrowPositions } from 'app/features/portfolio/AssetBalances/kashi/hooks'
 import { formatNumber, formatPercent } from 'app/functions/format'
 import NetworkGuard from 'app/guards/Network'
 import { useInfiniteScroll } from 'app/hooks/useInfiniteScroll'
 import useSearchAndSort from 'app/hooks/useSearchAndSort'
 import Layout from 'app/layouts/Kashi'
-import Head from 'next/head'
 import Link from 'next/link'
+import { NextSeo } from 'next-seo'
 import React from 'react'
 import InfiniteScroll from 'react-infinite-scroll-component'
-import { RecoilRoot } from 'recoil'
 
 export default function Borrow() {
   const { i18n } = useLingui()
@@ -25,11 +25,7 @@ export default function Borrow() {
   // @ts-ignore TYPE NEEDS FIXING
   const pairs = useKashiPairs(addresses)
 
-  const positions = useSearchAndSort(
-    pairs.filter((pair: any) => pair.userCollateralShare.gt(0) || pair.userBorrowPart.gt(0)),
-    { keys: ['search'], threshold: 0.1 },
-    { key: 'health.value', direction: 'descending' }
-  )
+  const positions = useKashiBorrowPositions(pairs)
 
   const data = useSearchAndSort(
     pairs,
@@ -41,24 +37,10 @@ export default function Borrow() {
 
   return (
     <BorrowLayout>
-      <Head>
-        <title>{i18n._(t`Borrow`)} | Sushi</title>
-        <meta
-          key="description"
-          name="description"
-          content="Kashi is a lending and margin trading platform, built upon BentoBox, which allows for anyone to create customized and gas-efficient markets for lending, borrowing, and collateralizing a variety of DeFi tokens, stable coins, and synthetic assets."
-        />
-        <meta
-          key="twitter:description"
-          name="twitter:description"
-          content="Kashi is a lending and margin trading platform, built upon BentoBox, which allows for anyone to create customized and gas-efficient markets for lending, borrowing, and collateralizing a variety of DeFi tokens, stable coins, and synthetic assets."
-        />
-        <meta
-          key="og:description"
-          property="og:description"
-          content="Kashi is a lending and margin trading platform, built upon BentoBox, which allows for anyone to create customized and gas-efficient markets for lending, borrowing, and collateralizing a variety of DeFi tokens, stable coins, and synthetic assets."
-        />
-      </Head>
+      <NextSeo
+        title={`Borrow`}
+        description={`Kashi is a lending and margin trading platform, built upon BentoBox, which allows for anyone to create customized and gas-efficient markets for lending, borrowing, and collateralizing a variety of DeFi tokens, stable coins, and synthetic assets.`}
+      />
       <Card className="h-full bg-dark-900" header={<MarketHeader type="Borrow" lists={[pairs, positions]} />}>
         {positions.items && positions.items.length > 0 && (
           <div className="pb-4">
@@ -296,8 +278,6 @@ export default function Borrow() {
     </BorrowLayout>
   )
 }
-
-Borrow.Provider = RecoilRoot
 
 // @ts-ignore TYPE NEEDS FIXING
 const BorrowLayout = ({ children }) => {

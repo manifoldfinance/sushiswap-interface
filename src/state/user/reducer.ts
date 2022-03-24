@@ -1,5 +1,5 @@
 import { createReducer } from '@reduxjs/toolkit'
-import { DEFAULT_DEADLINE_FROM_NOW, INITIAL_ALLOWED_SLIPPAGE } from 'app/constants'
+import { DEFAULT_DEADLINE_FROM_NOW } from 'app/constants'
 import { updateVersion } from 'app/state/global/actions'
 
 import {
@@ -13,7 +13,7 @@ import {
   updateUserDeadline,
   updateUserExpertMode,
   updateUserSingleHopOnly,
-  updateUserSlippageTolerance,
+//  updateUserSlippageTolerance,
   updateUserUseSushiGuard,
 } from './actions'
 
@@ -26,9 +26,6 @@ export interface UserState {
   userExpertMode: boolean
 
   userSingleHopOnly: boolean // only allow swaps on direct pairs
-
-  // user defined slippage tolerance in bips, used in all txns
-  userSlippageTolerance: number | 'auto'
 
   // deadline set by user in minutes, used in all txns
   userDeadline: number
@@ -60,7 +57,6 @@ function pairKey(token0Address: string, token1Address: string) {
 export const initialState: UserState = {
   userExpertMode: false,
   userSingleHopOnly: false,
-  userSlippageTolerance: INITIAL_ALLOWED_SLIPPAGE,
   userDeadline: DEFAULT_DEADLINE_FROM_NOW,
   tokens: {},
   pairs: {},
@@ -72,12 +68,6 @@ export const initialState: UserState = {
 export default createReducer(initialState, (builder) =>
   builder
     .addCase(updateVersion, (state) => {
-      // slippage isnt being tracked in local storage, reset to default
-      // noinspection SuspiciousTypeOfGuard
-      if (typeof state.userSlippageTolerance !== 'number') {
-        state.userSlippageTolerance = INITIAL_ALLOWED_SLIPPAGE
-      }
-
       // deadline isnt being tracked in local storage, reset to default
       // noinspection SuspiciousTypeOfGuard
       if (typeof state.userDeadline !== 'number') {
@@ -89,10 +79,6 @@ export default createReducer(initialState, (builder) =>
 
     .addCase(updateUserExpertMode, (state, action) => {
       state.userExpertMode = action.payload.userExpertMode
-      state.timestamp = currentTimestamp()
-    })
-    .addCase(updateUserSlippageTolerance, (state, action) => {
-      state.userSlippageTolerance = action.payload.userSlippageTolerance
       state.timestamp = currentTimestamp()
     })
     .addCase(updateUserDeadline, (state, action) => {

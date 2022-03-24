@@ -8,7 +8,7 @@ import { formatDate, formatNumber } from 'app/functions'
 import useDesktopMediaQuery from 'app/hooks/useDesktopMediaQuery'
 import { usePoolDayBuckets, usePoolHourBuckets } from 'app/services/graph/hooks/pools'
 import { useActiveWeb3React } from 'app/services/web3'
-import { useMemo, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 
 enum ChartType {
   Volume = 'Volume',
@@ -35,7 +35,8 @@ const PoolStatsChart = () => {
   const isDesktop = useDesktopMediaQuery()
   const { chainId } = useActiveWeb3React()
   const [chartType, setChartType] = useState<ChartType>(ChartType.Volume)
-  const [chartRange, setChartRange] = useState<ChartRange>(ChartRange.ALL)
+  // TODO: Move this back up in a couple weeks...
+  const [chartRange, setChartRange] = useState<ChartRange>(ChartRange['1W'])
   const { poolWithState } = usePoolContext()
 
   const hourBuckets = usePoolHourBuckets({
@@ -52,7 +53,7 @@ const PoolStatsChart = () => {
     variables: {
       where: { pool: poolWithState?.pool?.liquidityToken?.address?.toLowerCase() },
     },
-    shouldFetch: !!poolWithState?.pool && chartTimespans[chartRange] >= chartTimespans['1W'],
+    shouldFetch: !!poolWithState?.pool && chartTimespans[chartRange] > chartTimespans['1W'],
   })
 
   const data = chartTimespans[chartRange] <= chartTimespans['1W'] ? hourBuckets : dayBuckets
@@ -78,6 +79,8 @@ const PoolStatsChart = () => {
         .sort((a, b) => a.x - b.x)
     )
   }, [data, chartRange, chartType])
+
+  useEffect(() => setSelectedIndex(graphData?.length - 1), [graphData])
 
   const [selectedIndex, setSelectedIndex] = useState(graphData?.length - 1)
 

@@ -4,24 +4,33 @@ import loadingCircle from 'app/animation/loading-circle.json'
 import Button from 'app/components/Button'
 import Typography from 'app/components/Typography'
 import AuctionCommitterSkeleton from 'app/features/miso/AuctionCommitter/AuctionCommitterSkeleton'
-import { Auction } from 'app/features/miso/context/Auction'
+import { useAuctionContext } from 'app/features/miso/context/AuctionContext'
 import useAuctionEdit from 'app/features/miso/context/hooks/useAuctionEdit'
 import { classNames } from 'app/functions'
 import Lottie from 'lottie-react'
 import React, { FC, useCallback, useState } from 'react'
 
-interface AuctionClaimerProps {
-  auction?: Auction
-}
-
-const AuctionClaimer: FC<AuctionClaimerProps> = ({ auction }) => {
+const AuctionClaimer: FC = () => {
   const { i18n } = useLingui()
+  const { auction, loading } = useAuctionContext()
   const [pending, setPending] = useState(false)
-  const { claimTokens } = useAuctionEdit(
+  const { claimTokens, finalizeAuction } = useAuctionEdit(
     auction?.auctionInfo.addr,
     auction?.template,
     auction?.auctionInfo.liquidityTemplate
   )
+
+  const handleFinalize = useCallback(async () => {
+    try {
+      setPending(true)
+      const tx = await finalizeAuction()
+      if (tx?.hash) {
+        await tx.wait()
+      }
+    } finally {
+      setPending(false)
+    }
+  }, [finalizeAuction])
 
   const handleClick = useCallback(async () => {
     try {
@@ -35,7 +44,7 @@ const AuctionClaimer: FC<AuctionClaimerProps> = ({ auction }) => {
     }
   }, [claimTokens])
 
-  if (!auction) return <AuctionCommitterSkeleton />
+  if (loading || !auction) return <AuctionCommitterSkeleton />
 
   return (
     <div className="relative mt-6">
@@ -72,8 +81,8 @@ const AuctionClaimer: FC<AuctionClaimerProps> = ({ auction }) => {
               </div>
             ),
           })}
-          onClick={handleClick}
-          disabled={(!auction.canWithdraw && !auction.canClaim) || pending}
+          onClick={auction.canFinalize ? handleFinalize : handleClick}
+          disabled={(!auction.canWithdraw && !auction.canClaim && !auction.canFinalize) || pending}
           className={classNames(
             auction.canWithdraw ? 'from-blue to-blue' : 'from-blue to-pink',
             'w-full outline-none h-[74px] bg-gradient-to-r from-blue to-pink transition-all disabled:scale-[1] hover:scale-[1.02] !opacity-100 disabled:!opacity-40'
@@ -81,7 +90,9 @@ const AuctionClaimer: FC<AuctionClaimerProps> = ({ auction }) => {
         >
           <div className="flex flex-col">
             <Typography className="text-white" weight={700}>
-              {auction.canWithdraw
+              {auction.canFinalize
+                ? i18n._(t`Finalize Auction`)
+                : auction.canWithdraw
                 ? i18n._(t`Withdraw`)
                 : auction.canClaim
                 ? i18n._(t`Claim`)

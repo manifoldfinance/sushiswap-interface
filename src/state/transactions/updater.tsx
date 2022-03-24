@@ -11,7 +11,6 @@ import { useAppDispatch, useAppSelector } from 'app/state/hooks'
 import { selectTransactions } from 'app/state/transactions/selectors'
 import { fetchJsonRpc } from 'lib/jsonrpc'
 import { useCallback, useEffect, useMemo } from 'react'
-import { useRecoilValue } from 'recoil'
 
 import {
   checkedTransaction,
@@ -86,7 +85,7 @@ export default function Updater(): null {
   const dispatch = useAppDispatch()
   const state = useAppSelector(selectTransactions)
 
-  const transactions = useMemo(() => (chainId ? state[chainId] ?? {} : {}), [chainId, state])
+  const transactions = useMemo(() => (chainId ? state[chainId as ChainId] ?? {} : {}), [chainId, state])
 
   // show popup on confirm
   const addPopup = useAddPopup()

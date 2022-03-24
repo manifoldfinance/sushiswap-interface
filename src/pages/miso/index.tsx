@@ -13,7 +13,9 @@ import MisoLayout, { MisoBody, MisoHeader } from 'app/layouts/Miso'
 import { useActiveWeb3React } from 'app/services/web3'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
+import { NextSeo } from 'next-seo'
 import React from 'react'
+
 const queryToAuctionStatus = {
   live: AuctionStatus.LIVE,
   upcoming: AuctionStatus.UPCOMING,
@@ -35,30 +37,31 @@ const Miso = () => {
 
   return (
     <>
+      <NextSeo title="MISO Marketplace" />
       <MisoHeader>
         <div className="flex flex-col justify-between gap-8 lg:flex-row">
           <div className="flex flex-col">
             <Typography variant="hero" weight={700} className="text-white">
-              {i18n._(t`Chef's Edition`)}
+              {i18n._(t`Miso`)}
             </Typography>
             <Typography weight={700}>
-              {i18n._(t`These auctions are meticulously chosen by the Sushi Samurais, serving the best MISO for you.`)}
+              {i18n._(t`Use with caution, this is experimental and permissionless. Due dilligence is required.`)}
             </Typography>
           </div>
-          {chainId === ChainId.HARMONY && (
-            <div className="flex items-center gap-4">
-              <div>
-                <Link href="/miso/auction" passHref={true}>
-                  <Button
-                    color="blue"
-                    className="rounded-full bg-gradient-to-r from-pink-red via-pink to-red text-white transition hover:scale-[1.05]"
-                  >
-                    {i18n._(t`Create Auction`)}
-                  </Button>
-                </Link>
+          {chainId &&
+            [ChainId.HARMONY, ChainId.KOVAN, ChainId.MOONBEAM, ChainId.MOONRIVER, ChainId.MATIC, ChainId.BSC].includes(
+              chainId
+            ) && (
+              <div className="flex items-center gap-4">
+                <div>
+                  <Link href="/miso/auction" passHref={true}>
+                    <Button color="blue" className="rounded-full">
+                      {i18n._(t`Create Auction`)}
+                    </Button>
+                  </Link>
+                </div>
               </div>
-            </div>
-          )}
+            )}
         </div>
       </MisoHeader>
       <MisoBody>

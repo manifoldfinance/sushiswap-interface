@@ -1,8 +1,9 @@
+import { Web3Provider } from '@ethersproject/providers'
 import { CurrencyAmount, JSBI, Rebase, Token, ZERO } from '@sushiswap/core-sdk'
+import { Web3ReactContextInterface } from '@web3-react/core/dist/types'
 import { isAddress, toAmountCurrencyAmount } from 'app/functions'
 import { useAllTokens } from 'app/hooks/Tokens'
 import { useBentoBoxContract } from 'app/hooks/useContract'
-import { useBentoUserTokens } from 'app/services/graph'
 import { useActiveWeb3React } from 'app/services/web3'
 import { OptionalMethodInputs, useSingleCallResult, useSingleContractMultipleData } from 'app/state/multicall/hooks'
 import { useMemo } from 'react'
@@ -35,33 +36,29 @@ export function useBentoMasterContractAllowed(masterContract?: string, user?: st
 }
 
 export const useBentoBalancesV2 = (tokenAddresses?: string[]): { data: CurrencyAmount<Token>[]; loading: boolean } => {
-  const { chainId, account } = useActiveWeb3React()
-  const {
-    error,
-    data,
-    isValidating: loading,
-  } = useBentoUserTokens({
-    chainId,
-    shouldFetch: !!chainId && !!account,
-    variables: { user: account?.toLowerCase() },
-  })
-  const { data: userTokensFallback, loading: fallbackLoading } = useBentoBalancesSubGraph({
-    shouldFetch: !!error,
+  const { account } = useActiveWeb3React()
+  return useBentoBalancesV2ForAccount(account, tokenAddresses)
+}
+
+export const useBentoBalancesV2ForAccount = (
+  account: Web3ReactContextInterface<Web3Provider>['account'],
+  tokenAddresses?: string[]
+): { data: CurrencyAmount<Token>[]; loading: boolean } => {
+  const { chainId } = useActiveWeb3React()
+  return useBentoBalancesWeb3({
+    shouldFetch: !!chainId,
     tokenAddresses,
   })
+}
 
-  if (!error && !!data) {
-    if (tokenAddresses) {
-      return {
-        data: data.filter((el) => tokenAddresses.includes(el.currency.wrapped.address)),
-        loading: false,
-      }
-    }
-
-    return { data, loading } || { data: [], loading: false }
+export const useBentoShareForAccount = (account: string | undefined, token: string | undefined) => {
+  const contract = useBentoBoxContract()
+  const { result } = useSingleCallResult(contract, 'balanceOf', [token, account])
+  if (result && Array.isArray(result) && result.length > 0) {
+    return result[0]
   }
 
-  return { data: userTokensFallback, loading: fallbackLoading } || { data: [], loading: false }
+  return undefined
 }
 
 export const useBentoBalanceV2 = (
@@ -76,7 +73,7 @@ export const useBentoBalanceV2 = (
   }
 }
 
-export const useBentoBalancesSubGraph = ({
+export const useBentoBalancesWeb3 = ({
   shouldFetch = true,
   tokenAddresses,
 }: {
@@ -92,7 +89,7 @@ export const useBentoBalancesSubGraph = ({
         ? tokenAddresses && tokenAddresses.length > 0
           ? tokenAddresses.map((el) => [el])
           : Object.keys(allTokens).reduce<string[][]>((acc, token) => {
-              if (!BLACKLISTED.includes(token) && isAddress(token) !== false) acc.push([token])
+              if (!BLACKLISTED.includes(token) && isAddress(token)) acc.push([token])
               return acc
             }, [])
         : [],

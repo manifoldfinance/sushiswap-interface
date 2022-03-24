@@ -7,12 +7,13 @@ import React, { FC, ReactElement, ReactNode, useCallback, useRef, useState } fro
 
 import Tooltip from '../Tooltip'
 
-const QuestionHelper: FC<{ text?: any; icon?: ReactNode; children?: ReactElement; className?: string }> = ({
-  className,
-  children,
-  text,
-  icon = <InformationCircleIcon width={14} height={14} />,
-}) => {
+const QuestionHelper: FC<{
+  text?: any
+  icon?: ReactNode
+  children?: ReactElement
+  className?: string
+  gap?: boolean
+}> = ({ className, children, text, icon = <InformationCircleIcon width={14} height={14} />, gap = true }) => {
   const [show, setShow] = useState<boolean>(false)
   const [toggle, setToggle] = useToggle(false)
   const node = useRef<HTMLDivElement | null>(null)
@@ -34,7 +35,6 @@ const QuestionHelper: FC<{ text?: any; icon?: ReactNode; children?: ReactElement
       <Tooltip text={text} show={show || toggle} className={className}>
         {React.cloneElement(children, {
           ref: node,
-          onClick: handler,
           className: classNames(children.props.className, 'flex items-center justify-center w-full outline-none'),
           onMouseEnter: open,
           onMouseLeave: close,
@@ -47,8 +47,11 @@ const QuestionHelper: FC<{ text?: any; icon?: ReactNode; children?: ReactElement
     <Tooltip text={text} show={show || toggle} className={className}>
       <div
         ref={node}
-        onClick={handler}
-        className="flex items-center justify-center ml-1 outline-none cursor-help hover:text-primary"
+        onClick={setToggle}
+        className={classNames(
+          gap ? 'ml-1' : '',
+          'flex items-center justify-center outline-none cursor-help hover:text-primary'
+        )}
         onMouseEnter={open}
         onMouseLeave={close}
       >

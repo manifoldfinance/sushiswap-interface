@@ -30,15 +30,15 @@ import { USER_REJECTED_TX } from 'app/services/web3/WalletError'
 import { useWalletModalToggle } from 'app/state/application/hooks'
 import { Field } from 'app/state/burn/actions'
 import { useBurnActionHandlers, useBurnState, useDerivedBurnInfo } from 'app/state/burn/hooks'
+import { useAppSelector } from 'app/state/hooks'
+import { selectSlippageWithDefault } from 'app/state/slippage/slippageSlice'
 import { useTransactionAdder } from 'app/state/transactions/hooks'
-import { useUserSlippageToleranceWithDefault } from 'app/state/user/hooks'
-import Head from 'next/head'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
+import { NextSeo } from 'next-seo'
 import React, { useCallback, useMemo, useState } from 'react'
 import { Plus } from 'react-feather'
 import ReactGA from 'react-ga'
-
 const DEFAULT_REMOVE_LIQUIDITY_SLIPPAGE_TOLERANCE = new Percent(5, 100)
 
 const REMOVE_TIPS = {}
@@ -69,7 +69,7 @@ export default function Remove() {
   // txn values
   const [txHash, setTxHash] = useState<string>('')
   const deadline = useTransactionDeadline()
-  const allowedSlippage = useUserSlippageToleranceWithDefault(DEFAULT_REMOVE_LIQUIDITY_SLIPPAGE_TOLERANCE)
+  const allowedSlippage = useAppSelector(selectSlippageWithDefault(DEFAULT_REMOVE_LIQUIDITY_SLIPPAGE_TOLERANCE))
 
   const formattedAmounts = {
     [Field.LIQUIDITY_PERCENT]: parsedAmounts[Field.LIQUIDITY_PERCENT].equalTo('0')
@@ -420,12 +420,7 @@ export default function Remove() {
 
   return (
     <Container id="remove-liquidity-page" className="py-4 space-y-4 md:py-8 lg:py-12" maxWidth="2xl">
-      <Head>
-        <title>Remove Liquidity | Sushi</title>
-        <meta key="description" name="description" content="Remove liquidity from the SushiSwap AMM" />
-        <meta key="twitter:description" name="twitter:description" content="Remove liquidity from the SushiSwap AMM" />
-        <meta key="og:description" property="og:description" content="Remove liquidity from the SushiSwap AMM" />
-      </Head>
+      <NextSeo title="Remove Liquidity" />
       <div className="px-4 mb-5">
         <NavLink href="/pool">
           <a className="flex items-center space-x-2 text-base font-medium text-center cursor-pointer text-secondary hover:text-high-emphesis">

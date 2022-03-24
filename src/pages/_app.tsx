@@ -6,7 +6,6 @@ import { I18nProvider } from '@lingui/react'
 import { remoteLoader } from '@lingui/remote-loader'
 import { Web3ReactProvider } from '@web3-react/core'
 import Dots from 'app/components/Dots'
-import { SyncWithRedux } from 'app/components/SyncWithRedux'
 import Web3ReactManager from 'app/components/Web3ReactManager'
 import { MultichainExploitAlertModal } from 'app/features/user/MultichainExploitAlertModal'
 import getLibrary from 'app/functions/getLibrary'
@@ -24,10 +23,12 @@ import dynamic from 'next/dynamic'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
 import Script from 'next/script'
+import { DefaultSeo } from 'next-seo'
 import React, { Fragment, useEffect } from 'react'
 import { Provider as ReduxProvider } from 'react-redux'
-import { RecoilRoot } from 'recoil'
 import { PersistGate } from 'redux-persist/integration/react'
+
+import SEO from '../config/seo'
 
 const Web3ProviderNetwork = dynamic(() => import('../components/Web3ProviderNetwork'), { ssr: false })
 
@@ -133,7 +134,6 @@ function MyApp({ Component, pageProps, fallback, err }) {
         <Web3ReactProvider getLibrary={getLibrary}>
           <Web3ProviderNetwork getLibrary={getLibrary}>
             <Web3ReactManager>
-              {/*@ts-ignore TYPE NEEDS FIXING*/}
               <ReduxProvider store={store}>
                 <PersistGate loading={<Dots>loading</Dots>} persistor={persistor}>
                   <>
@@ -141,21 +141,19 @@ function MyApp({ Component, pageProps, fallback, err }) {
                     <UserUpdater />
                     <ApplicationUpdater />
                     <MulticallUpdater />
-                  </>
-                  <RecoilRoot>
-                    <SyncWithRedux />
-                    <Provider>
-                      <Layout>
-                        <Guard>
-                          {/* TODO: Added alert Jan 25. Delete component after a few months. */}
-                          <MultichainExploitAlertModal />
-                          {/*@ts-ignore TYPE NEEDS FIXING*/}
-                          <Component {...pageProps} err={err} />
-                        </Guard>
-                      </Layout>
-                    </Provider>
                     <TransactionUpdater />
-                  </RecoilRoot>
+                  </>
+                  <Provider>
+                    <Layout>
+                      <Guard>
+                        {/* TODO: Added alert Jan 25. Delete component after a few months. */}
+                        <MultichainExploitAlertModal />
+                        {/*@ts-ignore TYPE NEEDS FIXING*/}
+                        <DefaultSeo {...SEO} />
+                        <Component {...pageProps} err={err} />
+                      </Guard>
+                    </Layout>
+                  </Provider>
                 </PersistGate>
               </ReduxProvider>
             </Web3ReactManager>

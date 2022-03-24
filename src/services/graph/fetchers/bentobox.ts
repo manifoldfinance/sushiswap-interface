@@ -106,16 +106,18 @@ export const getUserKashiPairs = async (chainId = ChainId.ETHEREUM, variables) =
 // @ts-ignore TYPE NEEDS FIXING
 export const getBentoUserTokens = async (chainId = ChainId.ETHEREUM, variables): Promise<CurrencyAmount<Token>[]> => {
   const { userTokens } = await fetcher(chainId, bentoUserTokensQuery, variables)
-  // @ts-ignore TYPE NEEDS FIXING
-  return userTokens.map(({ share, token: { decimals, id, name, symbol, totalSupplyElastic, totalSupplyBase } }) => {
-    return toAmountCurrencyAmount(
-      {
-        elastic: JSBI.BigInt(totalSupplyElastic),
-        base: JSBI.BigInt(totalSupplyBase),
-      },
-      CurrencyAmount.fromRawAmount(new Token(chainId, id, Number(decimals), symbol, name), JSBI.BigInt(share))
-    )
-  })
+  return (userTokens || []).map(
+    // @ts-ignore TYPE NEEDS FIXING
+    ({ share, token: { decimals, id, name, symbol, totalSupplyElastic, totalSupplyBase } }) => {
+      return toAmountCurrencyAmount(
+        {
+          elastic: JSBI.BigInt(totalSupplyElastic),
+          base: JSBI.BigInt(totalSupplyBase),
+        },
+        CurrencyAmount.fromRawAmount(new Token(chainId, id, Number(decimals), symbol, name), JSBI.BigInt(share))
+      )
+    }
+  )
 }
 
 // @ts-ignore TYPE NEEDS FIXING
@@ -148,7 +150,7 @@ export const getBentoStrategies = async (chainId = ChainId.ETHEREUM, variables) 
         previousHarvest?.tokenElastic / 10 ** strategy.token.decimals,
       ]
 
-      return [...apys, ((profitPerYear / ((tvl + tvlPrevious) / 2)) * 100) / 2]
+      return [...apys, (profitPerYear / ((tvl + tvlPrevious) / 2)) * 100]
     }, [])
 
     // @ts-ignore TYPE NEEDS FIXING
