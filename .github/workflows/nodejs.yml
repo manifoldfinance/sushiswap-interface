@@ -1,0 +1,30 @@
+name: nodejs
+on:
+  pull_request:
+    branches: [master]
+
+jobs:
+  package-size:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Git checkout
+        uses: actions/checkout@v3
+      - name: Use Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '*'
+          cache: 'yarn'
+          cache-dependency-path: 'yarn.lock'
+          check-latest: true
+      - name: Install dependencies
+        run: yarn install --pure-lockfile
+      - name: Get size
+        run: du -sk node_modules | cut -f1 > .delta.packageSize && echo "kb (Package size)" >> .delta.packageSize
+      - name: Run Delta
+        uses: netlify/delta-action@v2
+        with:
+          title: '📊 Benchmark results'
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+# TODO
+# delta.install_time
