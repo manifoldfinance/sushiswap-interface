@@ -149,6 +149,7 @@ function MyApp({ Component, pageProps, fallback, err }) {
 
     return (
       <>
+      {/*} @ts-ignore  */}
         <PWAPrompt
           timesToShow={2}
           permanentlyHideOnDismiss={false}
