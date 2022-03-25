@@ -1,0 +1,55 @@
+name: Build Performance
+
+on:
+  pull_request:
+    branches:
+      - master
+      - canary
+    paths-ignore:
+      - src/**
+      
+# Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+jobs:
+  build-size:
+    name: Build Size Report
+    timeout-minutes: 30
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: '16'
+          cache: yarn
+      - uses: preactjs/compressed-size-action@v2
+        with:
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          build-script: npx next build
+          clean-script: rm -rf .next/ && rm -rf node_modules/
+          pattern: '{server/**/**.js,*.js,static/chunks/**/css/styles*css,website/.next/*.json,server/pages/*.html,.next/server/pages/api/**,website/build/blog/**/*}'
+          exclude: "{**/*.map,**/node_modules/**}"
+          strip-hash: '\.([^;]\w{7})\.'
+          minimum-change-threshold: 30
+          compression: none
+  build-time:
+    name: Build Time Perf
+    timeout-minutes: 30
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          cache: yarn
+      - name: Installation
+        run: yarn install --frozen-lockfile
+
+      # Ensure build with a cold cache does not increase too much
+      - name: Build (cold cache)
+        run: yarn run build
+        timeout-minutes: 8
+
+      # Ensure build with a warm cache does not increase too much
+      - name: Build (warm cache)
+        run: yarn run build
+        timeout-minutes: 2
