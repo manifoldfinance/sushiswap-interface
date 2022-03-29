@@ -1,6 +1,6 @@
 import { Currency, CurrencyAmount, ZERO } from '@sushiswap/core-sdk'
-import { classNames } from 'app/functions'
-import { useUSDCValue } from 'app/hooks/useUSDCPrice'
+import { classNames, formatNumber } from 'app/functions'
+import { useUSDCValueSubgraph } from 'app/hooks/useUSDCSubgraph'
 import React, { FC, ReactNode } from 'react'
 
 import Chip from '../Chip'
@@ -152,7 +152,7 @@ const CurrencyAmountItem: FC<CurrencyAmountItemProps> = ({
   hideCurrencyLogo,
   hideUSDC = false,
 }) => {
-  const usdcValue = useUSDCValue(
+  const usdcValue = useUSDCValueSubgraph(
     hideUSDC ? undefined : amount?.equalTo(ZERO) ? CurrencyAmount.fromRawAmount(amount?.currency, '1') : amount
   )
 
@@ -190,11 +190,11 @@ const CurrencyAmountItem: FC<CurrencyAmountItemProps> = ({
         </Typography>
       </div>
       <Typography className="text-right text-high-emphesis" weight={700}>
-        {amount?.toSignificant(6)}
+        {formatNumber(amount?.toSignificant(6))}
       </Typography>
       {!hideUSDC && (
         <Typography className="text-right" variant="sm">
-          ${usdcValue?.toSignificant(6)}
+          {formatNumber(usdcValue?.toSignificant(6), true, false, 6)}
         </Typography>
       )}
     </div>
