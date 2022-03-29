@@ -53,7 +53,7 @@
     "@ethersproject/constants": "^5.4.0",
     "@ethersproject/contracts": "^5.4.0",
     "@ethersproject/hash": "^5.4.0",
-    "@ethersproject/keccak256": "^5.6.2",
+    "@ethersproject/keccak256": "^5.6.0",
     "@ethersproject/providers": "^5.6.2",
     "@ethersproject/strings": "^5.4.0",
     "@ethersproject/units": "^5.6.0",
