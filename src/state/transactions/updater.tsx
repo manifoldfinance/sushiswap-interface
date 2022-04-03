@@ -1,7 +1,7 @@
 import { ChainId } from '@sushiswap/core-sdk'
-import { retry, RetryableError, RetryOptions } from 'app/functions/retry'
 import { SUSHIGUARD } from 'app/config/sushiguard'
 import { PrivateTxState, PrivateTxStatus } from 'app/entities/SushiGuard'
+import { retry, RetryableError, RetryOptions } from 'app/functions/retry'
 // import { routingInfo } from 'app/hooks/useBestTridentTrade'
 import { txMinutesPending } from 'app/functions/transactions'
 import { useActiveWeb3React } from 'app/services/web3'
@@ -9,8 +9,9 @@ import { updateBlockNumber } from 'app/state/application/actions'
 import { useAddPopup, useBlockNumber } from 'app/state/application/hooks'
 import { useAppDispatch, useAppSelector } from 'app/state/hooks'
 import { selectTransactions } from 'app/state/transactions/selectors'
-import { useCallback, useEffect, useMemo } from 'react'
 import { fetchJsonRpc } from 'lib/jsonrpc'
+import { useCallback, useEffect, useMemo } from 'react'
+
 // import { useRecoilValue } from 'recoil'
 import {
   checkedTransaction,
