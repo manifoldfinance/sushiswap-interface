@@ -16,3 +16,7 @@ export const OPENMEV_SUPPORTED_NETWORKS = [ChainId.ETHEREUM]
 export const SUSHIGUARD_RELAY: { [chainId in ChainId]?: string } = {
   [ChainId.ETHEREUM]: 'https://api.sushirelay.com/v1',
 }
+
+export const SUSHIGUARD: { [chainId in ChainId]?: string } = {
+  [ChainId.ETHEREUM]: 'https://api.sushirelay.com/v1',
+}
