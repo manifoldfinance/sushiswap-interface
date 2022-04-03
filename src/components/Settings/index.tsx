@@ -101,13 +101,13 @@ const SettingsTab: FC<SettingsTabProps> = ({ placeholderSlippage, className, tri
                   />
                 </div>
               )}
-              {featureEnabled(Feature.SUSHIGUARD, chainId ?? -1) && walletSupportsSushiGuard && (
+              {chainId && featureEnabled(Feature.RELAY, chainId) && (
                 <div className="flex items-center justify-between">
                   <div className="flex items-center">
                     <Typography variant="xs" className="text-high-emphesis" weight={700}>
                       {i18n._(t`SushiGuard Gas Refunder`)}
                     </Typography>
-                    <QuestionHelper text={i18n._(t`SushiGuard refunds up to 95% of transaction costs in 35 blocks.`)} />
+                    <QuestionHelper text={i18n._(t`SushiGuard refunds transaction cost up to 95% in SUSHI`)} />
                   </div>
                   <Switch
                     size="sm"

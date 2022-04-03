@@ -27,11 +27,13 @@ const QuestionHelper: FC<{ text?: any; icon?: ReactNode; children?: ReactElement
     },
     [setToggle]
   )
+
   if (children) {
     return (
       <Tooltip text={text} show={show || toggle} className={className}>
         {React.cloneElement(children, {
           ref: node,
+          onClick: handler,
           className: classNames(children.props.className, 'flex items-center justify-center w-full outline-none'),
           onMouseEnter: open,
           onMouseLeave: close,

@@ -14,4 +14,5 @@ export enum Feature {
   MEOWSHI = 'MEOWSHI',
   VESTING = 'Vesting',
   SUSHIGUARD = 'SushiGuard',
+  RELAY = 'SushiRelay',
 }
