@@ -3,6 +3,7 @@ import { ChainId } from '@sushiswap/core-sdk'
 import { PrivateTxState, PrivateTxStatus } from 'app/entities/SushiGuard'
 import { txMinutesPending } from 'app/functions/transactions'
 
+import { updateVersion } from '../global/actions'
 import {
   addTransaction,
   checkedTransaction,
@@ -16,9 +17,6 @@ const now = () => new Date().getTime()
 
 export interface TransactionDetails {
   hash: string
-  approval?: { tokenAddress: string; spender: string }
-  summary?: string
-  claim?: { recipient: string }
   receipt?: SerializableTransactionReceipt
   lastCheckedBlockNumber?: number
   addedTime: number
@@ -30,9 +28,11 @@ export interface TransactionDetails {
   }
 }
 
-type txHash = string
-
-export type TransactionState = { [key in ChainId]?: Record<txHash, TransactionDetails> }
+export interface TransactionState {
+  [chainId: number]: {
+    [txHash: string]: TransactionDetails
+  }
+}
 
 export const initialState: TransactionState = {}
 

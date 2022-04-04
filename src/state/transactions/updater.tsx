@@ -6,7 +6,7 @@ import { retry, RetryableError, RetryOptions } from 'app/functions/retry'
 import { txMinutesPending } from 'app/functions/transactions'
 import { useActiveWeb3React } from 'app/services/web3'
 import { updateBlockNumber } from 'app/state/application/actions'
-import { useAddPopup, useBlockNumber } from 'app/state/application/hooks'
+import { useAddPopup } from 'app/state/application/hooks'
 import { useAppDispatch, useAppSelector } from 'app/state/hooks'
 
 import { fetchJsonRpc } from 'lib/jsonrpc'
@@ -86,6 +86,11 @@ const SUSHIGUARD_RETRY_OPTIONS: RetryOptions = { n: 3, minWait: 2000, maxWait: 5
 export default function Updater(): null {
   const { chainId, library } = useActiveWeb3React()
   const lastBlockNumber = useBlockNumber()
+import { DEFAULT_TXN_DISMISS_MS } from 'app/constants'
+import LibUpdater from 'lib/hooks/transactions/updater'
+import { useCallback, useMemo } from 'react'
+import { useActiveWeb3React } from 'services/web3'
+import { useAppDispatch, useAppSelector } from 'state/hooks'
 
   //export default function Updater() {
   const addPopup = useAddPopup()
@@ -113,6 +118,30 @@ export default function Updater(): null {
             return receipt as SerializableTransactionReceipt
           }),
         retryOptions
+  const onReceipt = useCallback(
+    ({ chainId, hash, receipt }) => {
+      dispatch(
+        finalizeTransaction({
+          chainId,
+          hash,
+          receipt: {
+            blockHash: receipt.blockHash,
+            blockNumber: receipt.blockNumber,
+            contractAddress: receipt.contractAddress,
+            from: receipt.from,
+            status: receipt.status,
+            to: receipt.to,
+            transactionHash: receipt.transactionHash,
+            transactionIndex: receipt.transactionIndex,
+          },
+        })
+      )
+      addPopup(
+        {
+          txn: { hash, success: receipt.status === 1, summary: transactions[hash]?.summary },
+        },
+        hash,
+        DEFAULT_TXN_DISMISS_MS
       )
     },
     [addPopup, dispatch, transactions]
@@ -268,4 +297,8 @@ export default function Updater(): null {
   }, [chainId, library, transactions, lastBlockNumber, dispatch, addPopup, getPrivateTxStatus, getReceipt])
 
   return null
+  const pendingTransactions = useMemo(() => (chainId ? state[chainId] ?? {} : {}), [chainId, state])
+
+  return <LibUpdater pendingTransactions={pendingTransactions} onCheck={onCheck} onReceipt={onReceipt} />
+
 }
