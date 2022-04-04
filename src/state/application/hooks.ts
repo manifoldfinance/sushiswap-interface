@@ -2,7 +2,7 @@ import { DEFAULT_TXN_DISMISS_MS } from 'app/constants'
 import { useAppDispatch, useAppSelector } from 'app/state/hooks'
 import { useCallback, useMemo } from 'react'
 import { useSelector } from 'react-redux'
-
+import { useActiveWeb3React } from 'app/services/web3'
 import { AppState } from '..'
 import { addPopup, ApplicationModal, PopupContent, removePopup, setOpenModal } from './reducer'
 

@@ -4,13 +4,20 @@ import { useActiveWeb3React } from 'app/services/web3'
 import { useBlockNumber } from 'app/state/application/hooks'
 import { useEffect, useState } from 'react'
 
-interface FeeDataExtend extends FeeData {
+
+/**
+ * @interface FeeDataExtend
+ * @extends {FeeData}
+ * @summary Hook that returns the fee data from the active provider.
+ */
+export interface FeeDataExtend extends FeeData {
   eip1559: boolean
 }
 
 type UseFeeData = () => FeeDataExtend
 
-const useFeeData: UseFeeData = () => {
+const useFeeData: 
+UseFeeData = () => {
   const { chainId, library } = useActiveWeb3React()
   const blockNumber = useBlockNumber()
 
