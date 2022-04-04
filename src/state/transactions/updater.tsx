@@ -8,11 +8,10 @@ import { useActiveWeb3React } from 'app/services/web3'
 import { updateBlockNumber } from 'app/state/application/actions'
 import { useAddPopup, useBlockNumber } from 'app/state/application/hooks'
 import { useAppDispatch, useAppSelector } from 'app/state/hooks'
-import { selectTransactions } from 'app/state/transactions/selectors'
+
 import { fetchJsonRpc } from 'lib/jsonrpc'
 import { useCallback, useEffect, useMemo } from 'react'
 
-// import { useRecoilValue } from 'recoil'
 import {
   checkedTransaction,
   finalizeTransaction,
@@ -86,16 +85,20 @@ const SUSHIGUARD_RETRY_OPTIONS: RetryOptions = { n: 3, minWait: 2000, maxWait: 5
 
 export default function Updater(): null {
   const { chainId, library } = useActiveWeb3React()
-
   const lastBlockNumber = useBlockNumber()
 
+//export default function Updater() {
+  const addPopup = useAddPopup()
   const dispatch = useAppDispatch()
-  const state = useAppSelector(selectTransactions)
+  const onCheck = useCallback(
+    ({ chainId, hash, blockNumber }) => dispatch(checkedTransaction({ chainId, hash, blockNumber })),
+    [dispatch]
+  )
+
+  const state = useAppSelector((state) => state.transactions)
 
   const transactions = useMemo(() => (chainId ? state[chainId as ChainId] ?? {} : {}), [chainId, state])
 
-  // show popup on confirm
-  const addPopup = useAddPopup()
 
   const getReceipt = useCallback(
     (hash: string) => {
@@ -113,17 +116,17 @@ export default function Updater(): null {
         retryOptions
       )
     },
-    [chainId, library]
+    [addPopup, dispatch, transactions]
   )
 
   const getPrivateTxStatus = useCallback(
     (hash: string) => {
       if (!chainId) throw new Error('No chainId')
-      // @ts-expect-error
+              // @ts-expect-error
       if (!SUSHIGUARD[chainId]) throw Error('SushiGuard is not available for the selected network.')
       return retry(
         () =>
-          // @ts-expect-error
+        // @ts-expect-error
           fetchJsonRpc<PrivateTxStatus>(SUSHIGUARD[chainId] ?? '', {
             method: 'manifold_transactionStatus',
             params: [hash],
@@ -266,4 +269,4 @@ export default function Updater(): null {
   }, [chainId, library, transactions, lastBlockNumber, dispatch, addPopup, getPrivateTxStatus, getReceipt])
 
   return null
-}
+};
