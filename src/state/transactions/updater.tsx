@@ -87,7 +87,7 @@ export default function Updater(): null {
   const { chainId, library } = useActiveWeb3React()
   const lastBlockNumber = useBlockNumber()
 
-//export default function Updater() {
+  //export default function Updater() {
   const addPopup = useAddPopup()
   const dispatch = useAppDispatch()
   const onCheck = useCallback(
@@ -98,7 +98,6 @@ export default function Updater(): null {
   const state = useAppSelector((state) => state.transactions)
 
   const transactions = useMemo(() => (chainId ? state[chainId as ChainId] ?? {} : {}), [chainId, state])
-
 
   const getReceipt = useCallback(
     (hash: string) => {
@@ -122,11 +121,11 @@ export default function Updater(): null {
   const getPrivateTxStatus = useCallback(
     (hash: string) => {
       if (!chainId) throw new Error('No chainId')
-              // @ts-expect-error
+      // @ts-expect-error
       if (!SUSHIGUARD[chainId]) throw Error('SushiGuard is not available for the selected network.')
       return retry(
         () =>
-        // @ts-expect-error
+          // @ts-expect-error
           fetchJsonRpc<PrivateTxStatus>(SUSHIGUARD[chainId] ?? '', {
             method: 'manifold_transactionStatus',
             params: [hash],
@@ -269,4 +268,4 @@ export default function Updater(): null {
   }, [chainId, library, transactions, lastBlockNumber, dispatch, addPopup, getPrivateTxStatus, getReceipt])
 
   return null
-};
+}
