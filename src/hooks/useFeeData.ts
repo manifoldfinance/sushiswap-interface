@@ -21,7 +21,6 @@ const useFeeData: UseFeeData = () => {
     gasPrice: null,
   })
 
-  // @ts-expect-error
   const eip1559 = !!chainId && !!blockNumber ? blockNumber >= Number(EIP_1559_ACTIVATION_BLOCK[chainId]) : false
 
   // Call this useEffect every block
