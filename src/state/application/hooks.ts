@@ -2,9 +2,11 @@ import { DEFAULT_TXN_DISMISS_MS } from 'app/constants'
 import { useAppDispatch, useAppSelector } from 'app/state/hooks'
 import { useCallback, useMemo } from 'react'
 import { useSelector } from 'react-redux'
-import { useActiveWeb3React } from 'app/services/web3'
+//import { useActiveWeb3React } from 'web3-react-core'
 import { AppState } from '..'
 import { addPopup, ApplicationModal, PopupContent, removePopup, setOpenModal } from './reducer'
+import { useActiveWeb3React } from 'app/services/web3'
+
 
 export function useBlockNumber(): number | undefined {
   const { chainId } = useActiveWeb3React()
