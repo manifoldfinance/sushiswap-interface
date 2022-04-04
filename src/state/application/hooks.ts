@@ -7,16 +7,15 @@ import { AppState } from '..'
 import { addPopup, ApplicationModal, PopupContent, removePopup, setOpenModal } from './reducer'
 import { useActiveWeb3React } from 'app/services/web3'
 
-
 export function useBlockNumber(): number | undefined {
   const { chainId } = useActiveWeb3React()
-
+// @ts-ignore
   return useSelector((state: AppState) => state.application.blockNumber[chainId ?? -1])
 }
 
 export function useBlockTimestamp(): number | undefined {
   const { chainId } = useActiveWeb3React()
-
+// @ts-ignore
   return useSelector((state: AppState) => state.application.blockTimestamp[chainId ?? -1])
 }
 

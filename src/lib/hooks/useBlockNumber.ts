@@ -67,6 +67,6 @@ export default function useBlockNumber(): number | undefined {
 }
 
 export function useFastForwardBlockNumber(): (block: number) => void {
-    // @ts-expect-error
+  // @ts-expect-error
   return useUpdateAtom(blockAtom)
 }

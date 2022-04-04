@@ -55,5 +55,5 @@
     "incremental": true
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "sushi-env.d.ts"],
-  "exclude": ["node_modules", "**/*.test.ts, **/*.spec.ts, **/*.test.tsx, **/*.spec.tsx"],
+  "exclude": ["node_modules", "**/*.test.ts", "**/*.spec.ts", "**/*.test.tsx", "**/*.spec.tsx"],
 }

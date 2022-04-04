@@ -325,7 +325,7 @@ export function useKashiPairsForAccount(account: string | null | undefined, addr
     chainId &&
     pollKashiPairs?.map(
       (pair: any) =>
-      // @ts-expect-error
+        // @ts-expect-error
         new KashiMediumRiskLendingPair({
           accrueInfo: {
             feesEarnedFraction: JSBI.BigInt(pair.accrueInfo.feesEarnedFraction.toString()),

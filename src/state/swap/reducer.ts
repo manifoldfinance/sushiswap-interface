@@ -113,4 +113,4 @@ export default createReducer<SwapState>(initialState, (builder) =>
     .addCase(setPriorityFee, (state, { payload: setPriorityFee }) => {
       state.maxPriorityFee = setPriorityFee
     })
-);
+)

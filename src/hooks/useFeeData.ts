@@ -4,7 +4,6 @@ import { useActiveWeb3React } from 'app/services/web3'
 import { useBlockNumber } from 'app/state/application/hooks'
 import { useEffect, useState } from 'react'
 
-
 /**
  * @interface FeeDataExtend
  * @extends {FeeData}
@@ -16,8 +15,7 @@ export interface FeeDataExtend extends FeeData {
 
 type UseFeeData = () => FeeDataExtend
 
-const useFeeData: 
-UseFeeData = () => {
+const useFeeData: UseFeeData = () => {
   const { chainId, library } = useActiveWeb3React()
   const blockNumber = useBlockNumber()
 
