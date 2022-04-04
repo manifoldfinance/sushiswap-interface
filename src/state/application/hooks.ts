@@ -7,13 +7,13 @@ import { useDispatch, useSelector } from 'react-redux'
 
 export function useBlockNumber(): number | undefined {
   const { chainId } = useActiveWeb3React()
-
+// @ts-ignore
   return useSelector((state: AppState) => state.application.blockNumber[chainId ?? -1])
 }
 
 export function useBlockTimestamp(): number | undefined {
   const { chainId } = useActiveWeb3React()
-
+// @ts-ignore
   return useSelector((state: AppState) => state.application.blockTimestamp[chainId ?? -1])
 }
 
