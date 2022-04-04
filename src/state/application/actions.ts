@@ -1,12 +1,13 @@
 import { createAction } from '@reduxjs/toolkit'
 import { TokenList } from '@uniswap/token-lists'
-
+import { DEFAULT_TXN_DISMISS_MS } from 'app/constants'
 export type PopupContent =
   | {
       txn: {
         hash: string
         success: boolean
         summary?: string
+        DEFAULT_TXN_DISMISS_MS?: number
       }
     }
   | {
