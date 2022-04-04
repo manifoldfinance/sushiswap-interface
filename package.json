@@ -38,6 +38,7 @@
   "devDependencies": {
     "@babel/preset-react": "^7.16.7",
     "@binance-chain/bsc-connector": "^1.0.0",
+    "@builder.io/partytown": "^0.5.2",
     "@chainsafe/dappeteer": "2.4.1",
     "@clover-network/clover-connector": "^1.0.0",
     "@commitlint/cli": "^16.2.0",
