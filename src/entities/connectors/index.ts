@@ -1,2 +1,3 @@
-export { FortmaticConnector } from './FortmaticConnector'
-export { NetworkConnector } from './NetworkConnector'
+import * as FortmaticConnector from './FortmaticConnector'
+import * as NetworkConnector from './NetworkConnector'
+export { FortmaticConnector, NetworkConnector }
