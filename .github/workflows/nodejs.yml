@@ -1,0 +1,68 @@
+# CI for command line NodeJS Applications
+name: nodejs
+
+on:
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: 'Environment to run against'
+        type: environment
+        required: false 
+
+# ensure multiple CI processes are not running analysis on contracts
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event_name == 'workflow_dispatch' && github.head_ref || github.ref }}
+  cancel-in-progress: true
+
+env:
+  CI: ''
+  COMMIT_SHA: ${{ github.event.pull_request.head.sha }}
+  PULL_NUMBER: ${{ github.event.pull_request.number }}
+  RUN_ID: ${{ github.run_id }}
+  FORCE_COLOR: 2
+  NEXT_TELEMETRY_DISABLED: 1
+
+jobs:
+  pipeline:
+    name: Node ${{ matrix.node }} on ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
+
+    strategy:
+      fail-fast: false
+      matrix:
+        node: ['14.x']
+        os: ['ubuntu-latest']
+
+    steps:
+      - uses: actions/checkout@v3
+      - name: Use Node.js ${{ matrix.node }}
+        uses: actions/setup-node@v2
+        with:
+          node-version: ${{ matrix.node }}
+
+      - name: Get yarn cache directory path
+        id: yarn-cache-dir-path
+        run: echo "::set-output name=dir::$(yarn cache dir)"
+
+      - uses: actions/cache@v3
+        id: yarn-cache # use this to check for `cache-hit` (`steps.yarn-cache.outputs.cache-hit != 'true'`)
+        with:
+          path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-yarn-
+      - run: |
+          echo "Commit SHA: $COMMIT_SHA"
+          echo "Run ID: $RUN_ID"
+          echo "Environment: $ENVIRONMENT"
+
+      - name: Install project dependencies
+        run: yarn --prefer-offline
+        id: install
+
+      - name: Install project dependencies
+        run: yarn run build
+        id: production
+        env:
+          NODE_ENV: production
+          NEXT_TELEMETRY_DISABLED: 1
