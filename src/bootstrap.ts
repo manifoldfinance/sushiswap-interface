@@ -3,7 +3,6 @@
 import { BigNumber, BigNumberish } from '@ethersproject/bignumber'
 import { Zero } from '@ethersproject/constants'
 import { parseUnits } from '@ethersproject/units'
-import { Integrations } from '@sentry/tracing'
 import { Fraction } from 'app/entities/bignumber'
 import React from 'react'
 
@@ -75,10 +74,10 @@ export const initializeSentry = (): void => {
 	});
 };
 
-export const DNT = DO_NOT_TRACK_ENABLED;
+export const DNT = DO_NOT_TRACK_ENABLED
 
 export async function logError(err: Error) {
-  sentry.captureException(err);
+  Sentry.captureException(err)
 
-  if (window.console && console.error) console.error(err);
+  if (window.console && console.error) console.error(err)
 }
