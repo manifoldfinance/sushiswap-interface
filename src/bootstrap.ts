@@ -74,11 +74,11 @@ BigNumber.prototype.max = function (...values: BigNumberish[]): BigNumber {
 }
 
 export const initSentry = () => {
-  if (process.env.NEXT_PUBLIC_SENTRY_DSN) {
+  if (process.env.NODE_ENV) {
     Sentry.init({
       // @note fallback is Sushi's DSN ingest point
       // prettier-ignore
-      dsn: process.env.NEXT_PUBLIC_SENTRY_DSN || 'https://e852f945bc774d718d25aa807d8417dd@o960777.ingest.sentry.io/5909166',
+      dsn: 'https://e852f945bc774d718d25aa807d8417dd@o960777.ingest.sentry.io/5909166',
       // NEXT_PUBLIC_RELEASE_VERSION: Set in production script when releasing, see `git-hash.sh`
       //release: process.env.NEXT_PUBLIC_RELEASE_VERSION,
         release: 'sushiswap-2022.05.21-debug',
@@ -89,22 +89,15 @@ export const initSentry = () => {
           // default = ['localhost', /^\//],
          tracingOrigins: ['api.sushirelay.com/v1', '*.vercel.app', '*.sushi.com']
         }),
-        new Sentry.Integrations.Breadcrumbs({
-          // disable console logoutput for end users, not need to report errors to them
-          console: true,
-        }),
       ],
     })
   }
 }
 
 
-    new Sentry.BrowserTracing({
-      tracingOrigins: ["api.sushirelay.com/v1"],
-    }),
-
 export const sentryLog = (msg: string, walletName?: string): any => {
   // @note Sentry.withScope(function (scope: { setTag: (arg0: string, arg1: string) => void; setContext: (arg0: string, arg1: { name: string; }) => void; }) {
+    // @ts-ignore
   Sentry.withScope(function (scope) {
     if (walletName) {
       scope.setTag('web3', walletName)
