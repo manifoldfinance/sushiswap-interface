@@ -67,10 +67,44 @@ BigNumber.prototype.max = function (...values: BigNumberish[]): BigNumber {
 
 export const initializeSentry = sentry.initialize;
 
-export const DNT = DO_NOT_TRACK_ENABLED;
-
-export async function logError(err: Error) {
-  sentry.captureException(err);
-
-  if (window.console && console.error) console.error(err);
+class SentryInstrumentation {
+    initialBuild: boolean = false;
+  
+    Sentry?: typeof Sentry;
+  
+    constructor() {
+      // Only run if SENTRY_INSTRUMENTATION` / NODE_ENV is set or when in ci,
+      // only in the javascript suite that runs webpack
+      if (!NODE_ENV) {
+        return;
+      }
+  
+      const sentry = require('@sentry/nextjs');
+      require('@sentry/tracing'); // This is required to patch Sentry
+  
+      sentry.init({
+        dsn: 'https://b3d1f140b36f441da22791ca98210c95@o1029417.ingest.sentry.io/6052500',
+        release: 'sushiswap-interface@2022.05.21',
+        integrations: [new Integrations.BrowserTracing()],
+        // Set tracesSampleRate to 1.0 to capture 100%
+        // of transactions for performance monitoring.
+        // We recommend adjusting this value in production
+        environment: IS_CI ? 'ci' : 'local',
+        tracesSampleRate: 1.0,
+      });
+  
+      if (IS_CI) {
+        sentry.setTag('branch', GITHUB_REF);
+      }
+  
+      const cpus = os.cpus();
+      sentry.setTag('platform', os.platform());
+      sentry.setTag('arch', os.arch());
+      sentry.setTag(
+        'cpu',
+        cpus && cpus.length ? `${cpus[0].model} (cores: ${cpus.length})}` : 'N/A'
+      );
+  
+      this.Sentry = sentry;
+    }
 }
