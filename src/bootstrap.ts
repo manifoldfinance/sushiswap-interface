@@ -6,8 +6,8 @@ import { parseUnits } from '@ethersproject/units'
 import { Fraction } from 'app/entities/bignumber'
 import React from 'react'
 
-import * as Sentry from './sentry'
-import { BrowserTracing } from "@sentry/tracing";
+import * as Sentry from '@sentry/react'
+import { Integrations } from '@sentry/tracing'
 
 if (typeof window !== 'undefined' && process.env.NODE_ENV === 'development') {
   const whyDidYouRender = require('@welldone-software/why-did-you-render')
@@ -65,15 +65,39 @@ BigNumber.prototype.max = function (...values: BigNumberish[]): BigNumber {
   return highest
 }
 
-export const initializeSentry = (): void => {
-	return Sentry.init({
-        dsn: 'https://b3d1f140b36f441da22791ca98210c95@o1029417.ingest.sentry.io/6052500',
-        integrations: [new Integrations.BrowserTracing()],
-        tracesSampleRate: 1.0,
-        release: 'sushiswap-interface@2022.05.21',
-	});
-};
+export const initSentry = () => {
+  if (process.env.NEXT_PUBLIC_SENTRY_DSN) {
+    Sentry.init({
+      // @note fallback is Sushi's DSN ingest point
+      // prettier-ignore
+      dsn: process.env.NEXT_PUBLIC_SENTRY_DSN || 'https://e852f945bc774d718d25aa807d8417dd@o960777.ingest.sentry.io/5909166',
+      // NEXT_PUBLIC_RELEASE_VERSION: Set in production script when releasing, see `git-hash.sh`
+      release: process.env.NEXT_PUBLIC_RELEASE_VERSION,
+      // fall back production
+      environment: process.env.NEXT_PUBLIC_SENTRY_ENV || 'production',
+      integrations: [
+        new Integrations.BrowserTracing(),
+        new Sentry.Integrations.Breadcrumbs({
+          // disable console logoutput for end users, not need to report errors to them
+          console: true,
+        }),
+      ],
+    })
+  }
+}
 
+export const sentryLog = (msg: string, walletName?: string): any => {
+  // @note Sentry.withScope(function (scope: { setTag: (arg0: string, arg1: string) => void; setContext: (arg0: string, arg1: { name: string; }) => void; }) {
+  Sentry.withScope(function (scope) {
+    if (walletName) {
+      scope.setTag('web3', walletName)
+      scope.setContext('wallet', {
+        name: walletName,
+      })
+    }
+    Sentry.captureMessage(msg)
+  })
+}
 export const DNT = DO_NOT_TRACK_ENABLED
 
 export async function logError(err: Error) {
