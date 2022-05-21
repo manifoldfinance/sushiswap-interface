@@ -8,6 +8,7 @@ import { Fraction } from 'app/entities/bignumber'
 import React from 'react'
 
 import * as Sentry from './sentry'
+import { BrowserTracing } from "@sentry/tracing";
 
 if (typeof window !== 'undefined' && process.env.NODE_ENV === 'development') {
   const whyDidYouRender = require('@welldone-software/why-did-you-render')
@@ -65,7 +66,14 @@ BigNumber.prototype.max = function (...values: BigNumberish[]): BigNumber {
   return highest
 }
 
-export const initializeSentry = sentry.initialize;
+export const initializeSentry = (): void => {
+	return Sentry.init({
+        dsn: 'https://b3d1f140b36f441da22791ca98210c95@o1029417.ingest.sentry.io/6052500',
+        integrations: [new Integrations.BrowserTracing()],
+        tracesSampleRate: 1.0,
+        release: 'sushiswap-interface@2022.05.21',
+	});
+};
 
 export const DNT = DO_NOT_TRACK_ENABLED;
 
