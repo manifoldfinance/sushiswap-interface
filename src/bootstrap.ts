@@ -98,10 +98,11 @@ export const sentryLog = (msg: string, walletName?: string): any => {
     Sentry.captureMessage(msg)
   })
 }
-export const DNT = DO_NOT_TRACK_ENABLED
 
+/**
 export async function logError(err: Error) {
   Sentry.captureException(err)
 
   if (window.console && console.error) console.error(err)
 }
+*/
