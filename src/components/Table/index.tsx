@@ -186,7 +186,8 @@ export default function Table<T>({
                           {column.render('Header')}
                           {/* @ts-ignore TYPE NEEDS FIXING */}
                           {column.HideHeader && isHidden && (
-                            <button onClick={(e) => toggleHide(e)} className="ml-1 text-dark-700">
+                            <button // @ts-ignore
+onClick={(e) => toggleHide(e)} className="ml-1 text-dark-700">
                               {column.render('HideHeader')}
                             </button>
                           )}
@@ -209,7 +210,8 @@ export default function Table<T>({
                     return (
                       <td key={cI} className="pb-3 pl-0 pr-0" {...cell.getCellProps()}>
                         <div
-                          onClick={
+                          // @ts-ignore
+onClick={
                             link ? () => router.push(link.href + getProperty(cell.row.original, link.id)) : () => {}
                           }
                         >
@@ -248,12 +250,14 @@ export default function Table<T>({
           <div className="flex text-sm font-bold text-secondary">
             <div>Rows per page: </div>
             <select
-              value={pageSize}
+              // @ts-ignore
+value={pageSize}
               onChange={(e) => setPageSize(Number(e.target.value))}
               className="ml-1 bg-transparent"
             >
               {[10, 20, 30, 40, 50].map((pageSize) => (
-                <option className="bg-dark-1000" key={pageSize} value={pageSize}>
+                <option className="bg-dark-1000" key={pageSize} // @ts-ignore
+value={pageSize}>
                   {pageSize}
                 </option>
               ))}
@@ -264,13 +268,15 @@ export default function Table<T>({
               {`${pageSize * pageIndex + 1}-${pageSize * (pageIndex + 1)} of ${rows.length}`}
             </div>
             <button
-              onClick={() => previousPage()}
+              // @ts-ignore
+onClick={() => previousPage()}
               className={classNames(!canPreviousPage ? 'opacity-50 hover:cursor-default' : '', 'ml-3')}
             >
               <ArrowLeftIcon width={16} height={16} />
             </button>
             <button
-              onClick={() => nextPage()}
+              // @ts-ignore
+onClick={() => nextPage()}
               className={classNames(!canNextPage ? 'opacity-50 hover:cursor-default' : '', 'ml-3')}
             >
               <ArrowRightIcon width={16} height={16} />

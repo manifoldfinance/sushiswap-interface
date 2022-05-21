@@ -11,7 +11,8 @@ export default function Tabs({ tabs, currentTab, setTab }: TabsProps): JSX.Eleme
     <>
       <div className="flex flex-row space-x-8 overflow-x-auto overflow-y-hidden whitespace-nowrap" aria-label="Tabs">
         {tabs.map((tab) => (
-          <div key={tab} onClick={() => setTab(tab)} className="space-y-2 cursor-pointer h-full">
+          <div key={tab} // @ts-ignore
+onClick={() => setTab(tab)} className="space-y-2 cursor-pointer h-full">
             <div
               className={classNames(tab === currentTab ? 'text-high-emphesis font-bold' : '', 'text-sm text-secondary')}
             >

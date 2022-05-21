@@ -122,7 +122,8 @@ const TokenCreationModal: FC<TokenCreationModalProps> = ({ open, onDismiss: _onD
             </div>
           </HeadlessUIModal.Content>
           <HeadlessUIModal.Actions>
-            <HeadlessUIModal.Action onClick={onDismiss}>{i18n._(t`Cancel`)}</HeadlessUIModal.Action>
+            <HeadlessUIModal.Action // @ts-ignore
+onClick={onDismiss}>{i18n._(t`Cancel`)}</HeadlessUIModal.Action>
             <HeadlessUIModal.Action
               main={true}
               {...(pending && {
@@ -133,7 +134,8 @@ const TokenCreationModal: FC<TokenCreationModalProps> = ({ open, onDismiss: _onD
                 ),
               })}
               disabled={pending}
-              onClick={() => execute(data)}
+              // @ts-ignore
+onClick={() => execute(data)}
             >
               {i18n._(t`Create Token`)}
             </HeadlessUIModal.Action>

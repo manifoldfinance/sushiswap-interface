@@ -111,7 +111,8 @@ const Pagination: FC<PaginationProps> = ({
       acc.push(
         <button
           key={index}
-          onClick={() => onChange((page as number) - 1)}
+          // @ts-ignore
+onClick={() => onChange((page as number) - 1)}
           className={classNames(
             page === currentPage + 1
               ? 'text-transparent bg-gradient-to-r from-pink to-pink-red bg-clip-text border-pink'
@@ -131,7 +132,8 @@ const Pagination: FC<PaginationProps> = ({
       <div className="-mt-px w-0 flex-1 flex border-t-2 border-transparent">
         {canPreviousPage && (
           <button
-            onClick={() => onChange(currentPage - 1)}
+            // @ts-ignore
+onClick={() => onChange(currentPage - 1)}
             className={classNames(
               'text-transparent bg-gradient-to-r from-pink to-pink-red bg-clip-text cursor-pointer inline-flex items-center text-sm font-bold'
             )}
@@ -147,7 +149,8 @@ const Pagination: FC<PaginationProps> = ({
       <div className="-mt-px w-0 flex-1 flex justify-end items-center border-t-2 border-transparent">
         {canNextPage && (
           <button
-            onClick={() => onChange(currentPage + 1)}
+            // @ts-ignore
+onClick={() => onChange(currentPage + 1)}
             className={classNames(
               'text-transparent bg-gradient-to-r from-pink to-pink-red bg-clip-text cursor-pointer inline-flex items-center text-sm font-bold'
             )}

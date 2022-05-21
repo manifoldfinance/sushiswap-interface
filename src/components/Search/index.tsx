@@ -19,7 +19,8 @@ const Search: FC<Search> = ({ term, search }) => {
           className="bg-transparent text-high-emphesis w-full placeholder:text-low-emphesis"
           placeholder={i18n._(t`Search by token or pair`)}
           onChange={(e) => search(e.target.value)}
-          value={term}
+          // @ts-ignore
+value={term}
         />
       </div>
     </div>

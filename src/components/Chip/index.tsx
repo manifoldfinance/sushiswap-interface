@@ -64,7 +64,8 @@ const Chip: FC<ChipProps> = ({
       )}
     >
       {icon && (
-        <div className="rounded" onClick={onClick}>
+        <div className="rounded" // @ts-ignore
+onClick={onClick}>
           {icon}
         </div>
       )}
@@ -73,7 +74,8 @@ const Chip: FC<ChipProps> = ({
       {onClick && (
         <div
           className="rounded bg-[rgba(255,255,255,0.12)] hover:bg-[rgba(255,255,255,0.24)] cursor-pointer p-0.5"
-          onClick={onClick}
+          // @ts-ignore
+onClick={onClick}
         >
           {endIcon}
         </div>

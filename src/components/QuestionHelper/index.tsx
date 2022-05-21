@@ -48,7 +48,8 @@ const QuestionHelper: FC<{
     <Tooltip text={text} show={show || toggle} className={className}>
       <div
         ref={node}
-        onClick={handler}
+        // @ts-ignore
+onClick={handler}
         className={classNames(
           gap ? 'ml-1' : '',
           'flex items-center justify-center outline-none cursor-help hover:text-primary'

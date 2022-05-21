@@ -36,7 +36,8 @@ const AssetSelect = (props: AssetSelectProps) => {
   return (
     <div className="relative z-10 flex flex-col mt-4">
       {header}
-      <AssetSelectPanel value={props.value} onSelect={props.onSelect} currencies={props.currencies} />
+      <AssetSelectPanel // @ts-ignore
+value={props.value} onSelect={props.onSelect} currencies={props.currencies} />
     </div>
   )
 }
@@ -49,7 +50,8 @@ const AssetSelectPanel: FC<AssetSelectPanelProps> = ({ value, onSelect, currenci
   const [balances, setBalances] = useState(false)
 
   let content = (
-    <div className="flex flex-row items-center gap-1" onClick={() => setOpen(true)}>
+    <div className="flex flex-row items-center gap-1" // @ts-ignore
+onClick={() => setOpen(true)}>
       <div className="flex items-center w-12 h-12 rounded-full">
         <Lottie animationData={selectCoinAnimation} autoplay loop />
       </div>
@@ -70,7 +72,8 @@ const AssetSelectPanel: FC<AssetSelectPanelProps> = ({ value, onSelect, currenci
   if (value) {
     content = (
       <div className="flex flex-grow gap-0.5 items-center justify-between">
-        <div className="flex flex-row cursor-pointer items-center gap-0.5" onClick={() => setOpen(true)}>
+        <div className="flex flex-row cursor-pointer items-center gap-0.5" // @ts-ignore
+onClick={() => setOpen(true)}>
           <div className="w-[38px] h-[38px] rounded-full overflow-hidden mr-2.5">
             <CurrencyLogo currency={value} size={38} />
           </div>
@@ -82,7 +85,8 @@ const AssetSelectPanel: FC<AssetSelectPanelProps> = ({ value, onSelect, currenci
         <Typography
           variant="xs"
           className="cursor-pointer text-blue"
-          onClick={() => setBalances((prevState) => !prevState)}
+          // @ts-ignore
+onClick={() => setBalances((prevState) => !prevState)}
         >
           {balances ? i18n._(t`Hide Balances`) : i18n._(t`Show Balances`)}
         </Typography>

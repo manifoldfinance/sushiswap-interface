@@ -152,8 +152,10 @@ const CommitReviewStandardModal: FC<CommitReviewStandardModalProps> = ({
               </div>
             </HeadlessUIModal.Content>
             <HeadlessUIModal.Actions>
-              <HeadlessUIModal.Action onClick={onDismiss}>{i18n._(t`Cancel`)}</HeadlessUIModal.Action>
-              <HeadlessUIModal.Action main={true} disabled={attemptingTxn} onClick={execute}>
+              <HeadlessUIModal.Action // @ts-ignore
+onClick={onDismiss}>{i18n._(t`Cancel`)}</HeadlessUIModal.Action>
+              <HeadlessUIModal.Action main={true} disabled={attemptingTxn} // @ts-ignore
+onClick={execute}>
                 {i18n._(t`Confirm Commit`)}
               </HeadlessUIModal.Action>
             </HeadlessUIModal.Actions>

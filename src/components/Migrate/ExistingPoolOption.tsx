@@ -16,7 +16,8 @@ export const ExistingPoolOption: FC<OptionProps> = ({ pool, onClick, active }) =
 
   return (
     <div
-      onClick={onClick}
+      // @ts-ignore
+onClick={onClick}
       className={classNames(
         'flex justify-between bg-dark-800 rounded p-4 m-3',
         !active && 'hover:bg-dark-700 hover:cursor-pointer',

@@ -66,7 +66,8 @@ const PointlistCreationFormSetup: FC = () => {
               <AuctionPaymentCurrencyField name="paymentTokenAddress" label={i18n._(t`Auction Payment Currency*`)} />
             </div>
             <WhitelistUpload
-              value={getValues('wlAddresses')}
+              // @ts-ignore
+value={getValues('wlAddresses')}
               disabled={false}
               onChange={(param) =>
                 typeof param === 'function'

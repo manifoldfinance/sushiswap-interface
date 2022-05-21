@@ -59,13 +59,16 @@ const AuctionCreationFormTypeSelector: FC<AuctionCreationFormTypeSelectorProps> 
     >
       <div className="col-span-6">
         <RadioGroup
-          value={auctionType}
+          // @ts-ignore
+value={auctionType}
           onChange={(auctionType) => setValue('auctionType', auctionType)}
           className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-10"
         >
-          <input className="hidden" name="auctionType" value={auctionType} onChange={() => {}} />
+          <input className="hidden" name="auctionType" // @ts-ignore
+value={auctionType} onChange={() => {}} />
           {items.map(({ icon, value, label, description, note }) => (
-            <RadioGroup.Option value={value} key={value}>
+            <RadioGroup.Option // @ts-ignore
+value={value} key={value}>
               {({ checked }) => (
                 <div
                   className={classNames(

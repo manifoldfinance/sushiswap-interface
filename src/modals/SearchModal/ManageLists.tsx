@@ -120,7 +120,8 @@ const ListRow: FC<{ listUrl: string }> = memo(({ listUrl }) => {
                     role="button"
                     variant="sm"
                     weight={700}
-                    onClick={handleRemoveList}
+                    // @ts-ignore
+onClick={handleRemoveList}
                     disabled={Object.keys(listsByUrl).length === 1}
                     className="cursor-pointer hover:text-white disabled:cursor-default"
                   >
@@ -130,7 +131,8 @@ const ListRow: FC<{ listUrl: string }> = memo(({ listUrl }) => {
                     role="button"
                     variant="sm"
                     weight={700}
-                    onClick={handleAcceptListUpdate}
+                    // @ts-ignore
+onClick={handleAcceptListUpdate}
                     className="cursor-pointer hover:text-white disabled:cursor-default"
                   >
                     {i18n._(t`Update list`)}
@@ -145,7 +147,8 @@ const ListRow: FC<{ listUrl: string }> = memo(({ listUrl }) => {
       </div>
       <div>
         <Switch
-          checked={isActive}
+          // @ts-ignore
+checked={isActive}
           onChange={() => (isActive ? handleDisableList() : handleEnableList())}
           checkedIcon={<CheckIcon className="text-dark-700" />}
           uncheckedIcon={<CloseIcon />}
@@ -251,7 +254,8 @@ const ManageLists: FC = () => {
         type="text"
         placeholder="https:// or ipfs:// or ENS name"
         className="w-full bg-[rgba(0,0,0,0.2)] border border-dark-800 focus:border-blue rounded placeholder-secondary font-bold text-base p-4 appearance-none"
-        value={listUrlInput}
+        // @ts-ignore
+value={listUrlInput}
         onChange={handleInput}
         title="List URI"
         autoComplete="off"
@@ -273,7 +277,8 @@ const ManageLists: FC = () => {
             isImported ? 'pointer-events-none' : 'hover:border-blue cursor-pointer',
             'flex flex-col gap-4'
           )}
-          onClick={handleImport}
+          // @ts-ignore
+onClick={handleImport}
         >
           {isImported && (
             <Typography variant="xs" weight={700} className="text-green">

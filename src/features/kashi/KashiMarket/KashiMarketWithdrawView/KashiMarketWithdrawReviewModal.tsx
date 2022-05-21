@@ -72,7 +72,8 @@ export const KashiMarketWithdrawReviewModal: FC<KashiMarketWithdrawReviewModal> 
             </div>
           </HeadlessUiModal.BorderedContent>
           <KashiMarketLentDetailsView view={KashiMarketView.WITHDRAW} lentAmount={withdrawAmount} />
-          <Button loading={attemptingTxn} color="gradient" disabled={attemptingTxn} onClick={_execute}>
+          <Button loading={attemptingTxn} color="gradient" disabled={attemptingTxn} // @ts-ignore
+onClick={_execute}>
             {i18n._(t`Confirm Withdraw`)}
           </Button>
         </div>

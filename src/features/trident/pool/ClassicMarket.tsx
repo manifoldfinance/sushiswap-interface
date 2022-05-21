@@ -56,8 +56,10 @@ const ClassicMarket: FC = () => {
               ) : (
                 <ListPanel.Header
                   title={i18n._(t`Assets`)}
-                  value={`$${amount ? `${amount.toSignificant(6)}` : '0.00'}`}
-                  subValue={`${totalSupply?.toSignificant(6)} ${poolWithState?.pool?.liquidityToken.symbol}`}
+                  // @ts-ignore
+value={`$${amount ? `${amount.toSignificant(6)}` : '0.00'}`}
+                  sub// @ts-ignore
+value={`${totalSupply?.toSignificant(6)} ${poolWithState?.pool?.liquidityToken.symbol}`}
                 />
               )
             }

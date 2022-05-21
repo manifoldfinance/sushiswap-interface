@@ -18,7 +18,8 @@ export default function PercentInputPanel({ value, onUserInput, id }: PercentInp
         <div className="flex items-center w-full p-3 space-x-3 text-xl font-bold rounded bg-dark-900 sm:w-3/5">
           <Input.Percent
             className="token-amount-input"
-            value={value}
+            // @ts-ignore
+value={value}
             onUserInput={(val) => {
               onUserInput(val)
             }}

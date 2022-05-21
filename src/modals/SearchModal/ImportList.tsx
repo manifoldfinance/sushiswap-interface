@@ -88,19 +88,22 @@ const ImportList: FC = () => {
         <Typography variant="sm" className="text-yellow" weight={700}>
           {i18n._(t`If you purchase a token from this list, you may not be able to sell it back.`)}
         </Typography>
-        <div className="flex flex-row items-center gap-3 cursor-pointer" onClick={() => setConfirmed(!confirmed)}>
+        <div className="flex flex-row items-center gap-3 cursor-pointer" // @ts-ignore
+onClick={() => setConfirmed(!confirmed)}>
           <Checkbox
             className="h-5 m-0"
             name="confirmed"
             type="checkbox"
-            checked={confirmed}
+            // @ts-ignore
+checked={confirmed}
             onChange={() => setConfirmed(!confirmed)}
           />
           <Typography weight={700}>{i18n._(t`I understand`)}</Typography>
         </div>
       </HeadlessUiModal.BorderedContent>
       <div className="flex flex-grow" />
-      <Button color="blue" disabled={!confirmed} onClick={handleAddList}>
+      <Button color="blue" disabled={!confirmed} // @ts-ignore
+onClick={handleAddList}>
         {i18n._(t`Import`)}
       </Button>
       {addError ? (

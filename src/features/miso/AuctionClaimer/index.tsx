@@ -94,7 +94,8 @@ const AuctionClaimer: FC = () => {
               </div>
             ),
           })}
-          onClick={
+          // @ts-ignore
+onClick={
             auction.canWithdrawDeposits ? handleWithdrawDeposits : auction.canFinalize ? handleFinalize : handleClick
           }
           disabled={

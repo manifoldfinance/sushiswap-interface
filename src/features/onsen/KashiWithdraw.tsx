@@ -121,13 +121,15 @@ const KashiWithdraw = ({ market, header }: { market: KashiMediumRiskLendingPair;
         <div>
           <AssetInput
             title={''}
-            value={withdrawValue}
+            // @ts-ignore
+value={withdrawValue}
             currency={assetToken}
             onChange={(val) => setWithdrawValue(val || '')}
             headerRight={
               <AssetInput.WalletSwitch
                 onChange={() => setUseBento(!useBento)}
-                checked={!useBento}
+                // @ts-ignore
+checked={!useBento}
                 id="switch-spend-from-wallet-a"
                 label="Send to:"
               />
@@ -166,7 +168,8 @@ const KashiWithdraw = ({ market, header }: { market: KashiMediumRiskLendingPair;
         <Button
           fullWidth
           loading={kashiApprovalState === BentoApprovalState.PENDING}
-          onClick={onApproveKashi}
+          // @ts-ignore
+onClick={onApproveKashi}
           disabled={kashiApprovalState !== BentoApprovalState.NOT_APPROVED}
         >
           {i18n._(t`Approve Kashi`)}
@@ -175,7 +178,8 @@ const KashiWithdraw = ({ market, header }: { market: KashiMediumRiskLendingPair;
         <Button
           fullWidth
           color={!isValid && !!parsedWithdrawValue ? 'red' : 'blue'}
-          onClick={onWithdraw}
+          // @ts-ignore
+onClick={onWithdraw}
           disabled={!isValid}
         >
           {error || i18n._(t`Confirm Withdraw`)}

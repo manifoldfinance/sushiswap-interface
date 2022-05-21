@@ -74,5 +74,6 @@ export function BlockNumberProvider({ children }: { children: ReactNode }) {
     }),
     [activeChainId, block, chainId]
   )
-  return <BlockNumberContext.Provider value={value}>{children}</BlockNumberContext.Provider>
+  return <BlockNumberContext.Provider // @ts-ignore
+value={value}>{children}</BlockNumberContext.Provider>
 }

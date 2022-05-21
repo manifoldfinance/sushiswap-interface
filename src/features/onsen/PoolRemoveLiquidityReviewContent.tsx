@@ -58,7 +58,8 @@ const PoolRemoveLiquidityReviewContent: FC<PoolRemoveLiquidityReviewContentProps
           ))}
         />
       </HeadlessUIModal.BorderedContent>
-      <Button id="btn-modal-confirm-withdrawal" color="blue" onClick={execute}>
+      <Button id="btn-modal-confirm-withdrawal" color="blue" // @ts-ignore
+onClick={execute}>
         {i18n._(t`Confirm Withdrawal`)}
       </Button>
     </div>

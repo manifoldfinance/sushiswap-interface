@@ -39,7 +39,8 @@ const TradePrice: FC<TradePriceProps> = ({
 
   return (
     <div
-      onClick={flipPrice}
+      // @ts-ignore
+onClick={flipPrice}
       className={classNames('flex w-full gap-1 cursor-pointer hover:text-white select-none', className)}
     >
       <Typography variant="xs" weight={700} className="flex gap-1 tracking-[0.06em] text-white">

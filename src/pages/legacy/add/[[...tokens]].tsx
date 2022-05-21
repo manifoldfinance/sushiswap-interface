@@ -292,7 +292,8 @@ export default function Add() {
             width={24}
             height={24}
             className="cursor-pointer text-high-emphesis hover:text-white focus:text-white"
-            onClick={() => router.push('/pool')}
+            // @ts-ignore
+onClick={() => router.push('/pool')}
           />
           <Typography weight={700} className="text-center whitespace-nowrap text-high-emphesis">
             {i18n._(t`Add Liquidity`)}
@@ -303,7 +304,8 @@ export default function Add() {
           <SwapAssetPanel
             header={SwapAssetPanel.Header}
             spendFromWallet={true}
-            value={formattedAmounts[Field.CURRENCY_A]}
+            // @ts-ignore
+value={formattedAmounts[Field.CURRENCY_A]}
             onChange={onFieldAInput}
             onSelect={handleCurrencyASelect}
             currency={currencies[Field.CURRENCY_A]}
@@ -317,7 +319,8 @@ export default function Add() {
         <SwapAssetPanel
           header={SwapAssetPanel.Header}
           spendFromWallet={true}
-          value={formattedAmounts[Field.CURRENCY_B]}
+          // @ts-ignore
+value={formattedAmounts[Field.CURRENCY_B]}
           onChange={onFieldBInput}
           onSelect={handleCurrencyBSelect}
           currency={currencies[Field.CURRENCY_B]}
@@ -344,7 +347,8 @@ export default function Add() {
               <Button
                 loading={approvalA === ApprovalState.PENDING}
                 fullWidth
-                onClick={approveACallback}
+                // @ts-ignore
+onClick={approveACallback}
                 disabled={approvalA === ApprovalState.PENDING}
                 className="rounded-2xl md:rounded"
               >
@@ -355,7 +359,8 @@ export default function Add() {
               <Button
                 loading={approvalB === ApprovalState.PENDING}
                 fullWidth
-                onClick={approveBCallback}
+                // @ts-ignore
+onClick={approveBCallback}
                 disabled={approvalB === ApprovalState.PENDING}
                 className="rounded-2xl md:rounded"
               >
@@ -365,7 +370,8 @@ export default function Add() {
 
             <Button
               fullWidth
-              onClick={() => {
+              // @ts-ignore
+onClick={() => {
                 isExpertMode ? onAdd() : setShowConfirm(true)
               }}
               disabled={!isValid || approvalA !== ApprovalState.APPROVED || approvalB !== ApprovalState.APPROVED}

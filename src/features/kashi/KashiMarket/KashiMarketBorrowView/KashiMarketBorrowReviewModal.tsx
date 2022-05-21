@@ -106,7 +106,8 @@ export const KashiMarketBorrowReviewModal: FC<KashiMarketBorrowReviewModal> = ({
             collateralAmount={collateralAmount}
             borrowAmount={borrowAmount}
           />
-          <Button loading={attemptingTxn} color="gradient" disabled={attemptingTxn} onClick={_execute}>
+          <Button loading={attemptingTxn} color="gradient" disabled={attemptingTxn} // @ts-ignore
+onClick={_execute}>
             {i18n._(t`Confirm Borrow`)}
           </Button>
         </div>

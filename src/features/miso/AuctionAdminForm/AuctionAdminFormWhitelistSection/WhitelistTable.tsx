@@ -29,7 +29,8 @@ const WhitelistTable: FC<WhitelistTableProps> = ({ entries }) => {
           width={24}
           height={24}
           className="cursor-pointer hover:text-high-emphesis"
-          onClick={() => setValue('whitelistAddresses', [], { shouldValidate: true })}
+          // @ts-ignore
+onClick={() => setValue('whitelistAddresses', [], { shouldValidate: true })}
         />
       </div>
       <div className="mt-2 px-4 divide-y divide-dark-800 border border-dark-800 rounded bg-dark-1000/40 overflow-hidden shadow-md shadow-dark-1000">

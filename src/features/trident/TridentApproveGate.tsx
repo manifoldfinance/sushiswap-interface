@@ -74,7 +74,8 @@ const TokenApproveButton: FC<TokenApproveButtonProps> = memo(
 
     if (!signatureData && [ApprovalState.NOT_APPROVED, ApprovalState.PENDING].includes(approveState)) {
       return (
-        <Button fullWidth id={id} loading={approveState === ApprovalState.PENDING} color="blue" onClick={handleApprove}>
+        <Button fullWidth id={id} loading={approveState === ApprovalState.PENDING} color="blue" // @ts-ignore
+onClick={handleApprove}>
           {i18n._(t`Approve ${inputAmount?.currency.symbol}`)}
         </Button>
       )
@@ -162,7 +163,8 @@ const TridentApproveGate = ({
       {/*hide bentobox approval if not every inputAmount is greater than than zero*/}
       {inputAmounts.every((el) => el?.greaterThan(ZERO)) &&
         [BentoApprovalState.NOT_APPROVED, BentoApprovalState.PENDING].includes(approvalState) && (
-          <Button id="btn-approve" loading={approvalState === BentoApprovalState.PENDING} onClick={onClick}>
+          <Button id="btn-approve" loading={approvalState === BentoApprovalState.PENDING} // @ts-ignore
+onClick={onClick}>
             {i18n._(t`Approve BentoBox`)}
           </Button>
         )}
@@ -185,7 +187,8 @@ const TridentApproveGate = ({
         }, [])}
 
       {!account ? (
-        <Button color="gradient" onClick={toggleWalletModal}>
+        <Button color="gradient" // @ts-ignore
+onClick={toggleWalletModal}>
           {i18n._(t`Connect Wallet`)}
         </Button>
       ) : (

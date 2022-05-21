@@ -41,7 +41,8 @@ const Breadcrumb: FC<BreadcrumbProps> = ({ auction }) => {
         {auction.canFinalize && (
           <span
             role="button"
-            onClick={() => finalizeAuction()}
+            // @ts-ignore
+onClick={() => finalizeAuction()}
             className="bg-gradient-to-r from-pink-red via-pink to-red bg-clip-text text-transparent"
           >
             {i18n._(t`Finalize Auction`)}

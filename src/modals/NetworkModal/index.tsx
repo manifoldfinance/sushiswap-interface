@@ -320,7 +320,8 @@ const NetworkModal: FC = () => {
               return (
                 <button
                   key={i}
-                  onClick={async () => {
+                  // @ts-ignore
+onClick={async () => {
                     console.debug(`Switching to chain ${key}`, SUPPORTED_NETWORKS[key])
                     toggleNetworkModal()
                     const params = SUPPORTED_NETWORKS[key]

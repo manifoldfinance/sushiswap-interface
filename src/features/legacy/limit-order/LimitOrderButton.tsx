@@ -88,7 +88,8 @@ const LimitOrderButton: FC<LimitOrderButton> = ({ trade, parsedAmounts }) => {
               loading={loading || attemptingTxn}
               color="gradient"
               disabled={disabled}
-              onClick={handler}
+              // @ts-ignore
+onClick={handler}
               className="rounded-2xl md:rounded"
             >
               {error ? error : fromBentoBalance ? i18n._(t`Review Limit Order`) : i18n._(t`Confirm Deposit`)}

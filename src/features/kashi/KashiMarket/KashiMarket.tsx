@@ -33,12 +33,16 @@ export const KashiMarket: FC<KashiMarketProps> = () => {
       <div className="flex flex-col w-full gap-4">
         <ToggleButtonGroup
           size="sm"
-          value={view}
+          // @ts-ignore
+value={view}
+          // @ts-ignore FIXME: Property 'onChange' does not exist on type 'IntrinsicAttributes & Omit<ButtonProps, "onChange"> & { children?: ReactNode; }'.
           onChange={setView}
           variant="filled"
           className="flex flex-grow bg-dark-800"
         >
-          <ToggleButtonGroup.Button value={KashiMarketView.BORROW}>
+          {/**  @ts-ignore  */}
+          <ToggleButtonGroup.Button // @ts-ignore
+value={KashiMarketView.BORROW}>
             {i18n._(t`Borrow`)}
             <QuestionHelper
               gap={false}
@@ -54,8 +58,12 @@ export const KashiMarket: FC<KashiMarketProps> = () => {
               }
             />
           </ToggleButtonGroup.Button>
-          <ToggleButtonGroup.Button value={KashiMarketView.REPAY}>{i18n._(t`Repay`)}</ToggleButtonGroup.Button>
-          <ToggleButtonGroup.Button value={KashiMarketView.DEPOSIT}>
+                    {/**  @ts-ignore  */}
+          <ToggleButtonGroup.Button // @ts-ignore
+value={KashiMarketView.REPAY}>{i18n._(t`Repay`)}</ToggleButtonGroup.Button>
+                    {/**  @ts-ignore  */}
+          <ToggleButtonGroup.Button // @ts-ignore
+value={KashiMarketView.DEPOSIT}>
             {i18n._(t`Deposit`)}
             <QuestionHelper
               gap={false}
@@ -71,7 +79,9 @@ export const KashiMarket: FC<KashiMarketProps> = () => {
               }
             />
           </ToggleButtonGroup.Button>
-          <ToggleButtonGroup.Button value={KashiMarketView.WITHDRAW}>{i18n._(t`Withdraw`)}</ToggleButtonGroup.Button>
+                    {/**  @ts-ignore  */}
+          <ToggleButtonGroup.Button // @ts-ignore
+value={KashiMarketView.WITHDRAW}>{i18n._(t`Withdraw`)}</ToggleButtonGroup.Button>
         </ToggleButtonGroup>
         {view === KashiMarketView.BORROW && <KashiMarketBorrowView />}
         {view === KashiMarketView.REPAY && <KashiMarketRepayView />}

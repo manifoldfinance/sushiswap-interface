@@ -52,7 +52,8 @@ export const CreatePoolOption: FC<OptionProps> = ({ selectedPoolConfig, allPoolC
         !selectedPoolConfig && 'hover:bg-dark-700 hover:cursor-pointer',
         selectedPoolConfig && 'border-2 border-blue p-3.5'
       )}
-      onClick={() => !selectedPoolConfig && setFunc(allPoolConfigs[0])}
+      // @ts-ignore
+onClick={() => !selectedPoolConfig && setFunc(allPoolConfigs[0])}
     >
       <div>
         {i18n._(t`Create Pool`)} {!selectedPoolConfig && '→'}
@@ -66,7 +67,8 @@ export const CreatePoolOption: FC<OptionProps> = ({ selectedPoolConfig, allPoolC
             .map((fee) => (
               <div className="flex items-center gap-2" key={fee}>
                 <Checkbox
-                  checked={fee == selectedPoolConfig.fee}
+                  // @ts-ignore
+checked={fee == selectedPoolConfig.fee}
                   set={(enable) => {
                     setFeeTier(enable, fee, selectedPoolConfig.twap, allPoolConfigs, setFunc)
                   }}
@@ -77,7 +79,8 @@ export const CreatePoolOption: FC<OptionProps> = ({ selectedPoolConfig, allPoolC
           <div>{i18n._(t`TWAP`)}</div>
           <div className="flex items-center gap-2">
             <Checkbox
-              checked={selectedPoolConfig.twap}
+              // @ts-ignore
+checked={selectedPoolConfig.twap}
               set={() => setTwapOption(allPoolConfigs, selectedPoolConfig, setFunc)}
             />
             <span className="text-xs">{i18n._(t`Yes create an oracle`)}</span>

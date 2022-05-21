@@ -32,7 +32,8 @@ const FarmListItemDetails = ({ farm, onDismiss }) => {
   const [content, setContent] = useState<ReactNode>()
 
   return (
-    <Context.Provider value={useMemo(() => ({ content, setContent }), [content, setContent])}>
+    <Context.Provider // @ts-ignore
+value={useMemo(() => ({ content, setContent }), [content, setContent])}>
       <div className={classNames('')}>
         <div className={classNames(COLUMN_CONTAINER, content ? '' : 'hidden')}>{content}</div>
         <div className={classNames(COLUMN_CONTAINER, content ? 'hidden' : '')}>
@@ -51,15 +52,19 @@ const FarmListItemDetails = ({ farm, onDismiss }) => {
           />
           <ToggleButtonGroup
             size="sm"
-            value={view}
+            // @ts-ignore
+value={view}
             onChange={(view: OnsenModalView) => dispatch(setOnsenModalView(view))}
             variant="filled"
           >
-            <ToggleButtonGroup.Button value={OnsenModalView.Liquidity}>
+            <ToggleButtonGroup.Button // @ts-ignore
+value={OnsenModalView.Liquidity}>
               {farm.pair.type === PairType.KASHI ? i18n._(t`Lending`) : i18n._(t`Liquidity`)}
             </ToggleButtonGroup.Button>
-            <ToggleButtonGroup.Button value={OnsenModalView.Staking}>{i18n._(t`Staking`)}</ToggleButtonGroup.Button>
-            <ToggleButtonGroup.Button value={OnsenModalView.Position}>{i18n._(t`Rewards`)}</ToggleButtonGroup.Button>
+            <ToggleButtonGroup.Button // @ts-ignore
+value={OnsenModalView.Staking}>{i18n._(t`Staking`)}</ToggleButtonGroup.Button>
+            <ToggleButtonGroup.Button // @ts-ignore
+value={OnsenModalView.Position}>{i18n._(t`Rewards`)}</ToggleButtonGroup.Button>
           </ToggleButtonGroup>
 
           {/*Dont unmount following components to make modal more react faster*/}

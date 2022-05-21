@@ -296,7 +296,8 @@ const PoolWithdraw = ({ currencyA, currencyB, header }) => {
         <AssetInput
           currencyLogo={false}
           currency={pair?.liquidityToken}
-          value={typedValue}
+          // @ts-ignore
+value={typedValue}
           // @ts-ignore TYPE NEEDS FIXING
           onChange={onLiquidityInput}
         />
@@ -305,7 +306,8 @@ const PoolWithdraw = ({ currencyA, currencyB, header }) => {
             {i18n._(t`You'll receive (at least):`)}
           </Typography>
           {(oneCurrencyIsETH || oneCurrencyIsWETH) && (
-            <Button size="xs" variant="empty" color="blue" className="rounded-none" onClick={() => setUseETH(!useETH)}>
+            <Button size="xs" variant="empty" color="blue" className="rounded-none" // @ts-ignore
+onClick={() => setUseETH(!useETH)}>
               {i18n._(t`Receive`)} {useETH && 'W'}
               {/* @ts-ignore TYPE NEEDS FIXING */}
               {NATIVE[chainId].symbol}
@@ -329,7 +331,8 @@ const PoolWithdraw = ({ currencyA, currencyB, header }) => {
         <Button
           fullWidth
           loading={approval === ApprovalState.PENDING}
-          onClick={onAttemptToApprove}
+          // @ts-ignore
+onClick={onAttemptToApprove}
           disabled={approval !== ApprovalState.NOT_APPROVED || signatureData !== null}
         >
           {i18n._(t`Approve`)}
@@ -339,7 +342,8 @@ const PoolWithdraw = ({ currencyA, currencyB, header }) => {
           fullWidth
           loading={attemptingTxn}
           color={!isValid && !!parsedAmounts[Field.CURRENCY_A] && !!parsedAmounts[Field.CURRENCY_B] ? 'red' : 'blue'}
-          onClick={() => {
+          // @ts-ignore
+onClick={() => {
             setContent(
               <PoolRemoveLiquidityReviewContent
                 liquidityAmount={parsedAmounts[Field.LIQUIDITY]}

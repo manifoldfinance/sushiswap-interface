@@ -17,7 +17,8 @@ const ImportRow: FC<ImportRow> = ({ token, onClick }) => {
   const { i18n } = useLingui()
 
   return (
-    <HeadlessUiModal.BorderedContent className="border hover:border-gray-700 cursor-pointer" onClick={onClick}>
+    <HeadlessUiModal.BorderedContent className="border hover:border-gray-700 cursor-pointer" // @ts-ignore
+onClick={onClick}>
       <div className="flex justify-between">
         <div className="flex items-center gap-3">
           <div className="rounded-full overflow-hidden border border-dark-700">

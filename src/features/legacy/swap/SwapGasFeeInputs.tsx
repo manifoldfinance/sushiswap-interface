@@ -35,7 +35,8 @@ const SwapGasFeeInputs: FC = () => {
         <div className="flex items-baseline justify-between px-4 py-1 border rounded bg-dark-900 border-dark-700 hover:border-dark-600">
           <Typography weight={700} className="relative flex items-baseline flex-grow gap-3 overflow-hidden">
             <NumericalInput
-              value={_maxFee}
+              // @ts-ignore
+value={_maxFee}
               onUserInput={(val: string) => {
                 dispatch(setMaxFee(val ? toWei(val, 'gwei') : undefined))
                 setMaxFee_(val)
@@ -62,7 +63,8 @@ const SwapGasFeeInputs: FC = () => {
         <div className="flex items-baseline justify-between px-4 py-1 border rounded bg-dark-900 border-dark-700 hover:border-dark-600">
           <Typography weight={700} className="relative flex items-baseline flex-grow gap-3 overflow-hidden">
             <NumericalInput
-              value={_priorityFee}
+              // @ts-ignore
+value={_priorityFee}
               onUserInput={(val: string) => {
                 dispatch(setPriorityFee(val ? toWei(val, 'gwei') : undefined))
                 setPriorityFee_(val)

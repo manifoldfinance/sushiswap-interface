@@ -40,7 +40,8 @@ const AuctionStats: FC = () => {
           <AuctionStat
             className="text-left lg:text-left"
             label={i18n._(t`You Committed`)}
-            value={
+            // @ts-ignore
+value={
               <div
                 className={classNames(
                   auction.totalTokensCommitted?.greaterThan(ZERO) ? 'text-green' : 'text-high-emphesis',
@@ -73,7 +74,8 @@ const AuctionStats: FC = () => {
               />
             </div>
           }
-          value={
+          // @ts-ignore
+value={
             <div className="flex justify-end items-baseline gap-1">
               {auction.tokenPrice?.toSignificant(6)}
               <Typography variant="sm" weight={700} className="text-low-emphesis">
@@ -85,7 +87,8 @@ const AuctionStats: FC = () => {
         <AuctionStat
           className="text-left lg:text-right"
           label={i18n._(t`Amount Raised`)}
-          value={
+          // @ts-ignore
+value={
             <div className="flex justify-start items-baseline gap-1 lg:justify-end">
               {auction.commitmentsTotal?.toSignificant(6)}
               <Typography variant="sm" weight={700} className="text-low-emphesis">
@@ -97,7 +100,8 @@ const AuctionStats: FC = () => {
         <AuctionStat
           className="text-right"
           label={i18n._(t`Remaining Tokens`)}
-          value={
+          // @ts-ignore
+value={
             <div className="flex justify-end items-baseline gap-1">
               {auction.remainingPercentage?.toSignificant(6)}
               <Typography variant="sm" weight={700} className="text-low-emphesis">

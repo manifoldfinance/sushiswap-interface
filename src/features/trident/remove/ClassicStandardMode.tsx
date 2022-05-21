@@ -58,7 +58,8 @@ const CurrencyAmountItemWithEthSelector: FC<{
             variant="sm"
             weight={700}
             className="cursor-pointer text-blue"
-            onClick={() => dispatch(setRemoveReceiveNative(!receiveNative))}
+            // @ts-ignore
+onClick={() => dispatch(setRemoveReceiveNative(!receiveNative))}
             id="btn-receive-native"
           >
             {receiveNative ? i18n._(t`Receive WETH instead`) : i18n._(t`Receive ETH instead`)}
@@ -83,23 +84,28 @@ const ClassicStandardMode: FC = () => {
 
   const toggleButtonGroup = (
     <ToggleButtonGroup
-      value={percentageAmount}
+      // @ts-ignore
+value={percentageAmount}
       onChange={(val: string) => dispatch(setRemovePercentageAmount(val))}
       variant="outlined"
       id={`blamanam`}
       size="sm"
       className="!bg-dark-900 rounded border border-dark-800 h-9"
     >
-      <ToggleButtonGroup.Button value="25" className="px-6">
+      <ToggleButtonGroup.Button v// @ts-ignore
+alue="25" className="px-6">
         25%
       </ToggleButtonGroup.Button>
-      <ToggleButtonGroup.Button value="50" className="px-6">
+      <ToggleButtonGroup.Button v// @ts-ignore
+alue="50" className="px-6">
         50%
       </ToggleButtonGroup.Button>
-      <ToggleButtonGroup.Button value="75" className="px-6">
+      <ToggleButtonGroup.Button v// @ts-ignore
+alue="75" className="px-6">
         75%
       </ToggleButtonGroup.Button>
-      <ToggleButtonGroup.Button value="100" className="px-6">
+      <ToggleButtonGroup.Button v// @ts-ignore
+alue="100" className="px-6">
         Max
       </ToggleButtonGroup.Button>
     </ToggleButtonGroup>
@@ -122,8 +128,10 @@ const ClassicStandardMode: FC = () => {
                 header={
                   <ListPanel.Header
                     title={i18n._(t`Balances`)}
-                    value={`$${amount ? amount.toSignificant(6) : '0.0000'}`}
-                    subValue={`${poolBalance ? poolBalance.toSignificant(6) : '0.0000'} SLP`}
+                    // @ts-ignore
+value={`$${amount ? amount.toSignificant(6) : '0.0000'}`}
+                    sub// @ts-ignore
+value={`${poolBalance ? poolBalance.toSignificant(6) : '0.0000'} SLP`}
                   />
                 }
                 items={[
@@ -132,7 +140,8 @@ const ClassicStandardMode: FC = () => {
                 footer={
                   <div className="flex items-center justify-between gap-3 px-4 py-6">
                     <PercentInput
-                      value={percentageAmount}
+                      // @ts-ignore
+value={percentageAmount}
                       onUserInput={(val) => dispatch(setRemovePercentageAmount(val))}
                       placeholder="0%"
                       className="bg-transparent text-3xl leading-7 tracking-[-0.01em] flex-grow font-bold text-high-emphesis"
@@ -175,7 +184,8 @@ const ClassicStandardMode: FC = () => {
                       loading={loading}
                       color={approved ? 'gradient' : 'blue'}
                       disabled={disabled}
-                      onClick={() => dispatch(setRemoveShowReview(true))}
+                      // @ts-ignore
+onClick={() => dispatch(setRemoveShowReview(true))}
                     >
                       <Typography
                         variant="sm"
@@ -197,7 +207,8 @@ const ClassicStandardMode: FC = () => {
                 <AssetInput.WalletSwitch
                   label={i18n._(t`Withdraw to:`)}
                   onChange={() => dispatch(setRemoveOutputToWallet(!outputToWallet))}
-                  checked={outputToWallet}
+                  // @ts-ignore
+checked={outputToWallet}
                 />
               </div>
 

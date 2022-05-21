@@ -42,41 +42,49 @@ const AuctionPaymentCurrencyField: FC<AuctionPaymentCurrencyFieldProps> = ({ nam
           <ToggleButtonGroup
             size="sm"
             variant="filled"
-            value={getValues(name)}
+            // @ts-ignore
+value={getValues(name)}
             onChange={(val: string) => setValue(name, val, { shouldValidate: true })}
             className="flex gap-2 mt-2"
           >
-            <ToggleButtonGroup.Button value={AddressZero} className="!px-3 h-[36px]">
+            <ToggleButtonGroup.Button // @ts-ignore
+value={AddressZero} className="!px-3 h-[36px]">
               {/*@ts-ignore TYPE NEEDS FIXING*/}
               {NATIVE[chainId].symbol}
             </ToggleButtonGroup.Button>
             {chainId in SUSHI_ADDRESS && (
-              <ToggleButtonGroup.Button value={SUSHI_ADDRESS[chainId]} className="!px-3 h-[36px]">
+              <ToggleButtonGroup.Button // @ts-ignore
+value={SUSHI_ADDRESS[chainId]} className="!px-3 h-[36px]">
                 SUSHI
               </ToggleButtonGroup.Button>
             )}
             {chainId in DAI_ADDRESS && (
-              <ToggleButtonGroup.Button value={DAI_ADDRESS[chainId]} className="!px-3 h-[36px]">
+              <ToggleButtonGroup.Button // @ts-ignore
+value={DAI_ADDRESS[chainId]} className="!px-3 h-[36px]">
                 DAI
               </ToggleButtonGroup.Button>
             )}
             {chainId in USDT_ADDRESS && (
-              <ToggleButtonGroup.Button value={USDC_ADDRESS[chainId]} className="!px-3 h-[36px]">
+              <ToggleButtonGroup.Button // @ts-ignore
+value={USDC_ADDRESS[chainId]} className="!px-3 h-[36px]">
                 USDC
               </ToggleButtonGroup.Button>
             )}
             {chainId in USDT_ADDRESS && (
-              <ToggleButtonGroup.Button value={USDT_ADDRESS[chainId]} className="!px-3 h-[36px]">
+              <ToggleButtonGroup.Button // @ts-ignore
+value={USDT_ADDRESS[chainId]} className="!px-3 h-[36px]">
                 USDT
               </ToggleButtonGroup.Button>
             )}
             {chainId in MIM_ADDRESS && (
-              <ToggleButtonGroup.Button value={MIM_ADDRESS[chainId]} className="!px-3 h-[36px]">
+              <ToggleButtonGroup.Button // @ts-ignore
+value={MIM_ADDRESS[chainId]} className="!px-3 h-[36px]">
                 MIM
               </ToggleButtonGroup.Button>
             )}
             {chainId in FRAX_ADDRESS && (
-              <ToggleButtonGroup.Button value={FRAX_ADDRESS[chainId]} className="!px-3 h-[36px]">
+              <ToggleButtonGroup.Button // @ts-ignore
+value={FRAX_ADDRESS[chainId]} className="!px-3 h-[36px]">
                 FRAX
               </ToggleButtonGroup.Button>
             )}

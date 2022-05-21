@@ -54,7 +54,8 @@ const FarmList = ({ farms, term }) => {
         <div className="grid grid-cols-4 min-w-[768px]">
           <div
             className={classNames('flex gap-1 items-center cursor-pointer', TABLE_TR_TH_CLASSNAME(0, 4))}
-            onClick={() => requestSort('pair.token0.symbol')}
+            // @ts-ignore
+onClick={() => requestSort('pair.token0.symbol')}
           >
             <Typography variant="sm" weight={700}>
               {i18n._(t`Pool`)}
@@ -63,7 +64,8 @@ const FarmList = ({ farms, term }) => {
           </div>
           <div
             className={classNames('flex gap-1 items-center cursor-pointer justify-end', TABLE_TR_TH_CLASSNAME(1, 4))}
-            onClick={() => requestSort('tvl')}
+            // @ts-ignore
+onClick={() => requestSort('tvl')}
           >
             <Typography variant="sm" weight={700}>
               {i18n._(t`TVL`)}
@@ -77,7 +79,8 @@ const FarmList = ({ farms, term }) => {
           </div>
           <div
             className={classNames('flex gap-1 items-center cursor-pointer justify-end', TABLE_TR_TH_CLASSNAME(3, 4))}
-            onClick={() => requestSort('roiPerYear')}
+            // @ts-ignore
+onClick={() => requestSort('roiPerYear')}
           >
             <Typography variant="sm" weight={700}>
               {i18n._(t`APR`)}
@@ -96,7 +99,8 @@ const FarmList = ({ farms, term }) => {
               <FarmListItem
                 key={index}
                 farm={farm}
-                onClick={() => {
+                // @ts-ignore
+onClick={() => {
                   setSelectedFarm(farm)
                   dispatch(
                     setOnsenModalState({

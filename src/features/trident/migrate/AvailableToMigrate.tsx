@@ -40,7 +40,8 @@ export const AvailableToMigrate: FC = () => {
         {account && pairs.length === 0 && !loading && (
           <>
             <div>{i18n._(t`You have no pools available for migration`)}</div>
-            <Button className="w-max" size="sm" onClick={() => router.push(`/account/${account}`)}>
+            <Button className="w-max" size="sm" // @ts-ignore
+onClick={() => router.push(`/account/${account}`)}>
               {i18n._(t`Go to your wallet`)}
             </Button>
           </>
@@ -67,7 +68,8 @@ export const AvailableToMigrate: FC = () => {
             className="self-center w-full mt-6 md:w-96"
             color={selectedMigrations.length ? 'gradient' : 'gray'}
             disabled={Boolean(!selectedMigrations.length)}
-            onClick={() => router.push('/trident/migrate/confirm')}
+            // @ts-ignore
+onClick={() => router.push('/trident/migrate/confirm')}
           >
             {selectedMigrations.length === 1
               ? i18n._(t`Migrate Pool`)

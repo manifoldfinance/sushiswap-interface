@@ -22,7 +22,8 @@ const FarmListItem: FC<FarmListItem> = ({ farm, onClick }) => {
   const token1 = useCurrency(farm.pair.token1.id) ?? undefined
 
   return (
-    <div className={classNames(TABLE_TBODY_TR_CLASSNAME, 'grid grid-cols-4')} onClick={onClick}>
+    <div className={classNames(TABLE_TBODY_TR_CLASSNAME, 'grid grid-cols-4')} // @ts-ignore
+onClick={onClick}>
       <div className={classNames('flex gap-2', TABLE_TBODY_TD_CLASSNAME(0, 4))}>
         {token0 && token1 && <CurrencyLogoArray currencies={[token0, token1]} dense size={32} />}
         <div className="flex flex-col items-start">

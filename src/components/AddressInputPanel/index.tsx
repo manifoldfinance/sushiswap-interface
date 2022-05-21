@@ -27,12 +27,14 @@ const AddressInputPanel: FC<AddressInputPanelProps> = ({ id, value, onChange }) 
       <div className="flex justify-between w-full px-5 sm:w-2/5">
         <span className="text-[18px] text-primary">{i18n._(t`Send to:`)}</span>
         {/*@ts-ignore TYPE NEEDS FIXING*/}
-        <span className="text-sm underline cursor-pointer text-blue" onClick={() => onChange(null)}>
+        <span className="text-sm underline cursor-pointer text-blue" // @ts-ignore
+onClick={() => onChange(null)}>
           {i18n._(t`Remove`)}
         </span>
       </div>
       <div className="flex w-full h-full border-2 rounded-r sm:w-3/5 border-dark-800">
-        <Input.Address onUserInput={onChange} value={value} />
+        <Input.Address onUserInput={onChange} // @ts-ignore
+value={value} />
       </div>
     </div>
   )

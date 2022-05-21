@@ -45,7 +45,8 @@ const AuctionDetailsTab: FC<AuctionDetailsTabProps> = ({ auction, active }) => {
     <div className={classNames(active ? 'block' : 'hidden', 'grid grid-cols-2 gap-6')}>
       <AuctionDetailsTabStat
         label={i18n._(t`Liquidity Locked For`)}
-        value={
+        // @ts-ignore
+value={
           <div className="flex">
             {auction.launcherInfo ? (
               <div className="text-green-700">
@@ -72,7 +73,8 @@ const AuctionDetailsTab: FC<AuctionDetailsTabProps> = ({ auction, active }) => {
       />
       <AuctionDetailsTabStat
         label={i18n._(t`Liquidity`)}
-        value={
+        // @ts-ignore
+value={
           auction.launcherInfo ? (
             <>
               <div className="flex gap-1">
@@ -90,7 +92,8 @@ const AuctionDetailsTab: FC<AuctionDetailsTabProps> = ({ auction, active }) => {
       />
       <AuctionDetailsTabStat
         label={i18n._(t`Token Template`)}
-        value={
+        // @ts-ignore
+value={
           <div className="flex">
             <div className={label === 'Custom' ? 'text-yellow-700' : 'text-green-700'}>{label}</div>
             <QuestionHelper
@@ -144,7 +147,8 @@ const AuctionDetailsTab: FC<AuctionDetailsTabProps> = ({ auction, active }) => {
       />
       <AuctionDetailsTabStat
         label={i18n._(t`Token Address`)}
-        value={
+        // @ts-ignore
+value={
           <CopyHelper toCopy={auction.auctionToken.address} className="opacity-100 text-high-emphesis">
             {shortenAddress(auction.auctionToken.address)}
           </CopyHelper>
@@ -152,7 +156,8 @@ const AuctionDetailsTab: FC<AuctionDetailsTabProps> = ({ auction, active }) => {
       />
       <AuctionDetailsTabStat
         label={i18n._(t`Auction Address`)}
-        value={
+        // @ts-ignore
+value={
           <CopyHelper toCopy={auction.auctionInfo.addr} className="opacity-100 text-high-emphesis">
             {shortenAddress(auction.auctionInfo.addr)}
           </CopyHelper>
@@ -160,7 +165,8 @@ const AuctionDetailsTab: FC<AuctionDetailsTabProps> = ({ auction, active }) => {
       />
       <AuctionDetailsTabStat
         label={i18n._(t`Tokens Available For Sale`)}
-        value={
+        // @ts-ignore
+value={
           <div className="flex gap-1">
             {auction.totalTokens?.toSignificant(6)}{' '}
             <Typography variant="sm" weight={700}>
@@ -171,7 +177,8 @@ const AuctionDetailsTab: FC<AuctionDetailsTabProps> = ({ auction, active }) => {
       />
       <AuctionDetailsTabStat
         label={i18n._(t`Total Token Supply`)}
-        value={
+        // @ts-ignore
+value={
           <div className="flex gap-1">
             {totalSupply?.toSignificant(6)}{' '}
             <Typography variant="sm" weight={700}>
@@ -183,7 +190,8 @@ const AuctionDetailsTab: FC<AuctionDetailsTabProps> = ({ auction, active }) => {
       {auction.minimumPrice && (
         <AuctionDetailsTabStat
           label={i18n._(t`Minimum Price`)}
-          value={
+          // @ts-ignore
+value={
             <div className="flex gap-1">
               {auction.minimumPrice.toSignificant(6)}{' '}
               <Typography variant="sm" weight={700}>
@@ -196,7 +204,8 @@ const AuctionDetailsTab: FC<AuctionDetailsTabProps> = ({ auction, active }) => {
       {auction.startPrice && (
         <AuctionDetailsTabStat
           label={i18n._(t`Maximum Price`)}
-          value={
+          // @ts-ignore
+value={
             <div className="flex gap-1">
               {auction.startPrice.toSignificant(6)}{' '}
               <Typography variant="sm" weight={700}>
@@ -209,7 +218,8 @@ const AuctionDetailsTab: FC<AuctionDetailsTabProps> = ({ auction, active }) => {
       {auction.minimumTargetRaised && (
         <AuctionDetailsTabStat
           label={i18n._(t`Minimum Raised Target`)}
-          value={
+          // @ts-ignore
+value={
             <div className="flex gap-1">
               {auction.minimumTargetRaised.toSignificant(6)}{' '}
               <Typography variant="sm" weight={700}>
@@ -222,7 +232,8 @@ const AuctionDetailsTab: FC<AuctionDetailsTabProps> = ({ auction, active }) => {
       {auction.maximumTargetRaised && (
         <AuctionDetailsTabStat
           label={i18n._(t`Maximum Raised Target`)}
-          value={
+          // @ts-ignore
+value={
             <div className="flex gap-1">
               {auction.maximumTargetRaised.toSignificant(6)}{' '}
               <Typography variant="sm" weight={700}>
@@ -235,7 +246,8 @@ const AuctionDetailsTab: FC<AuctionDetailsTabProps> = ({ auction, active }) => {
       {auction.auctionInfo.startTime && (
         <AuctionDetailsTabStat
           label={i18n._(t`Auction Starts On`)}
-          value={
+          // @ts-ignore
+value={
             <>
               {new Date(auction.auctionInfo.startTime.mul('1000').toNumber()).toLocaleString('en-uS', {
                 year: 'numeric',
@@ -253,7 +265,8 @@ const AuctionDetailsTab: FC<AuctionDetailsTabProps> = ({ auction, active }) => {
       {auction.auctionInfo.endTime && (
         <AuctionDetailsTabStat
           label={i18n._(t`Auction Ends On`)}
-          value={
+          // @ts-ignore
+value={
             <>
               {new Date(auction.auctionInfo.endTime.mul('1000').toNumber()).toLocaleString('en-uS', {
                 year: 'numeric',

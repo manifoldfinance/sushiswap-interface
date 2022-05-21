@@ -22,14 +22,17 @@ const LiquidityLauncherCreationLockupField: FC<LiquidityLauncherCreationLockupFi
         <Typography weight={700}>{i18n._(t`Liquidity Lockup Time`)}</Typography>
         <ToggleButtonGroup
           variant="outlined"
-          value={getValues('liqLockTime')}
+          // @ts-ignore
+value={getValues('liqLockTime')}
           onChange={(val: string) => setValue('liqLockTime', val, { shouldValidate: true })}
           className="mt-2 !flex"
         >
-          <ToggleButtonGroup.Button value={180} activeClassName="border-purple" className="!bg-none px-5 !py-2.5">
+          <ToggleButtonGroup.Button // @ts-ignore
+value={180} activeClassName="border-purple" className="!bg-none px-5 !py-2.5">
             {i18n._(t`${180} days`)}
           </ToggleButtonGroup.Button>
-          <ToggleButtonGroup.Button value={90} activeClassName="border-purple" className="!bg-none px-5 !py-2.5">
+          <ToggleButtonGroup.Button // @ts-ignore
+value={90} activeClassName="border-purple" className="!bg-none px-5 !py-2.5">
             {i18n._(t`${90} days`)}
           </ToggleButtonGroup.Button>
         </ToggleButtonGroup>

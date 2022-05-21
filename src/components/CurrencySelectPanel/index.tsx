@@ -39,10 +39,12 @@ export default function CurrencySelectPanel({
   return (
     <div id={id} className="p-5 rounded bg-dark-800">
       <div className="flex flex-col justify-between space-y-3 sm:space-y-0 sm:flex-row">
-        <div className="w-full" onClick={onClick}>
+        <div className="w-full" // @ts-ignore
+onClick={onClick}>
           <div
             className="items-center h-full text-xl font-medium border-none outline-none cursor-pointer select-none"
-            onClick={() => {
+            // @ts-ignore
+onClick={() => {
               if (!disableCurrencySelect) {
                 setModalOpen(true)
               }

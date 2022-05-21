@@ -83,7 +83,8 @@ const Component: FC<ComponentProps> = ({
 
   return (
     <CurrencyModalContext.Provider
-      value={useMemo(
+      // @ts-ignore
+value={useMemo(
         () => ({
           view,
           setView,

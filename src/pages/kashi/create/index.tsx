@@ -186,13 +186,15 @@ export default function Create() {
               header={(props) => <SwapAssetPanel.Header {...props} selectLabel={i18n._(t`Select Asset`)} />}
               selected={true}
               currency={currencies[Field.ASSET]}
-              value={typedValue}
+              // @ts-ignore
+value={typedValue}
               onChange={(amount) => onUserInput(Field.ASSET, amount || '')}
               onSelect={(currency) => onCurrencySelection(Field.ASSET, currency)}
             />
           </div>
           <div className="flex justify-center relative lg:mt-[-10px] lg:mb-[-30px]">
-            <div onClick={onSwitchTokens} className="rounded-full hover:text-white p-1.5 cursor-pointer">
+            <div // @ts-ignore
+onClick={onSwitchTokens} className="rounded-full hover:text-white p-1.5 cursor-pointer">
               <SwitchVerticalIcon width={12} height={12} />
             </div>
           </div>
@@ -205,7 +207,8 @@ export default function Create() {
               header={(props) => <SwapAssetPanel.Header {...props} selectLabel={i18n._(t`Select Collateral`)} />}
               selected={true}
               currency={currencies[Field.COLLATERAL]}
-              value={typedValue}
+              // @ts-ignore
+value={typedValue}
               onChange={(amount) => onUserInput(Field.COLLATERAL, amount || '')}
               onSelect={(currency) => onCurrencySelection(Field.COLLATERAL, currency)}
               hideInput={true}
@@ -253,7 +256,8 @@ export default function Create() {
             </div>
           </div>
         </div>
-        <Button color="gradient" onClick={() => handleCreate()} disabled={!both}>
+        <Button color="gradient" // @ts-ignore
+onClick={() => handleCreate()} disabled={!both}>
           {inputError || i18n._(t`Create Market`)}
         </Button>
       </SwapLayoutCard>

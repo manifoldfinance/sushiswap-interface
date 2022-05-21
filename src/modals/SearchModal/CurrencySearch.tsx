@@ -146,7 +146,8 @@ export function CurrencySearch({
           id="token-search-input"
           placeholder={i18n._(t`Search name or paste address`)}
           autoComplete="off"
-          value={searchQuery}
+          // @ts-ignore
+value={searchQuery}
           onChange={handleInput}
           onKeyDown={handleEnter}
           className="w-full bg-[rgba(0,0,0,0.2)] border border-dark-800 focus:border-blue rounded placeholder-secondary font-bold text-base p-4 appearance-none"
@@ -154,7 +155,8 @@ export function CurrencySearch({
       )}
       {showCommonBases && <CommonBases />}
 
-      {searchToken && !searchTokenIsAdded && <ImportRow token={searchToken} onClick={handleImport} />}
+      {searchToken && !searchTokenIsAdded && <ImportRow token={searchToken} // @ts-ignore
+onClick={handleImport} />}
       <div className="h-full overflow-hidden overflow-y-auto border rounded border-dark-800 bg-[rgba(0,0,0,0.2)]">
         {filteredSortedTokens?.length > 0 || filteredInactiveTokens?.length > 0 ? (
           <CurrencyList
@@ -173,7 +175,8 @@ export function CurrencySearch({
           <Button
             size="sm"
             id="list-token-manage-button"
-            onClick={() => setView(CurrencyModalView.manage)}
+            // @ts-ignore
+onClick={() => setView(CurrencyModalView.manage)}
             color="blue"
             variant="empty"
           >

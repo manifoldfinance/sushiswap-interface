@@ -314,7 +314,8 @@ export default function Remove() {
         color="gradient"
         size="lg"
         disabled={!(approval === ApprovalState.APPROVED || signatureData !== null)}
-        onClick={onRemove}
+        // @ts-ignore
+onClick={onRemove}
       >
         {i18n._(t`Confirm`)}
       </Button>
@@ -384,7 +385,8 @@ export default function Remove() {
             width={24}
             height={24}
             className="cursor-pointer text-high-emphesis hover:text-white focus:text-white"
-            onClick={() => router.push('/pool')}
+            // @ts-ignore
+onClick={() => router.push('/pool')}
           />
           <Typography weight={700} className="text-center whitespace-nowrap text-high-emphesis">
             {i18n._(t`Remove Liquidity`)}
@@ -409,7 +411,8 @@ export default function Remove() {
               >
                 <Input.Percent
                   className="leading-[32px] focus:placeholder:text-low-emphesis flex-grow w-full text-left bg-transparent text-inherit disabled:cursor-not-allowed"
-                  value={innerLiquidityPercentage}
+                  // @ts-ignore
+value={innerLiquidityPercentage}
                   onUserInput={setInnerLiquidityPercentage}
                   placeholder="0%"
                   id="liquidity-percent"
@@ -461,7 +464,8 @@ export default function Remove() {
               <Button
                 fullWidth
                 loading={approval === ApprovalState.PENDING}
-                onClick={onAttemptToApprove}
+                // @ts-ignore
+onClick={onAttemptToApprove}
                 disabled={approval !== ApprovalState.NOT_APPROVED || signatureData !== null}
               >
                 {approval === ApprovalState.APPROVED || signatureData !== null
@@ -473,7 +477,8 @@ export default function Remove() {
                 color={
                   !isValid && !!parsedAmounts[Field.CURRENCY_A] && !!parsedAmounts[Field.CURRENCY_B] ? 'red' : 'blue'
                 }
-                onClick={() => {
+                // @ts-ignore
+onClick={() => {
                   setShowConfirm(true)
                 }}
                 disabled={!isValid || (signatureData === null && approval !== ApprovalState.APPROVED)}

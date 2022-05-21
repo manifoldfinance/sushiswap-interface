@@ -3,6 +3,7 @@ import { classNames } from 'app/functions'
 import { ComponentProps, FC, ReactNode } from 'react'
 type SwitchColor = 'default' | 'gradient'
 
+  // @ts-expect-error
 type SwitchProps = ComponentProps<typeof HeadlessUiSwitch> & {
   size?: 'xs' | 'sm' | 'md'
   checkedIcon?: ReactNode
@@ -12,9 +13,9 @@ type SwitchProps = ComponentProps<typeof HeadlessUiSwitch> & {
 }
 
 const COLOR = {
-  // @ts-ignore TYPE NEEDS FIXING
+  // eslint-disable-next-line  @typescript-eslint/no-explicit-any
   default: (checked) => (checked ? 'bg-high-emphesis' : 'bg-high-emphesis'),
-  // @ts-ignore TYPE NEEDS FIXING
+  // eslint-disable-next-line  @typescript-eslint/no-explicit-any
   gradient: (checked) => (checked ? 'bg-gradient-to-r from-blue to-pink' : 'bg-dark-700'),
 }
 
@@ -32,7 +33,9 @@ const WIDTH = {
 
 const Switch: FC<SwitchProps> = ({
   size = 'md',
+  // @ts-expect-error
   checked,
+  // @ts-expect-error
   onChange,
   checkedIcon = '',
   uncheckedIcon = '',
@@ -44,7 +47,8 @@ const Switch: FC<SwitchProps> = ({
 
   return (
     <HeadlessUiSwitch
-      checked={checked}
+      // @ts-ignore
+checked={checked}
       onChange={onChange}
       className={classNames(
         `flex items-center bg-dark-800 border border-dark-700 relative inline-flex flex-shrink-0 rounded-full cursor-pointer ease-in-out duration-200 ${id}`

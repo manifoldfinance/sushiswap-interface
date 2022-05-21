@@ -119,7 +119,8 @@ const LimitOrderReviewModal: FC<LimitOrderReviewModal> = ({ parsedAmounts, trade
         <Typography variant="xs" className="text-center text-secondary">
           {i18n._(t`Please note that after order execution, your tokens will be received in your BentoBox`)}
         </Typography>
-        <Button loading={attemptingTxn} color="gradient" disabled={attemptingTxn} onClick={_execute}>
+        <Button loading={attemptingTxn} color="gradient" disabled={attemptingTxn} // @ts-ignore
+onClick={_execute}>
           {i18n._(t`Create Limit Order`)}
         </Button>
       </div>

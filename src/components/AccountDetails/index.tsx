@@ -69,12 +69,14 @@ const AccountDetails: FC<AccountDetailsProps> = ({
           <div className="flex items-center justify-between">
             {connectorName}
             {connector !== injected && !(connector instanceof WalletLinkConnector) && (
-              <Button variant="outlined" color="blue" size="xs" onClick={deactivate}>
+              <Button variant="outlined" color="blue" size="xs" // @ts-ignore
+onClick={deactivate}>
                 {i18n._(t`Disconnect`)}
               </Button>
             )}
 
-            <Button variant="outlined" color="blue" size="xs" onClick={openOptions}>
+            <Button variant="outlined" color="blue" size="xs" // @ts-ignore
+onClick={openOptions}>
               {i18n._(t`Change`)}
             </Button>
           </div>
@@ -122,7 +124,8 @@ const AccountDetails: FC<AccountDetailsProps> = ({
             <Typography variant="xs" weight={700} className="text-secondary">
               {i18n._(t`Recent Transactions`)}
             </Typography>
-            <Button variant="outlined" color="blue" size="xs" onClick={clearAllTransactionsCallback}>
+            <Button variant="outlined" color="blue" size="xs" // @ts-ignore
+onClick={clearAllTransactionsCallback}>
               {i18n._(t`Clear all`)}
             </Button>
           </div>

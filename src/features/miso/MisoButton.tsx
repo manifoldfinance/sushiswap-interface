@@ -25,7 +25,8 @@ const MisoButton: FC<MisoButtonProps> = ({ auction, amount, children, error }) =
         disabled={auction.status === AuctionStatus.FINISHED || approvalState === ApprovalState.PENDING}
         size="lg"
         color="blue"
-        onClick={approve}
+        // @ts-ignore
+onClick={approve}
         {...(approvalState === ApprovalState.PENDING && {
           startIcon: (
             <div className="w-4 h-4 mr-1">

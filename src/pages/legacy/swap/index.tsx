@@ -371,7 +371,8 @@ const Swap = ({ banners }: SwapProps) => {
             spendFromWallet={true}
             header={SwapAssetPanel.Header}
             currency={currencies[Field.INPUT]}
-            value={formattedAmounts[Field.INPUT]}
+            // @ts-ignore
+value={formattedAmounts[Field.INPUT]}
             onChange={handleTypeInput}
             onSelect={handleInputSelect}
           />
@@ -379,7 +380,8 @@ const Swap = ({ banners }: SwapProps) => {
             <div
               role="button"
               className="p-1.5 rounded-full bg-dark-800 border shadow-md border-dark-700 hover:border-dark-600"
-              onClick={() => {
+              // @ts-ignore
+onClick={() => {
                 setApprovalSubmitted(false) // reset 2 step UI for approvals
                 onSwitchTokens()
               }}
@@ -391,7 +393,8 @@ const Swap = ({ banners }: SwapProps) => {
             spendFromWallet={true}
             header={SwapAssetPanel.Header}
             currency={currencies[Field.OUTPUT]}
-            value={formattedAmounts[Field.OUTPUT]}
+            // @ts-ignore
+value={formattedAmounts[Field.OUTPUT]}
             onChange={handleTypeOutput}
             onSelect={handleOutputSelect}
             priceImpact={priceImpact}
@@ -426,7 +429,8 @@ const Swap = ({ banners }: SwapProps) => {
               fullWidth
               color="blue"
               disabled={Boolean(wrapInputError)}
-              onClick={onWrap}
+              // @ts-ignore
+onClick={onWrap}
               className="rounded-2xl md:rounded"
             >
               {wrapInputError ??
@@ -442,7 +446,8 @@ const Swap = ({ banners }: SwapProps) => {
                 <Button
                   fullWidth
                   loading={approvalState === ApprovalState.PENDING}
-                  onClick={handleApprove}
+                  // @ts-ignore
+onClick={handleApprove}
                   disabled={approvalState !== ApprovalState.NOT_APPROVED || approvalSubmitted}
                   className="rounded-2xl md:rounded"
                 >
@@ -452,7 +457,8 @@ const Swap = ({ banners }: SwapProps) => {
               {approvalState === ApprovalState.APPROVED && (
                 <Button
                   color={isValid && priceImpactSeverity > 2 ? 'red' : 'gradient'}
-                  onClick={() => {
+                  // @ts-ignore
+onClick={() => {
                     if (isExpertMode) {
                       handleSwap()
                     } else {
@@ -484,7 +490,8 @@ const Swap = ({ banners }: SwapProps) => {
             <Button
               color={isValid && priceImpactSeverity > 2 && !swapCallbackError ? 'red' : 'gradient'}
               fullWidth
-              onClick={() => {
+              // @ts-ignore
+onClick={() => {
                 if (isExpertMode) {
                   handleSwap()
                 } else {

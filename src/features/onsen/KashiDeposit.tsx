@@ -119,13 +119,15 @@ const KashiDeposit = ({ market, header }: { market: KashiMediumRiskLendingPair; 
         {header}
         <AssetInput
           title={''}
-          value={depositValue}
+          // @ts-ignore
+value={depositValue}
           currency={asset}
           onChange={(val) => setDepositValue(val || '')}
           headerRight={
             <AssetInput.WalletSwitch
               onChange={() => setUseBento(!useBento)}
-              checked={!useBento}
+              // @ts-ignore
+checked={!useBento}
               id="switch-spend-from-wallet-a"
             />
           }
@@ -151,7 +153,8 @@ const KashiDeposit = ({ market, header }: { market: KashiMediumRiskLendingPair; 
           kashiApprovalState === BentoApprovalState.PENDING) ? (
         <Button
           loading={kashiApprovalState === BentoApprovalState.PENDING}
-          onClick={onApproveKashi}
+          // @ts-ignore
+onClick={onApproveKashi}
           disabled={kashiApprovalState !== BentoApprovalState.NOT_APPROVED}
         >
           {i18n._(t`Approve Kashi`)}
@@ -161,13 +164,15 @@ const KashiDeposit = ({ market, header }: { market: KashiMediumRiskLendingPair; 
         (tokenApprovalState === ApprovalState.NOT_APPROVED || tokenApprovalState === ApprovalState.PENDING) ? (
         <Button
           loading={tokenApprovalState === ApprovalState.PENDING}
-          onClick={onApproveToken}
+          // @ts-ignore
+onClick={onApproveToken}
           disabled={tokenApprovalState !== ApprovalState.NOT_APPROVED}
         >
           {`${i18n._(t`Approve`)} ${asset.symbol}`}
         </Button>
       ) : (
-        <Button onClick={onDeposit} disabled={!isValid} color={!isValid && !!parsedDepositValue ? 'red' : 'blue'}>
+        <Button // @ts-ignore
+onClick={onDeposit} disabled={!isValid} color={!isValid && !!parsedDepositValue ? 'red' : 'blue'}>
           {error || i18n._(t`Confirm Deposit`)}
         </Button>
       )}

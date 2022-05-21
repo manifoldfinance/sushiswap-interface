@@ -15,7 +15,8 @@ export default function Web3Connect({ color = 'gray', size, className = '', ...r
   return error ? (
     <div
       className="flex items-center justify-center px-4 py-2 font-semibold text-white border rounded bg-opacity-80 border-red bg-red hover:bg-opacity-100"
-      onClick={toggleWalletModal}
+      // @ts-ignore
+onClick={toggleWalletModal}
     >
       <div className="mr-1">
         <Activity className="w-4 h-4" />
@@ -25,7 +26,8 @@ export default function Web3Connect({ color = 'gray', size, className = '', ...r
   ) : (
     <Button
       id="connect-wallet"
-      onClick={toggleWalletModal}
+      // @ts-ignore
+onClick={toggleWalletModal}
       variant="outlined"
       color={color}
       className={classNames(className, '!border-none')}

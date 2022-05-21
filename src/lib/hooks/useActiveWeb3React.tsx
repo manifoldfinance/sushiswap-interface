@@ -114,5 +114,6 @@ export function ActiveWeb3Provider({
     }
   }, [error])
 
-  return <Web3Context.Provider value={web3}>{children}</Web3Context.Provider>
+  return <Web3Context.Provider // @ts-ignore
+value={web3}>{children}</Web3Context.Provider>
 }

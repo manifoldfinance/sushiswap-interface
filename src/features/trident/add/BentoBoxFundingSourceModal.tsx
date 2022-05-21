@@ -86,7 +86,8 @@ const BentoBoxFundingSourceModal: FC = () => {
                   style={{ backgroundImage: `url('/images/trident/AssetInputScreenshot2.png')` }}
                 />
                 <div className="flex flex-col items-center justify-center gap-2 p-3 px-8">
-                  <Switch checked={walletSelected} onChange={setWalletSelected} />
+                  <Switch // @ts-ignore
+checked={walletSelected} onChange={setWalletSelected} />
                   <Typography weight={700} variant="sm" className="text-center text-high-emphesis">
                     {i18n._(t`Use the toggle to switch between balances when interacting with our platform.`)}
                   </Typography>

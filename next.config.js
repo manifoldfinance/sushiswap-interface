@@ -2,8 +2,12 @@
 /**
  * @type {import('next').NextConfig}
  **/
-const linguiConfig = require('./lingui.config.js')
 // @ts-ignore
+require('v8-compile-cache-lib').install();
+// Helps speed up compile and hot-reload speed
+// set V8_COMPILE_CACHE_CACHE_DIR 
+const linguiConfig = require('./lingui.config.js')
+
 const defaultTheme = require('tailwindcss/defaultTheme')
 
 const { ChainId } = require('@sushiswap/core-sdk')

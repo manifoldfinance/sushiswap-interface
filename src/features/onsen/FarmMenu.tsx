@@ -16,7 +16,8 @@ const MenuLink: FC<{ href?: string; label: string; onClick?(): void }> = ({ href
       <Menu.Item>
         {({ active }) => {
           return (
-            <Typography variant="sm" weight={700} onClick={onClick} className={active ? 'text-white' : 'text-primary'}>
+            <Typography variant="sm" weight={700} // @ts-ignore
+onClick={onClick} className={active ? 'text-white' : 'text-primary'}>
               {label}
             </Typography>
           )
@@ -27,10 +28,12 @@ const MenuLink: FC<{ href?: string; label: string; onClick?(): void }> = ({ href
 
   if (href) {
     return (
-      <Menu.Item onClick={() => router.push(href)}>
+      <Menu.Item // @ts-ignore
+onClick={() => router.push(href)}>
         {({ active }) => {
           return (
-            <Typography variant="sm" weight={700} onClick={onClick} className={active ? 'text-white' : 'text-primary'}>
+            <Typography variant="sm" weight={700} // @ts-ignore
+onClick={onClick} className={active ? 'text-white' : 'text-primary'}>
               {label}
             </Typography>
           )
@@ -75,7 +78,8 @@ const OnsenFilter = ({ account, chainId }: { account?: string | null; chainId?: 
       [FarmFilter.Portfolio]: account ? (
         <MenuLink href={`/farm?account=${account}&filter=portfolio`} label={i18n._(t`Your Farms`)} />
       ) : (
-        <MenuLink onClick={toggleWalletModal} label={i18n._(t`Your Farms`)} />
+        <MenuLink // @ts-ignore
+onClick={toggleWalletModal} label={i18n._(t`Your Farms`)} />
       ),
       [FarmFilter.Kashi]:
         chainId && [ChainId.ETHEREUM, ChainId.ARBITRUM].includes(chainId) ? (
@@ -127,7 +131,8 @@ const OnsenFilter = ({ account, chainId }: { account?: string | null; chainId?: 
             {Object.entries(items).map(([k, v], index) => (
               <div
                 key={index}
-                onClick={() => setSelected(k as FarmFilter)}
+                // @ts-ignore
+onClick={() => setSelected(k as FarmFilter)}
                 className="px-3 py-2 cursor-pointer hover:bg-dark-900/40"
               >
                 {v}

@@ -53,7 +53,8 @@ export const useCompletedOrdersTableConfig = ({ orders }: { orders?: DerivedOrde
             <Typography
               variant="xs"
               className="flex items-baseline gap-2 text-secondary cursor-pointer"
-              onClick={() => setInvert(!invert)}
+              // @ts-ignore
+onClick={() => setInvert(!invert)}
             >
               <Typography weight={700} variant="xs" component="span" className="text-high-emphesis">
                 {invert ? props.cell.value.invert().toSignificant(6) : props.cell.value.toSignificant(6)}

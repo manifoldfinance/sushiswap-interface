@@ -12,7 +12,8 @@ const Step: FC<StepProps> = ({ stepNum, title, currentStep, stepSetter, isLastSt
 
   return (
     <div
-      onClick={() => isCompleted && stepSetter(stepNum)}
+      // @ts-ignore
+onClick={() => isCompleted && stepSetter(stepNum)}
       className={classNames(
         'text-center relative',
         isActive ? 'text-high-emphesis' : 'text-secondary',

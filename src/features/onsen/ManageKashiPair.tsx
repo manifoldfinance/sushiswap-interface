@@ -31,7 +31,8 @@ const ManageKashiPair = ({ farm }) => {
           <div className="flex gap-4">
             <Switch
               size="sm"
-              checked={toggle}
+              // @ts-ignore
+checked={toggle}
               onChange={() => setToggle(!toggle)}
               checkedIcon={<PlusIcon className="text-dark-1000" />}
               uncheckedIcon={<MinusIcon className="text-dark-1000" />}

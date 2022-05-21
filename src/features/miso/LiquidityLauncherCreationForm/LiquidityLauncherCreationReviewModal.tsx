@@ -128,7 +128,8 @@ const LiquidityLauncherCreationModal: FC<LiquidityLauncherCreationModalProps> = 
             </div>
           </HeadlessUIModal.Content>
           <HeadlessUIModal.Actions>
-            <HeadlessUIModal.Action onClick={onDismiss}>{i18n._(t`Cancel`)}</HeadlessUIModal.Action>
+            <HeadlessUIModal.Action // @ts-ignore
+onClick={onDismiss}>{i18n._(t`Cancel`)}</HeadlessUIModal.Action>
             <HeadlessUIModal.Action
               main={true}
               {...(pending && {
@@ -139,7 +140,8 @@ const LiquidityLauncherCreationModal: FC<LiquidityLauncherCreationModalProps> = 
                 ),
               })}
               disabled={pending}
-              onClick={() => execute(data)}
+              // @ts-ignore
+onClick={() => execute(data)}
             >
               {i18n._(t`Create Liquidity Launcher`)}
             </HeadlessUIModal.Action>

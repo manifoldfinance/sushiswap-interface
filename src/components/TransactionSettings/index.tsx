@@ -101,7 +101,8 @@ const TransactionSettings: FC<TransactionSettingsProps> = ({ placeholderSlippage
                   'bg-transparent placeholder-low-emphesis min-w-0 w-full font-bold'
                 )}
                 placeholder={placeholderSlippage?.toFixed(2)}
-                value={slippageInput}
+                // @ts-ignore
+value={slippageInput}
                 onChange={(e) => dispatch(setSlippageInput(e.target.value))}
                 onBlur={() =>
                   slippageError === SlippageError.INVALID_INPUT
@@ -119,7 +120,8 @@ const TransactionSettings: FC<TransactionSettingsProps> = ({ placeholderSlippage
               size="sm"
               color={slippageIsDefault ? 'blue' : 'gray'}
               variant="outlined"
-              onClick={() => dispatch(setSlippageInput(GLOBAL_DEFAULT_SLIPPAGE_STR))}
+              // @ts-ignore
+onClick={() => dispatch(setSlippageInput(GLOBAL_DEFAULT_SLIPPAGE_STR))}
             >
               {i18n._(t`Auto`)}
             </Button>
@@ -161,7 +163,8 @@ const TransactionSettings: FC<TransactionSettingsProps> = ({ placeholderSlippage
                 'font-bold h-[36px] placeholder-low-emphesis bg-dark-1000/40 border-2 border-dark-800 rounded px-2  max-w-[100px] focus:border-blue'
               )}
               placeholder={(DEFAULT_DEADLINE_FROM_NOW / 60).toString()}
-              value={
+              // @ts-ignore
+value={
                 deadlineInput.length > 0
                   ? deadlineInput
                   : deadline === DEFAULT_DEADLINE_FROM_NOW

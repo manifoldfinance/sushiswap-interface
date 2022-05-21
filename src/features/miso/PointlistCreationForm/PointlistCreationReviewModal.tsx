@@ -129,7 +129,8 @@ const PointlistCreationModal: FC<PointlistCreationModalProps> = ({ open, onDismi
             </div>
           </HeadlessUIModal.Content>
           <HeadlessUIModal.Actions>
-            <HeadlessUIModal.Action onClick={onDismiss}>{i18n._(t`Cancel`)}</HeadlessUIModal.Action>
+            <HeadlessUIModal.Action // @ts-ignore
+onClick={onDismiss}>{i18n._(t`Cancel`)}</HeadlessUIModal.Action>
             <HeadlessUIModal.Action
               main={true}
               {...(pending && {
@@ -140,7 +141,8 @@ const PointlistCreationModal: FC<PointlistCreationModalProps> = ({ open, onDismi
                 ),
               })}
               disabled={pending}
-              onClick={() => execute(data)}
+              // @ts-ignore
+onClick={() => execute(data)}
             >
               {i18n._(t`Create Permission List`)}
             </HeadlessUIModal.Action>

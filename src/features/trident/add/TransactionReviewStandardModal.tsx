@@ -83,7 +83,8 @@ const TransactionReviewStandardModal: FC = () => {
               {poolShareAfter?.toSignificant(6) || '0.000'}%
             </Typography>
           </div>
-          <Button id={`btn-modal-confirm-deposit`} disabled={attemptingTxn} color="blue" onClick={_execute}>
+          <Button id={`btn-modal-confirm-deposit`} disabled={attemptingTxn} color="blue" // @ts-ignore
+onClick={_execute}>
             {i18n._(t`Confirm Deposit`)}
           </Button>
         </div>

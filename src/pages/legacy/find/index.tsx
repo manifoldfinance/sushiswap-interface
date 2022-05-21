@@ -99,7 +99,8 @@ export default function PoolFinder() {
         <AutoColumn gap={'md'}>
           <CurrencySelectPanel
             currency={currency0}
-            onClick={() => setActiveField(Fields.TOKEN0)}
+            // @ts-ignore
+onClick={() => setActiveField(Fields.TOKEN0)}
             onCurrencySelect={handleCurrencySelect}
             otherCurrency={currency1}
             id="pool-currency-input"
@@ -115,7 +116,8 @@ export default function PoolFinder() {
           </AutoColumn>
           <CurrencySelectPanel
             currency={currency1}
-            onClick={() => setActiveField(Fields.TOKEN1)}
+            // @ts-ignore
+onClick={() => setActiveField(Fields.TOKEN1)}
             onCurrencySelect={handleCurrencySelect}
             otherCurrency={currency0}
             id="pool-currency-output"
@@ -166,7 +168,8 @@ export default function PoolFinder() {
               <Button
                 color="blue"
                 fullWidth={true}
-                onClick={() => {
+                // @ts-ignore
+onClick={() => {
                   router.push(`/pool`)
                 }}
               >

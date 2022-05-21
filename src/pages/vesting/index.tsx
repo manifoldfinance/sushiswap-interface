@@ -75,7 +75,8 @@ const Vesting = () => {
                     <BalancePanel
                       label={i18n._(t`From`)}
                       showMax
-                      value={inputValue}
+                      // @ts-ignore
+value={inputValue}
                       token={tokens?.inputToken}
                       symbol={general?.inputSymbol}
                       balance={balances?.inputTokenBalance}
@@ -90,7 +91,8 @@ const Vesting = () => {
                   <div className="w-full md:w-2/5 md:ml-2">
                     <BalancePanel
                       label={i18n._(t`To`)}
-                      value={outputValue}
+                      // @ts-ignore
+value={outputValue}
                       token={tokens?.outputToken}
                       symbol={general?.outputSymbol}
                       balance={balances?.outputTokenBalance}
@@ -259,7 +261,8 @@ const ProtocolVesting = () => {
               pendingTreasurySignature
             }
             size="default"
-            onClick={onClaim}
+            // @ts-ignore
+onClick={onClaim}
             className="inline-flex items-center justify-center"
           >
             {pendingTreasurySignature ? (
@@ -394,7 +397,8 @@ const WeeklyVesting = () => {
               pendingTreasurySignature
             }
             size="default"
-            onClick={onClaim}
+            // @ts-ignore
+onClick={onClaim}
             className="inline-flex items-center justify-center"
           >
             {pendingTreasurySignature ? (

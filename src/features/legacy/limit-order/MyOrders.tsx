@@ -22,7 +22,8 @@ const MyOrders: FC = () => {
     <Link href="/limit-order/open">
       <a>
         {pending.totalOrders > 0 ? (
-          <Badge color="blue" value={pending.totalOrders}>
+          <Badge color="blue" // @ts-ignore
+value={pending.totalOrders}>
             {content}
           </Badge>
         ) : (

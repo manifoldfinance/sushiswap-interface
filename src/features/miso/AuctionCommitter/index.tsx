@@ -68,7 +68,8 @@ const AuctionCommitter: FC = () => {
             variant="sm"
             weight={700}
             className="text-low-emphesis"
-            onClick={() => setValue(balance?.toExact())}
+            // @ts-ignore
+onClick={() => setValue(balance?.toExact())}
           >
             Balance: {balance?.toSignificant(6)} {balance?.currency.symbol}
           </Typography>
@@ -81,7 +82,8 @@ const AuctionCommitter: FC = () => {
             </Typography>
             <Typography variant="lg" weight={700} className="text-high-emphesis">
               <Input.Numeric
-                value={value || ''}
+                // @ts-ignore
+value={value || ''}
                 onUserInput={(val: string) => setValue(val)}
                 placeholder="0.00"
                 className="w-full bg-transparent text-inherit"
@@ -95,7 +97,8 @@ const AuctionCommitter: FC = () => {
             color="blue"
             role="button"
             className="!rounded-full"
-            onClick={() => setValue(maxSpend?.toExact())}
+            // @ts-ignore
+onClick={() => setValue(maxSpend?.toExact())}
           >
             <Typography>{i18n._(t`MAX`)}</Typography>
           </Button>
@@ -104,7 +107,8 @@ const AuctionCommitter: FC = () => {
           <AuctionTimer auction={auction}>
             {() => (
               <Button
-                onClick={() => setReview(true)}
+                // @ts-ignore
+onClick={() => setReview(true)}
                 disabled={
                   inputAmount.equalTo(ZERO) ||
                   // @ts-ignore TYPE NEEDS FIXING

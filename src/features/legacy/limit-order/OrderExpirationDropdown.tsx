@@ -70,7 +70,8 @@ const OrderExpirationDropdown: FC = () => {
             >
               {Object.entries(items).map(([k, v]) => {
                 return (
-                  <Menu.Item key={k} onClick={(e) => handler(e, k)}>
+                  <Menu.Item key={k} // @ts-ignore
+onClick={(e) => handler(e, k)}>
                     {({ active }) => {
                       return (
                         <Typography

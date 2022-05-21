@@ -57,7 +57,8 @@ const ClassicSingleAside = () => {
           <BentoBoxFundingSourceModal />
         </div>
         <Switch
-          checked={outputToWallet}
+          // @ts-ignore
+checked={outputToWallet}
           onChange={() => dispatch(setRemoveOutputToWallet(!outputToWallet))}
           checkedIcon={
             <div className="flex items-center justify-center w-full h-full text-dark-700">

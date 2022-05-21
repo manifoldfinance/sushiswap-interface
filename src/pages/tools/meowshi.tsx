@@ -155,7 +155,8 @@ export default function Meowshi() {
         <div className="relative mt-[-24px] mb-[-24px] ml-[28px] flex items-center">
           <div
             className="inline-flex p-2 border-2 rounded-full cursor-pointer border-dark-900 bg-dark-800"
-            onClick={switchCurrencies}
+            // @ts-ignore
+onClick={switchCurrencies}
           >
             <ArrowDownIcon width={24} height={24} />
           </div>

@@ -30,7 +30,8 @@ export const NavigationItem: FC<NavigationItem> = ({ node }) => {
     const { link } = node as MenuItemLeaf
     return (
       <Typography
-        onClick={() => router.push(link)}
+        // @ts-ignore
+onClick={() => router.push(link)}
         weight={700}
         variant="sm"
         className={classNames(
@@ -89,7 +90,8 @@ export const NavigationItem: FC<NavigationItem> = ({ node }) => {
                         <Typography
                           variant="sm"
                           weight={700}
-                          onClick={() => {
+                          // @ts-ignore
+onClick={() => {
                             router.push(leaf.link).then(() => buttonRef?.current?.click())
                           }}
                           className="relative px-3 py-2 m-1 rounded-lg hover:cursor-pointer hover:text-white hover:bg-white/10"

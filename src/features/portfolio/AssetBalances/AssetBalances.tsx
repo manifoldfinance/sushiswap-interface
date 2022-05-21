@@ -57,7 +57,8 @@ const AssetBalances: FC<AssetBalancesProps> = ({ config, onSelect }) => {
                 <tr
                   {...row.getRowProps()}
                   key={i}
-                  onClick={() => onSelect && onSelect(row)}
+                  // @ts-ignore
+onClick={() => onSelect && onSelect(row)}
                   className={TABLE_TBODY_TR_CLASSNAME}
                 >
                   {/*@ts-ignore TYPE NEEDS FIXING*/}

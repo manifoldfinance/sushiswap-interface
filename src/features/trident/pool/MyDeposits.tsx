@@ -15,11 +15,14 @@ const MyDeposits: FC = () => {
         {i18n._(t`My Deposits`)}
       </Typography>
       <ListPanel
-        header={<ListPanel.Header title={i18n._(t`Assets`)} value="$16,720.00" subValue="54.32134 SLP" />}
+        header={<ListPanel.Header title={i18n._(t`Assets`)} v// @ts-ignore
+alue="$16,720.00" subV// @ts-ignore
+alue="54.32134 SLP" />}
         items={[poolWithState?.pool?.reserve0, poolWithState?.pool?.reserve1].map((amount, index) => (
           <ListPanel.CurrencyAmountItem amount={amount} key={index} />
         ))}
-        footer={<ListPanel.Footer title={i18n._(t`Share of Pool`)} value="0.05%" />}
+        footer={<ListPanel.Footer title={i18n._(t`Share of Pool`)} v// @ts-ignore
+alue="0.05%" />}
       />
     </div>
   )

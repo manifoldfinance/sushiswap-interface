@@ -8,7 +8,8 @@ const Back = () => {
   return (
     <div>
       <a
-        onClick={router.back}
+        // @ts-ignore
+onClick={router.back}
         className="flex items-center space-x-2 text-base text-center cursor-pointer font text-secondary hover:text-high-emphesis"
       >
         <svg

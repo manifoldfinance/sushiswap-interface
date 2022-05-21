@@ -3,6 +3,7 @@
   "parser": "@typescript-eslint/parser",
   "plugins": ["@typescript-eslint", "simple-import-sort", "unused-imports"],
   "rules": {
+    "@typescript-eslint/no-explicit-any": "off",
     "react/display-name": "off",
     "react-hooks/exhaustive-deps": [
       "warn"

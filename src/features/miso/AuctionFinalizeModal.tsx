@@ -47,7 +47,8 @@ const AuctionFinalizeModal: FC = () => {
         </div>
         <div className="flex justify-center">
           <Button
-            onClick={() => finalizeAuction()}
+            // @ts-ignore
+onClick={() => finalizeAuction()}
             className="!text-2xl !opacity-100 px-6 py-2 !text-transparent bg-clip-text bg-gradient-to-r rounded from-red to-pink transition-all disabled:scale-[1] hover:scale-[1.05]"
           >
             {i18n._(t`Finalize Auction`)}

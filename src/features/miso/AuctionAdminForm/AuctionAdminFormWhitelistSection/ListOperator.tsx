@@ -72,7 +72,8 @@ const ListOperator: FC<ListOperatorProps> = ({ auction }) => {
         <Typography weight={700}>{i18n._(t`Point List Address`)}</Typography>
         <div className="mt-2 flex rounded-md shadow-sm">
           <input
-            value={pointListAddress === AddressZero ? '' : pointListAddress}
+            // @ts-ignore
+value={pointListAddress === AddressZero ? '' : pointListAddress}
             onChange={(e) =>
               pipeline(
                 { value: e.target.value },
@@ -118,7 +119,8 @@ const ListOperator: FC<ListOperatorProps> = ({ auction }) => {
               ),
             })}
             color="blue"
-            onClick={() => handlePermissionListOperator(pointListAddress)}
+            // @ts-ignore
+onClick={() => handlePermissionListOperator(pointListAddress)}
           >
             {i18n._(t`Update List Address`)}
           </Button>

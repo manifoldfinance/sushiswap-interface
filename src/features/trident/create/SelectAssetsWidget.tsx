@@ -26,7 +26,8 @@ const SelectPanel: FC<{ index: number }> = ({ index }) => {
       selected={true}
       spendFromWallet={asset.spendFromSource !== SpendSource.BENTO_BOX}
       currency={asset.currency}
-      value={asset.amount}
+      // @ts-ignore
+value={asset.amount}
       onChange={(amount) => setAmount(amount)}
       onSelect={(currency) => setCurrency(currency)}
     />

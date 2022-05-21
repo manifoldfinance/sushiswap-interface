@@ -37,7 +37,8 @@ export const SelectionContinueButton: FC = () => {
             disabled={Boolean(error) || loading || !approved}
             color="blue"
             variant="filled"
-            onClick={() => !error && dispatch(setCreateShowReview(true))}
+            // @ts-ignore
+onClick={() => !error && dispatch(setCreateShowReview(true))}
             loading={loading}
           >
             {error ? (

@@ -49,7 +49,8 @@ const BottomSlideIn: FC<BottomSlideInProps> = ({ title, open, onClose, children,
                         {closeTrigger ? (
                           closeTrigger
                         ) : (
-                          <button onClick={onClose}>
+                          <button // @ts-ignore
+onClick={onClose}>
                             <span className="sr-only">Close panel</span>
                             <XIcon className="h-6 w-6 text-high-emphesis" aria-hidden="true" />
                           </button>

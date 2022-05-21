@@ -13,7 +13,8 @@ const FixedRatioExplanationModal: FC = () => {
   const { i18n } = useLingui()
 
   const trigger = (
-    <div className="flex items-center justify-center w-6 h-6 rounded cursor-pointer" onClick={() => setOpen(true)}>
+    <div className="flex items-center justify-center w-6 h-6 rounded cursor-pointer" // @ts-ignore
+onClick={() => setOpen(true)}>
       <QuestionMarkCircleIcon className="w-6 h-6 lg:w-4 lg:h-4 text-high-emphesis" />
     </div>
   )

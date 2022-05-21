@@ -33,7 +33,8 @@ const AuctionTabs: FC = () => {
         aria-label="Tabs"
       >
         {tabs.map((_tab, index) => (
-          <div key={_tab} onClick={() => setTab(index)} className="h-full space-y-2 cursor-pointer">
+          <div key={_tab} // @ts-ignore
+onClick={() => setTab(index)} className="h-full space-y-2 cursor-pointer">
             <div
               className={classNames(
                 index === tab ? 'text-high-emphesis' : '',

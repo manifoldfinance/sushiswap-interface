@@ -15,12 +15,14 @@ const HeaderToggle: FC<HeaderToggleProps> = ({ meowshiState }) => {
   return (
     <div className="flex justify-between">
       <RadioGroup
-        value={meow}
+        // @ts-ignore
+value={meow}
         onChange={switchCurrencies}
         className="flex flex-row bg-dark-800 rounded p-3px cursor-pointer"
       >
         <RadioGroup.Option
-          value={true}
+          // @ts-ignore
+value={true}
           className={({ checked }) =>
             classNames('px-8 py-2 rounded', `${checked ? 'bg-gradient-to-r from-blue to-pink' : ''}`)
           }
@@ -32,7 +34,8 @@ const HeaderToggle: FC<HeaderToggleProps> = ({ meowshiState }) => {
           )}
         </RadioGroup.Option>
         <RadioGroup.Option
-          value={false}
+          // @ts-ignore
+value={false}
           className={({ checked }) =>
             classNames('px-8 py-2 rounded', `${checked ? 'bg-gradient-to-r from-blue to-pink' : ''}`)
           }

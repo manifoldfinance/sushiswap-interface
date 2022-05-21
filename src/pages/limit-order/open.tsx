@@ -36,7 +36,8 @@ function OpenOrdersPage() {
           sure you have approved the limit order master contract or the order will not execute`)}
               </Typography>
               <div className="flex justify-end">
-                <Button onClick={approve} size="sm" color="blue" loading={approvalState === BentoApprovalState.PENDING}>
+                <Button // @ts-ignore
+onClick={approve} size="sm" color="blue" loading={approvalState === BentoApprovalState.PENDING}>
                   Approve
                 </Button>
               </div>

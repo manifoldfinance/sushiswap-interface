@@ -90,7 +90,8 @@ const RemoveTransactionReviewZapModal: FC<RemoveTransactionReviewSingleModal> = 
               <span className="text-green">{poolShareAfter?.toSignificant(6) || '0.000'}%</span>
             </Typography>
           </div>
-          <Button disabled={attemptingTxn} color="blue" onClick={_execute}>
+          <Button disabled={attemptingTxn} color="blue" // @ts-ignore
+onClick={_execute}>
             {i18n._(t`Confirm Withdrawal`)}
           </Button>
         </div>

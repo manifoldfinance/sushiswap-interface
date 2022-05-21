@@ -96,7 +96,8 @@ const SubmittedModalContent: FC<SubmittedModalContentProps> = ({
         {children}
       </HeadlessUiModal.Content>
       <HeadlessUiModal.Actions>
-        <HeadlessUiModal.Action main={!actions} onClick={onDismiss}>
+        <HeadlessUiModal.Action main={!actions} // @ts-ignore
+onClick={onDismiss}>
           {i18n._(t`Close`)}
         </HeadlessUiModal.Action>
         {actions}

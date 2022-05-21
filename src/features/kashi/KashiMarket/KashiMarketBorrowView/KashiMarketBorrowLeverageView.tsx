@@ -82,7 +82,8 @@ export const KashiMarketBorrowLeverageView: FC<KashiMarketBorrowLeverageView> = 
           <Switch
             size="sm"
             id="toggle-expert-mode-button"
-            checked={enabled}
+            // @ts-ignore
+checked={enabled}
             onChange={onSwitch}
             checkedIcon={<CheckIcon className="text-dark-700" />}
             uncheckedIcon={<CloseIcon />}
@@ -100,14 +101,16 @@ export const KashiMarketBorrowLeverageView: FC<KashiMarketBorrowLeverageView> = 
         <div className="flex flex-col">
           <div className="pt-2 pb-5">
             <Slider
-              value={range}
+              // @ts-ignore
+value={range}
               onChange={handleChange}
               onAfterChange={() => afterChange && afterChange(range.toString())}
               marks={[0.25, 0.5, 0.75, 1, 1.25, 1.5, 1.75, 2]}
               min={0.25}
               max={2}
               step={0.01}
-              defaultValue={0.5}
+              default// @ts-ignore
+value={0.5}
               markFormatter={(mark) => `${mark}x`}
             />
           </div>
@@ -123,7 +126,8 @@ export const KashiMarketBorrowLeverageView: FC<KashiMarketBorrowLeverageView> = 
               variant="xs"
               weight={700}
               className="text-high-emphesis"
-              onClick={() => setInvert((prev) => !prev)}
+              // @ts-ignore
+onClick={() => setInvert((prev) => !prev)}
             >
               {liquidationPrice}
             </Typography>

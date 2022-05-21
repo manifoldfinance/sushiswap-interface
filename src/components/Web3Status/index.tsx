@@ -46,7 +46,8 @@ function Web3StatusInner() {
       <div
         id="web3-status-connected"
         className="flex items-center gap-2 text-sm rounded-lg text-primary"
-        onClick={toggleWalletModal}
+        // @ts-ignore
+onClick={toggleWalletModal}
       >
         {hasPendingTransactions ? (
           <div className="flex items-center justify-between gap-2">

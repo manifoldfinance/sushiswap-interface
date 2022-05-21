@@ -64,7 +64,8 @@ export function ConfirmAddModalBottom({
         </div>
       </div>
 
-      <Button color="gradient" fullWidth onClick={onAdd}>
+      <Button color="gradient" fullWidth // @ts-ignore
+onClick={onAdd}>
         {noLiquidity ? i18n._(t`Create Pool & Supply`) : i18n._(t`Confirm Supply`)}
       </Button>
     </div>

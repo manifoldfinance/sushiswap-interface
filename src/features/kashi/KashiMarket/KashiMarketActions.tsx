@@ -56,7 +56,9 @@ export const KashiMarketActions: FC<KashiMarketActions> = ({ market }) => {
           className="shadow-md absolute max-h-[240px] overflow-auto border mt-2 divide-y rounded focus:outline-none border-dark-700 bg-dark-800 divide-dark-700"
         >
           <Menu.Item
-            onClick={(e) => {
+            // @ts-ignore
+            // @ts-ignore
+onClick={(e) => {
               e.preventDefault()
               onCook(market, onAccrue)
             }}
@@ -75,7 +77,9 @@ export const KashiMarketActions: FC<KashiMarketActions> = ({ market }) => {
             </Typography>
           </Menu.Item>
           <Menu.Item
-            onClick={(e) => {
+          // @ts-ignore
+            // @ts-ignore
+onClick={(e) => {
               e.preventDefault()
               onCook(market, onUpdatePrice)
             }}

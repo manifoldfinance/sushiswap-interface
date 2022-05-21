@@ -65,7 +65,8 @@ const DepositView: FC<DepositViewProps> = ({ onClose, onBack }) => {
         title={''}
         currency={currency}
         onChange={(val) => setValue(val)}
-        value={value}
+        // @ts-ignore
+value={value}
         spendFromWallet={true}
       />
       <div className="flex justify-center -mt-6 -mb-6 z-10">
@@ -92,7 +93,8 @@ const DepositView: FC<DepositViewProps> = ({ onClose, onBack }) => {
           const buttonText = error ? error : i18n._(t`Confirm Deposit`)
 
           return (
-            <Button loading={attemptingTxn || loading} color="blue" disabled={disabled} onClick={execute}>
+            <Button loading={attemptingTxn || loading} color="blue" disabled={disabled} // @ts-ignore
+onClick={execute}>
               <Typography variant="sm" weight={700} className={!error ? 'text-high-emphesis' : 'text-low-emphasis'}>
                 {buttonText}
               </Typography>

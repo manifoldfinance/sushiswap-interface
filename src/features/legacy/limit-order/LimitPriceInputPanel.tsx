@@ -32,7 +32,8 @@ const LimitPriceInputPanel: FC<LimitPriceInputPanel> = ({ trade, limitPrice }) =
             className="leading-[32px] focus:placeholder:text-low-emphesis flex-grow w-full text-left bg-transparent text-inherit disabled:cursor-not-allowed"
             placeholder={trade ? trade.executionPrice.toSignificant(6) : '0.0'}
             id="limit-price-input"
-            value={
+            // @ts-ignore
+value={
               (limitPriceString === LimitPrice.CURRENT ? trade?.executionPrice.toSignificant(6) : limitPriceString) ||
               ''
             }
@@ -41,7 +42,8 @@ const LimitPriceInputPanel: FC<LimitPriceInputPanel> = ({ trade, limitPrice }) =
         </Typography>
         <Typography
           variant="sm"
-          onClick={() =>
+          // @ts-ignore
+onClick={() =>
             dispatch(
               setLimitOrderInvertState({
                 invertRate: !invertRate,

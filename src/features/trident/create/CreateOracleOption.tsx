@@ -25,7 +25,8 @@ export const CreateOracleOption: FC = () => {
         </Typography>
       </div>
       <Switch
-        checked={createAnOracle}
+        // @ts-ignore
+checked={createAnOracle}
         onChange={() => dispatch(setCreateAnOracle(!createAnOracle))}
         checkedIcon={
           <div className="flex items-center justify-center w-full h-full text-dark-700">

@@ -25,7 +25,8 @@ interface SelectionProps {
 const Selection: FC<SelectionProps> = ({ title, checked, setter }) => {
   return (
     <div className="flex gap-2 items-center">
-      <Checkbox checked={checked} set={setter} />
+      <Checkbox // @ts-ignore
+checked={checked} set={setter} />
       <span className="text-xs">{title}</span>
     </div>
   )
@@ -50,7 +51,8 @@ const FeeTiers: FC = () => {
           <Selection
             key={fee}
             title={`${fee / 100}%`}
-            checked={feeTiers.includes(fee)}
+            // @ts-ignore
+checked={feeTiers.includes(fee)}
             setter={() => removeOrAddFeeTier(fee, feeTiers, (feeTiers) => dispatch(setPoolsFeeTiers(feeTiers)))}
           />
         )
@@ -68,7 +70,8 @@ export const SearchSidebar: FC = () => {
       <Section title="TWAP Oracles">
         <Selection
           title="Show oracle pairs only"
-          checked={showTWAPOnly}
+          // @ts-ignore
+checked={showTWAPOnly}
           setter={() => dispatch(setPoolsTWAPOnly(!showTWAPOnly))}
         />
       </Section>

@@ -113,7 +113,8 @@ const LimitOrder = () => {
             selected={true}
             spendFromWallet={!fromBentoBalance}
             currency={inputCurrency}
-            value={(typedField === Field.INPUT ? typedValue : parsedAmounts?.inputAmount?.toSignificant(6)) || ''}
+            // @ts-ignore
+value={(typedField === Field.INPUT ? typedValue : parsedAmounts?.inputAmount?.toSignificant(6)) || ''}
             onChange={(value) => onUserInput(Field.INPUT, value || '')}
             onSelect={(inputCurrency) => onCurrencySelection(Field.INPUT, inputCurrency)}
             currencies={inputTokenList}
@@ -125,7 +126,8 @@ const LimitOrder = () => {
             <SwitchVerticalIcon
               width={18}
               className="mt-6 cursor-pointer text-secondary hover:text-white"
-              onClick={onSwitchTokens}
+              // @ts-ignore
+onClick={onSwitchTokens}
             />
             <div className="flex flex-1">
               <OrderExpirationDropdown />
@@ -136,7 +138,8 @@ const LimitOrder = () => {
             header={SwapAssetPanel.Header}
             selected={true}
             currency={outputCurrency}
-            value={(typedField === Field.OUTPUT ? typedValue : parsedAmounts?.outputAmount?.toSignificant(6)) || ''}
+            // @ts-ignore
+value={(typedField === Field.OUTPUT ? typedValue : parsedAmounts?.outputAmount?.toSignificant(6)) || ''}
             onChange={(value) => onUserInput(Field.OUTPUT, value || '')}
             onSelect={(outputCurrency) => onCurrencySelection(Field.OUTPUT, outputCurrency)}
             currencies={outputTokenList}

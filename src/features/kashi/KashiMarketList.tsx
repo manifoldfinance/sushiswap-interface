@@ -51,7 +51,8 @@ const KashiMarketList: FC<KashiMarketList> = () => {
         <div className="grid grid-cols-7 min-w-[1024px]">
           <div
             className={classNames('flex gap-1 items-center cursor-pointer', TABLE_TR_TH_CLASSNAME(0, 7))}
-            // onClick={() => requestSort('pair.token0.symbol')}
+            // // @ts-ignore
+onClick={() => requestSort('pair.token0.symbol')}
           >
             <Typography variant="sm" weight={700}>
               {i18n._(t`Asset / Collateral`)}
@@ -60,7 +61,8 @@ const KashiMarketList: FC<KashiMarketList> = () => {
           </div>
           <div
             className={classNames('flex gap-1 items-center cursor-pointer justify-end', TABLE_TR_TH_CLASSNAME(1, 7))}
-            onClick={() => requestSort('currentAllAssetsUSD')}
+            // @ts-ignore
+onClick={() => requestSort('currentAllAssetsUSD')}
           >
             <Typography variant="sm" weight={700}>
               {i18n._(t`TVL`)}
@@ -73,7 +75,8 @@ const KashiMarketList: FC<KashiMarketList> = () => {
           </div>
           <div
             className={classNames('flex gap-1 items-center cursor-pointer justify-end', TABLE_TR_TH_CLASSNAME(2, 7))}
-            onClick={() => requestSort('currentBorrowAmountUSD')}
+            // @ts-ignore
+onClick={() => requestSort('currentBorrowAmountUSD')}
           >
             <Typography variant="sm" weight={700}>
               {i18n._(t`Borrowed`)}
@@ -87,7 +90,8 @@ const KashiMarketList: FC<KashiMarketList> = () => {
 
           <div
             className={classNames('flex gap-1 items-center cursor-pointer justify-end', TABLE_TR_TH_CLASSNAME(3, 7))}
-            onClick={() => requestSort('currentSupplyAPR')}
+            // @ts-ignore
+onClick={() => requestSort('currentSupplyAPR')}
           >
             <Typography variant="sm" weight={700}>
               {i18n._(t`Supply APR`)}
@@ -101,7 +105,8 @@ const KashiMarketList: FC<KashiMarketList> = () => {
 
           <div
             className={classNames('flex gap-1 items-center cursor-pointer justify-end', TABLE_TR_TH_CLASSNAME(4, 7))}
-            onClick={() => requestSort('totalAssetAmountUSD')}
+            // @ts-ignore
+onClick={() => requestSort('totalAssetAmountUSD')}
           >
             <Typography variant="sm" weight={700}>
               {i18n._(t`Available`)}
@@ -115,7 +120,8 @@ const KashiMarketList: FC<KashiMarketList> = () => {
 
           <div
             className={classNames('flex gap-1 items-center cursor-pointer justify-end', TABLE_TR_TH_CLASSNAME(5, 7))}
-            onClick={() => requestSort('currentInterestPerYear')}
+            // @ts-ignore
+onClick={() => requestSort('currentInterestPerYear')}
           >
             <Typography variant="sm" weight={700}>
               {i18n._(t`Borrow APR`)}

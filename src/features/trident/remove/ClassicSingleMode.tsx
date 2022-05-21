@@ -48,22 +48,27 @@ const ClassicSingleMode: FC = () => {
 
   const toggleButtonGroup = (
     <ToggleButtonGroup
-      value={percentageAmount}
+      // @ts-ignore
+value={percentageAmount}
       onChange={(val: string) => dispatch(setRemovePercentageAmount(val))}
       variant="outlined"
       size="sm"
       className="!bg-dark-900 rounded border border-dark-800 h-9"
     >
-      <ToggleButtonGroup.Button value="25" className="px-6">
+      <ToggleButtonGroup.Button v// @ts-ignore
+alue="25" className="px-6">
         25%
       </ToggleButtonGroup.Button>
-      <ToggleButtonGroup.Button value="50" className="px-6">
+      <ToggleButtonGroup.Button v// @ts-ignore
+alue="50" className="px-6">
         50%
       </ToggleButtonGroup.Button>
-      <ToggleButtonGroup.Button value="75" className="px-6">
+      <ToggleButtonGroup.Button v// @ts-ignore
+alue="75" className="px-6">
         75%
       </ToggleButtonGroup.Button>
-      <ToggleButtonGroup.Button value="100" className="px-6">
+      <ToggleButtonGroup.Button v// @ts-ignore
+alue="100" className="px-6">
         Max
       </ToggleButtonGroup.Button>
     </ToggleButtonGroup>
@@ -83,7 +88,8 @@ const ClassicSingleMode: FC = () => {
         return (
           <div className="flex flex-col gap-8">
             <AssetSelect
-              value={zapCurrency}
+              // @ts-ignore
+value={zapCurrency}
               onSelect={(currency) =>
                 dispatch(setRemoveZapCurrency(currency.isNative ? 'ETH' : currency.wrapped.address))
               }
@@ -100,8 +106,10 @@ const ClassicSingleMode: FC = () => {
                 header={
                   <ListPanel.Header
                     title={i18n._(t`Balances`)}
-                    value={`$${amount ? amount.toSignificant(6) : '0.0000'}`}
-                    subValue={`${poolBalance ? poolBalance.toSignificant(6) : '0.0000'} SLP`}
+                    // @ts-ignore
+value={`$${amount ? amount.toSignificant(6) : '0.0000'}`}
+                    sub// @ts-ignore
+value={`${poolBalance ? poolBalance.toSignificant(6) : '0.0000'} SLP`}
                   />
                 }
                 items={[
@@ -110,7 +118,8 @@ const ClassicSingleMode: FC = () => {
                 footer={
                   <div className="flex items-center justify-between gap-3 px-4 py-5">
                     <PercentInput
-                      value={percentageAmount}
+                      // @ts-ignore
+value={percentageAmount}
                       onUserInput={(val) => dispatch(setRemovePercentageAmount(val))}
                       placeholder="0%"
                       className="bg-transparent text-3xl leading-7 tracking-[-0.01em] flex-grow font-bold text-high-emphesis"
@@ -152,7 +161,8 @@ const ClassicSingleMode: FC = () => {
                       loading={loading}
                       color={approved ? 'gradient' : 'blue'}
                       disabled={disabled}
-                      onClick={() => dispatch(setRemoveShowReview(true))}
+                      // @ts-ignore
+onClick={() => dispatch(setRemoveShowReview(true))}
                     >
                       <Typography
                         variant="sm"
@@ -173,7 +183,8 @@ const ClassicSingleMode: FC = () => {
                 </Typography>
                 <AssetInput.WalletSwitch
                   onChange={() => dispatch(setRemoveOutputToWallet(!outputToWallet))}
-                  checked={outputToWallet}
+                  // @ts-ignore
+checked={outputToWallet}
                 />
               </div>
               <div className="flex flex-col gap-4">

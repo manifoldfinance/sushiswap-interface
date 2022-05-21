@@ -41,14 +41,16 @@ export const SelectTridentPoolPanel: FC<PanelProps> = ({ migration, source, setF
           active={migration.matchingTridentPool?.address === pool.address}
           pool={pool}
           key={i}
-          onClick={() => setFunc({ ...migration, matchingTridentPool: pool, poolToCreate: undefined })}
+          // @ts-ignore
+onClick={() => setFunc({ ...migration, matchingTridentPool: pool, poolToCreate: undefined })}
         />
       ))}
       {availableToCreate.length > 0 && (
         <CreatePoolOption
           selectedPoolConfig={migration.poolToCreate}
           allPoolConfigs={availableToCreate}
-          onClick={(poolToCreate: AvailablePoolConfig) =>
+          // @ts-ignore
+onClick={(poolToCreate: AvailablePoolConfig) =>
             setFunc({ ...migration, poolToCreate, matchingTridentPool: undefined })
           }
         />

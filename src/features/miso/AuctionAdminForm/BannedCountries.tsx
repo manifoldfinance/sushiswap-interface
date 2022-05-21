@@ -48,7 +48,8 @@ const BannedCountriesFormField: FC = () => {
           className={DEFAULT_FORM_FIELD_CLASSNAMES}
         >
           {list.map(([key, label]) => (
-            <option value={key} key={key}>
+            <option // @ts-ignore
+value={key} key={key}>
               {label}
             </option>
           ))}
@@ -66,7 +67,8 @@ const BannedCountriesFormField: FC = () => {
               <Chip
                 key={index}
                 label={getCountryName(el)}
-                onClick={(e) => {
+                // @ts-ignore
+onClick={(e) => {
                   e.stopPropagation()
 
                   deleteCountry(values, el)

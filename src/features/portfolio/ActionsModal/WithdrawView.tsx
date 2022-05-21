@@ -72,7 +72,8 @@ const WithdrawView: FC<WithdrawViewProps> = ({ onClose, onBack }) => {
         title={''}
         currency={currency}
         onChange={(val, isMax) => setInputState({ value: val, isMax: isMax || false })}
-        value={inputState.value}
+        // @ts-ignore
+value={inputState.value}
         spendFromWallet={false}
       />
       <div className="z-10 flex justify-center -mt-6 -mb-6">
@@ -93,7 +94,8 @@ const WithdrawView: FC<WithdrawViewProps> = ({ onClose, onBack }) => {
           </Typography>
         </div>
       </HeadlessUiModal.BorderedContent>
-      <Button loading={attemptingTxn} color="gradient" disabled={disabled} onClick={execute}>
+      <Button loading={attemptingTxn} color="gradient" disabled={disabled} // @ts-ignore
+onClick={execute}>
         <Typography variant="sm" weight={700} className={!error ? 'text-high-emphesis' : 'text-low-emphasis'}>
           {buttonText}
         </Typography>

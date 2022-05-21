@@ -26,7 +26,8 @@ export const KashiMarketCurrentLentPosition: FC<KashiMarketCurrentLentPosition> 
           weight={700}
           variant="sm"
           className={classNames(setLentAmount ? 'cursor-pointer' : '', 'text-high-emphesis')}
-          onClick={() => setLentAmount && setLentAmount(currentLent.toExact())}
+          // @ts-ignore
+onClick={() => setLentAmount && setLentAmount(currentLent.toExact())}
         >
           {currentLent.toSignificant(6)}
           <Typography weight={700} variant="xs" className="text-secondary" component="span">

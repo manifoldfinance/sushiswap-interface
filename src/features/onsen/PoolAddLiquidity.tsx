@@ -176,7 +176,8 @@ const PoolDeposit = ({ currencyA, currencyB, header }) => {
         <AssetInput
           size="sm"
           id="add-liquidity-input-tokena"
-          value={formattedAmounts[Field.CURRENCY_A]}
+          // @ts-ignore
+value={formattedAmounts[Field.CURRENCY_A]}
           currency={currencyA}
           // @ts-ignore TYPE NEEDS FIXING
           onChange={onFieldAInput}
@@ -189,7 +190,8 @@ const PoolDeposit = ({ currencyA, currencyB, header }) => {
         <AssetInput
           size="sm"
           id="add-liquidity-input-tokena"
-          value={formattedAmounts[Field.CURRENCY_B]}
+          // @ts-ignore
+value={formattedAmounts[Field.CURRENCY_B]}
           currency={currencyB}
           // @ts-ignore TYPE NEEDS FIXING
           onChange={onFieldBInput}
@@ -197,7 +199,8 @@ const PoolDeposit = ({ currencyA, currencyB, header }) => {
         />
         {(oneCurrencyIsETH || oneCurrencyIsWETH) && chainId != ChainId.CELO && (
           <div className="flex justify-center">
-            <Button size="xs" variant="empty" color="blue" className="rounded-none" onClick={() => setUseETH(!useETH)}>
+            <Button size="xs" variant="empty" color="blue" className="rounded-none" // @ts-ignore
+onClick={() => setUseETH(!useETH)}>
               {i18n._(t`Use`)} {useETH && 'W'}
               {/* @ts-ignore TYPE NEEDS FIXING */}
               {NATIVE[chainId].symbol} instead of {!useETH && 'W'}
@@ -219,7 +222,8 @@ const PoolDeposit = ({ currencyA, currencyB, header }) => {
             <Button
               fullWidth
               loading={approvalA === ApprovalState.PENDING}
-              onClick={approveACallback}
+              // @ts-ignore
+onClick={approveACallback}
               disabled={approvalA === ApprovalState.PENDING}
               style={{
                 width: approvalB !== ApprovalState.APPROVED ? '48%' : '100%',
@@ -232,7 +236,8 @@ const PoolDeposit = ({ currencyA, currencyB, header }) => {
             <Button
               fullWidth
               loading={approvalB === ApprovalState.PENDING}
-              onClick={approveBCallback}
+              // @ts-ignore
+onClick={approveBCallback}
               disabled={approvalB === ApprovalState.PENDING}
             >
               {i18n._(t`Approve ${currencies[Field.CURRENCY_B]?.symbol}`)}
@@ -242,7 +247,8 @@ const PoolDeposit = ({ currencyA, currencyB, header }) => {
       ) : (
         <Button
           color={!isValid && !!parsedAmounts[Field.CURRENCY_A] && !!parsedAmounts[Field.CURRENCY_B] ? 'red' : 'blue'}
-          onClick={() => {
+          // @ts-ignore
+onClick={() => {
             isExpertMode
               ? onAdd()
               : setContent(

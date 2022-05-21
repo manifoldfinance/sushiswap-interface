@@ -90,7 +90,8 @@ const PoolStatsChart = () => {
       {Object.keys(chartTimespans).map((text: ChartRange) => (
         <Button
           key={text}
-          onClick={() => setChartRange(text)}
+          // @ts-ignore
+onClick={() => setChartRange(text)}
           variant={text === chartRange ? 'outlined' : 'empty'}
           size="xs"
           color={text === chartRange ? 'blue' : 'gray'}

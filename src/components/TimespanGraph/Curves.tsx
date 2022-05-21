@@ -241,7 +241,8 @@ const Curves = ({
                   : 'text-secondary',
                 'text-sm px-3 py-0.5'
               )}
-              onClick={() => {
+              // @ts-ignore
+onClick={() => {
                 setTimespan(t)
                 onTimespanChange(t)
               }}
@@ -340,7 +341,8 @@ const Curves = ({
             brushDirection="horizontal"
             initialBrushPosition={initialBrushPosition}
             onChange={onBrushChange}
-            onClick={() => setFilteredData(data)}
+            // @ts-ignore
+onClick={() => setFilteredData(data)}
             selectedBoxStyle={selectedBrushStyle}
           />
         </Group>

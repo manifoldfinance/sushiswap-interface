@@ -132,26 +132,36 @@ const ReviewDetailsStep: FC<{ children(isValid: boolean): ReactNode }> = ({ chil
         <Table title={i18n._(t`Token Details`)}>
           {state.tokenSetupType === TokenSetup.CREATE && (
             <>
-              <Item title={i18n._(t`Token Type`)} value={templateIdToLabel(state.tokenType)} />
-              <Item title={i18n._(t`Token Name`)} value={state.tokenName} />
-              <Item title={i18n._(t`Token Symbol`)} value={state.tokenSymbol} />
-              <Item title={i18n._(t`Total Supply`)} value={state.tokenSupply} />
+              <Item title={i18n._(t`Token Type`)} // @ts-ignore
+value={templateIdToLabel(state.tokenType)} />
+              <Item title={i18n._(t`Token Name`)} // @ts-ignore
+value={state.tokenName} />
+              <Item title={i18n._(t`Token Symbol`)} // @ts-ignore
+value={state.tokenSymbol} />
+              <Item title={i18n._(t`Total Supply`)} // @ts-ignore
+value={state.tokenSupply} />
             </>
           )}
           {state.tokenSetupType === TokenSetup.PROVIDE && (
             <>
-              <Item title={i18n._(t`Token Address`)} value={state.tokenAddress} />
-              <Item title={i18n._(t`Token Name`)} value={auctionToken?.name} />
-              <Item title={i18n._(t`Token Symbol`)} value={auctionToken?.symbol} />
+              <Item title={i18n._(t`Token Address`)} // @ts-ignore
+value={state.tokenAddress} />
+              <Item title={i18n._(t`Token Name`)} // @ts-ignore
+value={auctionToken?.name} />
+              <Item title={i18n._(t`Token Symbol`)} // @ts-ignore
+value={auctionToken?.symbol} />
             </>
           )}
-          <Item title={i18n._(t`Tokens for Sale`)} value={state.tokenAmount} />
+          <Item title={i18n._(t`Tokens for Sale`)} // @ts-ignore
+value={state.tokenAmount} />
         </Table>
         <Table title={i18n._(t`General Details`)}>
-          <Item title={i18n._(t`Payment Currency`)} value={paymentToken.name} />
+          <Item title={i18n._(t`Payment Currency`)} // @ts-ignore
+value={paymentToken.name} />
           <Item
             title={i18n._(t`Start Date`)}
-            value={`${new Date(state.startDate).toLocaleString('en-uS', {
+            // @ts-ignore
+value={`${new Date(state.startDate).toLocaleString('en-uS', {
               year: 'numeric',
               month: 'long',
               day: 'numeric',
@@ -162,7 +172,8 @@ const ReviewDetailsStep: FC<{ children(isValid: boolean): ReactNode }> = ({ chil
           />
           <Item
             title={i18n._(t`End Date`)}
-            value={`${new Date(state.endDate).toLocaleString('en-uS', {
+            // @ts-ignore
+value={`${new Date(state.endDate).toLocaleString('en-uS', {
               year: 'numeric',
               month: 'long',
               day: 'numeric',
@@ -173,29 +184,37 @@ const ReviewDetailsStep: FC<{ children(isValid: boolean): ReactNode }> = ({ chil
           />
         </Table>
         <Table title={i18n._(t`Auction Details`)}>
-          <Item title={i18n._(t`Auction Type`)} value={auctionTemplateIdToLabel(state.auctionType)} />
+          <Item title={i18n._(t`Auction Type`)} // @ts-ignore
+value={auctionTemplateIdToLabel(state.auctionType)} />
           {state.auctionType === AuctionTemplate.DUTCH_AUCTION && (
             <>
-              <Item title={i18n._(t`Start Price`)} value={`${state.startPrice} ${paymentToken?.symbol}`} />
-              <Item title={i18n._(t`End Price`)} value={`${state.endPrice} ${paymentToken?.symbol}`} />
+              <Item title={i18n._(t`Start Price`)} // @ts-ignore
+value={`${state.startPrice} ${paymentToken?.symbol}`} />
+              <Item title={i18n._(t`End Price`)} // @ts-ignore
+value={`${state.endPrice} ${paymentToken?.symbol}`} />
               <Item
                 title={i18n._(t`Raise Amount`)}
-                value={`${minimumRaised?.toSignificant(6)} - ${maximumRaised?.toSignificant(6)} ${
+                // @ts-ignore
+value={`${minimumRaised?.toSignificant(6)} - ${maximumRaised?.toSignificant(6)} ${
                   maximumRaised?.currency.symbol
                 }`}
               />
             </>
           )}
           {state.auctionType === AuctionTemplate.BATCH_AUCTION && (
-            <Item title={i18n._(t`Minimum raise amount`)} value={`${state.minimumRaised} ${paymentToken?.symbol}`} />
+            <Item title={i18n._(t`Minimum raise amount`)} // @ts-ignore
+value={`${state.minimumRaised} ${paymentToken?.symbol}`} />
           )}
           {state.auctionType === AuctionTemplate.CROWDSALE && (
             <>
-              <Item title={i18n._(t`Fixed Price`)} value={`${state.fixedPrice} ${paymentToken?.symbol}`} />
-              <Item title={i18n._(t`Minimum percentage sold`)} value={`${state.minimumTarget}%`} />
+              <Item title={i18n._(t`Fixed Price`)} // @ts-ignore
+value={`${state.fixedPrice} ${paymentToken?.symbol}`} />
+              <Item title={i18n._(t`Minimum percentage sold`)} // @ts-ignore
+value={`${state.minimumTarget}%`} />
               <Item
                 title={i18n._(t`Raise Amount`)}
-                value={`${minimumRaised?.toSignificant(6)} - ${maximumRaised?.toSignificant(6)} ${
+                // @ts-ignore
+value={`${minimumRaised?.toSignificant(6)} - ${maximumRaised?.toSignificant(6)} ${
                   maximumRaised?.currency.symbol
                 }`}
               />
@@ -206,7 +225,8 @@ const ReviewDetailsStep: FC<{ children(isValid: boolean): ReactNode }> = ({ chil
           <Table title={i18n._(t`Liquidity Provision`)} className={state.liqLauncherEnabled ? '' : 'opacity-40'}>
             <Item
               title={i18n._(t`Tokens for liquidity`)}
-              value={
+              // @ts-ignore
+value={
                 state.liqLauncherEnabled ? (
                   `${state.tokenForLiquidity} ${auctionToken?.symbol}`
                 ) : (
@@ -216,7 +236,8 @@ const ReviewDetailsStep: FC<{ children(isValid: boolean): ReactNode }> = ({ chil
             />
             <Item
               title={i18n._(t`Lockup Period`)}
-              value={
+              // @ts-ignore
+value={
                 state.liqLauncherEnabled ? `${state.liqLockTime} days` : <span className="italic">Not enabled</span>
               }
             />
@@ -224,7 +245,8 @@ const ReviewDetailsStep: FC<{ children(isValid: boolean): ReactNode }> = ({ chil
           <Table title={i18n._(t`Whitelist`)} className={state.whitelistEnabled ? '' : 'opacity-40'}>
             <Item
               title={i18n._(t`Number of whitelisted addresses`)}
-              value={
+              // @ts-ignore
+value={
                 state.whitelistEnabled ? (
                   `${state.whitelistAddresses.length} addresses`
                 ) : (

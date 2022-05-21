@@ -66,7 +66,8 @@ export const CreatePoolReviewModal: FC = () => {
           </HeadlessUIModal.BorderedContent>
 
           <TradePrice price={price} showInverted={inverted} setShowInverted={setInverted} className="justify-center" />
-          <Button id="btn-confirm-pool-creation" color="blue" onClick={_execute} disabled={attemptingTxn}>
+          <Button id="btn-confirm-pool-creation" color="blue" // @ts-ignore
+onClick={_execute} disabled={attemptingTxn}>
             {attemptingTxn ? <Dots>{i18n._(t`Transaction pending`)}</Dots> : i18n._(t`Confirm Pool Creation`)}
           </Button>
         </div>

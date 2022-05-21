@@ -62,7 +62,8 @@ export const useOpenOrdersTableConfig = ({
             <Typography
               variant="xs"
               className="flex items-baseline gap-2 cursor-pointer text-secondary"
-              onClick={() => setInvert(!invert)}
+              // @ts-ignore
+onClick={() => setInvert(!invert)}
             >
               <Typography weight={700} variant="xs" component="span" className="text-high-emphesis">
                 {invert ? props.cell.value.invert().toSignificant(6) : props.cell.value.toSignificant(6)}
@@ -138,7 +139,8 @@ export const useOpenOrdersTableConfig = ({
               color="blue"
               variant="empty"
               size="xs"
-              onClick={() => cancelOrder(props.cell.row.original.limitOrder, `Cancel order`)}
+              // @ts-ignore
+onClick={() => cancelOrder(props.cell.row.original.limitOrder, `Cancel order`)}
               className="whitespace-nowrap"
             >
               {i18n._(t`Cancel Order`)}

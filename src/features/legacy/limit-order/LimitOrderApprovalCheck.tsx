@@ -43,10 +43,12 @@ const LimitOrderApprovalCheck: FC = () => {
           </Typography>
         </HeadlessUIModal.BorderedContent>
         <div className="flex justify-end gap-6">
-          <Button color="blue" size="sm" variant="empty" onClick={() => cookie.set('disableLimitOrderGuard', true)}>
+          <Button color="blue" size="sm" variant="empty" // @ts-ignore
+onClick={() => cookie.set('disableLimitOrderGuard', true)}>
             {i18n._(t`Do not show again`)}
           </Button>
-          <Button loading={approvalState === BentoApprovalState.PENDING} color="blue" size="sm" onClick={approve}>
+          <Button loading={approvalState === BentoApprovalState.PENDING} color="blue" size="sm" // @ts-ignore
+onClick={approve}>
             {i18n._(t`Approve`)}
           </Button>
         </div>

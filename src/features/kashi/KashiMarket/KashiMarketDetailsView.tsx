@@ -254,7 +254,8 @@ export const KashiMarketDetailsView: FC<KashiMarketDetailsView> = ({
               </Typography>
               {liquidationPrice && (
                 <Typography
-                  onClick={() => setInvert((prev) => !prev)}
+                  // @ts-ignore
+onClick={() => setInvert((prev) => !prev)}
                   variant="xs"
                   weight={700}
                   className="py-1 rounded rounded-full cursor-pointer hover:text-high-emphesis"

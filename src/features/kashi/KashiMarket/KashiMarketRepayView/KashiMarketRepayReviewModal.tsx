@@ -176,7 +176,8 @@ export const KashiMarketRepayReviewModal: FC<KashiMarketRepayReviewModal> = ({
             loading={attemptingTxn}
             color="gradient"
             disabled={attemptingTxn || (priceImpactSeverity > 3 && !isExpertMode)}
-            onClick={_execute}
+            // @ts-ignore
+onClick={_execute}
           >
             {closePosition
               ? priceImpactSeverity > 3 && !isExpertMode

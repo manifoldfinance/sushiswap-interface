@@ -60,7 +60,8 @@ const CurrencyInputPanel: FC<CurrencyInputPanelProps> = ({ field, meowshiState, 
                     variant="xs"
                     className="underline cursor-pointer text-blue"
                     // @ts-ignore TYPE NEEDS FIXING
-                    onClick={() => setCurrency(currency === XSUSHI ? SUSHI[ChainId.ETHEREUM] : XSUSHI, field)}
+                    // @ts-ignore
+onClick={() => setCurrency(currency === XSUSHI ? SUSHI[ChainId.ETHEREUM] : XSUSHI, field)}
                   >
                     {currencies[field] === SUSHI[ChainId.ETHEREUM] ? i18n._(t`Use xSUSHI`) : i18n._(t`Use SUSHI`)}
                   </Typography>
@@ -75,7 +76,8 @@ const CurrencyInputPanel: FC<CurrencyInputPanelProps> = ({ field, meowshiState, 
                   className="w-full text-2xl leading-4 bg-transparent"
                   id="token-amount-input"
                   // @ts-ignore TYPE NEEDS FIXING
-                  value={fields[field]}
+                  // @ts-ignore
+value={fields[field]}
                   onUserInput={(val: string) => handleInput(val, field)}
                 />
               </div>
@@ -89,7 +91,8 @@ const CurrencyInputPanel: FC<CurrencyInputPanelProps> = ({ field, meowshiState, 
             {showMax && (
               <span
                 // @ts-ignore TYPE NEEDS FIXING
-                onClick={() => handleInput(balance?.toExact(), field)}
+                // @ts-ignore
+onClick={() => handleInput(balance?.toExact(), field)}
                 className="flex items-center justify-center px-2 py-1 text-sm uppercase border border-opacity-50 cursor-pointer border-blue bg-blue text-blue bg-opacity-30 rounded-3xl hover:border-opacity-100"
               >
                 {i18n._(t`Max`)}
@@ -102,7 +105,8 @@ const CurrencyInputPanel: FC<CurrencyInputPanelProps> = ({ field, meowshiState, 
             variant="xs"
             component="span"
             // @ts-ignore TYPE NEEDS FIXING
-            onClick={() => handleInput(balance?.toExact(), field)}
+            // @ts-ignore
+onClick={() => handleInput(balance?.toExact(), field)}
             className="cursor-pointer text-primary"
           >
             Balance: {balance?.toSignificant(6, { groupSeparator: ',' }) || '0'} {currency?.symbol}

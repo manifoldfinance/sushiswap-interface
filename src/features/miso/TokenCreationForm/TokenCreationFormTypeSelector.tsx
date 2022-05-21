@@ -57,13 +57,16 @@ const TokenCreationFormTypeSelector: FC<TokenCreationFormTypeSelectorProps> = ()
     >
       <div className="col-span-6">
         <RadioGroup
-          value={tokenTypeAddress}
+          // @ts-ignore
+value={tokenTypeAddress}
           onChange={(tokenTypeAddress) => setValue('tokenTypeAddress', tokenTypeAddress)}
           className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-10"
         >
-          <input className="hidden" name="tokenTypeAddress" value={tokenTypeAddress} onChange={() => {}} />
+          <input className="hidden" name="tokenTypeAddress" // @ts-ignore
+value={tokenTypeAddress} onChange={() => {}} />
           {items.map(({ icon, value, address, label, description }) => (
-            <RadioGroup.Option value={address} key={value}>
+            <RadioGroup.Option // @ts-ignore
+value={address} key={value}>
               {({ checked }) => (
                 <div
                   className={classNames(

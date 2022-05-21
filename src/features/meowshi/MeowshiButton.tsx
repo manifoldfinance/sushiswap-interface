@@ -116,14 +116,16 @@ const MeowshiButton: FC<MeowshiButtonProps> = ({ meowshiState }) => {
 
   if (!account)
     return (
-      <Button onClick={approve} color="gradient" disabled={true}>
+      <Button // @ts-ignore
+onClick={approve} color="gradient" disabled={true}>
         {i18n._(t`Connect to wallet`)}
       </Button>
     )
 
   if (chainId !== ChainId.ETHEREUM)
     return (
-      <Button onClick={approve} color="gradient" disabled={true}>
+      <Button // @ts-ignore
+onClick={approve} color="gradient" disabled={true}>
         {i18n._(t`Network not supported yet`)}
       </Button>
     )
@@ -137,7 +139,8 @@ const MeowshiButton: FC<MeowshiButtonProps> = ({ meowshiState }) => {
 
   if (approvalState === ApprovalState.NOT_APPROVED)
     return (
-      <Button onClick={approve} color="gradient" disabled={!!buttonDisabledText}>
+      <Button // @ts-ignore
+onClick={approve} color="gradient" disabled={!!buttonDisabledText}>
         {buttonDisabledText || i18n._(t`Approve`)}
       </Button>
     )
@@ -166,7 +169,8 @@ const MeowshiButton: FC<MeowshiButtonProps> = ({ meowshiState }) => {
             }`
           )}
         />
-        <Button onClick={handleSubmit} disabled={!!buttonDisabledText} color="gradient">
+        <Button // @ts-ignore
+onClick={handleSubmit} disabled={!!buttonDisabledText} color="gradient">
           {buttonDisabledText || i18n._(t`Convert`)}
         </Button>
       </>

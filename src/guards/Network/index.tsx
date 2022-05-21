@@ -56,7 +56,8 @@ const Component: FC<NetworkGuardProps> = ({ children, feature, asModal = true })
             <button
               className="text-primary hover:text-white flex items-center flex-col gap-2 justify-center"
               key={idx}
-              onClick={() => {
+              // @ts-ignore
+onClick={() => {
                 // @ts-ignore TYPE NEEDS FIXING
                 const params = SUPPORTED_NETWORKS[key]
                 cookie.set('chainId', key)

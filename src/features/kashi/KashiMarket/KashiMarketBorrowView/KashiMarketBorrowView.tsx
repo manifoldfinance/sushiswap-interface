@@ -142,7 +142,8 @@ export const KashiMarketBorrowView: FC<KashiMarketBorrowView> = () => {
         )}
         spendFromWallet={spendFromWallet}
         currency={collateral}
-        value={collateralAmount}
+        // @ts-ignore
+value={collateralAmount}
         onChange={setCollateralAmount}
       />
       <div className="flex justify-center relative lg:mt-[-23px] lg:mb-[-23px]">
@@ -174,7 +175,8 @@ export const KashiMarketBorrowView: FC<KashiMarketBorrowView> = () => {
         )}
         spendFromWallet={receiveInWallet}
         currency={asset}
-        value={borrowAmount}
+        // @ts-ignore
+value={borrowAmount}
         onChange={setBorrowAmount}
         balancePanel={() => <></>}
       />

@@ -72,7 +72,8 @@ const Graph: FC<BarGraphProps> = ({ data, width, height, setSelectedDatum, event
               height={barHeight}
               fill="rgba(0, 160, 233, 1)"
               // @ts-ignore TYPE NEEDS FIXING
-              onClick={() => setSelectedDatum(d)}
+              // @ts-ignore
+onClick={() => setSelectedDatum(d)}
               // @ts-ignore TYPE NEEDS FIXING
               onMouseMove={() => setSelectedDatum(d)}
               // @ts-ignore TYPE NEEDS FIXING

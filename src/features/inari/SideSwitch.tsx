@@ -23,7 +23,8 @@ const SideSwitch: FC<SideSwitchProps> = () => {
           <Typography variant="xs">{i18n._(t`Withdraw`)}</Typography>
         </Switch.Label>
         <Switch
-          checked={zapIn}
+          // @ts-ignore
+checked={zapIn}
           onChange={() => dispatch(setZapIn(!zapIn))}
           className="bg-blue bg-opacity-60 border border-blue border-opacity-80 relative inline-flex items-center h-[32px] rounded-full w-[54px] transition-colors focus:outline-none"
         >

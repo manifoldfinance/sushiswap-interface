@@ -73,7 +73,8 @@ export const ImportToken: FC<ImportProps> = ({ tokens, onBack }) => {
       <div className="flex flex-grow" />
       <Button
         color="blue"
-        onClick={() => {
+        // @ts-ignore
+onClick={() => {
           tokens.map((token) => addToken(token))
           onSelect && onSelect(tokens[0])
         }}

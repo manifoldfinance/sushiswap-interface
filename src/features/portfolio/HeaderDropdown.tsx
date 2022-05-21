@@ -22,7 +22,8 @@ const HeaderDropdown: FC<HeaderDropdownProps> = ({ account, chainId, hideAccount
 
   return (
     <>
-      <div className="flex items-center gap-4" onClick={() => setShow(!show)}>
+      <div className="flex items-center gap-4" // @ts-ignore
+onClick={() => setShow(!show)}>
         {account && (
           <div className="border-2 rounded-full">
             <Davatar

@@ -62,7 +62,8 @@ export const ChartCard = ({ auction }: { auction: Auction }) => {
             weight={400}
             variant="lg"
             role="button"
-            onClick={() => setChartType(ChartType.Price)}
+            // @ts-ignore
+onClick={() => setChartType(ChartType.Price)}
             className={classNames(
               chartType === ChartType.Price
                 ? 'text-transparent bg-clip-text bg-gradient-to-r from-pink-red to-pink'
@@ -75,7 +76,8 @@ export const ChartCard = ({ auction }: { auction: Auction }) => {
             weight={chartType === ChartType.FundRaised ? 700 : 400}
             variant="lg"
             role="button"
-            onClick={() => setChartType(ChartType.FundRaised)}
+            // @ts-ignore
+onClick={() => setChartType(ChartType.FundRaised)}
             className={classNames(
               chartType === ChartType.FundRaised
                 ? 'text-transparent bg-clip-text bg-gradient-to-r from-pink-red to-pink'

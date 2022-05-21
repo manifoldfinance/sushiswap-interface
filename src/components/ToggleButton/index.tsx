@@ -26,9 +26,10 @@ const VARIANTS = {
   filled: FILLED,
   outlined: OUTLINED,
 }
-
+// @ts-ignore
 type Props = ComponentProps<typeof HeadlessRadioGroup> & Omit<ButtonProps, 'onChange'>
 type ToggleButtonGroup<P> = FC<P> & {
+  // @ts-ignore
   Button: FC<ComponentProps<typeof HeadlessRadioGroup.Option>>
 }
 
@@ -40,6 +41,7 @@ const ToggleButtonGroup: ToggleButtonGroup<Props> = ({
   ...props
 }) => {
   return (
+    // @ts-ignore
     <HeadlessRadioGroup
       {...props}
       // @ts-ignore TYPE NEEDS FIXING
@@ -59,11 +61,13 @@ const ToggleButtonGroup: ToggleButtonGroup<Props> = ({
     </HeadlessRadioGroup>
   )
 }
-
+// @ts-ignore
 type ToggleButtonProps = ComponentProps<typeof HeadlessRadioGroup.Option>
+// @ts-ignore
 ToggleButtonGroup.Button = ({ value, children, size, style, className }: ToggleButtonProps) => {
   return (
-    <HeadlessRadioGroup.Option value={value} as={Fragment}>
+    <HeadlessRadioGroup.Option // @ts-ignore
+value={value} as={Fragment}>
       {({ checked }) => (
         <Button
           style={style}

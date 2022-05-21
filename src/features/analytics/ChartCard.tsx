@@ -93,7 +93,8 @@ export default function ChartCard({
                 : 'text-secondary',
               'text-sm px-3 py-0.5'
             )}
-            onClick={() => setTimespan(t)}
+            // @ts-ignore
+onClick={() => setTimespan(t)}
           >
             {t.text}
           </button>

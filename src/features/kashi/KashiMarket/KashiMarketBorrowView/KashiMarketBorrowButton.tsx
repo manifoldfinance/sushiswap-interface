@@ -148,7 +148,8 @@ export const KashiMarketBorrowButton: FC<KashiMarketBorrowButtonProps> = ({
               loading={loading}
               color={borrowAmount?.equalTo(ZERO) ? 'blue' : 'gradient'}
               disabled={disabled}
-              onClick={() => setOpen(true)}
+              // @ts-ignore
+onClick={() => setOpen(true)}
               className="rounded-2xl md:rounded"
             >
               {buttonText}

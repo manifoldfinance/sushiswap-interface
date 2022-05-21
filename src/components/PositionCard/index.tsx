@@ -161,7 +161,8 @@ const FullPositionCard: FC<PositionCardProps> = ({ pair, stakedBalance }) => {
                         size="xs"
                         variant="empty"
                         color="blue"
-                        onClick={() => {
+                        // @ts-ignore
+onClick={() => {
                           router.push(`/remove/${currencyId(currency0)}/${currencyId(currency1)}`)
                         }}
                       >
@@ -171,7 +172,8 @@ const FullPositionCard: FC<PositionCardProps> = ({ pair, stakedBalance }) => {
                         startIcon={<PlusIcon width={14} height={14} />}
                         size="xs"
                         color="blue"
-                        onClick={() => {
+                        // @ts-ignore
+onClick={() => {
                           router.push(`/add/${currencyId(currency0)}/${currencyId(currency1)}`)
                         }}
                       >

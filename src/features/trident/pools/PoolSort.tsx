@@ -45,7 +45,8 @@ export const PoolSort: FC = () => {
                             active ? 'bg-dark-700 text-high-emphesis' : 'text-primary',
                             'group flex items-center px-4 py-2 text-sm hover:bg-dark-900 hover:cursor-pointer focus:bg-dark-900 rounded font-bold'
                           )}
-                          onClick={() => {
+                          // @ts-ignore
+onClick={() => {
                             dispatch(setPoolsSort(title))
                           }}
                         >

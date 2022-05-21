@@ -22,7 +22,8 @@ const StepperRoot: FC<StepperContext> = ({ children, activeStep, setActiveStep }
   )
 
   return (
-    <StepperContext.Provider value={contextValue}>
+    <StepperContext.Provider // @ts-ignore
+value={contextValue}>
       {Children.map(children, (child, _index) => {
         if (isValidElement(child)) {
           return cloneElement(child, {

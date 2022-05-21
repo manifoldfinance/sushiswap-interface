@@ -18,7 +18,8 @@ const StrategySelector: FC<StrategySelectorProps> = () => {
         return (
           <div
             key={v.id}
-            onClick={() => dispatch(setStrategy(v.getStrategy()))}
+            // @ts-ignore
+onClick={() => dispatch(setStrategy(v.getStrategy()))}
             className={classNames(
               v.id === id ? 'border-gradient-r-blue-pink-dark-800' : 'bg-dark-900',
               'cursor-pointer border border-transparent pl-5 py-2 rounded whitespace-nowrap w-full font-bold h-[48px] flex items-center text-sm'

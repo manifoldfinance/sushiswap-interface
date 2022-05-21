@@ -25,7 +25,8 @@ const Mobile: FC = () => {
       <header className="w-full flex items-center justify-between min-h-[64px] h-[64px] px-4">
         <div className="flex justify-between flex-grow">
           <div className="p-2 rounded-full hover:bg-white/10">
-            <MenuIcon width={28} className="text-white cursor-pointer hover:text-white" onClick={() => setOpen(true)} />
+            <MenuIcon width={28} className="text-white cursor-pointer hover:text-white" // @ts-ignore
+onClick={() => setOpen(true)} />
           </div>
           <div className="flex items-center w-6">
             <Link href="/swap" passHref={true}>

@@ -87,7 +87,8 @@ export default function Alert({
       {dismissable && (
         <button
           type="button"
-          onClick={() => setShow(!show)}
+          // @ts-ignore
+onClick={() => setShow(!show)}
           className="inline-flex opacity-80 hover:opacity-100 focused:opacity-100 rounded text-primary hover:text-high-emphesis focus:text-high-emphesis focus:outline-none focus:ring focus:ring-offset focus:ring-offset-purple focus:ring-purple"
         >
           <span className="sr-only">Dismiss</span>

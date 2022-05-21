@@ -290,7 +290,8 @@ const AuctionAdminForm: FC<AuctionAdminFormProps> = ({ auction }) => {
                 >
                   <div className="col-span-6">
                     <Button
-                      onClick={cancelAuction}
+                      // @ts-ignore
+onClick={cancelAuction}
                       variant="empty"
                       role="button"
                       color={auction.status !== AuctionStatus.UPCOMING ? 'gray' : 'red'}

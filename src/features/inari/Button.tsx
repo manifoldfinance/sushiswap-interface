@@ -35,7 +35,9 @@ const InariButton: FC<InariButtonProps> = ({ children, ...rest }) => {
   // Add token approve to approve flow
   // Note that this is not required when unstaking from BentoBox strategies, hence approveCallback can be null
   const steps = []
+    // @ts-ignore FIXME:  Argument of type 'boolean' is not assignable to parameter of type 'never'.
   if (approveCallback) steps.push(approveCallback[0] === ApprovalState.APPROVED)
+  // @ts-ignore FIXME:  Argument of type 'boolean' is not assignable to parameter of type 'never'.
   if (bentoApproveCallback) steps.push(bentoApproveCallback.approvalState === BentoApprovalState.APPROVED)
 
   const approveFlow = (
@@ -79,7 +81,8 @@ const InariButton: FC<InariButtonProps> = ({ children, ...rest }) => {
   if (approveCallback && approveCallback[0] === ApprovalState.NOT_APPROVED)
     return (
       <>
-        <Button {...rest} color="pink" onClick={approveCallback[1]}>
+        <Button {...rest} color="pink" // @ts-ignore
+onClick={approveCallback[1]}>
           {/*@ts-ignore TYPE NEEDS FIXING*/}
           {i18n._(t`Approve Inari to spend ${approveCallback[2].currency.symbol}`)}
         </Button>
@@ -100,7 +103,8 @@ const InariButton: FC<InariButtonProps> = ({ children, ...rest }) => {
   if (bentoApproveCallback && bentoApproveCallback.approvalState === BentoApprovalState.NOT_APPROVED)
     return (
       <>
-        <Button {...rest} color="pink" onClick={handleGetPermit}>
+        <Button {...rest} color="pink" // @ts-ignore
+onClick={handleGetPermit}>
           {i18n._(t`Approve Inari Master Contract`)}
         </Button>
         {approveFlow}
@@ -108,7 +112,8 @@ const InariButton: FC<InariButtonProps> = ({ children, ...rest }) => {
     )
 
   return (
-    <Button {...rest} disabled={pending} color={pending ? 'gray' : 'gradient'} onClick={onExecute}>
+    <Button {...rest} disabled={pending} color={pending ? 'gray' : 'gradient'} // @ts-ignore
+onClick={onExecute}>
       {children}
     </Button>
   )

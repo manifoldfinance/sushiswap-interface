@@ -27,7 +27,8 @@ export default function Option({
     <div
       role="button"
       // @ts-ignore TYPE NEEDS FIXING
-      onClick={onClick}
+      // @ts-ignore
+onClick={onClick}
       className={classNames(
         clickable ? 'cursor-pointer' : '',
         'bg-[rgba(0,0,0,0.2)] focus:outline-none flex items-center gap-4 justify-between w-full px-4 py-3 rounded border border-dark-700 hover:border-blue'

@@ -91,7 +91,8 @@ const ManageBar = ({ farm }) => {
             </Typography>
             <Switch
               size="sm"
-              checked={toggle}
+              // @ts-ignore
+checked={toggle}
               onChange={() => setToggle(!toggle)}
               checkedIcon={<PlusIcon className="text-dark-1000" />}
               uncheckedIcon={<MinusIcon className="text-dark-1000" />}
@@ -110,7 +111,8 @@ const ManageBar = ({ farm }) => {
               size="xs"
               color={toggle ? 'blue' : 'pink'}
               key={i}
-              onClick={() => {
+              // @ts-ignore
+onClick={() => {
                 toggle
                   ? balance
                     ? // @ts-ignore TYPE NEEDS FIXING
@@ -133,7 +135,8 @@ const ManageBar = ({ farm }) => {
         <AssetInput
           currencyLogo={false}
           currency={liquidityToken}
-          value={toggle ? depositValue : withdrawValue}
+          // @ts-ignore
+value={toggle ? depositValue : withdrawValue}
           onChange={toggle ? setDepositValue : setWithdrawValue}
           balance={toggle ? undefined : stakedAmount}
           showMax={false}
@@ -148,7 +151,8 @@ const ManageBar = ({ farm }) => {
             fullWidth
             loading={approvalState === ApprovalState.PENDING}
             color="gradient"
-            onClick={approve}
+            // @ts-ignore
+onClick={approve}
             disabled={approvalState !== ApprovalState.NOT_APPROVED}
           >
             {i18n._(t`Approve`)}
@@ -157,7 +161,8 @@ const ManageBar = ({ farm }) => {
           <Button
             fullWidth
             color={!isDepositValid && !!parsedDepositValue ? 'red' : 'blue'}
-            onClick={async () => {
+            // @ts-ignore
+onClick={async () => {
               try {
                 // KMP decimals depend on asset, SLP is always 18
                 // @ts-ignore TYPE NEEDS FIXING
@@ -190,7 +195,8 @@ const ManageBar = ({ farm }) => {
         <Button
           fullWidth
           color={!isWithdrawValid && !!parsedWithdrawValue ? 'red' : 'blue'}
-          onClick={async () => {
+          // @ts-ignore
+onClick={async () => {
             try {
               // KMP decimals depend on asset, SLP is always 18
               // @ts-ignore TYPE NEEDS FIXING

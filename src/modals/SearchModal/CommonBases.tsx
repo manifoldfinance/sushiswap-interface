@@ -36,7 +36,8 @@ const CommonBases: FC = () => {
               variant="outlined"
               color="gray"
               type="button"
-              onClick={() => !isSelected && onSelect(currency)}
+              // @ts-ignore
+onClick={() => !isSelected && onSelect(currency)}
               disabled={isSelected}
               key={currencyId(currency)}
               className="!border !px-2 flex gap-2"

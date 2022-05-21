@@ -109,7 +109,8 @@ const CreateAuctionButtons: FC<{ onBack(): void }> = ({ onBack }) => {
                 </div>
               ),
             })}
-            onClick={approve}
+            // @ts-ignore
+onClick={approve}
           >
             {i18n._(t`Approve`)}
           </Button>
@@ -128,11 +129,13 @@ const CreateAuctionButtons: FC<{ onBack(): void }> = ({ onBack }) => {
               </div>
             ),
           })}
-          onClick={() => execute(data)}
+          // @ts-ignore
+onClick={() => execute(data)}
         >
           {i18n._(t`Create auction`)}
         </Button>
-        <Button size="sm" color="blue" variant="empty" type="button" onClick={onBack}>
+        <Button size="sm" color="blue" variant="empty" type="button" // @ts-ignore
+onClick={onBack}>
           {i18n._(t`Back`)}
         </Button>
       </div>

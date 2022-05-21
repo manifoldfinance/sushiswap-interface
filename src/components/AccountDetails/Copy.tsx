@@ -13,7 +13,8 @@ const CopyHelper: FC<CopyHelperProps> = ({ className, toCopy, children }) => {
   const [isCopied, setCopied] = useCopyClipboard()
 
   return (
-    <div className={classNames(className)} onClick={() => setCopied(toCopy)}>
+    <div className={classNames(className)} // @ts-ignore
+onClick={() => setCopied(toCopy)}>
       {isCopied && (
         <div className="flex items-center gap-1 cursor-pointer">
           {children}

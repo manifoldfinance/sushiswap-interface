@@ -131,13 +131,16 @@ const AuctionDetailsStep: FC<{ children(isValid: boolean): ReactNode }> = ({ chi
       <Form.Fields>
         <div className="col-span-4">
           <RadioGroup
-            value={auctionType}
+            // @ts-ignore
+value={auctionType}
             onChange={(auctionType) => setValue('auctionType', auctionType, { shouldValidate: true })}
             className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-10"
           >
-            <input className="hidden" name="auctionType" value={auctionType} onChange={() => {}} />
+            <input className="hidden" name="auctionType" // @ts-ignore
+value={auctionType} onChange={() => {}} />
             {items.map(({ icon, value, label, description, note }) => (
-              <RadioGroup.Option value={value} key={value}>
+              <RadioGroup.Option // @ts-ignore
+value={value} key={value}>
                 {({ checked }) => (
                   <div
                     className={classNames(

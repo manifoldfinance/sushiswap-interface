@@ -46,7 +46,8 @@ const PermissionListStatusSwitch: FC<PermissionListStatusSwitchProps> = ({ aucti
         <div className="mt-2 flex items-center h-[42px]">
           <Switch
             disabled={pending}
-            checked={auction.auctionInfo.usePointList}
+            // @ts-ignore
+checked={auction.auctionInfo.usePointList}
             onChange={() => handlePermissionListStatus(!auction.auctionInfo.usePointList)}
             className={classNames(
               pending ? 'opacity-50 saturate-[0.1]' : 'opacity-100',

@@ -48,13 +48,15 @@ const ClassicStandardMode = () => {
         <div />
         <div className="flex flex-col gap-4">
           <AssetInput
-            value={mainInput || ''}
+            // @ts-ignore
+value={mainInput || ''}
             currency={currencies?.[0]}
             onChange={(val) => setMainInput(val || '')}
             headerRight={
               <AssetInput.WalletSwitch
                 onChange={() => dispatch(setAddSpendFromWallet([!spendFromWallet[0], spendFromWallet[1]]))}
-                checked={spendFromWallet[0]}
+                // @ts-ignore
+checked={spendFromWallet[0]}
                 id="switch-spend-from-wallet-a"
               />
             }
@@ -63,13 +65,15 @@ const ClassicStandardMode = () => {
           />
           <div />
           <AssetInput
-            value={secondaryInput || ''}
+            // @ts-ignore
+value={secondaryInput || ''}
             currency={currencies?.[1]}
             onChange={(val) => setSecondaryInput(val || '')}
             headerRight={
               <AssetInput.WalletSwitch
                 onChange={() => dispatch(setAddSpendFromWallet([spendFromWallet[0], !spendFromWallet[1]]))}
-                checked={spendFromWallet[1]}
+                // @ts-ignore
+checked={spendFromWallet[1]}
                 id="switch-spend-from-wallet-b"
               />
             }
@@ -100,7 +104,8 @@ const ClassicStandardMode = () => {
                 return (
                   <div className={classNames(!isMax ? 'grid grid-cols-2 gap-3' : 'flex')}>
                     {!isMax && (
-                      <Button fullWidth color="blue" disabled={isMax} onClick={onMax}>
+                      <Button fullWidth color="blue" disabled={isMax} // @ts-ignore
+onClick={onMax}>
                         {i18n._(t`Max Deposit`)}
                       </Button>
                     )}
@@ -110,7 +115,8 @@ const ClassicStandardMode = () => {
                       fullWidth
                       color="gradient"
                       disabled={disabled}
-                      onClick={() => dispatch(setAddShowReview(true))}
+                      // @ts-ignore
+onClick={() => dispatch(setAddShowReview(true))}
                     >
                       {buttonText}
                     </Button>

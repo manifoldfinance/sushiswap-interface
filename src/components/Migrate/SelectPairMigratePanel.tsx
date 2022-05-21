@@ -22,7 +22,8 @@ export const SelectPairMigratePanel: FC<PanelProps> = ({ pair, source, setFunc, 
           <Button color="blue" variant="outlined" size="xs">
             {source}
           </Button>
-          <Checkbox className="ml-2" checked={checkedState} set={() => setFunc(!checkedState, { v2Pair: pair })} />
+          <Checkbox className="ml-2" // @ts-ignore
+checked={checkedState} set={() => setFunc(!checkedState, { v2Pair: pair })} />
         </div>
       </div>
       <PoolValueEstimation pair={pair} roundedBottom />

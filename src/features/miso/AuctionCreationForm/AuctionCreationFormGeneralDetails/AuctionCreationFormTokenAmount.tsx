@@ -40,7 +40,8 @@ const AuctionCreationFormTokenAmount: FC<AuctionCreationFormTokenProps> = ({}) =
 
   const approveButton =
     approvalState === ApprovalState.NOT_APPROVED ? (
-      <Button color="blue" onClick={approve} className="h-[42px]">
+      <Button color="blue" // @ts-ignore
+onClick={approve} className="h-[42px]">
         {i18n._(t`Approve`)}
       </Button>
     ) : approvalState === ApprovalState.PENDING ? (

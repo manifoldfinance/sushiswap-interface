@@ -37,7 +37,8 @@ export const KashiMarketDepositView: FC = () => {
         )}
         spendFromWallet={spendFromWallet}
         currency={assetToken}
-        value={depositAmountCurrencyAmount?.toSignificant(6)}
+        // @ts-ignore
+value={depositAmountCurrencyAmount?.toSignificant(6)}
         onChange={setDepositAmount}
       />
       <KashiMarketLentDetailsView view={KashiMarketView.DEPOSIT} lentAmount={depositAmountCurrencyAmount} />

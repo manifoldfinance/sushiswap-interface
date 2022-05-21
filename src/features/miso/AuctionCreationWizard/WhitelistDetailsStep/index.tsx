@@ -50,7 +50,8 @@ const WhitelistDetailsStep: FC<{ children(isValid: boolean): ReactNode }> = ({ c
             <div className="mt-2 flex items-center h-[42px]">
               <Switch
                 name="whitelistEnabled"
-                checked={whitelistEnabled}
+                // @ts-ignore
+checked={whitelistEnabled}
                 onChange={() => setValue('whitelistEnabled', !whitelistEnabled, { shouldValidate: true })}
                 className={classNames(
                   whitelistEnabled ? 'bg-purple border-purple border-opacity-80' : 'bg-dark-700 border-dark-700',
@@ -69,7 +70,8 @@ const WhitelistDetailsStep: FC<{ children(isValid: boolean): ReactNode }> = ({ c
         </div>
         <div className={classNames(whitelistEnabled ? '' : 'opacity-40 pointer-events-none', 'w-full md:w-1/2')}>
           <WhitelistUpload
-            value={whitelistAddresses}
+            // @ts-ignore
+value={whitelistAddresses}
             disabled={false}
             onChange={(param) =>
               typeof param === 'function'

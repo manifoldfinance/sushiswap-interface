@@ -25,7 +25,8 @@ export const Input: FC<Input> = forwardRef<HTMLInputElement, Input>(
       <input
         {...rest}
         ref={ref}
-        value={value}
+        // @ts-ignore
+value={value}
         onChange={(event) => {
           // replace commas with periods, because uniswap exclusively uses period as the decimal separator
           enforcer(event.target.value.replace(/,/g, '.'))

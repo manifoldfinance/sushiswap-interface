@@ -49,7 +49,8 @@ export const KashiMarketWithdrawView: FC = () => {
         )}
         spendFromWallet={receiveToWallet}
         currency={assetToken}
-        value={withdrawAmountCurrencyAmount?.toSignificant(6)}
+        // @ts-ignore
+value={withdrawAmountCurrencyAmount?.toSignificant(6)}
         onChange={(val) => {
           setWithdrawAmount(val)
           setRemoveMax(false)
@@ -58,7 +59,8 @@ export const KashiMarketWithdrawView: FC = () => {
           <Typography
             variant="sm"
             className="text-right text-secondary"
-            onClick={() => {
+            // @ts-ignore
+onClick={() => {
               onChange(max?.toExact())
               setRemoveMax(true)
             }}

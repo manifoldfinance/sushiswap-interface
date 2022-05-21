@@ -8,7 +8,8 @@ interface KashiMarketContext {
 const Context = createContext<KashiMarketContext | undefined>(undefined)
 
 export const KashiMarketProvider: FC<KashiMarketContext> = ({ market, children }) => {
-  return <Context.Provider value={useMemo(() => ({ market }), [market])}>{children}</Context.Provider>
+  return <Context.Provider // @ts-ignore
+value={useMemo(() => ({ market }), [market])}>{children}</Context.Provider>
 }
 
 export const useKashiMarket = () => {

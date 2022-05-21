@@ -110,7 +110,8 @@ const SwapModalHeader: FC<SwapModalHeader> = ({
             <Typography variant="sm" weight={700}>
               {i18n._(t`Price Updated`)}
             </Typography>
-            <Button variant="outlined" size="xs" color="blue" onClick={onAcceptChanges}>
+            <Button variant="outlined" size="xs" color="blue" // @ts-ignore
+onClick={onAcceptChanges}>
               {i18n._(t`Accept`)}
             </Button>
           </div>

@@ -42,7 +42,8 @@ const RecipientField: FC<RecipientField> = ({ recipient, action }) => {
 
   return !use ? (
     <div className="flex justify-center">
-      <Button size="xs" color="blue" variant="empty" className="flex gap-1 py-1.5" onClick={() => setUse(true)}>
+      <Button size="xs" color="blue" variant="empty" className="flex gap-1 py-1.5" // @ts-ignore
+onClick={() => setUse(true)}>
         {i18n._(t`Add recipient`)}
       </Button>
     </div>
@@ -52,7 +53,8 @@ const RecipientField: FC<RecipientField> = ({ recipient, action }) => {
         <Typography variant="sm" className="px-2">
           {i18n._(t`Recipient`)}
         </Typography>
-        <CloseIcon width={18} className="text-secondary hover:text-white cursor-pointer" onClick={handleClose} />
+        <CloseIcon width={18} className="text-secondary hover:text-white cursor-pointer" // @ts-ignore
+onClick={handleClose} />
       </div>
       <div
         className={classNames(
@@ -64,7 +66,8 @@ const RecipientField: FC<RecipientField> = ({ recipient, action }) => {
           <Input.Address
             className="!text-sm leading-[32px] focus:placeholder:text-low-emphesis flex-grow w-full text-left bg-transparent text-inherit disabled:cursor-not-allowed"
             onUserInput={(val) => dispatch(action(val))}
-            value={recipient ?? ''}
+            // @ts-ignore
+value={recipient ?? ''}
           />
         </Typography>
       </div>

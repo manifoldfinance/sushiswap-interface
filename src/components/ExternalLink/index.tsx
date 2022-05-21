@@ -55,7 +55,8 @@ const ExternalLink: FC<ExternalLinkProps> = ({
       target={target}
       rel={rel}
       href={href}
-      onClick={handleClick}
+      // @ts-ignore
+onClick={handleClick}
       className={classNames(
         'text-baseline whitespace-nowrap',
         // @ts-ignore TYPE NEEDS FIXING

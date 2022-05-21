@@ -30,7 +30,8 @@ const Manage: FC = () => {
               tabIndex === i ? 'text-high-emphesis border-blue' : 'border-transparent',
               'flex items-center justify-center flex-1 px-1 py-3 rounded cursor-pointer select-none border bg-[rgba(0,0,0,0.2)]'
             )}
-            onClick={() => setTabIndex(i)}
+            // @ts-ignore
+onClick={() => setTabIndex(i)}
           >
             <Typography
               weight={700}

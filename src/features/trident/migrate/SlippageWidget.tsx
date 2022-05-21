@@ -40,7 +40,8 @@ export const SlippageWidget = () => {
       >
         <input
           className="bg-transparent placeholder-low-emphesis min-w-0 font-bold w-16"
-          value={input}
+          // @ts-ignore
+value={input}
           onChange={(e) => dispatch(setSlippageInput(e.target.value))}
           onBlur={() =>
             error === SlippageError.INVALID_INPUT
@@ -54,7 +55,8 @@ export const SlippageWidget = () => {
         size="sm"
         color={slippageIsDefault ? 'blue' : 'gray'}
         variant="outlined"
-        onClick={() => dispatch(setSlippageInput(GLOBAL_DEFAULT_SLIPPAGE_STR))}
+        // @ts-ignore
+onClick={() => dispatch(setSlippageInput(GLOBAL_DEFAULT_SLIPPAGE_STR))}
       >
         {i18n._(t`Auto`)}
       </Button>

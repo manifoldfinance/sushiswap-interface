@@ -144,14 +144,17 @@ const TokenCreationStep: FC<{ children(isValid: boolean): ReactNode }> = ({ chil
       <Form.Fields>
         <div className="flex items-center col-span-6">
           <RadioGroup
-            value={tokenSetupType || ''}
+            // @ts-ignore
+value={tokenSetupType || ''}
             onChange={(tokenSetupType) => setValue('tokenSetupType', Number(tokenSetupType), { shouldValidate: true })}
             className="flex gap-10"
           >
-            <input className="hidden" name="tokenSetupType" value={tokenSetupType} onChange={() => {}} />
+            <input className="hidden" name="tokenSetupType" // @ts-ignore
+value={tokenSetupType} onChange={() => {}} />
             <div className="flex flex-col w-full gap-0 border divide-y rounded md:flex-row md:gap-5 border-dark-800 md:divide-y-0 md:divide-x divide-dark-800">
               {tokenSetupItems.map<ReactNode>(({ description, label, value }, index) => (
-                <RadioGroup.Option value={value} key={value}>
+                <RadioGroup.Option // @ts-ignore
+value={value} key={value}>
                   {({ checked }) => (
                     <div
                       className={classNames(
@@ -176,13 +179,16 @@ const TokenCreationStep: FC<{ children(isValid: boolean): ReactNode }> = ({ chil
           <>
             <div className="col-span-6">
               <RadioGroup
-                value={tokenType}
+                // @ts-ignore
+value={tokenType}
                 onChange={(tokenType) => setValue('tokenType', tokenType, { shouldValidate: true })}
                 className="grid grid-cols-1 gap-10 mt-2 lg:grid-cols-3 md:grid-cols-2"
               >
-                <input className="hidden" name="tokenType" value={tokenType} onChange={() => {}} />
+                <input className="hidden" name="tokenType" // @ts-ignore
+value={tokenType} onChange={() => {}} />
                 {items.map(({ icon, value, label, description }) => (
-                  <RadioGroup.Option value={value} key={value}>
+                  <RadioGroup.Option // @ts-ignore
+value={value} key={value}>
                     {({ checked }) => (
                       <div
                         className={classNames(

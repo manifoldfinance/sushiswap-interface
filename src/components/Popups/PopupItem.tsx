@@ -66,7 +66,8 @@ export default function PopupItem({
         <div className="flex flex-row p-4">
           {popupContent}
           <div className="cursor-pointer hover:text-white">
-            <XIcon width={24} height={24} onClick={removeThisPopup} />
+            <XIcon width={24} height={24} // @ts-ignore
+onClick={removeThisPopup} />
           </div>
         </div>
         {removeAfterMs !== null ? <AnimatedFader duration={removeAfterMs} /> : null}

@@ -74,7 +74,8 @@ export const KashiMarketDepositReviewModal: FC<KashiMarketDepositReviewModal> = 
             </div>
           </HeadlessUiModal.BorderedContent>
           <KashiMarketLentDetailsView view={KashiMarketView.DEPOSIT} lentAmount={depositAmount} />
-          <Button loading={attemptingTxn} color="gradient" disabled={attemptingTxn} onClick={onClick}>
+          <Button loading={attemptingTxn} color="gradient" disabled={attemptingTxn} // @ts-ignore
+onClick={onClick}>
             {i18n._(t`Confirm Deposit`)}
           </Button>
         </div>

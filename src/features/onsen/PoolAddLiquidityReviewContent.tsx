@@ -70,7 +70,8 @@ const PoolAddLiquidityReviewContent: FC<PoolAddLiquidityReviewContentProps> = ({
         </Typography>
       </div>
       <div className="flex flex-grow" />
-      <Button id={`btn-modal-confirm-deposit`} color="blue" onClick={execute}>
+      <Button id={`btn-modal-confirm-deposit`} color="blue" // @ts-ignore
+onClick={execute}>
         {i18n._(t`Confirm Deposit`)}
       </Button>
     </div>

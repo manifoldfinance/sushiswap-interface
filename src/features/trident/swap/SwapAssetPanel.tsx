@@ -128,7 +128,8 @@ const WalletSwitch: FC<
       <Typography
         id={id}
         role="button"
-        onClick={() => onChange(!spendFromWallet)}
+        // @ts-ignore
+onClick={() => onChange(!spendFromWallet)}
         variant="sm"
         weight={700}
         component="span"
@@ -176,7 +177,8 @@ const InputPanel: FC<
       <NumericalInput
         ref={ref}
         disabled={inputDisabled}
-        value={value || ''}
+        // @ts-ignore
+value={value || ''}
         onUserInput={onChange}
         placeholder="0.00"
         className="leading-[36px] focus:placeholder:text-low-emphesis flex-grow w-full text-left bg-transparent text-inherit disabled:cursor-not-allowed"
@@ -223,7 +225,8 @@ const BalancePanel: FC<Pick<SwapAssetPanel, 'disabled' | 'currency' | 'onChange'
   }, [balance, disabled, onChange])
 
   return (
-    <Typography role="button" onClick={handleClick} variant="sm" className="flex text-secondary whitespace-nowrap">
+    <Typography role="button" // @ts-ignore
+onClick={handleClick} variant="sm" className="flex text-secondary whitespace-nowrap">
       {i18n._(t`Balance:`)} {balance ? balance.toSignificant(2) : '0.00'}
     </Typography>
   )

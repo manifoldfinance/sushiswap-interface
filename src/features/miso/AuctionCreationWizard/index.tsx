@@ -37,7 +37,8 @@ const AuctionCreationWizard: FC = () => {
                     size="sm"
                     color="blue"
                     disabled={!isValid}
-                    onClick={() => setStep((prevStep) => prevStep + 1)}
+                    // @ts-ignore
+onClick={() => setStep((prevStep) => prevStep + 1)}
                     type="submit"
                   >
                     {i18n._(t`Continue`)}
@@ -63,7 +64,8 @@ const AuctionCreationWizard: FC = () => {
                     size="sm"
                     color="blue"
                     disabled={!isValid}
-                    onClick={() => setStep((prevStep) => prevStep + 1)}
+                    // @ts-ignore
+onClick={() => setStep((prevStep) => prevStep + 1)}
                     type="submit"
                   >
                     {i18n._(t`Continue`)}
@@ -73,7 +75,8 @@ const AuctionCreationWizard: FC = () => {
                     color="blue"
                     variant="empty"
                     type="button"
-                    onClick={() => setStep((prevStep) => prevStep - 1)}
+                    // @ts-ignore
+onClick={() => setStep((prevStep) => prevStep - 1)}
                   >
                     {i18n._(t`Back`)}
                   </Button>
@@ -99,7 +102,8 @@ const AuctionCreationWizard: FC = () => {
                     color="blue"
                     disabled={!isValid}
                     type="submit"
-                    onClick={() => setStep((prevStep) => prevStep + 1)}
+                    // @ts-ignore
+onClick={() => setStep((prevStep) => prevStep + 1)}
                   >
                     {i18n._(t`Continue`)}
                   </Button>
@@ -108,7 +112,8 @@ const AuctionCreationWizard: FC = () => {
                     color="blue"
                     variant="empty"
                     type="button"
-                    onClick={() => setStep((prevStep) => prevStep - 1)}
+                    // @ts-ignore
+onClick={() => setStep((prevStep) => prevStep - 1)}
                   >
                     {i18n._(t`Back`)}
                   </Button>
@@ -135,7 +140,8 @@ const AuctionCreationWizard: FC = () => {
                     size="sm"
                     color="blue"
                     disabled={!isValid}
-                    onClick={() => setStep((prevStep) => prevStep + 1)}
+                    // @ts-ignore
+onClick={() => setStep((prevStep) => prevStep + 1)}
                     type="submit"
                   >
                     {i18n._(t`Continue`)}
@@ -145,7 +151,8 @@ const AuctionCreationWizard: FC = () => {
                     color="blue"
                     variant="empty"
                     type="button"
-                    onClick={() => setStep((prevStep) => prevStep - 1)}
+                    // @ts-ignore
+onClick={() => setStep((prevStep) => prevStep - 1)}
                   >
                     {i18n._(t`Back`)}
                   </Button>
@@ -172,7 +179,8 @@ const AuctionCreationWizard: FC = () => {
                     size="sm"
                     color="blue"
                     disabled={!isValid}
-                    onClick={() => setStep((prevStep) => prevStep + 1)}
+                    // @ts-ignore
+onClick={() => setStep((prevStep) => prevStep + 1)}
                     type="submit"
                   >
                     {i18n._(t`Continue`)}
@@ -182,7 +190,8 @@ const AuctionCreationWizard: FC = () => {
                     color="blue"
                     variant="empty"
                     type="button"
-                    onClick={() => setStep((prevStep) => prevStep - 1)}
+                    // @ts-ignore
+onClick={() => setStep((prevStep) => prevStep - 1)}
                   >
                     {i18n._(t`Back`)}
                   </Button>
@@ -215,7 +224,8 @@ const AuctionCreationWizard: FC = () => {
                       color="blue"
                       variant="empty"
                       type="button"
-                      onClick={() => setStep((prevStep) => prevStep - 1)}
+                      // @ts-ignore
+onClick={() => setStep((prevStep) => prevStep - 1)}
                     >
                       {i18n._(t`Back`)}
                     </Button>

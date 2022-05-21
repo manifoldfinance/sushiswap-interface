@@ -66,14 +66,16 @@ const AmountInput = ({ state }: { state: MigrateState }) => {
       <div className="relative flex items-center w-full mb-4">
         <Input.Numeric
           className="w-full p-3 rounded bg-dark-700 focus:ring focus:ring-pink"
-          value={state.amount}
+          // @ts-ignore
+value={state.amount}
           onUserInput={(val: string) => state.setAmount(val)}
         />
         <Button
           variant="outlined"
           color="pink"
           size="xs"
-          onClick={onPressMax}
+          // @ts-ignore
+onClick={onPressMax}
           className="absolute right-4 focus:ring focus:ring-pink"
         >
           {i18n._(t`MAX`)}
@@ -96,7 +98,8 @@ const LPTokenSelect = ({ lpToken, onToggle, isSelected, updating, exchange }: Po
     <div
       key={lpToken.address}
       className="flex items-center justify-between px-3 py-5 rounded cursor-pointer bg-dark-800 hover:bg-dark-700"
-      onClick={() => onToggle(lpToken)}
+      // @ts-ignore
+onClick={() => onToggle(lpToken)}
     >
       <div className="flex items-center space-x-3">
         <DoubleCurrencyLogo currency0={lpToken.tokenA} currency1={lpToken.tokenB} size={20} />
@@ -160,7 +163,8 @@ const MigrateButtons = ({ state, exchange }: { state: MigrateState; exchange: st
           <Button
             fullWidth
             loading={approval === ApprovalState.PENDING}
-            onClick={approve}
+            // @ts-ignore
+onClick={approve}
             disabled={approval !== ApprovalState.NOT_APPROVED}
           >
             {approval === ApprovalState.APPROVED ? i18n._(t`Approved`) : i18n._(t`Approve`)}
@@ -170,7 +174,8 @@ const MigrateButtons = ({ state, exchange }: { state: MigrateState; exchange: st
               fullWidth
               loading={state.isMigrationPending}
               disabled={noLiquidityTokens || state.isMigrationPending || !state.amount}
-              onClick={onPress}
+              // @ts-ignore
+onClick={onPress}
             >
               {i18n._(t`Migrate`)}
             </Button>

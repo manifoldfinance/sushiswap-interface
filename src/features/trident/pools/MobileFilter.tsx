@@ -26,8 +26,10 @@ const YieldFarmFilter: FC = () => {
           Yield Farms:
         </Typography>
       </div>
-      <div className="flex flex-row gap-3 items-center" onClick={() => dispatch(setPoolsFarmsOnly(!farmsOnly))}>
-        <Checkbox checked={farmsOnly} />
+      <div className="flex flex-row gap-3 items-center" // @ts-ignore
+onClick={() => dispatch(setPoolsFarmsOnly(!farmsOnly))}>
+        <Checkbox // @ts-ignore
+checked={farmsOnly} />
         <Typography className="text-secondary">Show farms only</Typography>
       </div>
     </div>
@@ -45,8 +47,10 @@ const TwapOnlyFilter: FC = () => {
           TWAP Oracles:
         </Typography>
       </div>
-      <div className="flex flex-row gap-3 items-center" onClick={() => dispatch(setPoolsTWAPOnly(!showTWAPOnly))}>
-        <Checkbox checked={showTWAPOnly} />
+      <div className="flex flex-row gap-3 items-center" // @ts-ignore
+onClick={() => dispatch(setPoolsTWAPOnly(!showTWAPOnly))}>
+        <Checkbox // @ts-ignore
+checked={showTWAPOnly} />
         <Typography className="text-secondary">Show oracle pairs only</Typography>
       </div>
     </div>
@@ -68,9 +72,11 @@ const FeeTierFilter: FC = () => {
         <div
           key={fee}
           className="flex flex-row gap-3 items-center"
-          onClick={() => removeOrAddFeeTier(fee, feeTiers, (feeTiers) => dispatch(setPoolsFeeTiers(feeTiers)))}
+          // @ts-ignore
+onClick={() => removeOrAddFeeTier(fee, feeTiers, (feeTiers) => dispatch(setPoolsFeeTiers(feeTiers)))}
         >
-          <Checkbox checked={feeTiers.includes(fee)} />
+          <Checkbox // @ts-ignore
+checked={feeTiers.includes(fee)} />
           <Typography className="text-secondary">{fee / 100}%</Typography>
         </div>
       ))}
@@ -86,7 +92,8 @@ export const MobileFilter: FC = () => {
 
   return (
     <div className="lg:hidden">
-      <div onClick={() => setOpen(true)} className="hover:cursor-pointer">
+      <div // @ts-ignore
+onClick={() => setOpen(true)} className="hover:cursor-pointer">
         <svg width="25" height="20" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path
             d="M10 0a1.5 1.5 0 0 1 1.5 1.5V3h12a1.5 1.5 0 0 1 0 3h-12v1.5a1.5 1.5 0 0 1-3 0v-6A1.5 1.5 0 0 1 10 0ZM0 4.5A1.5 1.5 0 0 1 1.5 3H5a1.5 1.5 0 1 1 0 3H1.5A1.5 1.5 0 0 1 0 4.5ZM13 14H1.5a1.5 1.5 0 0 0 0 3H13a1.5 1.5 0 0 0 0-3Zm3.5 1.5v-3a1.5 1.5 0 0 1 3 0V14h4a1.5 1.5 0 0 1 0 3h-4v1.5a1.5 1.5 0 0 1-3 0v-3Z"
@@ -99,7 +106,8 @@ export const MobileFilter: FC = () => {
         open={open}
         onClose={() => setOpen(false)}
         closeTrigger={
-          <Button size="sm" onClick={() => setOpen(false)}>
+          <Button size="sm" // @ts-ignore
+onClick={() => setOpen(false)}>
             <span className="px-3">{i18n._(t`Apply & Close`)}</span>
           </Button>
         }

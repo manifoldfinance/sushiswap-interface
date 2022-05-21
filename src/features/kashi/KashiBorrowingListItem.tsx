@@ -63,7 +63,8 @@ const KashiLendingListItem: FC<KashiLendingListItem> = ({ market }) => {
   return (
     <div
       className={classNames(TABLE_TBODY_TR_CLASSNAME, 'grid grid-cols-6')}
-      onClick={() => router.push(`/kashi/${market.address}`)}
+      // @ts-ignore
+onClick={() => router.push(`/kashi/${market.address}`)}
     >
       <div className={classNames('flex gap-2', TABLE_TBODY_TD_CLASSNAME(0, 6))}>
         {asset && collateral && <CurrencyLogoArray currencies={[asset, collateral]} dense size={32} />}

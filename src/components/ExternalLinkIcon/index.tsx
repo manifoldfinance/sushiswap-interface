@@ -40,7 +40,8 @@ export function ExternalLinkIcon({
       target={target}
       rel={rel}
       href={href}
-      onClick={handleClick}
+      // @ts-ignore
+onClick={handleClick}
       {...rest}
     >
       <ExternalLink className="h-4 w-[18px] ml-2.5" />

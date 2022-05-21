@@ -123,7 +123,8 @@ const LiquidityLauncherStep: FC<{ children(isValid: boolean): ReactNode }> = ({ 
             <div className="mt-2 flex items-center h-[42px]">
               <Switch
                 name="whitelistEnabled"
-                checked={liqLauncherEnabled}
+                // @ts-ignore
+checked={liqLauncherEnabled}
                 onChange={() => {
                   if (liqLauncherEnabled) {
                     reset()
@@ -152,22 +153,27 @@ const LiquidityLauncherStep: FC<{ children(isValid: boolean): ReactNode }> = ({ 
             <ToggleButtonGroup
               size="sm"
               variant="filled"
-              value={Number(getValues('liqLockTime'))}
+              // @ts-ignore
+value={Number(getValues('liqLockTime'))}
               onChange={(val) => {
                 val && setValue('liqLockTime', Number(val), { shouldValidate: true })
               }}
               className="mt-2 flex gap-2"
             >
-              <ToggleButtonGroup.Button value={180} className="!px-3 whitespace-nowrap h-[36px]">
+              <ToggleButtonGroup.Button // @ts-ignore
+value={180} className="!px-3 whitespace-nowrap h-[36px]">
                 {i18n._(t`${180} days`)}
               </ToggleButtonGroup.Button>
-              <ToggleButtonGroup.Button value={90} className="!px-3 whitespace-nowrap h-[36px]">
+              <ToggleButtonGroup.Button // @ts-ignore
+value={90} className="!px-3 whitespace-nowrap h-[36px]">
                 {i18n._(t`${90} days`)}
               </ToggleButtonGroup.Button>
-              <ToggleButtonGroup.Button value={60} className="!px-3 whitespace-nowrap h-[36px]">
+              <ToggleButtonGroup.Button // @ts-ignore
+value={60} className="!px-3 whitespace-nowrap h-[36px]">
                 {i18n._(t`${60} days`)}
               </ToggleButtonGroup.Button>
-              <ToggleButtonGroup.Button value={30} className="!px-3 whitespace-nowrap h-[36px]">
+              <ToggleButtonGroup.Button // @ts-ignore
+value={30} className="!px-3 whitespace-nowrap h-[36px]">
                 {i18n._(t`${30} days`)}
               </ToggleButtonGroup.Button>
             </ToggleButtonGroup>

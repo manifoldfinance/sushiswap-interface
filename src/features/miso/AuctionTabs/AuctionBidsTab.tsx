@@ -144,7 +144,8 @@ const AuctionBidsTab: FC<AuctionBidsTabProps> = ({ auction, active }) => {
               </Typography>
             </Switch.Label>
             <Switch
-              checked={ownBidsOnly}
+              // @ts-ignore
+checked={ownBidsOnly}
               onChange={setOwnBidsOnly}
               className="relative inline-flex items-center h-3 transition-colors bg-gray-600 rounded-full w-9"
             >

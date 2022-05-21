@@ -35,7 +35,8 @@ export const KashiLendingList = () => {
           <div
             className={classNames('flex gap-1 items-center cursor-pointer justify-end', TABLE_TR_TH_CLASSNAME(1, 6))}
           >
-            <Typography variant="sm" weight={700} onClick={() => requestSort('currentUserAssetAmount')}>
+            <Typography variant="sm" weight={700} // @ts-ignore
+onClick={() => requestSort('currentUserAssetAmount')}>
               {i18n._(t`Supplied`)}
             </Typography>
             <SortIcon
@@ -44,7 +45,8 @@ export const KashiLendingList = () => {
               active={sortConfig.key === 'currentUserAssetAmount'}
             />
           </div>
-          <div className={classNames(TABLE_TR_TH_CLASSNAME(2, 6))} onClick={() => requestSort('currentBorrowAmount')}>
+          <div className={classNames(TABLE_TR_TH_CLASSNAME(2, 6))} // @ts-ignore
+onClick={() => requestSort('currentBorrowAmount')}>
             <Typography variant="sm" weight={700}>
               {i18n._(t`Borrowed`)}
             </Typography>
@@ -54,7 +56,8 @@ export const KashiLendingList = () => {
               active={sortConfig.key === 'currentBorrowAmount'}
             />
           </div>
-          <div className={classNames(TABLE_TR_TH_CLASSNAME(3, 6))} onClick={() => requestSort('totalAssetAmount')}>
+          <div className={classNames(TABLE_TR_TH_CLASSNAME(3, 6))} // @ts-ignore
+onClick={() => requestSort('totalAssetAmount')}>
             <Typography variant="sm" weight={700}>
               {i18n._(t`Available`)}
             </Typography>
@@ -66,7 +69,8 @@ export const KashiLendingList = () => {
           </div>
           <div
             className={classNames('flex gap-1 items-center cursor-pointer justify-end', TABLE_TR_TH_CLASSNAME(4, 6))}
-            onClick={() => requestSort('utilization')}
+            // @ts-ignore
+onClick={() => requestSort('utilization')}
           >
             <Typography variant="sm" weight={700}>
               {i18n._(t`Utilization`)}
@@ -75,7 +79,8 @@ export const KashiLendingList = () => {
           </div>
           <div
             className={classNames('flex gap-1 items-center cursor-pointer justify-end', TABLE_TR_TH_CLASSNAME(5, 6))}
-            onClick={() => requestSort('currentSupplyAPR')}
+            // @ts-ignore
+onClick={() => requestSort('currentSupplyAPR')}
           >
             <Typography variant="sm" weight={700}>
               {i18n._(t`Supply APR`)}

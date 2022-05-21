@@ -125,12 +125,14 @@ const InvestmentDetails = ({ farm }) => {
               <RewardRow
                 symbol={token0?.symbol}
                 // @ts-ignore TYPE NEEDS FIXING
-                value={kashiAssetAmount?.toSignificant(6)}
+                // @ts-ignore
+value={kashiAssetAmount?.toSignificant(6)}
               />
             )}
             {farm.pair.type === PairType.SWAP && (
               <RewardRow
-                value={formatNumber(
+                // @ts-ignore
+value={formatNumber(
                   (farm.pair.reserve0 * Number(stakedAmount?.toExact() ?? 0)) / farm.pair.totalSupply
                 )}
                 symbol={token0?.symbol}
@@ -142,7 +144,8 @@ const InvestmentDetails = ({ farm }) => {
           <div className="flex items-center gap-2">
             {token1 && <CurrencyLogo currency={token1} size={18} />}
             <RewardRow
-              value={formatNumber((farm.pair.reserve1 * Number(stakedAmount?.toExact() ?? 0)) / farm.pair.totalSupply)}
+              // @ts-ignore
+value={formatNumber((farm.pair.reserve1 * Number(stakedAmount?.toExact() ?? 0)) / farm.pair.totalSupply)}
               symbol={token1?.symbol}
             />
           </div>
@@ -167,14 +170,17 @@ const InvestmentDetails = ({ farm }) => {
                 <>
                   {i === 0 && (
                     <RewardRow
-                      value={formatNumber(pendingSushi?.toSignificant(6) ?? 0)}
+                      // @ts-ignore
+value={formatNumber(pendingSushi?.toSignificant(6) ?? 0)}
                       symbol={reward.currency.symbol}
                     />
                   )}
-                  {i === 1 && <RewardRow value={formatNumber(pendingReward)} symbol={reward.currency.symbol} />}
+                  {i === 1 && <RewardRow // @ts-ignore
+value={formatNumber(pendingReward)} symbol={reward.currency.symbol} />}
                 </>
               ) : (
-                <RewardRow value={formatNumber(pendingReward)} symbol={reward.currency.symbol} />
+                <RewardRow // @ts-ignore
+value={formatNumber(pendingReward)} symbol={reward.currency.symbol} />
               )}
             </div>
           )
@@ -187,7 +193,8 @@ const InvestmentDetails = ({ farm }) => {
           variant="empty"
           size="sm"
           className="!italic"
-          onClick={() => router.push(`/lend/${farm.pair.id}`)}
+          // @ts-ignore
+onClick={() => router.push(`/lend/${farm.pair.id}`)}
         >
           {i18n._(t`View details on Kashi`)}
         </Button>
@@ -200,7 +207,8 @@ const InvestmentDetails = ({ farm }) => {
           pendingTx ||
           !((pendingSushi && pendingSushi.greaterThan(ZERO)) || (pendingReward && Number(pendingReward) > 0))
         }
-        onClick={onHarvest}
+        // @ts-ignore
+onClick={onHarvest}
       >
         {i18n._(t`Harvest Rewards`)}
       </Button>

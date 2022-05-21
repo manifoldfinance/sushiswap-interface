@@ -282,7 +282,8 @@ export default function Stake() {
                 <div className="flex w-full rounded h-14 bg-dark-800">
                   <div
                     className="h-full w-6/12 p-0.5"
-                    onClick={() => {
+                    // @ts-ignore
+onClick={() => {
                       setActiveTab(0)
                       handleInput('')
                     }}
@@ -293,7 +294,8 @@ export default function Stake() {
                   </div>
                   <div
                     className="h-full w-6/12 p-0.5"
-                    onClick={() => {
+                    // @ts-ignore
+onClick={() => {
                       setActiveTab(1)
                       handleInput('')
                     }}
@@ -313,7 +315,8 @@ export default function Stake() {
                 </div>
 
                 <Input.Numeric
-                  value={input}
+                  // @ts-ignore
+value={input}
                   onUserInput={handleInput}
                   className={classNames(
                     'w-full h-14 px-3 md:px-5 mt-5 rounded bg-dark-800 text-sm md:text-lg font-bold text-dark-800 whitespace-nowrap caret-high-emphesis',
@@ -346,7 +349,8 @@ export default function Stake() {
                       </div>
                       <button
                         className="px-2 py-1 ml-3 text-xs font-bold border pointer-events-auto focus:outline-none focus:ring hover:bg-opacity-40 md:bg-blue md:bg-opacity-30 border-secondary md:border-blue rounded-2xl md:py-1 md:px-3 md:ml-4 md:text-sm md:font-normal md:text-blue"
-                        onClick={handleClickMax}
+                        // @ts-ignore
+onClick={handleClickMax}
                       >
                         {i18n._(t`MAX`)}
                       </button>
@@ -358,7 +362,8 @@ export default function Stake() {
                   <Button
                     className={`${buttonStyle} text-high-emphesis bg-blue hover:bg-opacity-90`}
                     disabled={approvalState === ApprovalState.PENDING}
-                    onClick={approve}
+                    // @ts-ignore
+onClick={approve}
                   >
                     {approvalState === ApprovalState.PENDING ? (
                       <Dots>{i18n._(t`Approving`)} </Dots>
@@ -377,7 +382,8 @@ export default function Stake() {
                         ? buttonStyleInsufficientFunds
                         : buttonStyleEnabled
                     }
-                    onClick={handleClickButton}
+                    // @ts-ignore
+onClick={handleClickButton}
                     disabled={buttonDisabled || inputError}
                   >
                     {!walletConnected

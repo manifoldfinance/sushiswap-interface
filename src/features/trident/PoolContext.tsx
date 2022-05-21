@@ -88,7 +88,8 @@ const PoolContext: FC = ({ children }) => {
   return (
     <Context.Provider
       // @ts-ignore TYPE NEEDS FIXING
-      value={useMemo(
+      // @ts-ignore
+value={useMemo(
         () => ({
           poolWithState,
           totalSupply,

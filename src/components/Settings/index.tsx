@@ -17,7 +17,7 @@ import { useActiveWeb3React } from 'app/services/web3'
 import { useToggleSettingsMenu } from 'app/state/application/hooks'
 import { useExpertModeManager, useUserSingleHopOnly, useUserSushiGuard } from 'app/state/user/hooks'
 import React, { FC, useState } from 'react'
-
+import * as Sentry from '@sentry/nextjs'
 interface SettingsTabProps {
   placeholderSlippage?: Percent
   trident?: boolean
@@ -65,7 +65,9 @@ const SettingsTab: FC<SettingsTabProps> = ({ placeholderSlippage, className, tri
                 <Switch
                   size="sm"
                   id="toggle-expert-mode-button"
-                  checked={expertMode}
+                  // @ts-ignore
+                  // @ts-ignore
+checked={expertMode}
                   onChange={
                     expertMode
                       ? () => {
@@ -93,7 +95,9 @@ const SettingsTab: FC<SettingsTabProps> = ({ placeholderSlippage, className, tri
                   <Switch
                     size="sm"
                     id="toggle-disable-multihop-button"
-                    checked={singleHopOnly}
+                    // @ts-ignore
+                    // @ts-ignore
+checked={singleHopOnly}
                     onChange={() => (singleHopOnly ? setSingleHopOnly(false) : setSingleHopOnly(true))}
                     checkedIcon={<CheckIcon className="text-dark-700" />}
                     uncheckedIcon={<CloseIcon />}
@@ -101,24 +105,45 @@ const SettingsTab: FC<SettingsTabProps> = ({ placeholderSlippage, className, tri
                   />
                 </div>
               )}
+              
               {/*@ts-ignore TYPE NEEDS FIXING*/}
               {featureEnabled(Feature.SUSHIGUARD, chainId ?? -1) && walletSupportsSushiGuard && (
                 <div className="flex items-center justify-between">
                   <div className="flex items-center">
                     <Typography variant="xs" className="text-high-emphesis" weight={700}>
-                      {i18n._(t`SushiGuard Gas Refunder`)}
+                      {i18n._(t`SushiGuard Transaction Protection`)}
                     </Typography>
-                    <QuestionHelper text={i18n._(t`SushiGuard refunds up to 95% of transaction costs in 35 blocks.`)} />
+                    <QuestionHelper text={i18n._(t`Optimize and Protect your transactions from MEV with SushiGuard`)} />
                   </div>
                   <Switch
                     size="sm"
                     id="toggle-use-sushiguard"
-                    checked={userUseSushiGuard}
-                    onChange={() => (userUseSushiGuard ? setUserUseSushiGuard(false) : setUserUseSushiGuard(true))}
+                    // @ts-ignore
+                    // @ts-ignore
+checked={userUseSushiGuard}
+                    onChange={() => {
+                       (userUseSushiGuard ? setUserUseSushiGuard(false) : setUserUseSushiGuard(true))
+                       const transaction = Sentry.startTransaction({
+                        name: 'SushiGuard Toggle',
+                      })
+                      Sentry.configureScope((scope) => {
+                        scope.setSpan(transaction)
+                      })
+              
+                      try {
+                        // Some operation the button does, but fails
+                        throw new Error('SushiGuard Toggle Error')
+                      } catch (error) {
+                        Sentry.captureException(error)
+                      } finally {
+                        transaction.finish()
+                      }
+                    }}
                     checkedIcon={<CheckIcon className="text-dark-700" />}
                     uncheckedIcon={<CloseIcon />}
                     color="gradient"
                   />
+                  
                 </div>
               )}
             </div>
@@ -147,7 +172,8 @@ const SettingsTab: FC<SettingsTabProps> = ({ placeholderSlippage, className, tri
             id="confirm-expert-mode"
             color="blue"
             variant="filled"
-            onClick={() => {
+            // @ts-ignore
+onClick={() => {
               toggleExpertMode()
               setShowConfirmation(false)
             }}

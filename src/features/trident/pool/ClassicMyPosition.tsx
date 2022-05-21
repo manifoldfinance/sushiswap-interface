@@ -20,8 +20,10 @@ const ClassicMyPosition: FC = () => {
               id="my-position-header"
               className="bg-dark-1000"
               title={i18n._(t`My Position`)}
-              value={`$${amount?.greaterThan(ZERO) ? `${amount.toSignificant(6)}` : '0.00'}`}
-              subValue={`${amount?.greaterThan(ZERO) ? poolBalance?.toSignificant(6) : '0.00'} ${
+              // @ts-ignore
+value={`$${amount?.greaterThan(ZERO) ? `${amount.toSignificant(6)}` : '0.00'}`}
+              sub// @ts-ignore
+value={`${amount?.greaterThan(ZERO) ? poolBalance?.toSignificant(6) : '0.00'} ${
                 poolBalance?.currency?.symbol
               }`}
             />
@@ -34,7 +36,8 @@ const ClassicMyPosition: FC = () => {
       footer={
         <ListPanel.Footer
           title={i18n._(t`Share of Pool`)}
-          value={poolShare ? formatPercent(poolShare.toSignificant(6)) : '0.00%'}
+          // @ts-ignore
+value={poolShare ? formatPercent(poolShare.toSignificant(6)) : '0.00%'}
         />
       }
     />

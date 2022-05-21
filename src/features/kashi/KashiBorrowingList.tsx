@@ -55,7 +55,8 @@ export const KashiBorrowingList = () => {
           </div>
           <div
             className={classNames('flex gap-1 items-center cursor-pointer justify-end', TABLE_TR_TH_CLASSNAME(4, 6))}
-            onClick={() => requestSort('health')}
+            // @ts-ignore
+onClick={() => requestSort('health')}
           >
             <Typography variant="sm" weight={700}>
               {i18n._(t`Health`)}
@@ -64,7 +65,8 @@ export const KashiBorrowingList = () => {
           </div>
           <div
             className={classNames('flex gap-1 items-center cursor-pointer justify-end', TABLE_TR_TH_CLASSNAME(5, 6))}
-            onClick={() => requestSort('currentInterestPerYear')}
+            // @ts-ignore
+onClick={() => requestSort('currentInterestPerYear')}
           >
             <Typography variant="sm" weight={700}>
               {i18n._(t`Borrow APR`)}

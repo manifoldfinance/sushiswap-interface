@@ -255,7 +255,8 @@ const AuctionCreationModal: FC<AuctionCreationModalProps> = ({ open, onDismiss: 
             </div>
           </HeadlessUIModal.Content>
           <HeadlessUIModal.Actions>
-            <HeadlessUIModal.Action onClick={onDismiss}>{i18n._(t`Cancel`)}</HeadlessUIModal.Action>
+            <HeadlessUIModal.Action // @ts-ignore
+onClick={onDismiss}>{i18n._(t`Cancel`)}</HeadlessUIModal.Action>
             <HeadlessUIModal.Action
               main={true}
               {...(pending && {
@@ -266,7 +267,8 @@ const AuctionCreationModal: FC<AuctionCreationModalProps> = ({ open, onDismiss: 
                 ),
               })}
               disabled={pending}
-              onClick={() => execute(data)}
+              // @ts-ignore
+onClick={() => execute(data)}
             >
               {i18n._(t`Create Auction`)}
             </HeadlessUIModal.Action>

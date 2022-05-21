@@ -138,7 +138,8 @@ const Swap = ({ banners }: SwapProps) => {
             selected={typedField === TypedField.A}
             spendFromWallet={_spendFromWallet}
             currency={currencies[0]}
-            value={formattedAmounts[0]}
+            // @ts-ignore
+value={formattedAmounts[0]}
             onChange={(value) =>
               dispatch(setTridentSwapState({ ...tridentSwapState, value: value || '', typedField: TypedField.A }))
             }
@@ -148,7 +149,8 @@ const Swap = ({ banners }: SwapProps) => {
             <div
               role="button"
               className="p-1.5 rounded-full bg-dark-800 border shadow-md border-dark-700 hover:border-dark-600"
-              onClick={handleArrowsClick}
+              // @ts-ignore
+onClick={handleArrowsClick}
             >
               <ArrowDownIcon width={14} className="text-high-emphesis hover:text-white" />
             </div>
@@ -177,7 +179,8 @@ const Swap = ({ banners }: SwapProps) => {
             selected={typedField === TypedField.B}
             spendFromWallet={_receiveToWallet}
             currency={currencies[1]}
-            value={formattedAmounts[1]}
+            // @ts-ignore
+value={formattedAmounts[1]}
             onChange={(value) => {
               // Change typedField to TypedField.B once exactOut is available
               dispatch(setTridentSwapState({ ...tridentSwapState, value: value || '', typedField: TypedField.A }))
@@ -188,7 +191,8 @@ const Swap = ({ banners }: SwapProps) => {
             inputDisabled={true}
           />
           <DerivedTradeContext.Provider
-            value={useMemo(
+            // @ts-ignore
+value={useMemo(
               () => ({
                 formattedAmounts,
                 trade,
@@ -217,7 +221,8 @@ const Swap = ({ banners }: SwapProps) => {
             {isWrap ? (
               <WrapButton />
             ) : (
-              <SwapButton onClick={(trade) => setConfirmTrade(trade)} spendFromWallet={_spendFromWallet} />
+              <SwapButton // @ts-ignore
+onClick={(trade) => setConfirmTrade(trade)} spendFromWallet={_spendFromWallet} />
             )}
           </DerivedTradeContext.Provider>
           {expertMode && executeError ? <SwapCallbackError error={executeError} /> : null}

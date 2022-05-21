@@ -34,7 +34,8 @@ const WhitelistChecker: FC<WhitelistCheckerProps> = ({ listAddress: listAddressP
         <Typography weight={700}>{i18n._(t`Whitelist Checker`)}</Typography>
         <div className="mt-2 flex rounded-md shadow-sm">
           <input
-            value={listAddress || listAddressProp}
+            // @ts-ignore
+value={listAddress || listAddressProp}
             onChange={(e) =>
               pipeline({ value: e.target.value }, [isAddressValidator], () => setListAddress(e.target.value), setError)
             }
@@ -44,7 +45,8 @@ const WhitelistChecker: FC<WhitelistCheckerProps> = ({ listAddress: listAddressP
         </div>
         <div className="mt-2 flex rounded-md shadow-sm">
           <input
-            value={address}
+            // @ts-ignore
+value={address}
             onChange={(e) =>
               pipeline({ value: e.target.value }, [isAddressValidator], () => setAddress(e.target.value), setError)
             }

@@ -36,7 +36,8 @@ const RangeInput: FC<RangeInputProps> = ({ value, label, color = 'blue', onChang
       </Typography>
       <div className=" bg-dark-900 border-t border-l border-r border-dark-700">
         <NumericalInput
-          value={value}
+          // @ts-ignore
+value={value}
           onUserInput={onChange}
           placeholder="0.000"
           className="text-3xl trailing-7 letter-spacing-[-0.01em] font-bold px-3 py-4 text-center bg-transparent w-full"

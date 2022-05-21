@@ -60,7 +60,8 @@ const ManageTokens: FC = () => {
           <div className="flex items-center gap-2">
             <div
               className="flex items-center w-4 h-4 cursor-pointer hover:text-white"
-              onClick={() => removeToken(chainId, token.address)}
+              // @ts-ignore
+onClick={() => removeToken(chainId, token.address)}
             >
               <Trash width={20} />
             </div>
@@ -92,18 +93,21 @@ const ManageTokens: FC = () => {
           searchQuery !== '' && !isAddressSearch ? 'border-red' : 'border-dark-800 focus:border-blue',
           'w-full bg-[rgba(0,0,0,0.2)] border rounded placeholder-secondary font-bold text-base p-4 appearance-none'
         )}
-        value={searchQuery}
+        // @ts-ignore
+value={searchQuery}
         autoComplete="off"
         onChange={handleInput}
         autoCorrect="off"
       />
-      {searchToken && <ImportRow token={searchToken} onClick={handleImport} />}
+      {searchToken && <ImportRow token={searchToken} // @ts-ignore
+onClick={handleImport} />}
       <HeadlessUiModal.BorderedContent className="flex flex-col bg-[rgba(0,0,0,0.2)] !p-0">
         <div className="flex items-center justify-between p-4">
           <Typography variant="xs" weight={700} className="text-secondary">
             {userAddedTokens?.length} Custom {userAddedTokens.length === 1 ? 'Token' : 'Tokens'}
           </Typography>
-          <Button variant="outlined" color="blue" size="xs" onClick={handleRemoveAll}>
+          <Button variant="outlined" color="blue" size="xs" // @ts-ignore
+onClick={handleRemoveAll}>
             {i18n._(t`Clear all`)}
           </Button>
         </div>

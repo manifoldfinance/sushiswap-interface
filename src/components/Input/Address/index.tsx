@@ -20,7 +20,8 @@ export const AddressInput = React.memo(
     return (
       <>
         <input
-          value={value}
+          // @ts-ignore
+value={value}
           onChange={(event) => {
             onUserInput(event.target.value.replace(/\s+/g, ''))
           }}

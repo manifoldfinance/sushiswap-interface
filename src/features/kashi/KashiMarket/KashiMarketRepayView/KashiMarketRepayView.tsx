@@ -108,13 +108,15 @@ export const KashiMarketRepayView: FC = () => {
         )}
         spendFromWallet={repayFromWallet}
         currency={repayToken}
-        value={repayAmount}
+        // @ts-ignore
+value={repayAmount}
         onChange={setRepayAmount}
         balancePanel={() => (
           <Typography
             variant="sm"
             className="text-right text-secondary whitespace-nowrap"
-            onClick={() => repayHandler(currentBorrowed.toExact(), true)}
+            // @ts-ignore
+onClick={() => repayHandler(currentBorrowed.toExact(), true)}
           >
             Max Repay: {currentBorrowed.toSignificant(6)}
           </Typography>
@@ -135,13 +137,15 @@ export const KashiMarketRepayView: FC = () => {
           )}
           spendFromWallet={removeToWallet}
           currency={removeToken}
-          value={removeAmount}
+          // @ts-ignore
+value={removeAmount}
           onChange={(val) => removeHandler(val, false)}
           balancePanel={() => (
             <Typography
               variant="sm"
               className="text-right text-secondary whitespace-nowrap"
-              onClick={() => removeHandler(maxRemoveCollateral.toExact(), true)}
+              // @ts-ignore
+onClick={() => removeHandler(maxRemoveCollateral.toExact(), true)}
             >
               Max Withdraw: {currentCollateral.toSignificant(6)}
             </Typography>

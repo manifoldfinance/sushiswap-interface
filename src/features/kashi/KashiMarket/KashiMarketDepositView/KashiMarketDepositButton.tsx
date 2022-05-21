@@ -69,7 +69,8 @@ export const KashiMarketDepositButton: FC<KashiMarketDepositButtonProps> = ({ sp
               loading={loading}
               color="gradient"
               disabled={disabled}
-              onClick={() => setOpen(true)}
+              // @ts-ignore
+onClick={() => setOpen(true)}
               className="rounded-2xl md:rounded"
             >
               {buttonText}

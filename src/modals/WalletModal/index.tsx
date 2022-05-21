@@ -171,7 +171,8 @@ const WalletModal: FC<WalletModal> = ({ pendingTransactions, confirmedTransactio
         if (!window.web3 && !window.ethereum && option.mobile) {
           return (
             <Option
-              onClick={() => tryActivation(option.connector, key)}
+              // @ts-ignore
+onClick={() => tryActivation(option.connector, key)}
               id={`connect-${key}`}
               key={key}
               active={option.connector && option.connector === connector}
@@ -220,7 +221,8 @@ const WalletModal: FC<WalletModal> = ({ pendingTransactions, confirmedTransactio
         !option.mobileOnly && (
           <Option
             id={`connect-${key}`}
-            onClick={() => {
+            // @ts-ignore
+onClick={() => {
               option.connector === connector
                 ? setWalletView(WALLET_VIEWS.ACCOUNT)
                 : !option.href && tryActivation(option.connector, key)
@@ -252,7 +254,8 @@ const WalletModal: FC<WalletModal> = ({ pendingTransactions, confirmedTransactio
                 : i18n._(t`Error connecting. Try refreshing the page.`)}
             </Typography>
           </HeadlessUiModal.BorderedContent>
-          <Button color="red" onClick={handleDeactivate}>
+          <Button color="red" // @ts-ignore
+onClick={handleDeactivate}>
             {i18n._(t`Disconnect`)}
           </Button>
         </div>

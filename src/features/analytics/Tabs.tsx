@@ -18,7 +18,8 @@ export default function Tabs({ tabs, currentType, setType }: TabsProps): JSX.Ele
                 tab.type !== currentType && 'opacity-40 hover:opacity-80',
                 'flex flex-col font-bold cursor-pointer text-high-emphesis'
               )}
-              onClick={() => setType(tab.type)}
+              // @ts-ignore
+onClick={() => setType(tab.type)}
             >
               <div className="inline-flex items-center justify-center pt-4 pb-2">
                 <div>

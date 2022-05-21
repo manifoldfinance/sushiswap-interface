@@ -36,7 +36,8 @@ const PendingView: FC<PendingView> = ({ id, connector, error = false, setPending
               variant="outlined"
               color="blue"
               size="xs"
-              onClick={() => {
+              // @ts-ignore
+onClick={() => {
                 setPendingError(false)
                 connector && tryActivation(connector, id)
               }}

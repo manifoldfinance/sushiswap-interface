@@ -97,7 +97,8 @@ export const SelectPoolsAndConfirm: FC = () => {
               if (approved)
                 return (
                   <>
-                    <Button color="gradient" onClick={() => execute()}>
+                    <Button color="gradient" // @ts-ignore
+onClick={() => execute()}>
                       {i18n._(t`Confirm Migration`)}
                     </Button>
                     <SlippageWidget />
@@ -108,7 +109,8 @@ export const SelectPoolsAndConfirm: FC = () => {
         )}
         <div
           className="text-center cursor-pointer text-blue md:text-left md:mt-3"
-          onClick={() => router.replace('/trident/migrate')}
+          // @ts-ignore
+onClick={() => router.replace('/trident/migrate')}
         >
           {i18n._(t`← Previous Step`)}
         </div>

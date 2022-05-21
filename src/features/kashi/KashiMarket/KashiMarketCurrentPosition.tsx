@@ -36,7 +36,8 @@ export const KashiMarketCurrentPosition: FC<KashiMarketCurrentPosition> = ({
           weight={700}
           variant="sm"
           className={classNames(setCollateralAmount ? 'cursor-pointer' : '', 'text-high-emphesis')}
-          onClick={() => setCollateralAmount && setCollateralAmount(currentCollateral.toExact())}
+          // @ts-ignore
+onClick={() => setCollateralAmount && setCollateralAmount(currentCollateral.toExact())}
         >
           {currentCollateral.toSignificant(6)}
           <Typography weight={700} variant="xs" className="text-secondary" component="span">
@@ -53,7 +54,8 @@ export const KashiMarketCurrentPosition: FC<KashiMarketCurrentPosition> = ({
           weight={700}
           variant="sm"
           className={classNames(setBorrowAmount ? 'cursor-pointer' : '', 'text-high-emphesis')}
-          onClick={() => setBorrowAmount && setBorrowAmount(currentBorrow.toExact())}
+          // @ts-ignore
+onClick={() => setBorrowAmount && setBorrowAmount(currentBorrow.toExact())}
         >
           {currentBorrow.toSignificant(6)}
           <Typography weight={700} variant="xs" className="text-secondary" component="span">

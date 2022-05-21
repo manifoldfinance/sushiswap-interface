@@ -62,7 +62,8 @@ const WhitelistUploadField: FC<WhitelistUploadFieldProps> = ({ auction }) => {
   return (
     <>
       <WhitelistUpload
-        value={wlAddresses}
+        // @ts-ignore
+value={wlAddresses}
         disabled={!!(auction?.auctionInfo.usePointList && !auction.pointListAddress)}
         onChange={setWlAddresses}
       />
@@ -78,7 +79,8 @@ const WhitelistUploadField: FC<WhitelistUploadFieldProps> = ({ auction }) => {
               ),
             })}
             color="blue"
-            onClick={handleUpdatePointList}
+            // @ts-ignore
+onClick={handleUpdatePointList}
           >
             {i18n._(t`Update Point List`)}
           </Button>

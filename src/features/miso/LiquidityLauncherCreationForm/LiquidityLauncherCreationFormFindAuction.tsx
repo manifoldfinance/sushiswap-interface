@@ -44,7 +44,8 @@ const LiquidityLauncherCreationFormFindAuction: FC<LiquidityLauncherCreationForm
               </FormFieldHelperText>
               <FormFieldHelperText
                 className="underline cursor-pointer"
-                onClick={() => setValue('adminAddress', account || '')}
+                // @ts-ignore
+onClick={() => setValue('adminAddress', account || '')}
               >
                 {i18n._(t`Use my address`)}
               </FormFieldHelperText>

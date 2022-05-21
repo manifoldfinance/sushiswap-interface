@@ -38,7 +38,8 @@ const FormSelectField: FC<FormSelectFieldProps> = ({ name, label, children, help
           className={classNames(DEFAULT_FORM_FIELD_CLASSNAMES, errors[name] ? '!border-red' : '')}
         >
           {options.map(({ value, label }) => (
-            <option value={label} key={value}>
+            <option // @ts-ignore
+value={label} key={value}>
               {label}
             </option>
           ))}

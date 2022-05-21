@@ -26,9 +26,11 @@ const FixedRatioHeader: FC<FixedRatioHeaderProps> = ({ margin = true }) => {
     <div className="flex justify-between gap-1 lg:justify-start">
       <div
         className="flex flex-row items-center gap-3 cursor-pointer"
-        onClick={() => dispatch(setAddFixedRatio(!fixedRatio))}
+        // @ts-ignore
+onClick={() => dispatch(setAddFixedRatio(!fixedRatio))}
       >
-        <Checkbox id={`chk-fixed-ratio-deposit`} className="w-6 h-6" checked={fixedRatio} />
+        <Checkbox id={`chk-fixed-ratio-deposit`} className="w-6 h-6" // @ts-ignore
+checked={fixedRatio} />
         <Typography variant="sm" weight={700} className={fixedRatio ? 'text-white' : ''}>
           {i18n._(t`Deposit assets in equal amounts`)}
         </Typography>

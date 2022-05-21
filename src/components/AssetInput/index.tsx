@@ -86,7 +86,8 @@ const AssetInput: AssetInput<AssetInputProps> = ({
     header = (
       <div
         className={classNames(props.onSelect ? 'cursor-pointer ' : '', 'flex gap-2.5 items-center')}
-        onClick={() => setOpen(true)}
+        // @ts-ignore
+onClick={() => setOpen(true)}
       >
         <div className="flex gap-0.5 items-center">
           <Typography id={props.id} variant="h3" weight={700} className="text-high-emphesis">
@@ -112,7 +113,8 @@ const AssetInput: AssetInput<AssetInputProps> = ({
   }
 
   return (
-    <AssetInputContext.Provider value={useMemo(() => (error ? error : false), [error])}>
+    <AssetInputContext.Provider // @ts-ignore
+value={useMemo(() => (error ? error : false), [error])}>
       <div className={classNames(className, 'flex flex-col gap-4 mt-4 lg:mt-0')}>
         {(props.title || props.headerRight) && (
           <div className="flex justify-between px-2">
@@ -135,7 +137,8 @@ const AssetInput: AssetInput<AssetInputProps> = ({
             footer={
               <AssetInputPanel.Balance
                 balance={balance}
-                onClick={() => props.onChange(maxSpend, true)}
+                // @ts-ignore
+onClick={() => props.onChange(maxSpend, true)}
                 spendFromWallet={spendFromWallet}
                 showIcon={!balanceProp}
                 id={props.id + '-balance'}
@@ -233,7 +236,8 @@ const AssetInputPanel = ({
           <Typography variant="h3" weight={700} className="relative flex flex-row items-baseline overflow-hidden">
             <NumericalInput
               disabled={disabled}
-              value={value || ''}
+              // @ts-ignore
+value={value || ''}
               onUserInput={onChange}
               placeholder="0.00"
               className="bg-transparent"
@@ -258,7 +262,8 @@ const AssetInputPanel = ({
           <ExclamationCircleIcon className="w-8 h-8 mr-2 text-red" />
         ) : (
           showMax && (
-            <Button size="xs" variant="outlined" color="gray" className="!border" onClick={() => onMax()}>
+            <Button size="xs" variant="outlined" color="gray" className="!border" // @ts-ignore
+onClick={() => onMax()}>
               Max
             </Button>
           )
@@ -333,7 +338,8 @@ const AssetInputPanelBalance: FC<AssetInputPanelBalanceProps> = ({
         variant="sm"
         weight={700}
         className={classNames(balance ? 'text-high-emphesis' : 'text-low-emphesis', 'truncate')}
-        onClick={() => onClick(balance)}
+        // @ts-ignore
+onClick={() => onClick(balance)}
         id={id}
       >
         {balance ? `${balance.toSignificant(6)} ${balance.currency.symbol}` : '0.0000'}
@@ -380,7 +386,9 @@ const AssetInputWalletSwitch: FC<AssetInputWalletSwitchProps> = ({ checked, onCh
         <div className="order-2 lg:order-1">
           <Switch
             id={id}
-            checked={checked}
+            // @ts-expect-error
+            // @ts-ignore
+checked={checked}
             onChange={onChange}
             checkedIcon={
               <div className="flex items-center justify-center w-full h-full text-dark-700">

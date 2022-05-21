@@ -9,7 +9,8 @@ export default function Pool() {
   return (
     <AnalyticsContainer>
       <div>
-        <button onClick={() => router.back()} className="font-bold">
+        <button // @ts-ignore
+onClick={() => router.back()} className="font-bold">
           {'<'} Go Back
         </button>
       </div>

@@ -46,7 +46,8 @@ const ActionView: FC<ActionViewProps> = ({ onClose }) => {
       <ActionItem
         svg={<SwitchHorizontalIcon width={24} />}
         label={i18n._(t`Swap ${currency?.symbol}`)}
-        onClick={swapActionHandler}
+        // @ts-ignore
+onClick={swapActionHandler}
       />
       {/*@ts-ignore TYPE NEEDS FIXING*/}
       {featureEnabled(Feature.BENTOBOX, chainId) && (
@@ -55,14 +56,16 @@ const ActionView: FC<ActionViewProps> = ({ onClose }) => {
             <ActionItem
               svg={<BentoboxIcon width={20} height={20} />}
               label={i18n._(t`Deposit ${currency?.symbol} to BentoBox`)}
-              onClick={() => dispatch(setBalancesActiveModal({ activeModal: ActiveModal.DEPOSIT }))}
+              // @ts-ignore
+onClick={() => dispatch(setBalancesActiveModal({ activeModal: ActiveModal.DEPOSIT }))}
             />
           )}
           {activeModal === ActiveModal.BENTOBOX_MENU && (
             <ActionItem
               svg={<WalletIcon width={20} height={20} />}
               label={i18n._(t`Withdraw ${currency?.symbol} to Wallet`)}
-              onClick={() => dispatch(setBalancesActiveModal({ activeModal: ActiveModal.WITHDRAW }))}
+              // @ts-ignore
+onClick={() => dispatch(setBalancesActiveModal({ activeModal: ActiveModal.WITHDRAW }))}
             />
           )}
         </>

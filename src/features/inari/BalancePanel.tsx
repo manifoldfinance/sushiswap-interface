@@ -62,10 +62,12 @@ const BalancePanel: FC<BalancePanelProps> = ({ label, value, token, showMax = fa
         <div className="overflow-hidden rounded-full">
           <CurrencyLogo currency={token} size={40} />
         </div>
-        <Input.Numeric value={value} onUserInput={dispatchValue} />
+        <Input.Numeric // @ts-ignore
+value={value} onUserInput={dispatchValue} />
         {showMax && (
           <span
-            onClick={onMax}
+            // @ts-ignore
+onClick={onMax}
             className="cursor-pointer flex items-center rounded-full h-[30px] bg-blue bg-opacity-30 hover:border-opacity-100 border border-blue border-opacity-50 text-xs font-medium text-blue px-3"
           >
             {i18n._(t`Max`)}
@@ -73,7 +75,8 @@ const BalancePanel: FC<BalancePanelProps> = ({ label, value, token, showMax = fa
         )}
       </div>
       <div className="flex flex-row">
-        <div className="flex gap-2 cursor-pointer" onClick={onMax}>
+        <div className="flex gap-2 cursor-pointer" // @ts-ignore
+onClick={onMax}>
           <Typography variant="sm" className="text-secondary">
             {i18n._(t`Balance:`)}
           </Typography>
