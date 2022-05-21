@@ -1,5 +1,4 @@
 import { BigNumber, BigNumberish } from '@ethersproject/bignumber'
-
 import { Fraction as SDKFraction } from '@sushiswap/core-sdk'
 import { formatBalance } from 'app/functions/format'
 import { parseBalance } from 'app/functions/parse'
