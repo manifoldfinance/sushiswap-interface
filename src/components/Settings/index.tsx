@@ -1,6 +1,7 @@
 import { CheckIcon, CogIcon } from '@heroicons/react/outline'
 import { t } from '@lingui/macro'
 import { useLingui } from '@lingui/react'
+import * as Sentry from '@sentry/nextjs'
 import { Percent } from '@sushiswap/core-sdk'
 import Button from 'app/components/Button'
 import CloseIcon from 'app/components/CloseIcon'
@@ -17,7 +18,6 @@ import { useActiveWeb3React } from 'app/services/web3'
 import { useToggleSettingsMenu } from 'app/state/application/hooks'
 import { useExpertModeManager, useUserSingleHopOnly, useUserSushiGuard } from 'app/state/user/hooks'
 import React, { FC, useState } from 'react'
-import * as Sentry from '@sentry/nextjs'
 interface SettingsTabProps {
   placeholderSlippage?: Percent
   trident?: boolean
@@ -67,7 +67,7 @@ const SettingsTab: FC<SettingsTabProps> = ({ placeholderSlippage, className, tri
                   id="toggle-expert-mode-button"
                   // @ts-ignore
                   // @ts-ignore
-checked={expertMode}
+                  checked={expertMode}
                   onChange={
                     expertMode
                       ? () => {
@@ -97,7 +97,7 @@ checked={expertMode}
                     id="toggle-disable-multihop-button"
                     // @ts-ignore
                     // @ts-ignore
-checked={singleHopOnly}
+                    checked={singleHopOnly}
                     onChange={() => (singleHopOnly ? setSingleHopOnly(false) : setSingleHopOnly(true))}
                     checkedIcon={<CheckIcon className="text-dark-700" />}
                     uncheckedIcon={<CloseIcon />}
@@ -105,7 +105,7 @@ checked={singleHopOnly}
                   />
                 </div>
               )}
-              
+
               {/*@ts-ignore TYPE NEEDS FIXING*/}
               {featureEnabled(Feature.SUSHIGUARD, chainId ?? -1) && walletSupportsSushiGuard && (
                 <div className="flex items-center justify-between">
@@ -120,16 +120,16 @@ checked={singleHopOnly}
                     id="toggle-use-sushiguard"
                     // @ts-ignore
                     // @ts-ignore
-checked={userUseSushiGuard}
+                    checked={userUseSushiGuard}
                     onChange={() => {
-                       (userUseSushiGuard ? setUserUseSushiGuard(false) : setUserUseSushiGuard(true))
-                       const transaction = Sentry.startTransaction({
+                      userUseSushiGuard ? setUserUseSushiGuard(false) : setUserUseSushiGuard(true)
+                      const transaction = Sentry.startTransaction({
                         name: 'SushiGuard Toggle',
                       })
                       Sentry.configureScope((scope) => {
                         scope.setSpan(transaction)
                       })
-              
+
                       try {
                         // Some operation the button does, but fails
                         throw new Error('SushiGuard Toggle Error')
@@ -143,7 +143,6 @@ checked={userUseSushiGuard}
                     uncheckedIcon={<CloseIcon />}
                     color="gradient"
                   />
-                  
                 </div>
               )}
             </div>
@@ -173,7 +172,7 @@ checked={userUseSushiGuard}
             color="blue"
             variant="filled"
             // @ts-ignore
-onClick={() => {
+            onClick={() => {
               toggleExpertMode()
               setShowConfirmation(false)
             }}

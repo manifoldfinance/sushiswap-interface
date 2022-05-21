@@ -1,12 +1,13 @@
 import '../bootstrap'
 import '../styles/index.css'
 import '../sentry'
+
 import { i18n } from '@lingui/core'
 import { I18nProvider } from '@lingui/react'
 import { remoteLoader } from '@lingui/remote-loader'
 import Web3ReactManager from 'app/components/Web3ReactManager'
+import { exception, pageview } from 'app/functions/analytics/gtag'
 import getLibrary from 'app/functions/getLibrary'
-import { exception, GOOGLE_ANALYTICS_TRACKING_ID, pageview } from 'app/functions/analytics/gtag'
 import DefaultLayout from 'app/layouts/Default'
 import { BlockNumberProvider } from 'app/lib/hooks/useBlockNumber'
 import { MulticallUpdater } from 'app/lib/state/multicall'
@@ -20,7 +21,6 @@ import * as plurals from 'make-plural/plurals'
 import dynamic from 'next/dynamic'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
-import Script from 'next/script'
 import { DefaultSeo } from 'next-seo'
 import React, { Fragment, useEffect } from 'react'
 import { Provider as ReduxProvider } from 'react-redux'
@@ -100,28 +100,25 @@ function MyApp({ Component, pageProps, fallback, err }) {
   // Allows for conditionally setting a guard to be hoisted per page
   const Guard = Component.Guard || Fragment
 
-  
   return (
     <>
-      <Head>Sushi
-        
-      </Head>
+      <Head>Sushi</Head>
       <meta
         name="viewport"
         content="minimum-scale=1, initial-scale=1, width=device-width, shrink-to-fit=no, viewport-fit=cover"
       />
 
-<script
-    data-partytown-config
-    dangerouslySetInnerHTML={{
-      __html: `
+      <script
+        data-partytown-config
+        dangerouslySetInnerHTML={{
+          __html: `
           partytown = {
             lib: "/_next/static/~partytown/",
             forward: ["gtag"]           
           };
         `,
-    }}
-/>
+        }}
+      />
       {/* Global Site Tag (gtag.js) - Google Analytics 
 
       <Script
@@ -146,7 +143,7 @@ function MyApp({ Component, pageProps, fallback, err }) {
        */}
       <I18nProvider i18n={i18n} forceRenderOnLocaleChange={false}>
         <Web3ReactProvider getLibrary={getLibrary}>
-{/* @ts-ignore */}
+          {/* @ts-ignore */}
           <Web3ProviderNetwork getLibrary={getLibrary}>
             <Web3ReactManager>
               <ReduxProvider store={store}>

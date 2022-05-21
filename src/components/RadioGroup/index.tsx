@@ -1,7 +1,7 @@
 import { RadioGroup as HeadlessRadioGroup } from '@headlessui/react'
+import { classNames } from 'app/functions'
 import { ComponentProps } from 'react'
 
-import { classNames } from 'app/functions'
 import Typography from '../Typography'
 
 // @ts-ignore
@@ -18,11 +18,13 @@ RadioGroup.Option = ({
   children,
   // @ts-ignore
   className = 'space-y-3.5',
-  // @ts-ignore
-}: ComponentProps<typeof HeadlessRadioGroup.Option>) => {
+}: // @ts-ignore
+ComponentProps<typeof HeadlessRadioGroup.Option>) => {
   return (
     <HeadlessRadioGroup.Option // @ts-ignore
-value={value} className={classNames('outline-none', className)}>
+      value={value}
+      className={classNames('outline-none', className)}
+    >
       {({ checked }) => (
         <>
           <div className="flex items-center text-sm cursor-pointer gap-3.5">

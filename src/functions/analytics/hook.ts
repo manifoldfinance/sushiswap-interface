@@ -1,23 +1,22 @@
+import { useRouter } from 'next/router'
+import { useEffect } from 'react'
 
-import { useEffect } from "react";
-import { useRouter } from "next/router";
-import { pageView } from "./pageView";
+import { pageView } from './pageView'
 
 export function usePagesViews(gaMeasurementId?: string): void {
-  const router = useRouter();
+  const router = useRouter()
 
   useEffect(() => {
     const handleRouteChange = (url: URL): void => {
-      const _gaMeasurementId =
-        process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID ?? gaMeasurementId;
+      const _gaMeasurementId = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID ?? gaMeasurementId
 
-      pageView({ path: url.toString() }, _gaMeasurementId);
-    };
+      pageView({ path: url.toString() }, _gaMeasurementId)
+    }
 
-    router.events.on("routeChangeComplete", handleRouteChange);
+    router.events.on('routeChangeComplete', handleRouteChange)
 
     return () => {
-      router.events.off("routeChangeComplete", handleRouteChange);
-    };
-  }, [router.events]);
+      router.events.off('routeChangeComplete', handleRouteChange)
+    }
+  }, [router.events])
 }
