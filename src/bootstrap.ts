@@ -10,12 +10,15 @@
 *
 */
 import { BigNumber, BigNumberish } from '@ethersproject/bignumber'
+
+//import { BigNumber, BigNumberish } from 'ethers'
 import { Zero } from '@ethersproject/constants'
 import { parseUnits } from '@ethersproject/units'
 import * as Sentry from '@sentry/nextjs'
 import { Integrations } from '@sentry/tracing'
 import { Fraction } from 'app/entities/bignumber'
 import React from 'react'
+import { loadEnvConfig } from '@next/env'
 
 if (typeof window !== 'undefined' && process.env.NODE_ENV === 'development') {
   const whyDidYouRender = require('@welldone-software/why-did-you-render')
@@ -28,6 +31,7 @@ if (typeof window !== 'undefined' && process.env.NODE_ENV === 'development') {
     collapseGroups: true,
   })
 }
+
 
 BigNumber.prototype.mulDiv = function (multiplier: BigNumberish, divisor: BigNumberish): BigNumber {
   // console.log('mulDiv', multiplier, divisor)
@@ -83,7 +87,7 @@ export const initSentry = () => {
       //release: process.env.NEXT_PUBLIC_RELEASE_VERSION,
         release: 'sushiswap-2022.05.21-debug',
       // fall back production
-      environment: process.env.NEXT_PUBLIC_SENTRY_ENV || 'production',
+      environment: 'production',
       integrations: [
         new Integrations.BrowserTracing({
           // default = ['localhost', /^\//],

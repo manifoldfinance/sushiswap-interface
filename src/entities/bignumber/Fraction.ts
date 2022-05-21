@@ -1,9 +1,14 @@
 import { BigNumber, BigNumberish } from '@ethersproject/bignumber'
-import { One, Zero } from '@ethersproject/constants'
+
 import { Fraction as SDKFraction } from '@sushiswap/core-sdk'
 import { formatBalance } from 'app/functions/format'
 import { parseBalance } from 'app/functions/parse'
 import { isEmptyValue } from 'app/functions/validate'
+
+const NegativeOne: BigNumber = (/*#__PURE__*/BigNumber.from(-1));
+const Zero: BigNumber = (/*#__PURE__*/BigNumber.from(0));
+const One: BigNumber = (/*#__PURE__*/BigNumber.from(1));
+const Two: BigNumber = (/*#__PURE__*/BigNumber.from(2));
 
 export class Fraction {
   static BASE = BigNumber.from(10).pow(18)

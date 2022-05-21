@@ -2,6 +2,7 @@
 /**
  * @type {import('next').NextConfig}
  **/
+
 const linguiConfig = require('./lingui.config.js')
 // @ts-ignore
 const defaultTheme = require('tailwindcss/defaultTheme')
@@ -42,6 +43,13 @@ const nextConfig = {
     ]
 
     return config
+  },
+  typescript: {
+    // !! WARN !!
+    // Dangerously allow production builds to successfully complete even if
+    // your project has type errors.
+    // !! WARN !!
+    ignoreBuildErrors: true,
   },
   // experimental: {
   //   nextScriptWorkers: true,

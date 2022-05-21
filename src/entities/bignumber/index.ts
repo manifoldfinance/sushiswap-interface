@@ -1,1 +1,2 @@
-export { Fraction } from './Fraction'
+//export { Fraction } from './Fraction'
+export * from './Fraction'
