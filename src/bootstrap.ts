@@ -76,10 +76,8 @@ export const initSentry = () => {
       environment: process.env.NEXT_PUBLIC_SENTRY_ENV || 'production',
       integrations: [
         new Integrations.BrowserTracing(),
-        new Sentry.Integrations.Breadcrumbs({
           // disable console logoutput for end users, not need to report errors to them
           console: true,
-        }),
       ],
     })
   }
