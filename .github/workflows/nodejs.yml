@@ -1,17 +1,17 @@
 name: nodejs
 
 on: 
-  push:
-     paths:
-      - "**/**"
-      - "!**/*.md/**"
+  pull_request:
+    paths:
+      - '**.ts'
+      - '**.tsx'
+      - '**.js'
 env:
   COMMIT_SHA: ${{ github.event.pull_request.head.sha }}
   PULL_NUMBER: ${{ github.event.pull_request.number }}
   RUN_ID: ${{ github.run_id }}
   FORCE_COLOR: 2
   NEXT_TELEMETRY_DISABLED: 1
-
 
 jobs:
   pipeline:
@@ -42,10 +42,11 @@ jobs:
           key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
           restore-keys: |
             ${{ runner.os }}-yarn-
+
       - name: Install project dependencies
         run: yarn --prefer-offline
         id: install
 
-      - name: Install project dependencies
-        run: yarn run build
+      - name: Build Production
+        run: yarn run prod
         id: production
