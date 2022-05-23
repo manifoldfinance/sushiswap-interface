@@ -44,10 +44,10 @@ const {
   NEXT_PUBLIC_VERCEL_GIT_COMMIT_SHA,
 } = process.env
 
-export const SENTRY_ORG = 'manifoldx'
-export const SENTRY_PROJECT = 'sushiguard'
+const SENTRY_ORG = 'manifoldx'
+const SENTRY_PROJECT = 'sushiguard'
 // https://b0246ba0aa1a461fabcbff1002377d34@o1029417.ingest.sentry.io/6312310
-export const SENTRY_DSN = 'https://b0246ba0aa1a461fabcbff1002377d34@o1029417.ingest.sentry.io/6312310'
+const SENTRY_DSN = 'https://b0246ba0aa1a461fabcbff1002377d34@o1029417.ingest.sentry.io/6312310'
 //process.env.SENTRY_DSN = SENTRY_DSN
 const basePath = ''
 
