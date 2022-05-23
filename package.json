@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "analyze": "ANALYZE=true yarn build && serve .next -n",
-    "build": "yarn lingui && NODE_ENV='production' next build",
+    "build": "yarn lingui && next build",
     "production": "NODE_ENV='production' yarn lingui && npx next build",
     "circular": "madge --circular src --extensions ts,tsx,js,jsx",
     "dev": "cross-env NODE_OPTIONS='--inspect' next dev",
@@ -23,8 +23,7 @@
     "test": "jest --modulePathIgnorePatterns=e2e",
     "test:ci": "jest -modulePathIgnorePatterns=e2e --ci --collectCoverage",
     "test:watch": "jest -modulePathIgnorePatterns=e2e --watch",
-    "unused": "next-unused",
-    "update": "browserslist-useragent-regexp --allowHigherVersions && npx browserslist@latest --update-db"
+    "unused": "next-unused"
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": [
@@ -148,11 +147,10 @@
     "@web3-react/types": "^8.0.12-beta.0",
     "@web3-react/url": "^8.0.17-beta.0",
     "@welldone-software/why-did-you-render": "^6.2.3",
-    "autoprefixer": "10.4.7",
+    "autoprefixer": "^10.4.4",
     "babel-jest": "^27.2.0",
     "babel-loader": "^8.2.2",
     "babel-plugin-macros": "^3.1.0",
-    "browserslist": "^4.20.3",
     "cids": "^1.0.0",
     "combinate": "^1.1.7",
     "concurrently": "^6.4.0",
@@ -160,10 +158,10 @@
     "copy-to-clipboard": "^3.3.1",
     "cross-env": "^7.0.3",
     "d3-array": "^3.0.2",
-    "eslint": "^8",
-    "eslint-config-next": "^12.1.6",
+    "eslint": "^7.30.0",
+    "eslint-config-next": "^11.1.0",
     "eslint-plugin-simple-import-sort": "^7.0.0",
-    "eslint-plugin-unused-imports": "^2",
+    "eslint-plugin-unused-imports": "^1.1.5",
     "eth-permit": "^0.2.1",
     "ethers": "^5.1.4",
     "fast-json-stable-stringify": "^2.1.0",
