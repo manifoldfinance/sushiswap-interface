@@ -1,4 +1,11 @@
 # Ignore all CSS files:
+.next/
+docs/
+locale/
+dist/
+build/
+cache/
+.github/
 *.css
 *.json
 *.scss
