@@ -17,6 +17,7 @@ import LogsUpdater from 'app/state/logs/updater'
 import TransactionUpdater from 'app/state/transactions/updater'
 import UserUpdater from 'app/state/user/updater'
 import * as plurals from 'make-plural/plurals'
+import { NextWebVitalsMetric } from 'next/app'
 import dynamic from 'next/dynamic'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
@@ -26,6 +27,25 @@ import React, { Fragment, useEffect } from 'react'
 import { Provider as ReduxProvider } from 'react-redux'
 import { PersistGate } from 'redux-persist/integration/react'
 import { Web3ReactProvider } from 'web3-react-core'
+
+export function reportWebVitals(metric: NextWebVitalsMetric) {
+  const url = process.env.NEXT_PUBLIC_AXIOM_INGEST_ENDPOINT
+
+  if (!url) {
+    return
+  }
+
+  const body = JSON.stringify({
+    route: window.__NEXT_DATA__.page,
+    ...metric,
+  })
+
+  if (navigator.sendBeacon) {
+    navigator.sendBeacon(url, body)
+  } else {
+    fetch(url, { body, method: 'POST', keepalive: true })
+  }
+}
 
 import SEO from '../config/seo'
 
@@ -107,7 +127,10 @@ function MyApp({ Component, pageProps, fallback, err }) {
         name="viewport"
         content="minimum-scale=1, initial-scale=1, width=device-width, shrink-to-fit=no, viewport-fit=cover"
       />
-
+      <meta
+        name="ui-version"
+        content={`${process.env.NEXT_PUBLIC_VERCEL_GIT_COMMIT_SHA}`}
+      />
       {/* Global Site Tag (gtag.js) - Google Analytics */}
       <Script
         strategy="afterInteractive"
