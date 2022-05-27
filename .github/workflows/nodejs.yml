@@ -1,10 +1,16 @@
 name: nodejs
 
-on: 
+on:
+  pull_request:
   push:
-     paths:
-      - "**/**"
-      - "!**/*.md/**"
+    branches:
+      - master
+  workflow_dispatch:
+
+defaults:
+  run:
+    # change this if your nextjs app does not live at the root of the repo
+    working-directory: ./
 env:
   COMMIT_SHA: ${{ github.event.pull_request.head.sha }}
   PULL_NUMBER: ${{ github.event.pull_request.number }}
