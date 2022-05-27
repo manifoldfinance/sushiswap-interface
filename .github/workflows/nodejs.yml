@@ -12,7 +12,6 @@ env:
   FORCE_COLOR: 2
   NEXT_TELEMETRY_DISABLED: 1
 
-
 jobs:
   pipeline:
     name: Node ${{ matrix.node-version }} on ${{ matrix.os }}
@@ -21,7 +20,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        node-version: ['14.x']
+        node-version: ['16.x']
         os: ['ubuntu-latest']
 
     steps:
@@ -71,7 +70,9 @@ jobs:
       # This step pulls the raw bundle stats for the current bundle
       - name: Analyze bundle
         run: npx -p nextjs-bundle-analysis report
-
+        env:
+          NODE_OPTIONS: "--max-old-space-size=4096"
+          
       - name: Upload bundle
         uses: actions/upload-artifact@v2
         with:
@@ -82,7 +83,7 @@ jobs:
         uses: dawidd6/action-download-artifact@v2
         if: success() && github.event.number
         with:
-          workflow: nextjs_bundle_analysis.yml
+          workflow: nodejs.yml
           branch: ${{ github.event.pull_request.base.ref }}
           path: .next/analyze/base
 
@@ -102,7 +103,9 @@ jobs:
       - name: Compare with base branch bundle
         if: success() && github.event.number
         run: ls -laR .next/analyze/base && npx -p nextjs-bundle-analysis compare
-
+        env:
+          NODE_OPTIONS: "--max-old-space-size=4096"
+          
       - name: Get comment body
         id: get-comment-body
         if: success() && github.event.number
