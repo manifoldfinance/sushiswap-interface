@@ -1,0 +1,23 @@
+# -*- mode: gitignore; -*-
+# Optimize speed/size of deployments by not uploading those files
+docs/
+
+.vscode/
+.idea/
+.github/
+node_modules/
+
+cypress/
+coverage/
+.editorconfig
+.hybrid-cache-*.cache
+
+LICENSE
+README
+apm/
+*.log
+
+# Avoid tests being deployed as Vercel Serverless Functions (they would increase bundle size, and count towards Vercel's limits)
+src/**/*.test.tsx
+src/**/*.test.ts
+test/**/*
