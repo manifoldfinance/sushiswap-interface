@@ -8,6 +8,12 @@ on:
     branches:
       - master
 
+# Down scope as necessary
+permissions:
+  checks: write
+  contents: write
+  
+  
 jobs:
   run-linters:
     name: Run linters
@@ -39,17 +45,18 @@ jobs:
 
       - name: Run linters w/ autofix
         if: ${{ github.event_name != 'pull_request' || github.event.pull_request.head.repo.owner.login == github.repository_owner }}
-        uses: wearerequired/lint-action@36c7e6689e80d785d27a22f71d970f3a3b4fcb70
+        uses: wearerequired/lint-action@42b74d8f9245fabfa899da7019edca0b2979db59
         id: lint
         with:
           auto_fix: true
           continue_on_error: true
-          commit_message: "style: code style issues with ${linter}"
+          commit_message: "chore(fix): automated style fixes with ${linter}"
           github_token: ${{ secrets.GITHUB_TOKEN }}
           eslint_extensions: "js,jsx,ts,tsx"
           eslint: true
           prettier_extensions: "js,jsx,ts,tsx"
-
+          prettier: true
+          
       - name: Run eslint
         if: ${{ github.event_name == 'pull_request' && github.event.pull_request.head.repo.owner.login != github.repository_owner }}
         run: yarn eslint .
