@@ -3,10 +3,10 @@
 import { BigNumber, BigNumberish } from '@ethersproject/bignumber'
 import { Zero } from '@ethersproject/constants'
 import { parseUnits } from '@ethersproject/units'
-import * as Sentry from '@sentry/browser'
-import { Integrations } from '@sentry/tracing'
 import { Fraction } from 'app/entities/bignumber'
 import React from 'react'
+
+import * as Sentry from './sentry'
 
 if (typeof window !== 'undefined' && process.env.NODE_ENV === 'development') {
   const whyDidYouRender = require('@welldone-software/why-did-you-render')
@@ -64,16 +64,4 @@ BigNumber.prototype.max = function (...values: BigNumberish[]): BigNumber {
   return highest
 }
 
-Sentry.init({
-  dsn: 'https://e852f945bc774d718d25aa807d8417dd@o960777.ingest.sentry.io/5909166',
-
-  // Alternatively, use `process.env.npm_package_version` for a dynamic release version
-  // if your build tool supports it.
-  release: 'sushiswap-interface@1.0.0',
-  integrations: [new Integrations.BrowserTracing()],
-
-  // Set tracesSampleRate to 1.0 to capture 100%
-  // of transactions for performance monitoring.
-  // We recommend adjusting this value in production
-  tracesSampleRate: 1.0,
-})
+Sentry.initSentry
