@@ -148,7 +148,7 @@ export function useKashiRepositoryContract(): Contract | null {
   return useContract(chainId ? '0x400AFAbFB249210E08A8dfC429FfE20d32245f57' : undefined, KASHI_REPOSITORY_ABI, false)
 }
 
-export function useBoringHelperContract(): Contract | null {
+export function useBoringHelperContract(): Contract | null  {
   const { chainId } = useActiveWeb3React()
   // TODO ramin update in sdk
   return useContract(

@@ -157,6 +157,7 @@ export function useKashiMediumRiskLendingPairs(
   const boringHelperContract = useBoringHelperContract()
   const tokens = useKashiTokens()
   const args = useMemo(() => [account ? account : AddressZero, addresses], [account, addresses])
+  // @ts-expect-error 
   const { result, valid, loading, syncing, error } = useSingleCallResult(boringHelperContract, 'pollKashiPairs', args, {
     gasRequired: 20_000_000,
   })
