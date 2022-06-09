@@ -1,5 +1,6 @@
 import * as Sentry from '@sentry/nextjs'
 import NextErrorComponent from 'next/error'
+
 // @ts-ignore
 const MyError = ({ statusCode, hasGetInitialPropsRun, err }) => {
   if (!hasGetInitialPropsRun && err) {
@@ -12,9 +13,10 @@ const MyError = ({ statusCode, hasGetInitialPropsRun, err }) => {
 
   return <NextErrorComponent statusCode={statusCode} />
 }
+
 // @ts-ignore
 MyError.getInitialProps = async ({ res, err }) => {
-  // @ts-expect-error
+  // @ts-ignore
   const errorInitialProps = await NextErrorComponent.getInitialProps({
     res,
     err,
@@ -22,7 +24,7 @@ MyError.getInitialProps = async ({ res, err }) => {
 
   // Workaround for https://github.com/vercel/next.js/issues/8592, mark when
   // getInitialProps has run
-  // @ts-expect-error
+  // @ts-ignore
   errorInitialProps.hasGetInitialPropsRun = true
 
   // Running on the server, the response object (`res`) is available.

@@ -1,3 +1,1 @@
-// @export chunkArray
-//import chunkArray from "./chunkArray"
-export * from './chunkArray'
+export { chunkArray } from './chunkArray'

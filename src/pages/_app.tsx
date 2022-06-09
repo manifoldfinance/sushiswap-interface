@@ -17,7 +17,6 @@ import LogsUpdater from 'app/state/logs/updater'
 import TransactionUpdater from 'app/state/transactions/updater'
 import UserUpdater from 'app/state/user/updater'
 import * as plurals from 'make-plural/plurals'
-import { NextWebVitalsMetric } from 'next/app'
 import dynamic from 'next/dynamic'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
@@ -30,13 +29,14 @@ import { Web3ReactProvider } from 'web3-react-core'
 
 import SEO from '../config/seo'
 
-/**
- * NextWebVitalsMetric
- * @summary Axiom LogDrain
- * @env NEXT_PUBLIC_AXIOM_INGEST_ENDPOINT
- * @param metric
- * @returns reportWebVitals
- */
+const Web3ProviderNetwork = dynamic(() => import('../components/Web3ProviderNetwork'), { ssr: false })
+
+if (typeof window !== 'undefined' && !!window.ethereum) {
+  window.ethereum.autoRefreshOnNetworkChange = false
+}
+
+import { NextWebVitalsMetric } from 'next/app'
+
 export function reportWebVitals(metric: NextWebVitalsMetric) {
   const url = process.env.NEXT_PUBLIC_AXIOM_INGEST_ENDPOINT
 
@@ -54,12 +54,6 @@ export function reportWebVitals(metric: NextWebVitalsMetric) {
   } else {
     fetch(url, { body, method: 'POST', keepalive: true })
   }
-}
-
-const Web3ProviderNetwork = dynamic(() => import('../components/Web3ProviderNetwork'), { ssr: false })
-
-if (typeof window !== 'undefined' && !!window.ethereum) {
-  window.ethereum.autoRefreshOnNetworkChange = false
 }
 
 // @ts-ignore TYPE NEEDS FIXING
@@ -134,7 +128,7 @@ function MyApp({ Component, pageProps, fallback, err }) {
         name="viewport"
         content="minimum-scale=1, initial-scale=1, width=device-width, shrink-to-fit=no, viewport-fit=cover"
       />
-      <meta name="ui-version" content={`${process.env.NEXT_PUBLIC_VERCEL_GIT_COMMIT_SHA}`} />
+
       {/* Global Site Tag (gtag.js) - Google Analytics */}
       <Script
         strategy="afterInteractive"
