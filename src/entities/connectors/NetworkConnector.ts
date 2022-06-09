@@ -13,7 +13,7 @@ type AsyncSendable = {
   host?: string
   path?: string
   sendAsync?: (request: any, callback: (error: any, response: any) => void) => void
-  send?: (request: any, callback: (error: any, response: any) => void) => void
+  send?: (request: any, callback: (error: any, response?: any) => void) => void;
 }
 
 class RequestError extends Error {
@@ -63,8 +63,7 @@ class MiniRpcProvider implements AsyncSendable {
           this.connector.changeChainId(parseInt((b.request.params as [{ chainId: string }])[0].chainId))
           b.resolve({ id: b.request.id })
         } catch (error) {
-          // @ts-ignore
-          b.reject(error)
+          b.reject(error as any)
         }
         return false
       }

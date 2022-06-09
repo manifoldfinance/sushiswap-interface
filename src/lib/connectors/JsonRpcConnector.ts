@@ -33,8 +33,7 @@ export default class JsonRpcConnector extends Connector {
       ])
       this.actions.update({ chainId, accounts })
     } catch (e) {
-      // @ts-ignore
-      this.actions.reportError(e)
+      this.actions.reportError(e as any?)
     }
   }
 }
