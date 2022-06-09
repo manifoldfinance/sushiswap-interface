@@ -1,8 +1,7 @@
 // @ts-check
 /**
  * @type {import('next').NextConfig}
- **/
-require('v8-compile-cache-lib').install(); // faster builds
+ */
 const linguiConfig = require('./lingui.config.js')
 // @ts-ignore
 const defaultTheme = require('tailwindcss/defaultTheme')
@@ -115,14 +114,6 @@ const nextConfig = {
         permanent: true,
       },
     ]
-  },
-  async headers() {
-    return [
-      {
-        source: '/(.*)',
-        headers: [{ key: 'Web-Build', value: process.env.NEXT_PUBLIC_VERCEL_GIT_COMMIT_SHA }]
-      }
-    ];
   },
   async rewrites() {
     return [
