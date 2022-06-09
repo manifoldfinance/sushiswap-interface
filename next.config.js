@@ -1,8 +1,7 @@
 // @ts-check
 /**
  * @type {import('next').NextConfig}
- **/
-require('v8-compile-cache-lib').install(); // faster builds
+ */
 const linguiConfig = require('./lingui.config.js')
 // @ts-ignore
 const defaultTheme = require('tailwindcss/defaultTheme')
@@ -14,14 +13,14 @@ const { screens } = defaultTheme
 
 const withBundleAnalyzer = require('@next/bundle-analyzer')({
   enabled: process.env.ANALYZE === 'true',
-});
+})
 
-const packageJson = require('./package.json');
-const date = new Date();
-const GIT_COMMIT_SHA_SHORT = typeof process.env.GIT_COMMIT_SHA === 'string' && process.env.GIT_COMMIT_SHA.substring(0, 8);
+const packageJson = require('./package.json')
+const date = new Date()
+const GIT_COMMIT_SHA_SHORT =
+  typeof process.env.GIT_COMMIT_SHA === 'string' && process.env.GIT_COMMIT_SHA.substring(0, 8)
 
-
-const { withSentryConfig } = require('@sentry/nextjs');
+const { withSentryConfig } = require('@sentry/nextjs')
 const sentryWebpackPluginOptions = {
   // Additional config options for the Sentry Webpack plugin. Keep in mind that
   // the following options are set automatically, and overriding them is not
@@ -32,8 +31,7 @@ const sentryWebpackPluginOptions = {
   silent: true, // Suppresses all logs
   // For all available options, see:
   // https://github.com/getsentry/sentry-webpack-plugin#options.
-};
-
+}
 
 const nextConfig = {
   webpack: (config) => {
@@ -52,9 +50,9 @@ const nextConfig = {
    *  This is used to help provide authentication mechanisms from authorized deployments to the end user.
    *  Ideally, this will be accessed by wallets on their backend to verify the dapp they are interacting with is authentic and has not
    *  been flagged as malicious (e.g. supply chain compromise, etc).
-   * 
+   *
    *  @description Environment variables added to JS bundle.
-   *  @summary All env variables defined in ".env*" files that aren't public (those that don't start with "NEXT_PUBLIC_") 
+   *  @summary All env variables defined in ".env*" files that aren't public (those that don't start with "NEXT_PUBLIC_")
    *    MUST manually be made available at build time below.
    *    They're necessary on Vercel for runtime execution (SSR, SSG with revalidate, everything that happens server-side will need those).
    *
@@ -68,9 +66,9 @@ const nextConfig = {
     SENTRY_DSN: process.env.SENTRY_DSN,
     NEXT_PUBLIC_SENTRY_DSN: process.env.SENTRY_DSN, // Sentry DSN must be provided to the browser for error reporting to work there
     /**
-    * @const VERCEL_
-    * @see {@link https://vercel.com/docs/environment-variables#system-environment-variables}
-    */
+     * @const VERCEL_
+     * @see {@link https://vercel.com/docs/environment-variables#system-environment-variables}
+     */
     VERCEL: process.env.VERCEL,
     VERCEL_ENV: process.env.VERCEL_ENV,
     VERCEL_URL: process.env.VERCEL_URL,
@@ -119,10 +117,23 @@ const nextConfig = {
   async headers() {
     return [
       {
-        source: '/(.*)',
-        headers: [{ key: 'Web-Build', value: process.env.NEXT_PUBLIC_VERCEL_GIT_COMMIT_SHA }]
-      }
-    ];
+        source: '/api/:path*',
+        headers: [
+          { key: 'Web-Build', value: process.env.NEXT_PUBLIC_VERCEL_GIT_COMMIT_SHA },
+          { key: 'Access-Control-Allow-Credentials', value: 'true' },
+          { key: 'Access-Control-Allow-Origin', value: '*' },
+          {
+            key: 'Access-Control-Allow-Methods',
+            value: 'GET,OPTIONS,PATCH,DELETE,POST,PUT',
+          },
+          {
+            key: 'Access-Control-Allow-Headers',
+            value:
+              'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version',
+          },
+        ],
+      },
+    ]
   },
   async rewrites() {
     return [
@@ -182,9 +193,9 @@ const nextConfig = {
 
 // Make sure adding Sentry options is the last code to run before exporting, to
 // ensure that your source maps include changes from all other Webpack plugins
-module.exports = withSentryConfig(withBundleAnalyzer(nextConfig), sentryWebpackPluginOptions);
+module.exports = withSentryConfig(withBundleAnalyzer(nextConfig), sentryWebpackPluginOptions)
 
 // Don't delete this console log, useful to see the config in Vercel deployments
-console.log('process.env.VERCEL_GIT_COMMIT_SHA: ', process.env.VERCEL_GIT_COMMIT_SHA);
-console.log('process.env.NEXT_PUBLIC_VERCEL_GIT_COMMIT_SHA: ', process.env.NEXT_PUBLIC_VERCEL_GIT_COMMIT_SHA);
+console.log('process.env.VERCEL_GIT_COMMIT_SHA: ', process.env.VERCEL_GIT_COMMIT_SHA)
+console.log('process.env.NEXT_PUBLIC_VERCEL_GIT_COMMIT_SHA: ', process.env.NEXT_PUBLIC_VERCEL_GIT_COMMIT_SHA)
 console.log('next.config.js', JSON.stringify(module.exports, null, 2))
