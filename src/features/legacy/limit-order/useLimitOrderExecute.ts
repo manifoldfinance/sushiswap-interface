@@ -89,6 +89,7 @@ const useLimitOrderExecute: UseLimitOrderExecute = () => {
             s,
             {
               value: amount,
+              // @ts-expect-error
               gasLimit: calculateGasMargin(estimatedGas),
             }
           )
