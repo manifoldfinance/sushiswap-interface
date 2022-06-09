@@ -1,6 +1,6 @@
 import * as Sentry from '@sentry/nextjs'
 import NextErrorComponent from 'next/error'
-// @ts-ignore
+
 const MyError = ({ statusCode, hasGetInitialPropsRun, err }) => {
   if (!hasGetInitialPropsRun && err) {
     // getInitialProps is not called in case of
