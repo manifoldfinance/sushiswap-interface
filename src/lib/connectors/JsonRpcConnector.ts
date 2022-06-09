@@ -1,5 +1,5 @@
-import { JsonRpcProvider } from '@ethersproject/providers'
 import { Actions, Connector, ProviderConnectInfo, ProviderRpcError } from '@disco3/types'
+import { JsonRpcProvider } from '@ethersproject/providers'
 
 function parseChainId(chainId: string) {
   return Number.parseInt(chainId, 16)
