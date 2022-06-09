@@ -1,9 +1,40 @@
 /* eslint-disable @next/next/no-document-import-in-page */
 // pages/_document.js
-import { Head, Html, Main, NextScript } from 'next/document'
+import Document, { DocumentContext, DocumentProps, Head, Html, Main, NextScript, } from 'next/document';
+
+import * as Sentry from '@sentry/nextjs';
+import classnames from 'classnames';
+import NextCookies from 'next-cookies';
+import { DocumentInitialProps } from 'next/dist/next-server/lib/utils';
+
+import React from 'react';
+
+type DocumentGetInitialPropsOutput = Props & DocumentInitialProps
+type DocumentRenderProps = Props & DocumentProps
 
 const APP_NAME = 'Sushi'
 const APP_DESCRIPTION = 'Swap, yield, lend, borrow, leverage, limit, launch all on one community driven ecosystem'
+
+/**
+ * Send to Sentry all unhandled rejections.
+ *
+ * If such error happens in this file, it will completely crash the server and render "Internal Server Error" on the client.
+ * @see https://leerob.io/blog/configuring-sentry-for-nextjs-apps
+ */
+process.on('unhandledRejection', (e: Error): void => {
+  Sentry.captureException(e);
+});
+
+/**
+ * Send to Sentry all uncaught exceptions.
+ *
+ * If such error happens in this file, it will completely crash the server and render "Internal Server Error" on the client.
+ * @see https://leerob.io/blog/configuring-sentry-for-nextjs-apps
+ */
+process.on('uncaughtException', (e: Error): void => {
+  Sentry.captureException(e);
+});
+
 
 /**
  * @export Document
