@@ -1,5 +1,5 @@
+import { Actions, Connector, ProviderConnectInfo, ProviderRpcError } from '@disco3/types'
 import { JsonRpcProvider } from '@ethersproject/providers'
-import { Actions, Connector, ProviderConnectInfo, ProviderRpcError } from '@web3-react/types'
 
 function parseChainId(chainId: string) {
   return Number.parseInt(chainId, 16)
@@ -33,8 +33,7 @@ export default class JsonRpcConnector extends Connector {
       ])
       this.actions.update({ chainId, accounts })
     } catch (e) {
-      // @ts-ignore
-      this.actions.reportError(e)
+      this.actions.reportError(e as any)
     }
   }
 }

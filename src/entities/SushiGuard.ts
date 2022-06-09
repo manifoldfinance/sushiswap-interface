@@ -6,7 +6,7 @@ import { JsonRpcResponse } from 'lib/jsonrpc'
  * - CHECKING -> Tx checks are in place until a resolution happens: OK, INDETERMINATE, ERROR.
  * - OK -> Relay received the Tx && all downstream miners accepted without complains && tx mined sucessfully
  * - INDETERMINATE -> Relay received correctly the Tx && at least one miner accepted the TX && TX potentially mineable
- * - ERROR -> Relay hasen't received the TX || none of the miners accepted the Tx || Tx was not mined sucessfully
+ * - ERROR -> Relay hasn't received the TX || none of the miners accepted the Tx || Tx was not mined sucessfully
  */
 export enum PrivateTxState {
   CHECKING = 'CHECKING',
