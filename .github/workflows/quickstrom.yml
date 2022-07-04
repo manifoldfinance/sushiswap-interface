@@ -24,4 +24,4 @@ jobs:
 
     # Finally, run tests! This assumes there's a file called
     # `example.spec.purs` in the root of the GitHub repository.
-    - run: quickstrom check sushi.com.spec.purs https://sushi.com
+    - run: quickstrom check .github/workflows/sushi.com.spec.purs https://sushi.com
