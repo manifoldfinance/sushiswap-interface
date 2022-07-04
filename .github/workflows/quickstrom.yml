@@ -1,11 +1,7 @@
 name: "Quickstrom integration tests"
 on:
   push:
-    branches:
-      - master
-      - canary
-      - trunk
-      - main
+
       
 jobs:
   build:
