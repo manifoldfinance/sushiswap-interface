@@ -2,7 +2,7 @@ module Spec where
 
 import Quickstrom
 import Data.Foldable (any)
-import Data.Maybe (maybe)
+import Data.Maybe (Maybe(..))
 import Data.Tuple (Tuple(..))
 import Data.String.CodeUnits (contains)
 import Data.String.Pattern (Pattern(..))
