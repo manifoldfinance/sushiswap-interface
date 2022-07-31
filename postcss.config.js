@@ -1,7 +1,4 @@
 module.exports = {
- purge: [
-    join(__dirname, 'src/pages/**/*.{js,ts,jsx,tsx}')
-  ],
   plugins: [
     'tailwindcss',
     'postcss-flexbugs-fixes',
