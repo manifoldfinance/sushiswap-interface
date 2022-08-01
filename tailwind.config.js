@@ -6,9 +6,8 @@ const plugin = require('tailwindcss/plugin')
 
 module.exports = {
   // important: '#__next',
-  content: ['./src/**/*.{js,ts,jsx,tsx}'],
-  purge: [
-    join(__dirname, 'src/pages/**/*.{js,ts,jsx,tsx}'),
+  content: [
+    join(__dirname, 'src/**/*.{js,ts,jsx,tsx}'),
     ...createGlobPatternsForDependencies(__dirname),
   ],
   theme: {
