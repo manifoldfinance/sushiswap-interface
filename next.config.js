@@ -33,12 +33,14 @@ const nextConfig = {
         type: 'javascript/auto',
       },
     ]
-
     return config
   },
   // experimental: {
   //   nextScriptWorkers: true,
   // },
+  experimental: {
+    optimizeCss: true,
+  },
   poweredByHeader: false,
   productionBrowserSourceMaps: false,
   swcMinify: false,

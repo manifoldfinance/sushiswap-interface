@@ -1,9 +1,15 @@
+const { join } = require('path')
+
+// available since Nx v 12.5
+const { createGlobPatternsForDependencies } = require('@nrwl/next/tailwind')
+
 const defaultTheme = require('tailwindcss/defaultTheme')
 const plugin = require('tailwindcss/plugin')
 
 module.exports = {
   // important: '#__next',
   content: ['./src/**/*.{js,ts,jsx,tsx}'],
+  purge: [join(__dirname, 'src/pages/**/*.{js,ts,jsx,tsx}'), ...createGlobPatternsForDependencies(__dirname)],
   theme: {
     extend: {
       gridTemplateColumns: {
