@@ -54,6 +54,11 @@
     "@walletconnect/jsonrpc-provider": "1.0.3"
   },
   "devDependencies": {
+    "@nrwl/cli": "^14.5.1",
+    "@nrwl/next": "^14.5.1",
+    "@nrwl/react": "^14.5.1",
+    "@nrwl/workspace": "^14.5.1",
+    "nx": "^14.5.1",
     "@babel/preset-react": "^7.16.7",
     "@binance-chain/bsc-connector": "^1.0.0",
     "@builder.io/partytown": "^0.5.2",
