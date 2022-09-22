@@ -2684,6 +2684,13 @@
   dependencies:
     "@sushiswap/core-sdk" "1.0.0-canary.133"
 
+"@sushiswap/bentobox-sdk@1.0.0-canary.119":
+  version "1.0.0-canary.119"
+  resolved "https://registry.yarnpkg.com/@sushiswap/bentobox-sdk/-/bentobox-sdk-1.0.0-canary.119.tgz#4bd97fd40ffd3710a84df18f3ff9d5fd7f5929b3"
+  integrity sha512-6tUqDJY7wdI0KRNDHuBRFryje9n2/zyc/P/LTR0ovzLuc0PLjxP3vXj18M0Yz6lzZkf3/46ACynf5Y9DHKYr0Q==
+  dependencies:
+    "@sushiswap/core-sdk" "1.0.0-canary.138"
+
 "@sushiswap/chainlink-whitelist@0.2.8":
   version "0.2.8"
   resolved "https://registry.yarnpkg.com/@sushiswap/chainlink-whitelist/-/chainlink-whitelist-0.2.8.tgz#832dc80963b890a2eb02aaaf11ea8b57b2b7dde0"
@@ -2705,19 +2712,35 @@
     tiny-warning "^1.0.0"
     toformat "^2.0.0"
 
+"@sushiswap/core-sdk@1.0.0-canary.138":
+  version "1.0.0-canary.138"
+  resolved "https://registry.yarnpkg.com/@sushiswap/core-sdk/-/core-sdk-1.0.0-canary.138.tgz#0951635f3d1dc199a4a663dfb5f71afa65a437d8"
+  integrity sha512-AIhSCpQSdcdNYEAkl0bkr3951f7sYMxu1RsAC3XyqOGEwMdJ4q+rF4XJA8nSTM6TeNZ1NwnH0K40cdg5YYiqJQ==
+  dependencies:
+    "@ethersproject/address" "^5.4.0"
+    "@ethersproject/bignumber" "^5.4.0"
+    "@ethersproject/providers" "^5.4.0"
+    "@ethersproject/solidity" "^5.4.0"
+    big.js "^6.1.1"
+    decimal.js-light "^2.5.0"
+    jsbi "^4.1.0"
+    tiny-invariant "^1.1.0"
+    tiny-warning "^1.0.0"
+    toformat "^2.0.0"
+
 "@sushiswap/core@^2.0.0-canary.1":
   version "2.0.0-canary.1"
   resolved "https://registry.yarnpkg.com/@sushiswap/core/-/core-2.0.0-canary.1.tgz#91c938668282d463e4fce6e0cf4d320ce5f3768f"
   integrity sha512-6YFT4EKgm0XgfwCBsKx5HrDtRI6EvhZHipjBKegdTV0b2zKuXnmdyZ+RwPCr0mCKq2pKB0qIiqCxfbgXYDlLCQ==
 
-"@sushiswap/kashi-sdk@1.0.0-canary.105":
-  version "1.0.0-canary.105"
-  resolved "https://registry.yarnpkg.com/@sushiswap/kashi-sdk/-/kashi-sdk-1.0.0-canary.105.tgz#d1204ba18bd95d42376eb9efef5e44ea3eec1c81"
-  integrity sha512-GcfYMd7T5CeJiPsNf27UMLoC786W0yv3BUuAOaklgQVxb4ZBBuoMe6RhgHJXgxlkIRLpW4VrGoR11Ci6NKmP8A==
+"@sushiswap/kashi-sdk@1.0.0-canary.110":
+  version "1.0.0-canary.110"
+  resolved "https://registry.yarnpkg.com/@sushiswap/kashi-sdk/-/kashi-sdk-1.0.0-canary.110.tgz#24aa0f20bb577d4bfe83ecb99b852621fc69e1a9"
+  integrity sha512-5KR84mU5bjbDRMzVu8ojC4HTu8jaC0+TibKP8zTT5590ZCwyJjGXD7mqcL5tNICl+w64tX3vNMNhCb/klyEJhQ==
   dependencies:
     "@ethersproject/abi" "^5.4.0"
     "@ethersproject/contracts" "^5.4.0"
-    "@sushiswap/bentobox-sdk" "1.0.0-canary.114"
+    "@sushiswap/bentobox-sdk" "1.0.0-canary.119"
 
 "@sushiswap/limit-order-pair-list@0.2.17":
   version "0.2.17"
